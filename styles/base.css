@@ -146,3 +146,12 @@ body::before {
 @media (prefers-reduced-motion: reduce) {
   .marquee > div { animation: none; }
 }
+
+/* ---- Mobile overflow + link-arrow cleanup ---- */
+@media (max-width: 640px) {
+  /* hide external-link arrows (↗) on small screens */
+  .ar { display: none; }
+  /* prevent any child from punching through the right margin */
+  .wrap { overflow-x: hidden; }
+  img, video, iframe { max-width: 100%; }
+}
