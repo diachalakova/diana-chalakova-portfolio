@@ -1,0 +1,148 @@
+/* ============================================================
+   Diana C — Portfolio design system
+   Warm paper · huge bold near-brutalist sans · playful doodles
+   ============================================================ */
+
+/* ---- Tokens ---- */
+:root {
+  /* Surfaces (warm paper) */
+  --paper:      #F2ECE0;
+  --paper-2:    #EAE0CC;
+  --paper-3:    #E3D7BE;
+  --ink:        #1B1714;
+  --ink-soft:   #6B6157;
+  --line:       #1B1714;
+
+  /* Doodle palette — vary hue, hold chroma/lightness-ish */
+  --red:    #E1462C;
+  --blue:   #2148C9;
+  --yellow: #F2B705;
+  --green:  #2F9E5B;
+  --purple: #7C4DD4;
+
+  /* Type */
+  --display: "Archivo", "Helvetica Neue", Helvetica, Arial, sans-serif;
+  --sans:    "Archivo", "Helvetica Neue", Helvetica, Arial, sans-serif;
+  --mono:    "Helvetica Neue", Helvetica, Arial, sans-serif;
+  --hand:    "Caveat", "Comic Sans MS", cursive;
+
+  --maxw: 1320px;
+}
+
+/* ---- Reset ---- */
+*, *::before, *::after { box-sizing: border-box; }
+html { -webkit-font-smoothing: antialiased; text-rendering: optimizeLegibility; }
+body {
+  margin: 0;
+  background: var(--paper);
+  color: var(--ink);
+  font-family: var(--sans);
+  font-size: 18px;
+  line-height: 1.5;
+  overflow-x: hidden;
+}
+a { color: inherit; text-decoration: none; }
+img { max-width: 100%; display: block; }
+button { font-family: inherit; cursor: pointer; }
+
+/* subtle paper grain */
+body::before {
+  content: "";
+  position: fixed; inset: 0; z-index: 0; pointer-events: none;
+  background-image: radial-gradient(rgba(27,23,20,0.025) 1px, transparent 1px);
+  background-size: 4px 4px;
+  mix-blend-mode: multiply;
+}
+
+/* ---- Layout helpers ---- */
+.wrap { max-width: var(--maxw); margin: 0 auto; padding: 0 40px; }
+.relayer { position: relative; z-index: 2; }
+@media (max-width: 760px) { .wrap { padding: 0 22px; } }
+
+/* ---- Type scale ---- */
+.eyebrow {
+  font-family: var(--mono);
+  font-size: 12px;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--ink-soft);
+}
+.mono { font-family: var(--mono); }
+.hand { font-family: var(--hand); }
+
+.display {
+  font-family: var(--display);
+  font-weight: 900;
+  line-height: 0.86;
+  letter-spacing: -0.03em;
+  text-transform: uppercase;
+}
+
+/* fluid huge type */
+.fs-mega   { font-size: clamp(64px, 16vw, 280px); }
+.fs-huge   { font-size: clamp(48px, 9vw, 150px); }
+.fs-xl     { font-size: clamp(34px, 5.2vw, 78px); }
+.fs-lg     { font-size: clamp(26px, 3.4vw, 46px); }
+
+/* ---- Nav ---- */
+.nav {
+  position: sticky; top: 0; z-index: 50;
+  display: flex; align-items: center; justify-content: space-between;
+  padding: 22px 40px;
+  mix-blend-mode: multiply;
+}
+.nav .brand {
+  font-family: var(--display);
+  font-weight: 900;
+  letter-spacing: -0.02em;
+  font-size: 22px;
+  text-transform: uppercase;
+}
+.nav .links { display: flex; gap: 28px; align-items: center; }
+.nav .links a {
+  font-family: var(--mono);
+  font-size: 13px;
+  letter-spacing: 0.04em;
+  position: relative;
+  padding-bottom: 2px;
+}
+.nav .links a::after {
+  content: ""; position: absolute; left: 0; bottom: -1px; height: 2px; width: 0;
+  background: var(--ink); transition: width 0.25s ease;
+}
+.nav .links a:hover::after { width: 100%; }
+@media (max-width: 760px) {
+  .nav { padding: 16px 22px; }
+  .nav .links { gap: 16px; }
+  .nav .links a.hide-sm { display: none; }
+}
+
+/* ---- Buttons / pills ---- */
+.pill {
+  display: inline-flex; align-items: center; gap: 10px;
+  font-family: var(--mono); font-size: 13px; letter-spacing: 0.03em;
+  padding: 12px 20px; border: 2px solid var(--ink); border-radius: 999px;
+  background: transparent; color: var(--ink);
+  transition: background 0.2s ease, color 0.2s ease, transform 0.2s ease;
+}
+.pill:hover { background: var(--ink); color: var(--paper); transform: translateY(-2px); }
+.pill.solid { background: var(--ink); color: var(--paper); }
+.pill.solid:hover { background: transparent; color: var(--ink); }
+
+/* ---- Marquee ---- */
+.marquee { overflow: hidden; white-space: nowrap; }
+.marquee > div { display: inline-block; will-change: transform; animation: marq 24s linear infinite; }
+@keyframes marq { from { transform: translateX(0); } to { transform: translateX(-50%); } }
+
+/* ---- Footer ---- */
+.foot {
+  border-top: 2px solid var(--ink);
+  margin-top: 120px; padding: 48px 0 60px;
+}
+
+/* ---- Doodle utility ---- */
+.doodle { position: absolute; pointer-events: none; z-index: 1; }
+
+@media (prefers-reduced-motion: reduce) {
+  .marquee > div { animation: none; }
+}

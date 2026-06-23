@@ -1,0 +1,572 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Arc Security — Diana C</title>
+<meta name="description" content="Arc — reimagining safety for real estate agents. A UX/UI case study by Diana Chalakova." />
+<meta name="author" content="Diana Chalakova" />
+<meta name="theme-color" content="#ffffff" />
+<link rel="icon" type="image/svg+xml" href="../assets/favicon.svg" />
+<meta property="og:type" content="article" />
+<meta property="og:title" content="Arc Security — Diana Chalakova" />
+<meta property="og:description" content="Reimagining safety for real estate agents." />
+<meta property="og:image" content="../assets/work/arc-card.png" />
+<meta name="twitter:card" content="summary_large_image" />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;500;600;700;800;900&family=Space+Mono:wght@400;700&family=Caveat:wght@500;600;700&display=swap" rel="stylesheet" />
+<link rel="stylesheet" href="../styles/base.css" />
+<style>
+  :root {
+    --paper: #ffffff; --bright: #2148C9;
+    --hair: rgba(27,23,20,0.12);
+    --hair-soft: rgba(27,23,20,0.08);
+    /* Arc palette — protective blue leads. Light blue sits BEHIND dark text as a
+       highlight. Taupe & charcoal pass AA as text. */
+    --plum: #2148C9; --lav: #BACAF2; --gold: #E7DDBE; --gold-solid: #B7A57A;
+    --lilac: #BACAF2; --lemon: #E7DDBE; --sand: #E3D7C2;
+    --milk: #EEF2FB; --taupe: #524D44; --charcoal: #2F2D29;
+  }
+  body::before { display: none; }
+  html { scroll-behavior: smooth; }
+  body { color: #221e1a; }
+
+  .cs-layout { display: grid; grid-template-columns: 186px 1fr; align-items: start; max-width: 1400px; margin: 0 auto; padding: 0 clamp(24px, 4vw, 64px); box-sizing: border-box; }
+
+  /* ---- left rail ---- */
+  .cs-side {
+    position: sticky; top: 0; height: 100vh; align-self: start;
+    display: flex; flex-direction: column; gap: 26px;
+    padding: 38px 20px 38px 34px;
+  }
+  .back {
+    display: inline-flex; align-items: center; align-self: flex-start;
+    font-family: var(--mono); font-size: 13px; color: var(--ink);
+    transition: color .2s ease, transform .2s ease;
+  }
+  .back:hover { transform: translateX(-3px); }
+  .back .ar { font-size: 17px; line-height: 1; }
+
+  .cs-nav { display: flex; flex-direction: column; gap: 1px; }
+  .cs-nav a {
+    font-family: var(--sans); font-weight: 500; font-size: 13px; letter-spacing: -0.005em;
+    color: rgba(27,23,20,0.32); padding: 7px 0;
+    align-self: flex-start; width: fit-content;
+    transition: color .18s ease;
+  }
+  .cs-nav a:hover { color: var(--ink); }
+  .cs-nav a.active { color: var(--ink); font-weight: 600; }
+
+  .cs-side .spark { display: none; }
+
+  /* ---- main column ---- */
+  .cs-main { padding: 56px 48px 0 48px; max-width: none; }
+  .cs-sec { scroll-margin-top: 36px; padding: 78px 0; }
+  .cs-sec:first-of-type { padding-top: 31px; }
+  .cs-sec:last-of-type { padding-bottom: 80px; }
+  /* equal spacing between sections: neutralize leading/trailing child margins */
+  .cs-sec > *:first-child { margin-top: 0; }
+  .cs-sec > *:last-child, .cs-sec > *:last-child *:last-child { margin-bottom: 0; }
+
+  .sec-tag {
+    display: flex; align-items: center; gap: 20px;
+    font-family: var(--mono); font-size: 12px; letter-spacing: 0.16em; text-transform: uppercase;
+    color: var(--taupe); margin-bottom: 44px;
+  }
+  .sec-tag::after { content: ""; flex: 1; height: 1px; background: var(--hair); }
+
+  .sec-grid { display: grid; grid-template-columns: 1fr; gap: 22px; align-items: start; }
+  .sec-grid .cs-copy { max-width: 70ch; }
+  @media (max-width: 860px) { .sec-grid { gap: 16px; } }
+
+  /* reflection: full-width caption + copy */
+  .cs-h.refl-h { margin-bottom: 52px; text-wrap: balance; }
+  .refl-copy { display: grid; grid-template-columns: 1fr 1fr; gap: 56px; }
+  .refl-copy .col p { margin-top: 0; }
+  .refl-copy .col p + p { margin-top: 18px; }
+  @media (max-width: 860px) { .refl-copy { grid-template-columns: 1fr; gap: 18px; } }
+
+  .cs-h { font-family: var(--display); font-weight: 700; letter-spacing: -0.02em; line-height: 1.04; margin: 0; font-size: clamp(26px, 3vw, 42px); }
+  .cs-main p { font-size: 16px; line-height: 1.62; margin: 0 0 18px; color: #2c2722; }
+  .cs-main p:last-child { margin-bottom: 0; }
+  .cs-main p .mark, .hl-lemon, .hl-lav, .hl-sand, .hl-sage, .hl-cream, .hmw .hl, .pull .hl, .statement .hl { background: none !important; padding: 0 !important; }
+  .cs-main p .em { color: var(--ink); font-weight: 600; }
+  .cs-main p .mark { background: linear-gradient(transparent 60%, var(--lav) 60%); padding: 0 2px; }
+  .cs-copy p + p { margin-top: 18px; }
+
+  /* hero / overview */
+  .cs-hero-title { font-family: var(--display); font-weight: 600; text-transform: uppercase; font-size: clamp(64px, 12vw, 156px); letter-spacing: -0.02em; line-height: 0.86; margin: 0; }
+  .cs-hero-sub { font-family: var(--display); font-weight: 600; font-size: clamp(15px,1.5vw,19px); letter-spacing: 0.01em; color: var(--taupe); margin: 14px 0 0; }
+
+  .ov-grid { display: grid; grid-template-columns: 300px minmax(0,1fr); gap: 56px; align-items: start; margin-top: 44px; border-top: 1px solid var(--hair); }
+  @media (max-width: 860px) { .ov-grid { grid-template-columns: 1fr; gap: 8px; } }
+  .meta-list p { font-size: 16px; line-height: 1.5; margin: 0; padding: 13px 0; border-bottom: 1px solid var(--hair-soft); color: #2c2722; }
+  .meta-list .k { color: var(--ink-soft); }
+  .ov-lead { font-size: clamp(15.5px,1.4vw,17px); line-height: 1.6; color: var(--ink); margin: 0; padding-top: 13px; }
+
+  .hl-lemon { color: var(--ink); font-weight: 600; background: linear-gradient(transparent 56%, var(--gold) 56%); padding: 0 2px; }
+  .hl-lav { color: var(--ink); font-weight: 600; background: linear-gradient(transparent 56%, var(--lav) 56%); padding: 0 2px; }
+
+  /* media */
+  .media { border-radius: 14px; overflow: hidden; margin: 40px 0; border: 0; background: var(--milk); }
+  .media img.shot, .media video.shot { display: block; width: 100%; height: auto; }
+  .media--pad { background: #fff; }
+  .media--pad img.shot { padding: 22px 24px 6px; box-sizing: border-box; }
+  .media--inset { background: var(--milk); }
+  .media--inset img.shot { padding: 48px 56px; box-sizing: border-box; max-width: 720px; margin: 0 auto; }
+  @media (max-width: 640px) { .media--inset img.shot { padding: 24px 28px; } }
+  /* iteration / progression images — white-background sketch-to-final boards */
+  .media--iter { background: #fff; }
+  .media--iter img.shot { padding: 30px 34px; box-sizing: border-box; }
+  /* crop a bit off the top of select iteration boards */
+  .media--croptop img.shot { margin-top: -28px; }
+  .media--iter-tall.media--croptop img.shot { margin: -46px auto 0; }
+  /* taller crop for square boards (e.g. shortcuts) — more top/bottom air shrinks the image */
+  .media--iter-tall img.shot { padding: 48px 34px; max-width: 640px; margin: 0 auto; }
+  @media (max-width: 640px) { .media--iter img.shot { padding: 16px 18px; } .media--iter-tall img.shot { padding: 40px 24px; } }
+  /* overview hero — Arc app suite on a tinted panel */
+  .media--hero { background: #ffffff; }
+  .media--hero img.shot { max-width: 600px; width: 100%; margin: 0 auto; padding: 48px 48px 18px; box-sizing: border-box; }
+  @media (max-width: 640px) { .media--hero img.shot { padding: 28px 24px 10px; } }
+  /* solution: cropped phone-screen video beside its copy */
+  .feat-split { display: grid; grid-template-columns: 356px minmax(0,1fr); gap: 56px; align-items: center; margin-top: 24px; }
+  .feat-split .feat-copy { max-width: none; margin-top: 0; }
+  .feat-split .feat-copy ul { margin-top: 0; }
+  .feat-split .subhead { margin-bottom: 18px; }
+  .media--appscreen { background: transparent; border-radius: 0; border: 0; overflow: hidden; margin: 0; }
+  .media--appscreen .screen-crop { position: relative; aspect-ratio: var(--car, 816 / 1548); overflow: hidden; }
+  .media--appscreen .screen-crop video,
+  .media--appscreen .screen-crop img {
+    position: absolute; display: block;
+    width: var(--vw, 100%); height: var(--vh, 100%);
+    left: var(--vl, 0%); top: var(--vt, 0%);
+  }
+  /* contained device screenshot — full phone (frame included) centered in the same-size box with even padding */
+  .media--appscreen.media--contain .screen-crop { display: flex; align-items: center; justify-content: center; padding: 16px; box-sizing: border-box; }
+  .media--appscreen.media--contain .screen-crop img,
+  .media--appscreen.media--contain .screen-crop video { position: static; width: 100%; height: 100%; object-fit: contain; }
+  /* alternating sides: reversed blocks put the phone on the right */
+  .feat-split--rev { grid-template-columns: minmax(0,1fr) 356px; }
+  .feat-split--rev .feat-copy { order: -1; }
+  @media (max-width: 760px) { .feat-split--rev .feat-copy { order: 0; } }
+  @media (max-width: 760px) { .feat-split { grid-template-columns: 1fr; gap: 24px; } .feat-split .media--appscreen { max-width: 340px; } }
+  .media .frame {
+    aspect-ratio: var(--ar, 16/9); position: relative;
+    background: repeating-linear-gradient(45deg, rgba(27,23,20,0.04) 0 11px, transparent 11px 22px), var(--mb, #E7EAF7);
+    display: flex; align-items: center; justify-content: center;
+  }
+  .media .frame .lab { font-family: var(--mono); font-size: 11px; color: var(--ink-soft); background: rgba(255,255,255,0.85); padding: 6px 11px; border-radius: 6px; }
+  .media .cap { font-family: var(--mono); font-size: 11.5px; color: var(--ink-soft); padding: 11px 15px; border-top: 0; background: #fff; }
+  .prob-media { margin: 0; }
+  .prob-media img.shot { border-bottom: 0; }
+
+  .duo-img { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin: 36px 0; }
+  .duo-img .media { margin: 0; }
+  @media (max-width: 640px) { .duo-img { grid-template-columns: 1fr; } }
+
+  /* phone-screen placeholders for a mobile app */
+  .phone-row { display: grid; grid-template-columns: repeat(3, 1fr); gap: 18px; margin: 36px 0; }
+  .phone-row.two { grid-template-columns: repeat(2, 1fr); max-width: 560px; }
+  .phone { margin: 0; border-radius: 26px; border: 0; background: var(--milk); overflow: hidden; }
+  .phone .frame { aspect-ratio: 9 / 19.5; border-radius: 0; }
+  .phone .cap { text-align: center; }
+  @media (max-width: 640px) { .phone-row, .phone-row.two { grid-template-columns: 1fr; max-width: 320px; margin-left: auto; margin-right: auto; } }
+
+  .block { margin-top: 56px; }
+  .block .subhead + .media, .block .subhead + .duo-img, .block .subhead + .phone-row { margin-top: 22px; }
+  .block .subhead + .media--croptop { margin-top: 8px; }
+  .block-copy { max-width: 64ch; margin-top: 22px; }
+  .subhead { font-family: var(--display); font-weight: 600; font-size: clamp(18px,1.7vw,23px); letter-spacing: -0.01em; margin: 0 0 14px; }
+
+  /* problem statement / HMW */
+  .hmw { font-family: var(--display); font-weight: 600; font-size: clamp(22px,2.5vw,34px); line-height: 1.2; letter-spacing: -0.015em; margin: 0 0 6px; max-width: 22ch; color: var(--ink); }
+  .hmw.hmw--wide { max-width: none; margin-bottom: 40px; }
+  .hmw .hl { background: linear-gradient(transparent 56%, var(--lav) 56%); padding: 0 3px; }
+
+  .prob-grid { display: grid; grid-template-columns: minmax(0,1fr) minmax(0,1.05fr); gap: 56px; align-items: stretch; }
+  @media (max-width: 860px) { .prob-grid { grid-template-columns: 1fr; gap: 28px; } }
+
+  /* research takeaways */
+  .painlist { display: grid; grid-template-columns: 1fr 1fr; gap: 48px 64px; margin-top: 40px; }
+  .pain { display: grid; grid-template-columns: auto 1fr; column-gap: 22px; align-items: start; }
+  .pain .pn { font-family: var(--display); font-weight: 800; font-size: 92px; line-height: 0.8; letter-spacing: -0.03em; color: #7B91D6; margin: 0; }
+  .pain .pain-body { padding-top: 4px; }
+  .pain h4 { font-family: var(--display); font-weight: 700; font-size: 21px; letter-spacing: -0.01em; line-height: 1.2; margin: 0 0 12px; color: var(--ink); }
+  .pain p { font-size: 16px; line-height: 1.55; margin: 0; color: var(--taupe); }
+  @media (max-width: 640px) { .painlist { grid-template-columns: 1fr; gap: 32px; } .pain .pn { font-size: 72px; } }
+
+  /* solution feature blurb copy */
+  .feat-copy { max-width: 64ch; }
+  .feat-copy ul { margin: 14px 0 0; padding-left: 20px; }
+  .feat-copy li { font-size: 16px; line-height: 1.6; color: #2c2722; margin: 0 0 8px; }
+  .feat-copy li::marker { color: var(--plum); }
+
+  /* testimonial */
+  .quote { margin: 40px 0 0; padding: 36px 40px; background: var(--milk); border-radius: 16px; border: 0; }
+  .quote .qmark { font-family: var(--display); font-weight: 700; font-size: 56px; line-height: 0.5; color: var(--lav); display: block; height: 30px; }
+  /* in the problem grid, top-align the quote's text with the copy on its left */
+  /* in the problem grid: box top aligns with the copy on its left; quote text
+     sits centered between the two corner quotation marks */
+  /* quote box matches the height of the copy on its left */
+  .prob-grid .quote { position: relative; margin-top: 0; padding: 40px 44px; display: flex; flex-direction: column; justify-content: center; }
+  .quote p { font-family: var(--display); font-weight: 500; font-size: clamp(16px,1.5vw,19px); line-height: 1.45; letter-spacing: -0.01em; color: var(--ink); margin: 0 0 18px; max-width: none; }
+  .quote p:last-of-type { margin-bottom: 22px; }
+  .quote .by { font-family: var(--mono); font-size: 13px; color: var(--taupe); letter-spacing: 0.02em; }
+
+  .next { display: flex; align-items: center; justify-content: space-between; gap: 20px; border-top: 1px solid var(--hair); margin-top: 90px; padding-top: 30px; flex-wrap: wrap; }
+  .next .lab { font-family: var(--mono); font-size: 12px; color: var(--ink-soft); letter-spacing: .1em; text-transform: uppercase; }
+  .next a { font-family: var(--display); font-weight: 700; font-size: clamp(28px,4vw,48px); letter-spacing: -0.02em; line-height: 1; transition: color .18s ease; }
+  .next a:hover { color: var(--plum); }
+
+  /* footer */
+  .site-footer { --rose: #A87C7E; grid-column: 1 / -1; margin-top: 0; padding: 0 48px; }
+  .site-footer .ft-grid { border-top: 1.5px solid #B98A8D; padding-top: 22px; }
+  .ft-grid { display: grid; grid-template-columns: 1fr auto; column-gap: 40px; row-gap: 16px; align-items: stretch; padding-bottom: 36px; }
+  .ft-name { grid-column: 1; grid-row: 1; font-family: var(--sans); font-weight: 400; font-size: 15px; color: var(--rose); letter-spacing: -0.01em; }
+  .ft-links { grid-column: 2; grid-row: 1 / span 2; display: flex; flex-direction: column; align-items: flex-end; justify-content: space-between; }
+  .ft-links a { font-family: var(--sans); font-size: 12px; color: var(--rose); display: inline-flex; align-items: center; gap: 2px; transition: opacity .18s ease; }
+  .ft-links a .ar { font-size: 10px; }
+  .ft-links a:hover { opacity: 0.6; }
+  .ft-edu { grid-column: 1; grid-row: 2; display: grid; grid-template-columns: repeat(3, max-content); gap: 10px 44px; }
+  .ft-edu .ft-deg, .ft-edu .ft-school { font-family: var(--sans); font-size: 12px; line-height: 1.4; color: var(--rose); white-space: nowrap; }
+  .ft-edu .ft-deg { font-style: italic; }
+  @media (max-width: 700px) {
+    .ft-grid { grid-template-columns: 1fr; }
+    .ft-links { grid-column: 1; grid-row: auto; align-items: flex-start; flex-direction: row; flex-wrap: wrap; gap: 18px; }
+    .ft-edu { grid-template-columns: 1fr; }
+  }
+
+  @media (max-width: 900px) {
+    .cs-layout { grid-template-columns: 1fr; }
+    .cs-side {
+      position: sticky; top: 0; height: auto; flex-direction: row; align-items: center; gap: 14px;
+      padding: 12px 18px; border-bottom: 1px solid var(--hair); background: #fff; z-index: 50;
+      overflow-x: auto; -webkit-overflow-scrolling: touch;
+    }
+    .cs-side .spark { display: none; }
+    .cs-nav { flex-direction: row; gap: 4px; padding: 0; border: 0; }
+    .cs-nav a { font-size: 13px; padding: 6px 11px; white-space: nowrap; border-radius: 999px; }
+    .cs-nav a.active { background: rgba(33,72,201,0.1); color: var(--bright); }
+    .cs-main { padding: 40px 24px 0; }
+  }
+</style>
+</head>
+<body data-screen-label="Case study / Arc Security">
+  <div class="cs-layout">
+    <!-- LEFT RAIL -->
+    <aside class="cs-side">
+      <a class="back" href="../index.html" aria-label="Back to all work"><span class="ar">←</span></a>
+      <nav class="cs-nav" aria-label="Sections">
+        <a href="#overview"   data-spy>Overview</a>
+        <a href="#problem"    data-spy>Problem</a>
+        <a href="#solution"   data-spy>Solution</a>
+        <a href="#research"   data-spy>Research</a>
+        <a href="#ideation"   data-spy>Ideation</a>
+        <a href="#style"      data-spy>Style Guide</a>
+        <a href="#reflection" data-spy>Reflection</a>
+      </nav>
+      <span class="spark" aria-hidden="true">
+        <svg width="26" height="26" viewBox="0 0 26 26" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"><path d="M13 2 C13 8 13 8 13 13 M13 13 C13 18 13 18 13 24 M2 13 C8 13 8 13 13 13 M13 13 C18 13 18 13 24 13"/></svg>
+      </span>
+    </aside>
+
+    <!-- MAIN -->
+    <main class="cs-main">
+      <!-- OVERVIEW -->
+      <section id="overview" class="cs-sec">
+        <h1 class="cs-hero-title">Arc</h1>
+        <div class="ov-grid">
+          <div class="meta-list">
+            <p><span class="k">role</span> — Lead UX Designer, Intern</p>
+            <p><span class="k">timeline</span> — Sept – Dec 2022 (3 months)</p>
+            <p><span class="k">team</span> — Led 4 design interns · partnered with a dev team</p>
+            <p><span class="k">tools</span> — Figma, Illustrator</p>
+          </div>
+          <div class="ov-lead-wrap">
+            <p class="ov-lead">Arc set out to reimagine what safety looks like for a real estate agent, and to become the <span class="hl-lav">industry-wide standard</span> for security. In weekly meetings and constant collaboration with a team of developers, I led four other design interns in researching the features that would advance the existing product and produce a high-fidelity prototype.</p>
+          </div>
+        </div>
+        <div class="media media--hero">
+          <img class="shot" src="../assets/work/arc-card.png" alt="The Arc app suite — Safety Mode timer, the daily schedule home screen, and the Insights dashboard" fetchpriority="high" decoding="async" />
+        </div>
+      </section>
+
+      <!-- PROBLEM -->
+      <section id="problem" class="cs-sec">
+        <div class="sec-tag">Problem</div>
+        <h2 class="hmw hmw--wide">How might we make real estate agents feel <span class="hl">safer during one-on-ones</span> with clients?</h2>
+        <div class="prob-grid">
+          <div class="cs-copy">
+            <p>According to the National Association of Realtors, <span class="em">33% of agents</span> have experienced a situation that made them fear for their safety. They spend hours with strangers at showings and open houses, often in isolated locations.</p>
+            <p>Yet there is no industry-wide solution for employee safety management — agents are left to improvise with informal habits like texting a friend their location.</p>
+          </div>
+          <div class="quote">
+            <p>&ldquo;At the end of the day, after many long hours of showing homes, I pour myself a glass of wine, sit down on the couch, and think about all the moments where things could have gone wrong.&rdquo;</p>
+            <div class="by">— Anonymous real estate agent, from interview</div>
+          </div>
+        </div>
+      </section>
+
+      <!-- SOLUTION -->
+      <section id="solution" class="cs-sec">
+        <div class="sec-tag">Solution</div>
+        <div class="sec-grid">
+          <div><h2 class="cs-h">Personalized integration into an agent's existing workflow.</h2></div>
+          <div class="cs-copy">
+            <p>A safety layer built for ease and <span class="em">quick access</span> in high-pressure situations, designed to complement the habits agents already rely on, not replace them.</p>
+          </div>
+        </div>
+
+        <div class="block">
+          <div class="feat-split">
+            <div class="media media--appscreen media--contain">
+              <div class="screen-crop"><video class="shot" src="../assets/work/arc-home-screen.mp4" muted loop autoplay playsinline preload="metadata"></video></div>
+            </div>
+            <div class="feat-copy">
+              <h3 class="subhead">Quick access to daily schedule and safety features</h3>
+              <ul>
+                <li>All showings in one view (address, time, timer status, and verification codes)</li>
+                <li>An expandable <span class="em">CODE</span> button generates identity-verification codes without leaving the screen</li>
+                <li>A bottom nav bar gives instant access to Safety Network, Calendar, Insights, and the Safety Mode toggle</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+
+        <div class="block">
+          <div class="feat-split feat-split--rev">
+            <div class="media media--appscreen media--contain">
+              <div class="screen-crop"><video class="shot" src="../assets/work/arc-timer.mp4" muted loop autoplay playsinline preload="metadata"></video></div>
+            </div>
+            <div class="feat-copy">
+              <h3 class="subhead">Active protection with multiple safety layers</h3>
+              <ul>
+                <li>A timer runs in the background so agents can focus on clients without distraction</li>
+                <li>Three taps on the sound button confirms safety (no complex interactions needed)</li>
+                <li>Missed check-ins trigger automatic texts to the safety network with location, client info, and audio recordings (where legally permitted)</li>
+                <li>One-tap 911 calling, network alerts, and a personal code to deactivate alarms</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+
+        <div class="block">
+          <div class="feat-split">
+            <div class="media media--appscreen media--contain">
+              <div class="screen-crop"><img class="shot" src="../assets/work/arc-stats-phone.png" alt="The Arc Insights screen — weekly timer activity, monthly timer use, and a personalized trend report" /></div>
+            </div>
+            <div class="feat-copy">
+              <h3 class="subhead">Data-driven feedback to improve safety habits</h3>
+              <ul>
+                <li>Weekly timer activity and monthly use charts (scheduled vs. impromptu) reveal patterns in safety practices</li>
+                <li>Personalized insights highlight behaviors, like longer weekend showings or faster morning check-ins, to encourage actionable change</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+
+        <div class="block">
+          <div class="feat-split feat-split--rev">
+            <div class="media media--appscreen media--contain">
+              <div class="screen-crop"><video class="shot" src="../assets/work/arc-safety-form.mp4" muted loop autoplay playsinline preload="metadata"></video></div>
+            </div>
+            <div class="feat-copy">
+              <h3 class="subhead">Customizable pre-showing verification</h3>
+              <ul>
+                <li>Agents can request specific details before meeting (vehicle info, ID, social media, employer, or pre-approval letters)</li>
+                <li>Form fields adapt to each agent's onboarding-survey answers, creating an intuitive experience tailored to individual safety needs</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- RESEARCH -->
+      <section id="research" class="cs-sec">
+        <div class="sec-tag">Research</div>
+        <h2 class="cs-h" style="margin-bottom:18px;">Safety solutions should offer automation,<br>discretion, and personalized check-ins.</h2>
+        <div class="cs-copy">
+          <p>To understand agents' needs, I ran a multi-faceted research approach (<span class="em">surveys, interviews, and competitive analysis</span>) on current safety practices, concerns, feature preferences, and the gaps our design could fill. Four takeaways shaped our approach.</p>
+        </div>
+
+        <div class="painlist">
+          <div class="pain">
+            <div class="pn">1</div>
+            <div class="pain-body">
+              <h4>Seamless integration</h4>
+              <p>Agents already use informal safety procedures (like sharing location), so a new solution must complement existing habits rather than replace them.</p>
+            </div>
+          </div>
+          <div class="pain">
+            <div class="pn">2</div>
+            <div class="pain-body">
+              <h4>Automation over manual check-ins</h4>
+              <p>Many agents prefer automated safety features (they often forget to manually update colleagues or family during a showing).</p>
+            </div>
+          </div>
+          <div class="pain">
+            <div class="pn">3</div>
+            <div class="pain-body">
+              <h4>Discreet emergency activation</h4>
+              <p>Alerts must be low-profile, with silent activation options to avoid drawing attention in high-risk situations.</p>
+            </div>
+          </div>
+          <div class="pain">
+            <div class="pn">4</div>
+            <div class="pain-body">
+              <h4>Personalized safety settings</h4>
+              <p>Risk tolerance varies from agent to agent, so the system needs customizable check-ins and alerts.</p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- IDEATION -->
+      <section id="ideation" class="cs-sec">
+        <div class="sec-tag">Ideation</div>
+        <div class="sec-grid">
+          <div><h2 class="cs-h">Prioritizing high-stress usability and an intuitive experience.</h2></div>
+          <div class="cs-copy">
+            <p>I integrated user insights at every step, pushing each decision toward what an agent could actually do in a tense, time-pressured moment.</p>
+          </div>
+        </div>
+
+        <div class="block">
+          <h3 class="subhead">Home page</h3>
+          <div class="media media--iter media--croptop">
+            <img class="shot" src="../assets/work/arc-home-iteration.png" alt="Home page iteration — from the User Greeting wireframe, to a wireframe with Safety Mode toggle and impromptu timers, to the final Hi, Jane daily-schedule home screen" />
+          </div>
+          <div class="cs-copy block-copy">
+            <p>Agents needed quick access to critical information without feeling overwhelmed. We removed the standalone Safety Mode toggle and kept it persistently accessible in the navigation bar (constant availability, less to think about).</p>
+          </div>
+        </div>
+
+        <div class="block">
+          <h3 class="subhead">Navigation bar</h3>
+          <div class="media media--iter">
+            <img class="shot" src="../assets/work/arc-nav-iteration.png" alt="Navigation bar before and after — the previous centered floating-home design replaced with a flat, evenly spaced five-tab bar: Home, Network, Calendar, Insights, Safe Mode" />
+          </div>
+          <div class="cs-copy block-copy">
+            <p>A new flat layout reduced cognitive load compared to the previous centered design, making every feature equally accessible with clear, recognizable icons.</p>
+          </div>
+        </div>
+
+        <div class="block">
+          <h3 class="subhead">Safety Mode</h3>
+          <div class="media media--iter media--croptop">
+            <img class="shot" src="../assets/work/arc-safety-iteration.png" alt="Safety Mode iteration — from the countdown wireframe, to a blue Safety Timer Active screen with Early Alert, Call 911, and Cancel Timer, to the final call-style layout with a check-in progress bar" />
+          </div>
+          <div class="cs-copy block-copy">
+            <p>This feature was my idea, putting in-the-moment safety first. We mirrored a phone call's layout so that under stress, users wouldn't have to think twice about which button to press while still seeing critical timer info at a glance. I removed the "Early Alert" button (the system triggers it automatically, and users confirmed that in a true emergency they'd call 911 rather than text their network).</p>
+          </div>
+        </div>
+
+        <div class="block">
+          <h3 class="subhead">Shortcuts</h3>
+          <div class="media media--iter media--iter-tall media--croptop">
+            <img class="shot" src="../assets/work/arc-shortcuts-iteration.png" alt="Shortcuts iteration — from a wireframe of safety-shortcut tiles to a hi-fi Safety Shortcuts screen with Non-Emergency Notify and Home Screen Timer Check In, marked with a large X to signal the feature was cut" />
+          </div>
+          <div class="cs-copy block-copy">
+            <p>We explored phone shortcuts as a way to integrate Arc into users' devices and leverage existing haptics. Research findings and implementation challenges led us to reevaluate — the benefits didn't justify the development effort, so we discontinued the feature.</p>
+          </div>
+        </div>
+
+        <div class="block">
+          <h3 class="subhead">The resulting information architecture</h3>
+          <div class="media media--pad">
+            <img class="shot" src="../assets/work/arc-ia.png" alt="Information architecture diagram — Home Page, Safety Network, Calendar, Insights, and Safety Timer across the top, each with the data each screen surfaces, plus the Safety Form branching off Home" />
+            <div class="cap">The IA that research and iteration led me to for the app's navigation and features.</div>
+          </div>
+        </div>
+      </section>
+
+      <!-- STYLE GUIDE -->
+      <section id="style" class="cs-sec">
+        <div class="sec-tag">Style Guide</div>
+        <div class="sec-grid">
+          <div><h2 class="cs-h">A calm, trustworthy system built for clarity.</h2></div>
+          <div class="cs-copy">
+            <p>I built a style guide the team returned to throughout (color, type, and components tuned for legibility and <span class="em">fast recognition</span> in high-stress moments).</p>
+          </div>
+        </div>
+        <div class="media media--pad">
+          <img class="shot" src="../assets/work/arc-styleguide.png" alt="Arc style guide — the Outfit typeface scale from Display 1 to Button 2, the Primary, Secondary, Base, and Font color swatches, and navigation-bar and pop-up shadow specs" />
+        </div>
+      </section>
+
+      <!-- REFLECTION -->
+      <section id="reflection" class="cs-sec">
+        <div class="sec-tag">Reflection</div>
+        <h2 class="cs-h refl-h">Collaboration, leadership, and lessons from a cross-functional project.</h2>
+        <div class="cs-copy refl-copy">
+          <div class="col">
+            <p>This was my first internship and full-scale collaborative project, and I'm deeply grateful to the Arc team for trusting us to bring their idea to life. Working on something with real potential to improve users' lives, physically and mentally, was incredibly rewarding.</p>
+            <p>My biggest lessons were in <span class="em">leading design sprints</span> (structuring workshops so every team member had a voice while keeping us focused) and in navigating team dynamics with fairness, constructive feedback, and even distribution of responsibility.</p>
+          </div>
+          <div class="col">
+            <p>Collaborating with developers was a first for me. I was surprised by the natural checks and balances that emerged, but quickly realized they strengthened the product. The lead developer and I made it a priority to reinforce that we weren't separate teams, but one unified team, and I've since started learning front- and back-end development to communicate with engineers more effectively.</p>
+            <p>While I'm proud of what we accomplished, I'd approach a few things differently: more frequent, earlier user testing, and stronger design–development alignment from the very beginning so feasibility discussions happen alongside ideation.</p>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <!-- FOOTER -->
+    <footer class="site-footer">
+      <div class="ft-grid">
+        <div class="ft-name">Diana Chalakova</div>
+        <div class="ft-links">
+          <a href="https://drive.google.com/file/d/1g0gbaHcaRyhGhXmZ6D6GhgDW67F-e5g2/view" target="_blank" rel="noopener">Resume <span class="ar">↗</span></a>
+          <a href="mailto:dchalakova@outlook.com">Email <span class="ar">↗</span></a>
+          <a href="https://www.linkedin.com/in/dchalakova/" target="_blank" rel="noopener">LinkedIn <span class="ar">↗</span></a>
+        </div>
+        <div class="ft-edu">
+          <div class="ft-col">
+            <div class="ft-deg">MFA, Design and Technology</div>
+            <div class="ft-school">Parsons School of Design</div>
+          </div>
+          <div class="ft-col">
+            <div class="ft-deg">BA, Psychology</div>
+            <div class="ft-school">University of Washington</div>
+          </div>
+          <div class="ft-col">
+            <div class="ft-deg">Certificate, Human-Computer Interaction for User Experience Design</div>
+            <div class="ft-school">Massachusetts Institute of Technology</div>
+          </div>
+        </div>
+      </div>
+    </footer>
+  </div>
+
+  <script>
+    var links = Array.prototype.slice.call(document.querySelectorAll('.cs-nav a[data-spy]'));
+    var map = {};
+    links.forEach(function (l) { map[l.getAttribute('href').slice(1)] = l; });
+    var sections = Array.prototype.slice.call(document.querySelectorAll('.cs-sec'));
+    var current = null;
+
+    function setActive(id) {
+      if (id === current) return;
+      current = id;
+      links.forEach(function (l) { l.classList.remove('active'); });
+      if (map[id]) map[id].classList.add('active');
+    }
+
+    function onScroll() {
+      var probe = window.scrollY + window.innerHeight * 0.3;
+      var id = sections[0].id;
+      for (var i = 0; i < sections.length; i++) {
+        if (sections[i].offsetTop <= probe) id = sections[i].id; else break;
+      }
+      if (window.innerHeight + window.scrollY >= document.documentElement.scrollHeight - 4) {
+        id = sections[sections.length - 1].id;
+      }
+      setActive(id);
+    }
+    window.addEventListener('scroll', onScroll, { passive: true });
+    window.addEventListener('resize', onScroll);
+    onScroll();
+  </script>
+</body>
+</html>

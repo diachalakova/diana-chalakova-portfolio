@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Playground — Diana Chalakova</title>
+<meta name="description" content="Playground — experiments, side projects, and creative coding by designer Diana Chalakova." />
+<meta name="author" content="Diana Chalakova" />
+<meta name="theme-color" content="#ffffff" />
+<link rel="icon" type="image/svg+xml" href="assets/favicon.svg" />
+<meta property="og:type" content="website" />
+<meta property="og:title" content="Playground — Diana Chalakova" />
+<meta property="og:description" content="Experiments, side projects, and creative coding." />
+<meta property="og:image" content="assets/playground/painting.png" />
+<meta name="twitter:card" content="summary_large_image" />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;500;600;700;800;900&family=Space+Mono:wght@400;700&family=Caveat:wght@500;600;700&display=swap" rel="stylesheet" />
+<link rel="stylesheet" href="styles/base.css" />
+<style>
+  :root { --paper: #ffffff; --bright: #D8576C; }
+  body::before { display: none; }
+  body { background: var(--paper); color: var(--ink); }
+
+  /* back button — same spot as the case studies / about */
+  .back {
+    position: fixed; top: 36px; left: 36px; z-index: 60;
+    display: inline-flex; align-items: center;
+    font-family: var(--mono); font-size: 13px; font-weight: 400; color: var(--ink);
+    transition: color .2s ease, transform .2s ease;
+  }
+  .back:hover { color: var(--bright); transform: translateX(-3px); }
+  .back .ar { font-size: 17px; line-height: 1; }
+
+  /* neat masonry — straight, evenly spaced columns */
+  .pg-canvas { column-count: 4; column-gap: 44px; max-width: 1180px; margin: 88px auto 150px; padding: 0 48px; }
+  @media (max-width: 980px) { .pg-canvas { column-count: 3; } }
+  @media (max-width: 680px) { .pg-canvas { column-count: 2; column-gap: 22px; padding: 0 22px; } }
+  @media (max-width: 430px) { .pg-canvas { column-count: 1; } }
+
+  .pg-item { break-inside: avoid; -webkit-column-break-inside: avoid; margin: 0 0 44px; cursor: pointer; }
+
+  .pg-item .ph {
+    aspect-ratio: var(--ar, 4/3); border: 1px solid rgba(27,23,20,0.07);
+    overflow: hidden; background: #F1ECE3;
+    display: flex; align-items: center; justify-content: center;
+    transition: box-shadow .28s ease;
+  }
+  .pg-item:hover .ph { box-shadow: 0 22px 44px -26px rgba(27,23,20,0.5); }
+  .pg-item .ph img, .pg-item .ph video { width: 100%; height: 100%; object-fit: cover; display: block; }
+  /* crop pillarboxed video to its centered white image */
+  .pg-item .ph.crop video { width: auto; max-width: none; height: 100%; }
+  .pg-item .cap { display: none; }
+
+  /* bottom info — slides up on hover, stacked title + description */
+  .pg-info {
+    position: fixed; left: 0; bottom: 0; z-index: 50;
+    padding: 22px 40px 26px; max-width: 72%;
+    transform: translateY(120%); transition: transform .32s cubic-bezier(.3,.7,.2,1);
+  }
+  .pg-info.show { transform: translateY(0); }
+  .pg-info .t { font-family: var(--sans); font-weight: 700; font-size: 19px; letter-spacing: -0.01em; color: #1f1d1b; line-height: 1.25; }
+  .pg-info .d { font-family: var(--sans); font-weight: 400; font-size: 17px; color: #a8a29a; line-height: 1.35; margin-top: 5px; display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden; }
+
+  @media (max-width: 680px) {
+    .pg-item .cap { display: block; margin-top: 9px; }
+    .pg-item .cap .cap-t { display: block; font-family: var(--sans); font-weight: 700; font-size: 14px; color: #1f1d1b; }
+    .pg-item .cap .cap-d { display: block; font-family: var(--sans); font-weight: 400; font-size: 13px; color: #a8a29a; margin-top: 2px; }
+    .pg-info { display: none; }
+  }
+</style>
+</head>
+<body data-screen-label="Playground">
+  <a class="back" href="index.html" aria-label="Back to work"><span class="ar">←</span></a>
+
+  <div class="pg-canvas">
+    <figure class="pg-item" tabindex="0" data-title="Visual Manifesto" data-desc="Parsons School of Design — image from Seattle. Poster, 2024.">
+      <div class="ph" style="--ar:1728/1148;"><img src="assets/playground/manifesto-1.png" alt="Manifesto poster — Seek Inspiration Outside Your Domain, over a sunset waterfront" loading="lazy" /></div>
+      <figcaption class="cap"><span class="cap-t">Visual Manifesto</span><span class="cap-d">Parsons School of Design — Poster, 2024</span></figcaption>
+    </figure>
+
+    <figure class="pg-item" style="margin-top:42px;" tabindex="0" data-title="Talea" data-desc="Menu redesign for the beloved woman-owned NYC beer company, in collaboration with its co-founders. 2024.">
+      <div class="ph" style="--ar:1272/1828;"><img src="assets/playground/talea.png" alt="Talea wines, ciders & cocktails menu design" loading="lazy" /></div>
+      <figcaption class="cap"><span class="cap-t">Talea</span><span class="cap-d">Menu redesign — 2024</span></figcaption>
+    </figure>
+
+    <figure class="pg-item" tabindex="0" data-title="San Diego" data-desc="A type-led travel poster paired with photography. California, 2026.">
+      <div class="ph crop" style="--ar:1680/2160;"><video src="assets/playground/san-diego.mp4" muted loop autoplay playsinline preload="metadata"></video></div>
+      <figcaption class="cap"><span class="cap-t">San Diego</span><span class="cap-d">Editorial poster — 2026</span></figcaption>
+    </figure>
+
+    <figure class="pg-item" style="margin-top:56px;" tabindex="0" data-title="Floral Still Life Painting" data-desc="A beloved pastime. Canvas, 2023.">
+      <div class="ph" style="--ar:1276/1832;"><img src="assets/playground/painting.png" alt="Floral still-life painting of roses and peonies in a brass vase" loading="lazy" /></div>
+      <figcaption class="cap"><span class="cap-t">Floral Still Life Painting</span><span class="cap-d">Canvas — 2023</span></figcaption>
+    </figure>
+
+    <figure class="pg-item" tabindex="0" data-title="L'O" data-desc="Logo design for the Musée de l'Orangerie, at the Parsons School of Design. 2025.">
+      <div class="ph" style="--ar:1424/858;"><img src="assets/playground/logo.png" alt="L'O logo with a Monet water-lilies painting filling the letter O" loading="lazy" /></div>
+      <figcaption class="cap"><span class="cap-t">L'O</span><span class="cap-d">Logo design — 2025</span></figcaption>
+    </figure>
+
+    <figure class="pg-item" style="margin-top:44px;" tabindex="0" data-title="The Seven Husbands of Evelyn Hugo" data-desc="A redesign for the cover of the best-selling novel. Illustrator, 2025.">
+      <div class="ph" style="--ar:1728/1788;"><img src="assets/playground/book-cover.png" alt="Redesigned hardcover of The Seven Husbands of Evelyn Hugo on a wooden table" loading="lazy" /></div>
+      <figcaption class="cap"><span class="cap-t">The Seven Husbands of Evelyn Hugo</span><span class="cap-d">Illustrator — 2025</span></figcaption>
+    </figure>
+
+    <figure class="pg-item" style="margin-top:30px;" tabindex="0" data-title="MIT Reality Hack" data-desc="Using XR to connect physical and digital realities so people with and without VR headsets can share one experience. VR / Product Design, 2025.">
+      <div class="ph" style="--ar:1080/1920;"><video src="assets/playground/mit.mp4" muted loop autoplay playsinline preload="metadata"></video></div>
+      <figcaption class="cap"><span class="cap-t">MIT Reality Hack</span><span class="cap-d">VR / Product Design — 2025</span></figcaption>
+    </figure>
+
+    <figure class="pg-item" tabindex="0" data-title="Flower Planting Game" data-desc="Playing around while learning p5.js. JavaScript / p5.js, 2024.">
+      <div class="ph" style="--ar:1196/1186;"><video src="assets/playground/p5-game.mp4" muted loop autoplay playsinline preload="metadata"></video></div>
+      <figcaption class="cap"><span class="cap-t">Flower Planting Game</span><span class="cap-d">JavaScript / p5.js — 2024</span></figcaption>
+    </figure>
+
+    <figure class="pg-item" style="margin-top:50px;" tabindex="0" data-title="Visual Manifesto" data-desc="Parsons School of Design — image from Seattle. Poster, 2024.">
+      <div class="ph" style="--ar:2320/1544;"><img src="assets/playground/manifesto-2.png" alt="Manifesto poster — embrace challenges and discomfort, all good things take time, over the UW campus" loading="lazy" /></div>
+      <figcaption class="cap"><span class="cap-t">Visual Manifesto</span><span class="cap-d">Parsons School of Design — Poster, 2024</span></figcaption>
+    </figure>
+  </div>
+
+  <div class="pg-info" aria-live="polite">
+    <div class="t"></div>
+    <div class="d"></div>
+  </div>
+
+  <script>
+    (function () {
+      var info = document.querySelector('.pg-info');
+      var t = info.querySelector('.t');
+      var d = info.querySelector('.d');
+      var items = Array.prototype.slice.call(document.querySelectorAll('.pg-item'));
+      function show() { t.textContent = this.getAttribute('data-title'); d.textContent = this.getAttribute('data-desc'); info.classList.add('show'); }
+      function hide() { info.classList.remove('show'); }
+      items.forEach(function (el) {
+        el.addEventListener('mouseenter', show);
+        el.addEventListener('mouseleave', hide);
+        el.addEventListener('focus', show);
+        el.addEventListener('blur', hide);
+      });
+      // play videos only while in view
+      var vids = Array.prototype.slice.call(document.querySelectorAll('.pg-item video'));
+      if ('IntersectionObserver' in window) {
+        var io = new IntersectionObserver(function (entries) {
+          entries.forEach(function (e) { if (e.isIntersecting) e.target.play().catch(function(){}); else e.target.pause(); });
+        }, { threshold: 0.25 });
+        vids.forEach(function (v) { io.observe(v); });
+      } else { vids.forEach(function (v) { v.play().catch(function(){}); }); }
+    })();
+  </script>
+</body>
+</html>

@@ -1,0 +1,443 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>ContextPath — Diana C</title>
+<meta name="description" content="ContextPath — an AI visitor companion for the Met's collaboration with Anthropic. A case study by Diana Chalakova." />
+<meta name="author" content="Diana Chalakova" />
+<meta name="theme-color" content="#ffffff" />
+<link rel="icon" type="image/svg+xml" href="../assets/favicon.svg" />
+<meta property="og:type" content="article" />
+<meta property="og:title" content="ContextPath — Diana Chalakova" />
+<meta property="og:description" content="An AI visitor companion for the Met's collaboration with Anthropic." />
+<meta property="og:image" content="../assets/work/contextpath-cover-card.jpg" />
+<meta name="twitter:card" content="summary_large_image" />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;500;600;700;800;900&family=Space+Mono:wght@400;700&family=Caveat:wght@500;600;700&display=swap" rel="stylesheet" />
+<link rel="stylesheet" href="../styles/base.css" />
+<style>
+  :root {
+    --paper: #ffffff; --bright: #B85C38;
+    --hair: rgba(27,23,20,0.12);
+    --hair-soft: rgba(27,23,20,0.08);
+    /* ContextPath palette — Anthropic clay leads. Warm sand & gold sit BEHIND
+       dark text as highlights. Taupe & charcoal pass AA as text. */
+    --plum: #B85C38; --lav: #E8D6BF; --gold: #ECDDB6; --gold-solid: #B79A66;
+    --lilac: #E8D6BF; --lemon: #ECDDB6; --sand: #E3D2BC;
+    --milk: #F6EFE3; --taupe: #6B5C4C; --charcoal: #2F2A24;
+  }
+  body::before { display: none; }
+  html { scroll-behavior: smooth; }
+  body { color: #221e1a; }
+
+  .cs-layout { display: grid; grid-template-columns: 186px 1fr; align-items: start; max-width: 1400px; margin: 0 auto; padding: 0 clamp(24px, 4vw, 64px); box-sizing: border-box; }
+
+  /* ---- left rail ---- */
+  .cs-side {
+    position: sticky; top: 0; height: 100vh; align-self: start;
+    display: flex; flex-direction: column; gap: 26px;
+    padding: 38px 20px 38px 34px;
+  }
+  .back {
+    display: inline-flex; align-items: center; align-self: flex-start;
+    font-family: var(--mono); font-size: 13px; color: var(--ink);
+    transition: color .2s ease, transform .2s ease;
+  }
+  .back:hover { transform: translateX(-3px); }
+  .back .ar { font-size: 17px; line-height: 1; }
+
+  .cs-nav { display: flex; flex-direction: column; gap: 1px; }
+  .cs-nav a {
+    font-family: var(--sans); font-weight: 500; font-size: 13px; letter-spacing: -0.005em;
+    color: rgba(27,23,20,0.32); padding: 7px 0;
+    align-self: flex-start; width: fit-content;
+    transition: color .18s ease;
+  }
+  .cs-nav a:hover { color: var(--ink); }
+  .cs-nav a.active { color: var(--ink); font-weight: 600; }
+
+  .cs-side .spark { display: none; }
+
+  /* ---- main column ---- */
+  .cs-main { padding: 56px 48px 0 48px; max-width: none; }
+  .cs-sec { scroll-margin-top: 36px; padding: 78px 0; }
+  .cs-sec:first-of-type { padding-top: 31px; }
+  .cs-sec:last-of-type { padding-bottom: 80px; }
+  /* equal spacing between sections: neutralize leading/trailing child margins */
+  .cs-sec > *:first-child { margin-top: 0; }
+  .cs-sec > *:last-child, .cs-sec > *:last-child *:last-child { margin-bottom: 0; }
+
+  .sec-tag {
+    display: flex; align-items: center; gap: 20px;
+    font-family: var(--mono); font-size: 12px; letter-spacing: 0.16em; text-transform: uppercase;
+    color: var(--taupe); margin-bottom: 44px;
+  }
+  .sec-tag::after { content: ""; flex: 1; height: 1px; background: var(--hair); }
+
+  .sec-grid { display: grid; grid-template-columns: 1fr; gap: 22px; align-items: start; }
+  .sec-grid .cs-copy { max-width: 70ch; }
+  @media (max-width: 860px) { .sec-grid { gap: 16px; } }
+
+  /* reflection: full-width caption + copy */
+  .cs-h.refl-h { margin-bottom: 52px; text-wrap: balance; }
+  .refl-copy { display: grid; grid-template-columns: 1fr 1fr; gap: 56px; }
+  .refl-copy .col p { margin-top: 0; }
+  .refl-copy .col p + p { margin-top: 18px; }
+  @media (max-width: 860px) { .refl-copy { grid-template-columns: 1fr; gap: 18px; } }
+
+  .cs-h { font-family: var(--display); font-weight: 700; letter-spacing: -0.02em; line-height: 1.04; margin: 0; font-size: clamp(26px, 3vw, 42px); }
+  .cs-main p { font-size: 15px; line-height: 1.62; margin: 0 0 18px; color: #2c2722; }
+  .cs-main p:last-child { margin-bottom: 0; }
+  .cs-main p .mark, .hl-lemon, .hl-lav, .hl-sand, .hl-sage, .hl-cream, .hmw .hl, .pull .hl, .statement .hl { background: none !important; padding: 0 !important; }
+  .cs-main p .em { color: var(--ink); font-weight: 600; }
+  .cs-main p .mark { background: linear-gradient(transparent 60%, var(--lav) 60%); padding: 0 2px; }
+  .cs-copy p + p { margin-top: 18px; }
+
+  /* hero / overview — a full project-name title */
+  .cs-hero-title { font-family: var(--display); font-weight: 700; text-transform: uppercase; font-size: clamp(44px, 7vw, 92px); letter-spacing: -0.022em; line-height: 0.9; margin: 0; max-width: 14ch; text-wrap: balance; }
+  .cs-hero-sub { font-family: var(--display); font-weight: 600; font-size: clamp(15px,1.5vw,19px); letter-spacing: 0.01em; color: var(--taupe); margin: 20px 0 0; }
+
+  .ov-grid { display: grid; grid-template-columns: 300px minmax(0,1fr); gap: 56px; align-items: start; margin-top: 44px; border-top: 1px solid var(--hair); }
+  @media (max-width: 860px) { .ov-grid { grid-template-columns: 1fr; gap: 8px; } }
+  .meta-list p { font-size: 16px; line-height: 1.5; margin: 0; padding: 13px 0; border-bottom: 1px solid var(--hair-soft); color: #2c2722; }
+  .meta-list .k { color: var(--ink-soft); }
+  .ov-lead { font-size: clamp(15.5px,1.4vw,17px); line-height: 1.6; color: var(--ink); margin: 0; padding-top: 13px; }
+
+  .hl-lemon { color: var(--ink); font-weight: 600; background: linear-gradient(transparent 56%, var(--gold) 56%); padding: 0 2px; }
+  .hl-lav { color: var(--ink); font-weight: 600; background: linear-gradient(transparent 56%, var(--lav) 56%); padding: 0 2px; }
+
+  /* media */
+  .media { border-radius: 14px; overflow: hidden; margin: 40px 0; border: 1px solid var(--hair-soft); background: var(--milk); }
+  .media img.shot, .media video.shot { display: block; width: 100%; height: auto; }
+  .media--pad { background: #fff; }
+  .media--pad img.shot { padding: 22px 24px 6px; box-sizing: border-box; }
+  .media .frame {
+    aspect-ratio: var(--ar, 16/9); position: relative;
+    background: repeating-linear-gradient(45deg, rgba(27,23,20,0.045) 0 11px, transparent 11px 22px), var(--mb, #F1E7D5);
+    display: flex; align-items: center; justify-content: center; text-align: center;
+  }
+  .media .frame .lab { font-family: var(--mono); font-size: 11px; color: var(--taupe); background: rgba(255,255,255,0.88); padding: 6px 12px; border-radius: 6px; max-width: 78%; }
+  .media .cap { font-family: var(--mono); font-size: 11.5px; color: var(--ink-soft); padding: 11px 15px; border-top: 1px solid var(--hair-soft); background: #fff; }
+  /* overview hero — phones contained on a light gray panel */
+  .media--hero { background: #EDEDEF; }
+  .media--hero img.shot { max-width: 760px; width: 100%; margin: 0 auto; box-sizing: border-box; }
+
+  /* bare image — no card outline or background, contained & centered */
+  .media--bare { background: transparent; border: none; border-radius: 0; overflow: visible; }
+  .media--bare img.shot { width: auto; max-width: 620px; margin: 0 auto; }
+  .media--bare .cap { border-top: none; background: transparent; text-align: center; padding-top: 14px; }
+
+  /* contained studio photo — no panel, no outline, smaller */
+  .media--photo { background: transparent; border: none; border-radius: 0; overflow: visible; }
+  .media--photo img.shot { width: auto; max-width: 100%; max-height: 380px; margin: 0 auto; display: block; }
+  .media--photo .cap { border-top: none; background: transparent; text-align: center; padding-top: 14px; }
+
+  /* solution: phone-screen video on white, cropped to the device bezel */
+  .media--screen { background: transparent; border: none; border-radius: 0; overflow: visible; margin: 40px auto; max-width: 332px; }
+  .media--screen .screen-crop { position: relative; aspect-ratio: 503 / 1032; overflow: hidden; border-radius: 40px; background: #fff; border: 1px solid var(--hair-soft); }
+  .media--screen .screen-crop video { position: absolute; display: block; width: 148.71%; height: 104.65%; left: -22.07%; top: -1.84%; }
+  .media--screen .cap { border-top: none; background: transparent; text-align: center; padding-top: 14px; }
+
+  .duo-img { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin: 36px 0; }
+  .duo-img .media { margin: 0; }
+  @media (max-width: 640px) { .duo-img { grid-template-columns: 1fr; } }
+
+  .block { margin-top: 56px; }
+  .block .subhead + .media, .block .subhead + .duo-img { margin-top: 22px; }
+  .block-copy { max-width: 64ch; margin-top: 22px; }
+  .subhead { font-family: var(--display); font-weight: 600; font-size: clamp(18px,1.7vw,23px); letter-spacing: -0.01em; margin: 0 0 14px; }
+
+  /* problem statement / HMW */
+  .hmw { font-family: var(--display); font-weight: 600; font-size: clamp(22px,2.5vw,34px); line-height: 1.2; letter-spacing: -0.015em; margin: 0 0 6px; max-width: 22ch; color: var(--ink); }
+  .hmw.hmw--wide { max-width: none; margin-bottom: 40px; }
+  .hmw .hl { background: linear-gradient(transparent 56%, var(--lav) 56%); padding: 0 3px; }
+
+  .prob-grid { display: grid; grid-template-columns: minmax(0,1fr) minmax(0,1.05fr); gap: 56px; align-items: start; }
+  @media (max-width: 860px) { .prob-grid { grid-template-columns: 1fr; gap: 28px; } }
+
+  /* definition card */
+  .defn { background: var(--milk); border: 1px solid var(--hair-soft); border-radius: 16px; padding: 30px 32px; }
+  .defn .dk { font-family: var(--mono); font-size: 11px; letter-spacing: 0.14em; text-transform: uppercase; color: var(--bright); margin: 0 0 12px; }
+  .defn .dt { font-family: var(--display); font-weight: 700; font-size: clamp(19px,2vw,24px); letter-spacing: -0.01em; line-height: 1.25; margin: 0 0 14px; color: var(--ink); }
+  .defn p { font-size: 15.5px; line-height: 1.55; margin: 0; color: var(--taupe); }
+
+  /* numbered concept steps */
+  .steps { display: grid; grid-template-columns: repeat(3,1fr); gap: 30px 44px; margin-top: 14px; }
+  .steps .s { border-top: 1px solid var(--hair); padding-top: 14px; }
+  .steps .s .sn { font-family: var(--mono); font-size: 11px; letter-spacing: 0.06em; color: var(--bright); margin-bottom: 10px; }
+  .steps .s h4 { font-family: var(--display); font-weight: 600; font-size: 18px; letter-spacing: -0.01em; margin: 0 0 8px; }
+  .steps .s p { font-size: 15.5px; line-height: 1.55; margin: 0; color: var(--taupe); }
+  @media (max-width: 640px) { .steps { grid-template-columns: 1fr; gap: 22px; } }
+
+  .thanks { font-size: 16px; line-height: 1.6; color: var(--ink-soft); margin: 36px 0 0; max-width: 72ch; }
+  .thanks + .thanks { margin-top: 18px; }
+  .thanks .em { color: var(--ink); font-weight: 600; }
+
+  .next { display: flex; align-items: center; justify-content: space-between; gap: 20px; border-top: 1px solid var(--hair); margin-top: 90px; padding-top: 30px; flex-wrap: wrap; }
+  .next .lab { font-family: var(--mono); font-size: 12px; color: var(--ink-soft); letter-spacing: .1em; text-transform: uppercase; }
+  .next a { font-family: var(--display); font-weight: 700; font-size: clamp(28px,4vw,48px); letter-spacing: -0.02em; line-height: 1; transition: color .18s ease; }
+  .next a:hover { color: var(--plum); }
+
+  /* footer */
+  .site-footer { --rose: #A87C7E; grid-column: 1 / -1; margin-top: 0; padding: 0 48px; }
+  .site-footer .ft-grid { border-top: 1.5px solid #B98A8D; padding-top: 22px; }
+  .ft-grid { display: grid; grid-template-columns: 1fr auto; column-gap: 40px; row-gap: 16px; align-items: stretch; padding-bottom: 36px; }
+  .ft-name { grid-column: 1; grid-row: 1; font-family: var(--sans); font-weight: 400; font-size: 15px; color: var(--rose); letter-spacing: -0.01em; }
+  .ft-links { grid-column: 2; grid-row: 1 / span 2; display: flex; flex-direction: column; align-items: flex-end; justify-content: space-between; }
+  .ft-links a { font-family: var(--sans); font-size: 12px; color: var(--rose); display: inline-flex; align-items: center; gap: 2px; transition: opacity .18s ease; }
+  .ft-links a .ar { font-size: 10px; }
+  .ft-links a:hover { opacity: 0.6; }
+  .ft-edu { grid-column: 1; grid-row: 2; display: grid; grid-template-columns: repeat(3, max-content); gap: 10px 44px; }
+  .ft-edu .ft-deg, .ft-edu .ft-school { font-family: var(--sans); font-size: 12px; line-height: 1.4; color: var(--rose); white-space: nowrap; }
+  .ft-edu .ft-deg { font-style: italic; }
+  @media (max-width: 700px) {
+    .ft-grid { grid-template-columns: 1fr; }
+    .ft-links { grid-column: 1; grid-row: auto; align-items: flex-start; flex-direction: row; flex-wrap: wrap; gap: 18px; }
+    .ft-edu { grid-template-columns: 1fr; }
+  }
+
+  @media (max-width: 900px) {
+    .cs-layout { grid-template-columns: 1fr; }
+    .cs-side {
+      position: sticky; top: 0; height: auto; flex-direction: row; align-items: center; gap: 14px;
+      padding: 12px 18px; border-bottom: 1px solid var(--hair); background: #fff; z-index: 50;
+      overflow-x: auto; -webkit-overflow-scrolling: touch;
+    }
+    .cs-side .spark { display: none; }
+    .cs-nav { flex-direction: row; gap: 4px; padding: 0; border: 0; }
+    .cs-nav a { font-size: 13px; padding: 6px 11px; white-space: nowrap; border-radius: 999px; }
+    .cs-nav a.active { background: rgba(184,92,56,0.12); color: var(--bright); }
+    .cs-main { padding: 40px 24px 0; }
+  }
+</style>
+</head>
+<body data-screen-label="Case study / ContextPath">
+  <div class="cs-layout">
+    <!-- LEFT RAIL -->
+    <aside class="cs-side">
+      <a class="back" href="../index.html" aria-label="Back to all work"><span class="ar">←</span></a>
+      <nav class="cs-nav" aria-label="Sections">
+        <a href="#overview"  data-spy>Overview</a>
+        <a href="#brief"     data-spy>Brief</a>
+        <a href="#problem"   data-spy>Problem</a>
+        <a href="#solution"  data-spy>Solution</a>
+        <a href="#concept"   data-spy>Concept</a>
+        <a href="#thanks"    data-spy>Thanks</a>
+      </nav>
+      <span class="spark" aria-hidden="true">
+        <svg width="26" height="26" viewBox="0 0 26 26" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"><path d="M13 2 C13 8 13 8 13 13 M13 13 C13 18 13 18 13 24 M2 13 C8 13 8 13 13 13 M13 13 C18 13 18 13 24 13"/></svg>
+      </span>
+    </aside>
+
+    <!-- MAIN -->
+    <main class="cs-main">
+      <!-- OVERVIEW -->
+      <section id="overview" class="cs-sec">
+        <h1 class="cs-hero-title">ContextPath</h1>
+        <div class="ov-grid">
+          <div class="meta-list">
+            <p><span class="k">role</span> — Lead UX Designer</p>
+            <p><span class="k">event</span> — Anthropic × The Met</p>
+            <p><span class="k">tools</span> — Figma · Figma MCP · Claude Code</p>
+          </div>
+          <div class="ov-lead-wrap">
+            <p class="ov-lead">I was invited to a one-day hackathon held by Anthropic and The Metropolitan Museum of Art, at the Met, coinciding with the release of Claude Opus 4.8. The Asian Art collection holds some of the oldest artifacts in the building, yet much of Western society lacks the cultural frame of reference to appreciate them the way they might the Greek or Roman galleries. Using Claude, I built an experience that delivers that <span class="hl-lav">depth of context</span> to visitors without pulling them away from the piece in front of them, designed in Figma and brought to life with <span class="hl-lemon">Claude Code</span> for a live demo.</p>
+          </div>
+        </div>
+        <div class="media media--hero">
+          <img class="shot" src="../assets/work/contextpath-cover.jpg" alt="ContextPath shown on two iPhones — a Met-branded landing screen and a Regal Lion artifact detail page" loading="eager" />
+          <div class="cap">An AI companion that hands a museum visitor the historical context of an artifact, on the spot, without taking their eyes off the piece.</div>
+        </div>
+      </section>
+
+      <!-- BRIEF -->
+      <section id="brief" class="cs-sec">
+        <div class="sec-tag">The Brief</div>
+        <h2 class="hmw hmw--wide">How might we encourage museum visitors to engage deeper with the Met's <span class="hl">Asian Art collection</span>?</h2>
+        <div class="cs-copy" style="max-width:none;">
+          <p>The Metropolitan Museum of Art in New York City's Asian Art collection contains over <span class="em">34,000 digitized works</span> of art from 4000 BCE to the present day. However, some of the work contains symbols, ideas, or techniques that are unfamiliar to contemporary or non-expert audiences, from calligraphic writing to fantastic beasts.</p>
+          <p>So, the Met invited me to explore ways AI can invite audiences to further engage with this collection, on-site or online. They described this as either creating something in a dialog with a single, detail-rich work, or being inspired by or using data from large swaths of the collection.</p>
+        </div>
+      </section>
+
+      <!-- PROBLEM -->
+      <section id="problem" class="cs-sec">
+        <div class="sec-tag">Problem</div>
+        <div class="sec-grid">
+          <div><h2 class="cs-h">The missing piece: context.</h2></div>
+          <div class="cs-copy" style="max-width:none;">
+            <p>I interviewed four willing participants (two already exploring the Asian Art collection, and two elsewhere in the museum), asking what drew them in, or why they hadn't visited the collection yet, through open-ended, non-leading conversation.</p>
+          </div>
+        </div>
+
+        <div class="block">
+          <div class="media media--bare">
+            <img class="shot" src="../assets/work/contextpath-problem.png" alt="Four interview quotes as message bubbles — ‘Once you’re in one area, you get kind of stuck just due to the sheer size.’ · ‘It’s kind of dull.’ · ‘I’m just like…what am I looking at?’ · ‘I’d love to learn about the context in which this existed.’" loading="lazy" />
+            <div class="cap">Quotes pulled from on-site interviews about the Asian Art collection specifically.</div>
+          </div>
+          <div class="cs-copy block-copy" style="max-width:none;">
+            <p>Across those conversations the same gap surfaced: people were genuinely curious, but without a frame of reference for the symbolism and history, the works felt <span class="em">harder to approach</span> than the Greek or Roman galleries next door. The interest was there — the context wasn't.</p>
+          </div>
+        </div>
+      </section>
+
+      <!-- SOLUTION -->
+      <section id="solution" class="cs-sec">
+        <div class="sec-tag">Solution</div>
+        <div class="sec-grid">
+          <div><h2 class="cs-h">Using Claude integration to provide a depth of context to an artifact without losing face-to-face experience with the piece.</h2></div>
+          <div class="cs-copy" style="max-width:none;">
+            <p>The Asian Arts collection at the museum dates back to 3200–2000 BCE with ritual objects (bi discs) from the Neolithic Liangzhu culture – needless to say, that is a very, very long time ago. Such an incredibly rich and long history exists in all of the artifacts in the collection, yet much of Western society does not understand the context or the history behind the pieces like they might the Greek or Roman collection. So, we decided to bridge that gap by providing that depth of context through Claude and Anthropic's services.</p>
+          </div>
+        </div>
+
+        <div class="block">
+          <div class="media media--screen">
+            <div class="screen-crop"><video class="shot" src="../assets/work/contextpath-solution.mp4" muted loop autoplay playsinline preload="metadata"></video></div>
+            <div class="cap">Scanning the Standing Lion, then following its label into deeper historical context.</div>
+          </div>
+          <div class="cs-copy block-copy" style="max-width:none; margin-top:32px;">
+            <p>The app also pulls from the Met's database of other works that have similar iconography or time in history to encourage engagement with other parts of the museum and highlight that we are, and have always been, all connected despite our geographical place in the world. We see opportunity for a connection to contemporary works as well.</p>
+          </div>
+        </div>
+      </section>
+
+      <!-- CONCEPT -->
+      <section id="concept" class="cs-sec">
+        <div class="sec-tag">Underlying Concept</div>
+        <div class="sec-grid">
+          <div><h2 class="cs-h">An accessory to face-to-face experience, not a replacement.</h2></div>
+          <div class="cs-copy">
+            <p>Say a visitor with ContextPath is standing in front of the <span class="em">Standing Lion</span> from the Tang Dynasty, and wants to understand it in the context of when it was made.</p>
+          </div>
+        </div>
+
+        <div class="block">
+          <div class="media media--photo">
+            <img class="shot" src="../assets/work/contextpath-lion.jpg" alt="The Standing Lion, Tang dynasty (618–907), 8th century — a stone guardian lion with open mouth and flame-shaped tail on a carved plinth" loading="lazy" />
+            <div class="cap">A visitor stands before the Standing Lion from the Tang Dynasty and wants to know more.</div>
+          </div>
+
+          <div class="steps">
+            <div class="s">
+              <div class="sn">01</div>
+              <h4>Scan the piece</h4>
+              <p>The visitor scans the artifact, and Claude pulls from the museum's database to identify exactly what they're looking at.</p>
+            </div>
+            <div class="s">
+              <div class="sn">02</div>
+              <h4>Unpack the label</h4>
+              <p>They dig into the key words on its label, in their historical context, to build real understanding of the piece itself.</p>
+            </div>
+            <div class="s">
+              <div class="sn">03</div>
+              <h4>Follow the thread</h4>
+              <p>This can continue as long as it stays interesting, surfacing related works elsewhere in the museum along the way.</p>
+            </div>
+          </div>
+
+          <div class="media media--bare" style="margin-top:40px;">
+            <img class="shot" src="../assets/work/contextpath-logic.png" style="max-width:560px;" alt="The ContextPath logic — a museum label for the Standing Lion gains tappable highlighted terms, then a ‘search similar’ action expands a key word into a richer Regal Lion explanation about lions in East Asian culture, the Silk Road, and the Tang dynasty" loading="lazy" />
+          </div>
+
+          <div class="cs-copy block-copy" style="max-width:none;">
+            <p>Crucially, visitors <span class="em">cannot view the piece through their phone</span>, and cannot revisit information for past pieces unless they're standing in front of them. This way, the experience never replaces the significance of face-to-face connection with artifacts in the museum.</p>
+            <p>AI in art and museum spaces often draws public pushback. So while it's no secret that the scan and database are powered by Claude, that stays <span class="em">discreet</span> (a quiet path into deeper knowledge, for the greater good, far less likely to invite controversy).</p>
+          </div>
+        </div>
+      </section>
+
+      <!-- THANKS -->
+      <section id="thanks" class="cs-sec">
+        <div class="sec-tag">Finally…</div>
+        <h2 class="cs-h refl-h">Thank you to Team Anthropic and the Met.</h2>
+        <p class="thanks" style="max-width:none;">I'd like to close by extending my heartfelt thanks to the two remarkable institutions that made this project possible.</p>
+        <p class="thanks" style="max-width:none;">To the team at <span class="em">Anthropic</span> — thank you for building tools that genuinely expand what's creatively and intellectually possible, and for bringing them into spaces like this one. Beyond the technology, the conversations I got to have with people from the Anthropic team on the day were so thoughtful, generous, and genuinely inspiring. Your support throughout the hackathon, and your belief that AI can be a meaningful collaborator in the arts, made all the difference.</p>
+        <p class="thanks" style="max-width:none;">To <span class="em">The Metropolitan Museum of Art</span> — thank you for opening your doors, your collection, and your curiosity to us. There is something quietly profound about being invited to think about the future inside one of the world's great temples to human creativity.</p>
+      </section>
+    </main>
+
+    <!-- FOOTER -->
+    <footer class="site-footer">
+      <div class="ft-grid">
+        <div class="ft-name">Diana Chalakova</div>
+        <div class="ft-links">
+          <a href="https://drive.google.com/file/d/1g0gbaHcaRyhGhXmZ6D6GhgDW67F-e5g2/view" target="_blank" rel="noopener">Resume <span class="ar">↗</span></a>
+          <a href="mailto:dchalakova@outlook.com">Email <span class="ar">↗</span></a>
+          <a href="https://www.linkedin.com/in/dchalakova/" target="_blank" rel="noopener">LinkedIn <span class="ar">↗</span></a>
+        </div>
+        <div class="ft-edu">
+          <div class="ft-col">
+            <div class="ft-deg">MFA, Design and Technology</div>
+            <div class="ft-school">Parsons School of Design</div>
+          </div>
+          <div class="ft-col">
+            <div class="ft-deg">BA, Psychology</div>
+            <div class="ft-school">University of Washington</div>
+          </div>
+          <div class="ft-col">
+            <div class="ft-deg">Certificate, Human-Computer Interaction for User Experience Design</div>
+            <div class="ft-school">Massachusetts Institute of Technology</div>
+          </div>
+        </div>
+      </div>
+    </footer>
+  </div>
+
+  <script>
+    var links = Array.prototype.slice.call(document.querySelectorAll('.cs-nav a[data-spy]'));
+    var map = {};
+    links.forEach(function (l) { map[l.getAttribute('href').slice(1)] = l; });
+    var sections = Array.prototype.slice.call(document.querySelectorAll('.cs-sec'));
+    var current = null;
+
+    function setActive(id) {
+      if (id === current) return;
+      current = id;
+      links.forEach(function (l) { l.classList.remove('active'); });
+      if (map[id]) map[id].classList.add('active');
+    }
+
+    function onScroll() {
+      var probe = window.scrollY + window.innerHeight * 0.3;
+      var id = sections[0].id;
+      for (var i = 0; i < sections.length; i++) {
+        if (sections[i].offsetTop <= probe) id = sections[i].id; else break;
+      }
+      if (window.innerHeight + window.scrollY >= document.documentElement.scrollHeight - 4) {
+        id = sections[sections.length - 1].id;
+      }
+      setActive(id);
+    }
+    window.addEventListener('scroll', onScroll, { passive: true });
+    window.addEventListener('resize', onScroll);
+    onScroll();
+
+    // Autoplay videos only while in view; pause when out of view. Muted, looping, no controls.
+    (function () {
+      var vids = Array.prototype.slice.call(document.querySelectorAll('video'));
+      vids.forEach(function (v) {
+        v.muted = true; v.loop = true; v.playsInline = true; v.controls = false;
+        v.setAttribute('muted', ''); v.removeAttribute('controls');
+      });
+      function tryPlay(v) { var p = v.play(); if (p && p.catch) p.catch(function(){}); }
+      function update() {
+        var vh = window.innerHeight || document.documentElement.clientHeight;
+        vids.forEach(function (v) {
+          var r = v.getBoundingClientRect();
+          var inView = r.bottom > vh * 0.12 && r.top < vh * 0.88;
+          if (inView) { if (v.paused) tryPlay(v); }
+          else if (!v.paused) { v.pause(); }
+        });
+      }
+      window.addEventListener('scroll', update, { passive: true });
+      window.addEventListener('resize', update);
+      vids.forEach(function (v) { v.addEventListener('canplay', update); });
+      update();
+      setInterval(update, 800);
+    })();
+  </script>
+</body>
+</html>

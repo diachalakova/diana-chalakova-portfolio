@@ -1,0 +1,462 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>For Stillness — Diana C</title>
+<meta name="description" content="For Stillness — a hand-bound pop-up book on intentional interaction in a digital world. A case study by Diana Chalakova." />
+<meta name="author" content="Diana Chalakova" />
+<meta name="theme-color" content="#ffffff" />
+<link rel="icon" type="image/svg+xml" href="../assets/favicon.svg" />
+<meta property="og:type" content="article" />
+<meta property="og:title" content="For Stillness — Diana Chalakova" />
+<meta property="og:description" content="A hand-bound pop-up book on intentional interaction in a digital world." />
+<meta property="og:image" content="../assets/work/stillness-cover.jpg" />
+<meta name="twitter:card" content="summary_large_image" />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;500;600;700;800;900&family=Space+Mono:wght@400;700&family=Caveat:wght@500;600;700&display=swap" rel="stylesheet" />
+<link rel="stylesheet" href="../styles/base.css" />
+<style>
+  :root {
+    --paper: #ffffff; --bright: #3E6B66;
+    --hair: rgba(27,23,20,0.12);
+    --hair-soft: rgba(27,23,20,0.08);
+    /* For Stillness palette — a quiet, analog system. Sage & cream sit BEHIND
+       dark text as highlights (they fail contrast as text). Forest & taupe pass
+       AA as text. Everything calm, warm, paper-leaning. */
+    --forest: #3E6B66; --sage: #C9D8CD; --cream: #EAE3D4; --cream-solid: #C7B68F;
+    --milk: #F4F2EC; --taupe: #524D44; --charcoal: #2F2D29;
+  }
+  body::before { display: none; }
+  html { scroll-behavior: smooth; }
+  body { color: #221e1a; }
+
+  .cs-layout { display: grid; grid-template-columns: 186px 1fr; align-items: start; max-width: 1400px; margin: 0 auto; padding: 0 clamp(24px, 4vw, 64px); box-sizing: border-box; }
+
+  /* ---- left rail ---- */
+  .cs-side {
+    position: sticky; top: 0; height: 100vh; align-self: start;
+    display: flex; flex-direction: column; gap: 26px;
+    padding: 38px 20px 38px 34px;
+  }
+  .back {
+    display: inline-flex; align-items: center; align-self: flex-start;
+    font-family: var(--mono); font-size: 13px; color: var(--ink);
+    transition: color .2s ease, transform .2s ease;
+  }
+  .back:hover { transform: translateX(-3px); }
+  .back .ar { font-size: 17px; line-height: 1; }
+
+  .cs-nav { display: flex; flex-direction: column; gap: 1px; }
+  .cs-nav a {
+    font-family: var(--sans); font-weight: 500; font-size: 13px; letter-spacing: -0.005em;
+    color: rgba(27,23,20,0.32); padding: 7px 0;
+    align-self: flex-start; width: fit-content;
+    transition: color .18s ease;
+  }
+  .cs-nav a:hover { color: var(--ink); }
+  .cs-nav a.active { color: var(--ink); font-weight: 600; }
+
+  .cs-side .spark { display: none; }
+
+  /* ---- main column ---- */
+  .cs-main { padding: 56px 48px 0 48px; max-width: none; }
+  .cs-sec { scroll-margin-top: 36px; padding: 78px 0; }
+  .cs-sec:first-of-type { padding-top: 31px; }
+  .cs-sec:last-of-type { padding-bottom: 80px; }
+  /* equal spacing between sections: neutralize leading/trailing child margins */
+  .cs-sec > *:first-child { margin-top: 0; }
+  .cs-sec > *:last-child, .cs-sec > *:last-child *:last-child { margin-bottom: 0; }
+
+  .sec-tag {
+    display: flex; align-items: center; gap: 20px;
+    font-family: var(--mono); font-size: 12px; letter-spacing: 0.16em; text-transform: uppercase;
+    color: var(--taupe); margin-bottom: 44px;
+  }
+  .sec-tag::after { content: ""; flex: 1; height: 1px; background: var(--hair); }
+
+  .sec-grid { display: grid; grid-template-columns: 1fr; gap: 22px; align-items: start; }
+  .sec-grid .cs-copy { max-width: none; }
+  @media (max-width: 860px) { .sec-grid { gap: 16px; } }
+
+  /* reflection: full-width caption + copy */
+  .cs-h.refl-h { margin-bottom: 52px; text-wrap: balance; }
+  .refl-copy { display: grid; grid-template-columns: 1fr 1fr; gap: 56px; }
+  .refl-copy .col p { margin-top: 0; }
+  .refl-copy .col p + p { margin-top: 18px; }
+  @media (max-width: 860px) { .refl-copy { grid-template-columns: 1fr; gap: 18px; } }
+
+  .cs-h { font-family: var(--display); font-weight: 700; letter-spacing: -0.02em; line-height: 1.04; margin: 0; font-size: clamp(26px, 3vw, 42px); }
+  .cs-main p { font-size: 15px; line-height: 1.62; margin: 0 0 18px; color: #2c2722; }
+  .cs-main p:last-child { margin-bottom: 0; }
+  .cs-main p .mark, .hl-lemon, .hl-lav, .hl-sand, .hl-sage, .hl-cream, .hmw .hl, .pull .hl, .statement .hl { background: none !important; padding: 0 !important; }
+  .cs-main p .em { color: var(--ink); font-weight: 600; }
+  .cs-copy p + p { margin-top: 18px; }
+
+  /* hero / overview */
+  .cs-hero-title { font-family: var(--display); font-weight: 600; text-transform: uppercase; font-size: clamp(54px, 10.5vw, 150px); letter-spacing: -0.02em; line-height: 0.86; margin: 0; }
+  .cs-hero-sub { font-family: var(--display); font-weight: 600; font-size: clamp(15px,1.5vw,19px); letter-spacing: 0.01em; color: var(--taupe); margin: 14px 0 0; }
+
+  .ov-grid { display: grid; grid-template-columns: 300px minmax(0,1fr); gap: 56px; align-items: start; margin-top: 44px; border-top: 1px solid var(--hair); }
+  @media (max-width: 860px) { .ov-grid { grid-template-columns: 1fr; gap: 8px; } }
+  .meta-list p { font-size: 16px; line-height: 1.5; margin: 0; padding: 13px 0; border-bottom: 1px solid var(--hair-soft); color: #2c2722; }
+  .meta-list .k { color: var(--ink-soft); }
+  .ov-lead { font-size: clamp(15.5px,1.4vw,17px); line-height: 1.6; color: var(--ink); margin: 0; padding-top: 13px; }
+
+  .hl-sage { color: var(--ink); font-weight: 600; background: linear-gradient(transparent 56%, var(--sage) 56%); padding: 0 2px; }
+  .hl-cream { color: var(--ink); font-weight: 600; background: linear-gradient(transparent 56%, var(--cream) 56%); padding: 0 2px; }
+
+  /* media */
+  .media { border-radius: 14px; overflow: hidden; margin: 40px 0; border: 1px solid var(--hair-soft); background: var(--milk); }
+  .media.media--white { background: #fff; }
+  .media img.shot, .media video.shot { display: block; width: 100%; height: auto; }
+  .media .frame {
+    aspect-ratio: var(--ar, 16/9); position: relative;
+    background: repeating-linear-gradient(45deg, rgba(27,23,20,0.045) 0 11px, transparent 11px 22px), var(--mb, #EAE3D4);
+    display: flex; align-items: center; justify-content: center;
+  }
+  .media .frame .lab { font-family: var(--mono); font-size: 11px; color: var(--taupe); background: rgba(255,255,255,0.82); padding: 6px 11px; border-radius: 6px; letter-spacing: 0.02em; }
+  .media .cap { font-family: var(--mono); font-size: 11.5px; color: var(--ink-soft); padding: 11px 15px; border-top: 1px solid var(--hair-soft); background: #fff; }
+
+  /* hero feature image */
+  .hero-media { margin: 40px 0 0; }
+  .hero-media .frame { aspect-ratio: 16 / 10; }
+
+  /* book spread gallery */
+  .spread-gallery { display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px; margin: 36px 0 26px; }
+  .spread-gallery .media { margin: 0; }
+  @media (max-width: 700px) { .spread-gallery { grid-template-columns: 1fr 1fr; } }
+  @media (max-width: 460px) { .spread-gallery { grid-template-columns: 1fr; } }
+
+  .duo-img { display: grid; grid-template-columns: 1.25fr 1fr; gap: 12px; margin: 0; align-items: start; }
+  .duo-img .media { margin: 0; }
+  @media (max-width: 740px) { .duo-img { grid-template-columns: 1fr; } }
+
+  .block { margin-top: 56px; }
+  .block .subhead + .media, .block .subhead + .duo-img { margin-top: 22px; }
+  .block-copy { max-width: 48ch; margin-top: 22px; }
+  .block-copy--full { max-width: none; }
+  .subhead { font-family: var(--display); font-weight: 600; font-size: clamp(18px,1.7vw,23px); letter-spacing: -0.01em; margin: 0 0 14px; }
+  .pcount { font-family: var(--mono); font-size: 12px; letter-spacing: 0.08em; text-transform: uppercase; color: var(--forest); margin: 0 0 8px; }
+
+  /* problem statement / HMW */
+  .hmw { font-family: var(--display); font-weight: 600; font-size: clamp(24px,2.7vw,38px); line-height: 1.18; letter-spacing: -0.015em; margin: 0 0 40px; max-width: 20ch; color: var(--ink); }
+  .hmw.hmw--wide { max-width: none; }
+  .hmw .hl { background: linear-gradient(transparent 56%, var(--sage) 56%); padding: 0 3px; }
+
+  .prob-grid { display: grid; grid-template-columns: minmax(0,1.05fr) minmax(0,1fr); gap: 56px; align-items: start; }
+  @media (max-width: 860px) { .prob-grid { grid-template-columns: 1fr; gap: 28px; } }
+
+  .pull {
+    font-family: var(--display); font-weight: 500; font-size: clamp(19px,2vw,26px);
+    line-height: 1.32; letter-spacing: -0.01em; color: var(--ink);
+    border-left: 3px solid var(--forest); padding: 4px 0 4px 26px; margin: 0;
+  }
+
+  /* materials list */
+  .materials { display: flex; flex-wrap: wrap; gap: 8px; margin: 22px 0 0; }
+  .materials span {
+    font-family: var(--mono); font-size: 11.5px; letter-spacing: 0.02em; color: var(--taupe);
+    border: 1px solid var(--hair); border-radius: 999px; padding: 6px 12px; background: #fff;
+  }
+
+  /* final product — four chapters */
+  .chapters { display: grid; grid-template-columns: 1fr 1fr; gap: 1px; background: var(--hair); border: 1px solid var(--hair); border-radius: 16px; overflow: hidden; margin-top: 36px; }
+  @media (max-width: 640px) { .chapters { grid-template-columns: 1fr; } }
+  .chapter { background: #fff; padding: 30px 34px 34px; display: flex; flex-direction: column; gap: 10px; }
+  .chapter .cn { font-family: var(--mono); font-size: 12px; letter-spacing: 0.12em; color: var(--forest); }
+  .chapter h4 { font-family: var(--display); font-weight: 700; font-size: clamp(20px,2vw,26px); letter-spacing: -0.015em; line-height: 1.08; margin: 0; color: var(--ink); }
+  .chapter p { font-size: 15.5px; line-height: 1.55; margin: 0; color: var(--taupe); }
+
+  /* externally-hosted walkthrough video */
+  .vid-note { font-size: 15px; line-height: 1.62; color: #2c2722; margin: 22px 0 18px; }
+  .vid-note .em { color: var(--ink); font-weight: 600; }
+  .video-link { display: block; position: relative; border-radius: 14px; overflow: hidden; border: 1px solid var(--hair-soft); background: #1b1714; text-decoration: none; }
+  .video-link img { display: block; width: 100%; aspect-ratio: 16/9; object-fit: cover; opacity: 0.86; transition: opacity .3s ease, transform .5s ease; }
+  .video-link:hover img { opacity: 0.72; transform: scale(1.015); }
+  .video-link .play { position: absolute; inset: 0; display: flex; align-items: center; justify-content: center; pointer-events: none; }
+  .video-link .play i { width: 78px; height: 78px; border-radius: 50%; background: rgba(255,255,255,0.94); display: flex; align-items: center; justify-content: center; box-shadow: 0 8px 30px rgba(0,0,0,0.35); transition: transform .25s ease; }
+  .video-link:hover .play i { transform: scale(1.09); }
+  .video-link .play i::after { content: ""; width: 0; height: 0; border-left: 23px solid var(--forest); border-top: 14px solid transparent; border-bottom: 14px solid transparent; margin-left: 7px; }
+  .video-link .vp-bar { position: absolute; left: 0; right: 0; bottom: 0; display: flex; align-items: center; justify-content: space-between; gap: 14px; padding: 16px 20px; background: linear-gradient(transparent, rgba(0,0,0,0.62)); font-family: var(--mono); font-size: 12.5px; letter-spacing: 0.02em; color: #fff; }
+
+  /* testimonial */
+  .quote { margin: 40px 0 0; padding: 36px 40px; background: var(--milk); border-radius: 16px; border: 1px solid var(--hair-soft); }
+  .quote .qmark { font-family: var(--display); font-weight: 700; font-size: 56px; line-height: 0.5; color: var(--sage); display: block; height: 30px; }
+  .quote p { font-family: var(--display); font-weight: 500; font-size: clamp(19px,2vw,25px); line-height: 1.4; letter-spacing: -0.01em; color: var(--ink); margin: 0 0 18px; max-width: none; }
+  .quote p:last-of-type { margin-bottom: 22px; }
+  .quote .by { font-family: var(--mono); font-size: 13px; color: var(--taupe); letter-spacing: 0.02em; }
+  .thanks { font-size: 16px; line-height: 1.6; color: var(--ink-soft); margin: 26px 0 0; max-width: 64ch; }
+  .thanks .em { color: var(--ink); font-weight: 600; }
+
+  .next { display: flex; align-items: center; justify-content: space-between; gap: 20px; border-top: 1px solid var(--hair); margin-top: 90px; padding-top: 30px; flex-wrap: wrap; }
+  .next .lab { font-family: var(--mono); font-size: 12px; color: var(--ink-soft); letter-spacing: .1em; text-transform: uppercase; }
+  .next a { font-family: var(--display); font-weight: 700; font-size: clamp(28px,4vw,48px); letter-spacing: -0.02em; line-height: 1; transition: color .18s ease; }
+  .next a:hover { color: var(--forest); }
+
+  /* footer */
+  .site-footer { --rose: #A87C7E; grid-column: 1 / -1; margin-top: 0; padding: 0 48px; }
+  .site-footer .ft-grid { border-top: 1.5px solid #B98A8D; padding-top: 22px; }
+  .ft-grid { display: grid; grid-template-columns: 1fr auto; column-gap: 40px; row-gap: 16px; align-items: stretch; padding-bottom: 36px; }
+  .ft-name { grid-column: 1; grid-row: 1; font-family: var(--sans); font-weight: 400; font-size: 15px; color: var(--rose); letter-spacing: -0.01em; }
+  .ft-links { grid-column: 2; grid-row: 1 / span 2; display: flex; flex-direction: column; align-items: flex-end; justify-content: space-between; }
+  .ft-links a { font-family: var(--sans); font-size: 12px; color: var(--rose); display: inline-flex; align-items: center; gap: 2px; transition: opacity .18s ease; }
+  .ft-links a .ar { font-size: 10px; }
+  .ft-links a:hover { opacity: 0.6; }
+  .ft-edu { grid-column: 1; grid-row: 2; display: grid; grid-template-columns: repeat(3, max-content); gap: 10px 44px; }
+  .ft-edu .ft-deg, .ft-edu .ft-school { font-family: var(--sans); font-size: 12px; line-height: 1.4; color: var(--rose); white-space: nowrap; }
+  .ft-edu .ft-deg { font-style: italic; }
+  @media (max-width: 700px) {
+    .ft-grid { grid-template-columns: 1fr; }
+    .ft-links { grid-column: 1; grid-row: auto; align-items: flex-start; flex-direction: row; flex-wrap: wrap; gap: 18px; }
+    .ft-edu { grid-template-columns: 1fr; }
+  }
+
+  @media (max-width: 900px) {
+    .cs-layout { grid-template-columns: 1fr; }
+    .cs-side {
+      position: sticky; top: 0; height: auto; flex-direction: row; align-items: center; gap: 14px;
+      padding: 12px 18px; border-bottom: 1px solid var(--hair); background: #fff; z-index: 50;
+      overflow-x: auto; -webkit-overflow-scrolling: touch;
+    }
+    .cs-side .spark { display: none; }
+    .cs-nav { flex-direction: row; gap: 4px; padding: 0; border: 0; }
+    .cs-nav a { font-size: 13px; padding: 6px 11px; white-space: nowrap; border-radius: 999px; }
+    .cs-nav a.active { background: rgba(62,107,102,0.12); color: var(--bright); }
+    .cs-main { padding: 40px 24px 0; }
+  }
+</style>
+</head>
+<body data-screen-label="Case study / For Stillness">
+  <div class="cs-layout">
+    <!-- LEFT RAIL -->
+    <aside class="cs-side">
+      <a class="back" href="../index.html" aria-label="Back to all work"><span class="ar">←</span></a>
+      <nav class="cs-nav" aria-label="Sections">
+        <a href="#overview"   data-spy>Overview</a>
+        <a href="#problem"    data-spy>Problem</a>
+        <a href="#solution"   data-spy>Solution</a>
+        <a href="#testing"    data-spy>Testing</a>
+        <a href="#crafting"   data-spy>Crafting</a>
+        <a href="#final"      data-spy>Final Product</a>
+        <a href="#reflection" data-spy>Reflection</a>
+      </nav>
+      <span class="spark" aria-hidden="true">
+        <svg width="26" height="26" viewBox="0 0 26 26" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"><path d="M13 2 C13 8 13 8 13 13 M13 13 C13 18 13 18 13 24 M2 13 C8 13 8 13 13 13 M13 13 C18 13 18 13 24 13"/></svg>
+      </span>
+    </aside>
+
+    <!-- MAIN -->
+    <main class="cs-main">
+      <!-- OVERVIEW -->
+      <section id="overview" class="cs-sec">
+        <h1 class="cs-hero-title">For Stillness</h1>
+        <div class="ov-grid">
+          <div class="meta-list">
+            <p><span class="k">role</span> — Product &amp; Interaction, Visual, Research</p>
+            <p><span class="k">timeline</span> — Jan – May 2025 (4 months)</p>
+            <p><span class="k">team</span> — Solo · advised by Dr. Harpreet Sareen &amp; Andrew Zornaza</p>
+            <p><span class="k">tools</span> — Illustrator, Photoshop, InDesign, Midjourney</p>
+          </div>
+          <div class="ov-lead-wrap">
+            <p class="ov-lead">This <span class="hl-sage">pop-up book</span> was created in my interaction design course to prompt readers to reflect on whether their personal technology usage brings them happiness and fulfillment, as well as remind them of a time when our interactions with technology were slower and analog while still being entertaining. Choosing analog mechanics over a digital solution was a deliberate reflection on what digital interaction design has replaced, guiding readers to reflect on intentional interaction rather than reject technology altogether. I conducted the research, scientific synthesis, iterative visual layout and paper engineering, and hand-bound the book.</p>
+          </div>
+        </div>
+        <div class="media hero-media">
+          <img class="shot" src="../assets/work/stillness-cover.jpg" alt="The finished For Stillness book held open to a spread with a layered orange funnel pop-up" fetchpriority="high" decoding="async" />
+          <div class="cap">Perfect-bound by hand, designed to be held, opened, and slowed down with.</div>
+        </div>
+      </section>
+
+      <!-- PROBLEM -->
+      <section id="problem" class="cs-sec">
+        <div class="sec-tag">Problem</div>
+        <h2 class="hmw hmw--wide">How might we encourage people to <span class="hl">experience</span> intentional interaction, not just be told to seek it?</h2>
+        <div class="cs-copy" style="max-width:none;">
+          <p>There is much discourse on how modern technology exploits attention fragmentation, but rarely are there experiences that let you tangibly <span class="em">feel</span> the alternative. While conversations around screen time and social media's psychological tactics are growing, there is far less dialogue around what we have actually lost, like the texture of slower, more intentional interaction that existed before digital design optimized everything for speed and retention.</p>
+          <p>The inherent nature of technology is not the problem, as it can connect us with people we love and enrich our lives. But the way we interact with it has quietly shifted and most of us haven't stopped long enough to notice what that shift has cost us.</p>
+        </div>
+      </section>
+
+      <!-- SOLUTION -->
+      <section id="solution" class="cs-sec">
+        <div class="sec-tag">Solution</div>
+        <div class="sec-grid">
+          <div><h2 class="cs-h">A pop-up book as a deliberate, analog call-back to slower interaction.</h2></div>
+          <div class="cs-copy">
+            <p>Through entry points spanning scientific concepts about dopamine processing, attention fragmentation, and story, the goal isn't to reject technology altogether, but to remind readers what <span class="em">deep engagement</span> feels like without constant artificial stimuli.</p>
+          </div>
+        </div>
+
+        <div class="media media--white">
+          <img class="shot" src="../assets/work/stillness-spreads-white.jpg" alt="A grid of nine spreads from the finished book — chapter openers, pop-up mechanisms, a paper tree, an orange funnel, and a hand-drawn time visualization" loading="lazy" />
+          <div class="cap">Chapter openers, paper pop-ups, and the data visualizations readers reacted to most.</div>
+        </div>
+        <div class="cs-copy block-copy">
+          <p>By creating a modern educational tool through the <span class="em">oldest form of user experience</span>, it offers stillness, focus, and intentional interaction as the antithesis of our fast-paced digital world.</p>
+        </div>
+      </section>
+
+      <!-- ITERATIONS & TESTING -->
+      <section id="testing" class="cs-sec">
+        <div class="sec-tag">Iterations &amp; User Testing</div>
+        <h2 class="cs-h" style="margin-bottom:18px;">Trying to evoke an emotional response<br>through language and paper.</h2>
+
+        <div class="block">
+          <p class="pcount">Prototype 01</p>
+          <h3 class="subhead">A hand-drawn booklet</h3>
+          <div class="cs-copy block-copy block-copy--full">
+            <p>My first prototype was a small booklet I drew and wrote in by hand, with direct questions to the reader and references to social-media culture. In testing, users responded positively (the <span class="em">data visualization</span> specifically evoked shock and felt like it elicited an important conversation). They liked that it was a held book rather than something digital.</p>
+          </div>
+          <div class="media media--white"><img class="shot" src="../assets/work/stillness-proto1.jpg" alt="Prototype 1 — a small hand-drawn, hand-written booklet with direct questions and a remaining-life-time visualization" loading="lazy" /></div>
+        </div>
+
+        <div class="block">
+          <p class="pcount">Prototype 02</p>
+          <h3 class="subhead">My first hand-bound book</h3>
+          <div class="cs-copy block-copy block-copy--full">
+            <p>I hand-bound a book from scratch and glued in prints of InDesign pages. The text was Lorem Ipsum, but users were told the intended content to spark a deeper discussion on dopamine and the manipulation of technology. The goal was to read flow, pop-up engagement, and whether it still evoked an emotional yet reflective response.</p>
+          </div>
+          <div class="media media--white"><img class="shot" src="../assets/work/stillness-proto2.jpg" alt="Prototype 2 — the first hand-bound book with InDesign prints glued in, including a Midjourney illustration and gold reflective spread" loading="lazy" /></div>
+          <div class="cs-copy block-copy">
+            <p>Users felt engaged by the pop-ups, but the organization and scope needed further ideation. The Midjourney illustrations were guided by drawings users made during testing about their own media usage.</p>
+          </div>
+        </div>
+
+        <div class="block">
+          <p class="pcount">Prototype 03</p>
+          <h3 class="subhead">Engineering where the pop-ups live</h3>
+          <div class="cs-copy block-copy block-copy--full">
+            <p>The third prototype had no testing, but was rather centered around trying to figure out where the pop-ups should go and both how the text should be moved around in order to accommodate them and what pop-ups could best compliment the page's content and intent. To make a pop-up on a specific page, you have to leave the next two pages blank to be glued together to accommodate for its mechanisms to function, so it was important to be meticulous about that division.</p>
+          </div>
+          <div class="media media--white"><img class="shot" src="../assets/work/stillness-proto3.jpg" alt="Prototype 3 — annotated page layouts working out where each pop-up sits and how text moves to accommodate it" loading="lazy" /></div>
+        </div>
+      </section>
+
+      <!-- CRAFTING -->
+      <section id="crafting" class="cs-sec">
+        <div class="sec-tag">Crafting</div>
+        <div class="sec-grid">
+          <div><h2 class="cs-h">Stepping out of my comfort zone.</h2></div>
+          <div class="cs-copy">
+            <p>The book was <span class="em">perfect-bound by hand</span>. Its construction entailed the following materials: book cloth, cardboard, cardstock paper (both colored and white), neutral pH adhesive glue, binding ribbon, awl, brush, bone folder, wax thread, curved needles, Exacto knife, rotary cutter, light gel filter sheets, book binding tape, Lineco archival document repair tape, Scotch tape, and a book press.</p>
+          </div>
+        </div>
+        <div class="media media--white" style="border:none;">
+          <img class="shot" src="../assets/work/stillness-crafting.jpg" alt="Four photos of the binding process — taped pop-up mechanisms, the sewn signatures, and the book clamped in a wooden press" loading="lazy" />
+        </div>
+      </section>
+
+      <!-- FINAL PRODUCT -->
+      <section id="final" class="cs-sec">
+        <div class="sec-tag">Final Product</div>
+        <div class="sec-grid">
+          <div><h2 class="cs-h">A purposeful act of reflection despite the commodification of attention.</h2></div>
+        </div>
+
+        <p class="vid-note">A full read-through film of the finished book was recorded, but it exceeds the maximum inline asset payload this platform supports for embedded video, so rather than bundling the encoded file into the page it's <span class="em">hosted externally</span>. Watch the complete walkthrough below:</p>
+        <a class="video-link" href="https://drive.google.com/file/d/1mUuMUIkw1Q9P8RbOCwfqJGe1F-m4feBI/view?usp=sharing" target="_blank" rel="noopener">
+          <img src="../assets/work/stillness-cover.jpg" alt="Preview of the For Stillness book — the full walkthrough film is hosted on Google Drive" loading="lazy" />
+          <span class="play"><i></i></span>
+          <span class="vp-bar"><span>Full walkthrough film</span><span>Watch on Google Drive ↗</span></span>
+        </a>
+
+        <div class="cs-copy" style="margin-top:40px;">
+          <p>The finished book is divided into four chapters, each a different entry point into the same question (moving from the science, to a story, to the systems around us, to a call to act).</p>
+        </div>
+
+        <div class="chapters">
+          <div class="chapter">
+            <div class="cn">Ch. 01 — Dopamine</div>
+            <h4>The Rewiring of Our Brains</h4>
+            <p>How reward systems and dopamine processing are shaped by the way we use technology.</p>
+          </div>
+          <div class="chapter">
+            <div class="cn">Ch. 02 — Story</div>
+            <h4>The Universal Experience</h4>
+            <p>A short fictional story drawn from the user interviews (the shared, recognizable shape of distraction).</p>
+          </div>
+          <div class="chapter">
+            <div class="cn">Ch. 03 — Attention</div>
+            <h4>The Architecture of Distraction</h4>
+            <p>Attention fragmentation and the algorithm, the systems built to hold our focus.</p>
+          </div>
+          <div class="chapter">
+            <div class="cn">Ch. 04 — Action</div>
+            <h4>Intentional Interaction</h4>
+            <p>A brief history of interaction, ending in a call to action to make active, deliberate choices.</p>
+          </div>
+        </div>
+      </section>
+
+      <!-- REFLECTION -->
+      <section id="reflection" class="cs-sec">
+        <div class="sec-tag">Reflection</div>
+        <h2 class="cs-h refl-h" style="width:100%; max-width:none;">Exploring analog space and design as a digital designer.</h2>
+        <div class="cs-copy" style="max-width:none;">
+          <p>This project was an absolute labor of love and I am so proud of the outcome. Going into it, my goal was to expand on my visual design skills through designing book page layouts — I achieved that and so much more. As a digital designer, this was a huge jump outside of my comfort zone; the physical toll of craft aside, this may have been the most difficult project I've worked on due to the journey into the analog and unknown.</p>
+          <p>In the end though, not only did I get to explore a new medium, but alongside that came exploring a new way of thinking about design and user experience which I believe will strengthen any and all projects I have the honor of working on in the future.</p>
+          <p>I cannot thank the Parsons School of Design faculty that oversaw this project enough — this project would not be possible without the support, guidance, and discussions with <span class="em">Dr. Harpreet Sareen</span> and <span class="em">Andrew Zornaza</span> had with me. I am honored to be your student!</p>
+        </div>
+      </section>
+    </main>
+
+    <!-- FOOTER -->
+    <footer class="site-footer">
+      <div class="ft-grid">
+        <div class="ft-name">Diana Chalakova</div>
+        <div class="ft-links">
+          <a href="https://drive.google.com/file/d/1g0gbaHcaRyhGhXmZ6D6GhgDW67F-e5g2/view" target="_blank" rel="noopener">Resume <span class="ar">↗</span></a>
+          <a href="mailto:dchalakova@outlook.com">Email <span class="ar">↗</span></a>
+          <a href="https://www.linkedin.com/in/dchalakova/" target="_blank" rel="noopener">LinkedIn <span class="ar">↗</span></a>
+        </div>
+        <div class="ft-edu">
+          <div class="ft-col">
+            <div class="ft-deg">MFA, Design and Technology</div>
+            <div class="ft-school">Parsons School of Design</div>
+          </div>
+          <div class="ft-col">
+            <div class="ft-deg">BA, Psychology</div>
+            <div class="ft-school">University of Washington</div>
+          </div>
+          <div class="ft-col">
+            <div class="ft-deg">Certificate, Human-Computer Interaction for User Experience Design</div>
+            <div class="ft-school">Massachusetts Institute of Technology</div>
+          </div>
+        </div>
+      </div>
+    </footer>
+  </div>
+
+  <script>
+    var links = Array.prototype.slice.call(document.querySelectorAll('.cs-nav a[data-spy]'));
+    var map = {};
+    links.forEach(function (l) { map[l.getAttribute('href').slice(1)] = l; });
+    var sections = Array.prototype.slice.call(document.querySelectorAll('.cs-sec'));
+    var current = null;
+
+    function setActive(id) {
+      if (id === current) return;
+      current = id;
+      links.forEach(function (l) { l.classList.remove('active'); });
+      if (map[id]) map[id].classList.add('active');
+    }
+
+    function onScroll() {
+      var probe = window.scrollY + window.innerHeight * 0.3;
+      var id = sections[0].id;
+      for (var i = 0; i < sections.length; i++) {
+        if (sections[i].offsetTop <= probe) id = sections[i].id; else break;
+      }
+      if (window.innerHeight + window.scrollY >= document.documentElement.scrollHeight - 4) {
+        id = sections[sections.length - 1].id;
+      }
+      setActive(id);
+    }
+    window.addEventListener('scroll', onScroll, { passive: true });
+    window.addEventListener('resize', onScroll);
+    onScroll();
+  </script>
+</body>
+</html>

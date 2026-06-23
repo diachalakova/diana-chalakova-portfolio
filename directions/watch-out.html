@@ -1,0 +1,388 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Watch Out — Diana C</title>
+<meta name="description" content="Watch Out — an award-winning AI-generated film for wildlife preservation and fire prevention. A case study by Diana Chalakova." />
+<meta name="author" content="Diana Chalakova" />
+<meta name="theme-color" content="#ffffff" />
+<link rel="icon" type="image/svg+xml" href="../assets/favicon.svg" />
+<meta property="og:type" content="article" />
+<meta property="og:title" content="Watch Out — Diana Chalakova" />
+<meta property="og:description" content="An award-winning AI-generated film for wildlife preservation and fire prevention." />
+<meta property="og:image" content="../assets/work/watchout-cover.jpg" />
+<meta name="twitter:card" content="summary_large_image" />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;500;600;700;800;900&family=Space+Mono:wght@400;700&family=Caveat:wght@500;600;700&display=swap" rel="stylesheet" />
+<link rel="stylesheet" href="../styles/base.css" />
+<style>
+  :root {
+    --paper: #ffffff; --bright: #C0412B;
+    --hair: rgba(27,23,20,0.12);
+    --hair-soft: rgba(27,23,20,0.08);
+    /* Watch Out palette — ember & ash. Sand sits BEHIND dark text as a highlight
+       (fails contrast as text). Ember & taupe pass AA as text. */
+    --ember: #C0412B; --ember-deep: #9E3420; --sand: #F2DEC6; --forest: #3E5A45;
+    --milk: #FBF4EC; --taupe: #5A4F45; --charcoal: #2A2520;
+  }
+  body::before { display: none; }
+  html { scroll-behavior: smooth; }
+  body { color: #221e1a; }
+
+  .cs-layout { display: grid; grid-template-columns: 186px 1fr; align-items: start; max-width: 1400px; margin: 0 auto; padding: 0 clamp(24px, 4vw, 64px); box-sizing: border-box; }
+
+  /* ---- left rail ---- */
+  .cs-side {
+    position: sticky; top: 0; height: 100vh; align-self: start;
+    display: flex; flex-direction: column; gap: 26px;
+    padding: 38px 20px 38px 34px;
+  }
+  .back {
+    display: inline-flex; align-items: center; align-self: flex-start;
+    font-family: var(--mono); font-size: 13px; color: var(--ink);
+    transition: color .2s ease, transform .2s ease;
+  }
+  .back:hover { transform: translateX(-3px); }
+  .back .ar { font-size: 17px; line-height: 1; }
+
+  .cs-nav { display: flex; flex-direction: column; gap: 1px; }
+  .cs-nav a {
+    font-family: var(--sans); font-weight: 500; font-size: 13px; letter-spacing: -0.005em;
+    color: rgba(27,23,20,0.32); padding: 7px 0;
+    align-self: flex-start; width: fit-content;
+    transition: color .18s ease;
+  }
+  .cs-nav a:hover { color: var(--ink); }
+  .cs-nav a.active { color: var(--ink); font-weight: 600; }
+
+  .cs-side .spark { display: none; }
+
+  /* ---- main column ---- */
+  .cs-main { padding: 56px 48px 0 48px; max-width: none; }
+  .cs-sec { scroll-margin-top: 36px; padding: 78px 0; }
+  .cs-sec:first-of-type { padding-top: 31px; }
+  .cs-sec:last-of-type { padding-bottom: 80px; }
+  /* equal spacing between sections: neutralize leading/trailing child margins */
+  .cs-sec > *:first-child { margin-top: 0; }
+  .cs-sec > *:last-child, .cs-sec > *:last-child *:last-child { margin-bottom: 0; }
+
+  .sec-tag {
+    display: flex; align-items: center; gap: 20px;
+    font-family: var(--mono); font-size: 12px; letter-spacing: 0.16em; text-transform: uppercase;
+    color: var(--taupe); margin-bottom: 44px;
+  }
+  .sec-tag::after { content: ""; flex: 1; height: 1px; background: var(--hair); }
+
+  .sec-grid { display: grid; grid-template-columns: 1fr; gap: 22px; align-items: start; }
+  .sec-grid .cs-copy { max-width: 70ch; }
+  @media (max-width: 860px) { .sec-grid { gap: 16px; } }
+
+  .cs-h { font-family: var(--display); font-weight: 700; letter-spacing: -0.02em; line-height: 1.04; margin: 0; font-size: clamp(26px, 3vw, 42px); }
+  .cs-main p { font-size: 15px; line-height: 1.62; margin: 0 0 18px; color: #2c2722; }
+  .cs-main p:last-child { margin-bottom: 0; }
+  .cs-main p .mark, .hl-lemon, .hl-lav, .hl-sand, .hl-sage, .hl-cream, .hmw .hl, .pull .hl, .statement .hl { background: none !important; padding: 0 !important; }
+  .cs-main p .em { color: var(--ink); font-weight: 600; }
+  .cs-copy p + p { margin-top: 18px; }
+
+  /* hero / overview */
+  .cs-hero-title { font-family: var(--display); font-weight: 600; text-transform: uppercase; font-size: clamp(58px, 11vw, 158px); letter-spacing: -0.02em; line-height: 0.86; margin: 0; }
+  .cs-hero-sub { font-family: var(--display); font-weight: 600; font-size: clamp(15px,1.5vw,19px); letter-spacing: 0.01em; color: var(--taupe); margin: 14px 0 0; }
+
+  .award {
+    display: inline-flex; align-items: center; gap: 9px; margin-top: 20px;
+    font-family: var(--mono); font-size: 12px; letter-spacing: 0.05em; text-transform: uppercase;
+    color: var(--ember-deep); background: var(--sand); border: 1px solid rgba(192,65,43,0.3);
+    border-radius: 999px; padding: 8px 15px;
+  }
+
+  .ov-grid { display: grid; grid-template-columns: 300px minmax(0,1fr); gap: 56px; align-items: start; margin-top: 44px; border-top: 1px solid var(--hair); }
+  @media (max-width: 860px) { .ov-grid { grid-template-columns: 1fr; gap: 8px; } }
+  .meta-list p { font-size: 16px; line-height: 1.5; margin: 0; padding: 13px 0; border-bottom: 1px solid var(--hair-soft); color: #2c2722; }
+  .meta-list .k { color: var(--ink-soft); }
+  .ov-lead { font-size: clamp(15.5px,1.4vw,17px); line-height: 1.6; color: var(--ink); margin: 0; padding-top: 13px; }
+
+  .hl-sand { color: var(--ink); font-weight: 600; background: linear-gradient(transparent 56%, var(--sand) 56%); padding: 0 2px; }
+
+  /* media */
+  .media { border-radius: 14px; overflow: hidden; margin: 40px 0; border: 1px solid var(--hair-soft); background: var(--milk); }
+  .media.media--white { background: #fff; }
+  .media img.shot, .media video.shot { display: block; width: 100%; height: auto; }
+  .media .frame {
+    aspect-ratio: var(--ar, 16/9); position: relative;
+    background: repeating-linear-gradient(45deg, rgba(255,255,255,0.05) 0 12px, transparent 12px 24px), var(--mb, #2A211C);
+    display: flex; align-items: center; justify-content: center;
+  }
+  .media .frame .lab { font-family: var(--mono); font-size: 12px; color: rgba(255,255,255,0.85); background: rgba(0,0,0,0.35); padding: 7px 13px; border-radius: 6px; letter-spacing: 0.04em; }
+  .media .cap { font-family: var(--mono); font-size: 11.5px; color: var(--ink-soft); padding: 11px 15px; border-top: 1px solid var(--hair-soft); background: #fff; }
+
+  /* video — final output */
+  .media--video { border: 1px solid var(--hair); box-shadow: 0 18px 40px -28px rgba(42,33,28,0.7); }
+  .media--video .frame .play {
+    width: 64px; height: 64px; border-radius: 50%; border: 2px solid rgba(255,255,255,0.9);
+    display: flex; align-items: center; justify-content: center; margin-bottom: 16px;
+  }
+  .media--video .frame .play::after { content: ""; border-left: 17px solid rgba(255,255,255,0.95); border-top: 11px solid transparent; border-bottom: 11px solid transparent; margin-left: 4px; }
+  .media--video .frame .stack { display: flex; flex-direction: column; align-items: center; }
+
+  .block { margin-top: 56px; }
+  .block .subhead + .media { margin-top: 22px; }
+  .block-copy { max-width: 64ch; margin-top: 22px; }
+  .subhead { font-family: var(--display); font-weight: 600; font-size: clamp(18px,1.7vw,23px); letter-spacing: -0.01em; margin: 0 0 14px; }
+
+  /* concept lead statement */
+  .statement { font-family: var(--display); font-weight: 600; font-size: clamp(26px,3vw,40px); line-height: 1.15; letter-spacing: -0.015em; margin: 0 0 32px; max-width: 24ch; color: var(--ink); }
+  .statement .hl { background: linear-gradient(transparent 56%, var(--sand) 56%); padding: 0 3px; }
+
+  /* stat ovals */
+  .stats { display: grid; grid-template-columns: repeat(3,1fr); gap: 30px; margin: 44px 0 8px; }
+  .stat { display: flex; flex-direction: column; align-items: center; text-align: center; gap: 16px; }
+  .stat .oval {
+    width: 100%; max-width: 230px; aspect-ratio: 5 / 3;
+    border: 3px solid var(--ember); border-radius: 50%;
+    display: flex; flex-direction: column; align-items: center; justify-content: center;
+  }
+  .stat .oval .n { font-family: var(--display); font-weight: 700; font-size: clamp(30px,3.6vw,46px); letter-spacing: -0.02em; line-height: 1; color: var(--charcoal); }
+  .stat .oval .u { font-family: var(--mono); font-size: 9.5px; letter-spacing: 0.12em; text-transform: uppercase; color: var(--taupe); margin-top: 9px; }
+  .stat .l { font-family: var(--mono); font-size: 11px; letter-spacing: 0.06em; text-transform: uppercase; color: var(--ink-soft); max-width: 24ch; line-height: 1.5; }
+  @media (max-width: 700px) { .stats { grid-template-columns: 1fr; gap: 34px; } .stat .oval { max-width: 200px; } }
+
+  /* prompt cards */
+  .prompt { background: var(--milk); border: 1px solid var(--hair-soft); border-radius: 14px; padding: 24px 28px; margin-top: 16px; }
+  .prompt .plabel { font-family: var(--mono); font-size: 11px; letter-spacing: 0.1em; text-transform: uppercase; color: var(--ember-deep); margin-bottom: 12px; }
+  .prompt p { font-size: 15.5px; line-height: 1.62; color: var(--charcoal); font-style: italic; margin: 0; max-width: none; }
+
+  /* testimonial / quote */
+  .quote { margin: 36px 0 0; padding: 36px 40px; background: var(--milk); border-radius: 16px; border: 1px solid var(--hair-soft); }
+  .quote .qmark { font-family: var(--display); font-weight: 700; font-size: 56px; line-height: 0.5; color: var(--sand); display: block; height: 30px; }
+  .quote p { font-family: var(--display); font-weight: 500; font-size: clamp(18px,1.9vw,24px); line-height: 1.42; letter-spacing: -0.01em; color: var(--ink); margin: 0 0 18px; max-width: none; }
+  .quote .by { font-family: var(--mono); font-size: 13px; color: var(--taupe); letter-spacing: 0.02em; }
+  .quote .by a { color: var(--ember-deep); }
+  .quote .by a:hover { text-decoration: underline; }
+
+  .next { display: flex; align-items: center; justify-content: space-between; gap: 20px; border-top: 1px solid var(--hair); margin-top: 90px; padding-top: 30px; flex-wrap: wrap; }
+  .next .lab { font-family: var(--mono); font-size: 12px; color: var(--ink-soft); letter-spacing: .1em; text-transform: uppercase; }
+  .next a { font-family: var(--display); font-weight: 700; font-size: clamp(28px,4vw,48px); letter-spacing: -0.02em; line-height: 1; transition: color .18s ease; }
+  .next a:hover { color: var(--ember); }
+
+  /* footer */
+  .site-footer { --rose: #A87C7E; grid-column: 1 / -1; margin-top: 0; padding: 0 48px; }
+  .site-footer .ft-grid { border-top: 1.5px solid #B98A8D; padding-top: 22px; }
+  .ft-grid { display: grid; grid-template-columns: 1fr auto; column-gap: 40px; row-gap: 16px; align-items: stretch; padding-bottom: 36px; }
+  .ft-name { grid-column: 1; grid-row: 1; font-family: var(--sans); font-weight: 400; font-size: 15px; color: var(--rose); letter-spacing: -0.01em; }
+  .ft-links { grid-column: 2; grid-row: 1 / span 2; display: flex; flex-direction: column; align-items: flex-end; justify-content: space-between; }
+  .ft-links a { font-family: var(--sans); font-size: 12px; color: var(--rose); display: inline-flex; align-items: center; gap: 2px; transition: opacity .18s ease; }
+  .ft-links a .ar { font-size: 10px; }
+  .ft-links a:hover { opacity: 0.6; }
+  .ft-edu { grid-column: 1; grid-row: 2; display: grid; grid-template-columns: repeat(3, max-content); gap: 10px 44px; }
+  .ft-edu .ft-deg, .ft-edu .ft-school { font-family: var(--sans); font-size: 12px; line-height: 1.4; color: var(--rose); white-space: nowrap; }
+  .ft-edu .ft-deg { font-style: italic; }
+  @media (max-width: 700px) {
+    .ft-grid { grid-template-columns: 1fr; }
+    .ft-links { grid-column: 1; grid-row: auto; align-items: flex-start; flex-direction: row; flex-wrap: wrap; gap: 18px; }
+    .ft-edu { grid-template-columns: 1fr; }
+  }
+
+  @media (max-width: 900px) {
+    .cs-layout { grid-template-columns: 1fr; }
+    .cs-side {
+      position: sticky; top: 0; height: auto; flex-direction: row; align-items: center; gap: 14px;
+      padding: 12px 18px; border-bottom: 1px solid var(--hair); background: #fff; z-index: 50;
+      overflow-x: auto; -webkit-overflow-scrolling: touch;
+    }
+    .cs-side .spark { display: none; }
+    .cs-nav { flex-direction: row; gap: 4px; padding: 0; border: 0; }
+    .cs-nav a { font-size: 13px; padding: 6px 11px; white-space: nowrap; border-radius: 999px; }
+    .cs-nav a.active { background: rgba(192,65,43,0.12); color: var(--bright); }
+    .cs-main { padding: 40px 24px 0; }
+  }
+</style>
+</head>
+<body data-screen-label="Case study / Watch Out">
+  <div class="cs-layout">
+    <!-- LEFT RAIL -->
+    <aside class="cs-side">
+      <a class="back" href="../index.html" aria-label="Back to all work"><span class="ar">←</span></a>
+      <nav class="cs-nav" aria-label="Sections">
+        <a href="#overview" data-spy>Overview</a>
+        <a href="#concept"  data-spy>Concept</a>
+        <a href="#process"  data-spy>Process</a>
+        <a href="#final"    data-spy>Final Output</a>
+      </nav>
+      <span class="spark" aria-hidden="true">
+        <svg width="26" height="26" viewBox="0 0 26 26" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"><path d="M13 2 C13 8 13 8 13 13 M13 13 C13 18 13 18 13 24 M2 13 C8 13 8 13 13 13 M13 13 C18 13 18 13 24 13"/></svg>
+      </span>
+    </aside>
+
+    <!-- MAIN -->
+    <main class="cs-main">
+      <!-- OVERVIEW -->
+      <section id="overview" class="cs-sec">
+        <h1 class="cs-hero-title">Watch Out</h1>
+        <div class="award">✦ Human + AI Co-Creation Award</div>
+        <div class="ov-grid">
+          <div class="meta-list">
+            <p><span class="k">role</span> — Creative Technologist</p>
+            <p><span class="k">recognition</span> — Human + AI Co-Creation Award</p>
+            <p><span class="k">tools</span> — Firefly, Gemini, Nano Banana 2, Veo 3</p>
+          </div>
+          <div class="ov-lead-wrap">
+            <p class="ov-lead">An <span class="hl-sand">award-winning</span> project for the AI Jam hosted by the Parsons School of Design's Innovation Center. In a one-hour sprint, I rapidly prototyped a short film for wildlife preservation and fire prevention, urging cigarette smokers to recognize the danger of improperly discarding a butt. It won the <span class="em">Human + AI Co-Creation Award</span>.</p>
+          </div>
+        </div>
+      </section>
+
+      <!-- CONCEPT -->
+      <section id="concept" class="cs-sec">
+        <div class="sec-tag">Concept</div>
+        <h2 class="statement" style="max-width:none;">The 2025 LA Palisades Fire was started by a <span class="hl">discarded cigarette</span>.</h2>
+        <div class="sec-grid">
+          <div class="cs-copy">
+            <p>Cigarette-related fires in the U.S. resulted in over <span class="em">$2 billion</span> in costs associated with suppression and <span class="em">$6 billion</span> in property losses. USDA Forest Service researchers found that even "fire safe" cigarettes can still start a wildfire, particularly in hot, dry, or windy conditions.</p>
+          </div>
+        </div>
+
+        <div class="stats">
+          <div class="stat">
+            <div class="oval"><div class="n">1,700+</div><div class="u">Fires per year</div></div>
+            <div class="l">Wildfires caused by smoking (U.S.)</div>
+          </div>
+          <div class="stat">
+            <div class="oval"><div class="n">85–90%</div><div class="u">Caused by humans</div></div>
+            <div class="l">Wildfires caused by humans</div>
+          </div>
+          <div class="stat">
+            <div class="oval"><div class="n">90,000</div><div class="u">Fires per year</div></div>
+            <div class="l">Total fires linked to cigarettes</div>
+          </div>
+        </div>
+
+        <div class="quote">
+          <span class="qmark">&ldquo;</span>
+          <p>During the call [with 911], [the man who started the fire] typed a question into the ChatGPT app on his iPhone, asking, "Are you at fault if a fire is lift [sic] because of your cigarettes." (ChatGPT's response was "Yes," followed by an explanation.)</p>
+          <div class="by">— <a href="https://www.latimes.com/california/story/2025-10-08/la-me-palisades-fire-timeline" target="_blank" rel="noopener">LA Times, Palisades Fire timeline ↗</a></div>
+        </div>
+      </section>
+
+      <!-- PROCESS -->
+      <section id="process" class="cs-sec">
+        <div class="sec-tag">Process</div>
+        <div class="sec-grid">
+          <div><h2 class="cs-h">Anchoring the AI to a single, deliberate look.</h2></div>
+          <div class="cs-copy">
+            <p>With only an hour, the work was in the <span class="em">direction</span> (pinning down a reference style, distilling it into a precise prompting vocabulary, then steering the generations frame by frame).</p>
+          </div>
+        </div>
+
+        <div class="block">
+          <h3 class="subhead">Visual references</h3>
+          <div class="media media--white"><img class="shot" src="../assets/work/watchout-visual-refs.jpg" alt="Firewatch-style reference frames in warm and cool palettes, annotated: soft gradient transitions, minimalist atmospheric expansive, dreamlike but grounded" loading="lazy" /></div>
+          <div class="cs-copy block-copy"><p>I anchored the film to a minimal, atmospheric look (soft gradients, layered depth, a calm and contemplative mood) so the eventual turn to fire would land harder against the quiet.</p></div>
+        </div>
+
+        <div class="block">
+          <h3 class="subhead">Prompt examples</h3>
+          <div class="prompt">
+            <div class="plabel">Prompt — opening image</div>
+            <p>"Create an illustration based on the style of the reference image that features a rustic cabin in a forest full of evergreen trees. The shadows are soft and the sun is setting but still bright outside… Some small birds are visible in the trees and white smoke is gently billowing out of the cabin's chimney. The scene is peaceful and the background has a very soft focus."</p>
+          </div>
+          <div class="prompt">
+            <div class="plabel">Prompt — Veo 3 motion</div>
+            <p>"Start with a wide establishing shot of the first frame. The trees are swaying peacefully and there are birds calmly flying away… After 6 seconds, slowly start to pan to the last frame. During the pan, which is 10 seconds long, have the sky slowly getting darker and the trees and ground gradually becoming on fire… In the middle of the pan is a gradual transition from lush forest to a burning one."</p>
+          </div>
+        </div>
+
+        <div class="block">
+          <h3 class="subhead">Prompt inspiration</h3>
+          <div class="media media--white"><img class="shot" src="../assets/work/watchout-prompt-inspo.png" alt="Columns of descriptive prompt vocabulary — minimalist, atmospheric, expansive; soft gradient transitions; serene, introspective; clean geometric forms; and a list of negative prompts" loading="lazy" /></div>
+          <div class="cs-copy block-copy"><p>I distilled the reference style into a reusable vocabulary (atmosphere, depth, tone) plus a tight set of negative prompts to keep the model away from photorealism, clutter, and harsh lighting.</p></div>
+        </div>
+
+        <div class="block">
+          <h3 class="subhead">Start &amp; end frames</h3>
+          <div class="media media--white"><img class="shot" src="../assets/work/watchout-frames.jpg" alt="Two frames side by side — a lush illustrated landscape at sunset labeled Starting Point, and a forest fire labeled Closing Point" loading="lazy" /></div>
+          <div class="cs-copy block-copy"><p>The two endpoints Veo 3 interpolated between: a lush landscape at sunset, and the wildfire it becomes.</p></div>
+        </div>
+
+        <div class="block">
+          <h3 class="subhead">Generated explorations</h3>
+          <div class="media media--white"><img class="shot" src="../assets/work/watchout-generated-grid.jpg" alt="A grid of six generated landscapes — calm forests at sunset and the same scenes consumed by fire" loading="lazy" /></div>
+          <div class="cs-copy block-copy"><p>A spread of generations explored during the sprint, testing palettes and the calm-to-catastrophe arc before locking the final frames.</p></div>
+        </div>
+      </section>
+
+      <!-- FINAL OUTPUT -->
+      <section id="final" class="cs-sec">
+        <div class="sec-tag">Final Output</div>
+        <div class="sec-grid">
+          <div><h2 class="cs-h">From a calm forest to wildfire, in one unbroken pan.</h2></div>
+          <div class="cs-copy">
+            <p>The film opens on stillness (trees swaying, birds drifting away), then slowly turns. Over a single slow camera move, the sky darkens and the forest ignites, ending in the fire one carelessly discarded cigarette can start.</p>
+          </div>
+        </div>
+        <div class="media media--video">
+          <video class="shot" src="../assets/work/watchout-final.mp4" poster="../assets/work/watchout-cover.jpg" controls playsinline preload="metadata"></video>
+          <div class="cap">The final film. Generated with Veo 3 from hand-authored start and end frames.</div>
+        </div>
+      </section>
+    </main>
+
+    <!-- FOOTER -->
+    <footer class="site-footer">
+      <div class="ft-grid">
+        <div class="ft-name">Diana Chalakova</div>
+        <div class="ft-links">
+          <a href="https://drive.google.com/file/d/1g0gbaHcaRyhGhXmZ6D6GhgDW67F-e5g2/view" target="_blank" rel="noopener">Resume <span class="ar">↗</span></a>
+          <a href="mailto:dchalakova@outlook.com">Email <span class="ar">↗</span></a>
+          <a href="https://www.linkedin.com/in/dchalakova/" target="_blank" rel="noopener">LinkedIn <span class="ar">↗</span></a>
+        </div>
+        <div class="ft-edu">
+          <div class="ft-col">
+            <div class="ft-deg">MFA, Design and Technology</div>
+            <div class="ft-school">Parsons School of Design</div>
+          </div>
+          <div class="ft-col">
+            <div class="ft-deg">BA, Psychology</div>
+            <div class="ft-school">University of Washington</div>
+          </div>
+          <div class="ft-col">
+            <div class="ft-deg">Certificate, Human-Computer Interaction for User Experience Design</div>
+            <div class="ft-school">Massachusetts Institute of Technology</div>
+          </div>
+        </div>
+      </div>
+    </footer>
+  </div>
+
+  <script>
+    var links = Array.prototype.slice.call(document.querySelectorAll('.cs-nav a[data-spy]'));
+    var map = {};
+    links.forEach(function (l) { map[l.getAttribute('href').slice(1)] = l; });
+    var sections = Array.prototype.slice.call(document.querySelectorAll('.cs-sec'));
+    var current = null;
+
+    function setActive(id) {
+      if (id === current) return;
+      current = id;
+      links.forEach(function (l) { l.classList.remove('active'); });
+      if (map[id]) map[id].classList.add('active');
+    }
+
+    function onScroll() {
+      var probe = window.scrollY + window.innerHeight * 0.3;
+      var id = sections[0].id;
+      for (var i = 0; i < sections.length; i++) {
+        if (sections[i].offsetTop <= probe) id = sections[i].id; else break;
+      }
+      if (window.innerHeight + window.scrollY >= document.documentElement.scrollHeight - 4) {
+        id = sections[sections.length - 1].id;
+      }
+      setActive(id);
+    }
+    window.addEventListener('scroll', onScroll, { passive: true });
+    window.addEventListener('resize', onScroll);
+    onScroll();
+  </script>
+</body>
+</html>
