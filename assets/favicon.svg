@@ -1,8 +1,14 @@
 <svg width="48" height="48" viewBox="0 0 48 48" xmlns="http://www.w3.org/2000/svg">
-  <ellipse cx="24" cy="12" rx="7" ry="11" fill="#E1462C" transform="rotate(0 24 24)"></ellipse>
-  <ellipse cx="24" cy="12" rx="7" ry="11" fill="#E1462C" transform="rotate(72 24 24)"></ellipse>
-  <ellipse cx="24" cy="12" rx="7" ry="11" fill="#E1462C" transform="rotate(144 24 24)"></ellipse>
-  <ellipse cx="24" cy="12" rx="7" ry="11" fill="#E1462C" transform="rotate(216 24 24)"></ellipse>
-  <ellipse cx="24" cy="12" rx="7" ry="11" fill="#E1462C" transform="rotate(288 24 24)"></ellipse>
-  <circle cx="24" cy="24" r="6.5" fill="#FFD23F"></circle>
+  <defs>
+    <radialGradient id="glow" cx="50%" cy="50%" r="50%">
+      <stop offset="0%"   stop-color="#F096A8" stop-opacity="1"></stop>
+      <stop offset="20%"  stop-color="#F096A8" stop-opacity="0.92"></stop>
+      <stop offset="38%"  stop-color="#F096A8" stop-opacity="0.74"></stop>
+      <stop offset="55%"  stop-color="#F096A8" stop-opacity="0.52"></stop>
+      <stop offset="72%"  stop-color="#F096A8" stop-opacity="0.31"></stop>
+      <stop offset="87%"  stop-color="#F096A8" stop-opacity="0.13"></stop>
+      <stop offset="100%" stop-color="#F096A8" stop-opacity="0"></stop>
+    </radialGradient>
+  </defs>
+  <rect width="48" height="48" fill="url(#glow)"></rect>
 </svg>
