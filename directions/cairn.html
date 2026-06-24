@@ -1,0 +1,565 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Cairn — Diana C</title>
+<meta name="description" content="Cairn — a speculative AI smart home system that builds a digital portrait of a home's emotional climate. An MFA thesis by Diana Chalakova." />
+<meta name="author" content="Diana Chalakova" />
+<meta name="theme-color" content="#ffffff" />
+<link rel="icon" type="image/svg+xml" href="../assets/favicon.svg" />
+<meta property="og:type" content="article" />
+<meta property="og:title" content="Cairn — Diana Chalakova" />
+<meta property="og:description" content="A speculative AI smart home system as an extension of the quantified self." />
+<meta property="og:image" content="../assets/work/cairn-on.png" />
+<meta name="twitter:card" content="summary_large_image" />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;500;600;700;800;900&family=Space+Mono:wght@400;700&family=Caveat:wght@500;600;700&display=swap" rel="stylesheet" />
+<link rel="stylesheet" href="../styles/base.css" />
+<style>
+  :root {
+    --paper: #ffffff; --bright: #51703C;
+    --hair: rgba(46,40,31,0.14);
+    --hair-soft: rgba(46,40,31,0.09);
+    /* Cairn palette — earthy: moss leads, clay & stone as warm neutrals,
+       soil for deep ink. Light tints sit BEHIND dark text as highlights. */
+    --moss: #51703C; --moss-tint: #CFE0BB;
+    --clay: #B07A45; --clay-tint: #EBD7B7;
+    --stone: #6E6453; --soil: #2E281F;
+    --bone: #ECE6D8; --milk: #EFE9DC;
+  }
+  body::before { display: none; }
+  html { scroll-behavior: smooth; }
+  body { color: #241f18; background: var(--paper); }
+
+  .cs-layout { display: grid; grid-template-columns: 186px 1fr; align-items: start; max-width: 1400px; margin: 0 auto; padding: 0 clamp(24px, 4vw, 64px); box-sizing: border-box; }
+
+  /* ---- left rail ---- */
+  .cs-side {
+    position: sticky; top: 0; height: 100vh; align-self: start;
+    display: flex; flex-direction: column; gap: 26px;
+    padding: 38px 20px 38px 34px;
+  }
+  .back {
+    display: inline-flex; align-items: center; align-self: flex-start;
+    font-family: var(--mono); font-size: 13px; color: var(--ink);
+    transition: color .2s ease, transform .2s ease;
+  }
+  .back:hover { transform: translateX(-3px); }
+  .back .ar { font-size: 17px; line-height: 1; }
+
+  .cs-nav { display: flex; flex-direction: column; gap: 1px; }
+  .cs-nav a {
+    font-family: var(--sans); font-weight: 500; font-size: 13px; letter-spacing: -0.005em;
+    color: rgba(46,40,31,0.34); padding: 7px 0;
+    align-self: flex-start; width: fit-content; white-space: nowrap;
+    transition: color .18s ease;
+  }
+  .cs-nav a:hover { color: var(--ink); }
+  .cs-nav a.active { color: var(--ink); font-weight: 600; }
+
+  /* ---- main column ---- */
+  .cs-main { padding: 56px 48px 0 48px; max-width: none; }
+  .cs-sec { scroll-margin-top: 36px; padding: 78px 0; }
+  .cs-sec:first-of-type { padding-top: 31px; }
+  .cs-sec:last-of-type { padding-bottom: 80px; }
+  .cs-sec > *:first-child { margin-top: 0; }
+  .cs-sec > *:last-child, .cs-sec > *:last-child *:last-child { margin-bottom: 0; }
+
+  .sec-tag {
+    display: flex; align-items: center; gap: 20px;
+    font-family: var(--mono); font-size: 12px; letter-spacing: 0.16em; text-transform: uppercase;
+    color: var(--stone); margin-bottom: 44px;
+  }
+  .sec-tag::after { content: ""; flex: 1; height: 1px; background: var(--hair); }
+
+  .sec-grid { display: grid; grid-template-columns: 1fr; gap: 22px; align-items: start; }
+  .sec-grid .cs-copy { max-width: 70ch; }
+  @media (max-width: 860px) { .sec-grid { gap: 16px; } }
+
+  /* reflection: full-width caption + copy */
+  .cs-h.refl-h { margin-bottom: 52px; text-wrap: balance; }
+  .refl-copy { display: grid; grid-template-columns: 1fr 1fr; gap: 56px; }
+  .refl-copy .col p { margin-top: 0; }
+  .refl-copy .col p + p { margin-top: 18px; }
+  @media (max-width: 860px) { .refl-copy { grid-template-columns: 1fr; gap: 18px; } }
+
+  .cs-h { font-family: var(--display); font-weight: 700; letter-spacing: -0.02em; line-height: 1.04; margin: 0; font-size: clamp(26px, 3vw, 42px); }
+  .cs-main p { font-size: 15px; line-height: 1.62; margin: 0 0 18px; color: #322c23; }
+  .cs-main p:last-child { margin-bottom: 0; }
+  .cs-main p .em { color: var(--ink); font-weight: 600; }
+  .cs-main p .mark { background: linear-gradient(transparent 60%, var(--moss-tint) 60%); padding: 0 2px; }
+  .cs-copy p + p { margin-top: 18px; }
+
+  /* hero / overview */
+  .cs-hero-title { font-family: var(--display); font-weight: 700; text-transform: uppercase; font-size: clamp(44px, 7vw, 92px); letter-spacing: -0.022em; line-height: 0.9; margin: 0; max-width: 14ch; text-wrap: balance; }
+  .cs-hero-sub { font-family: var(--display); font-weight: 600; font-size: clamp(15px,1.5vw,19px); letter-spacing: 0.01em; color: var(--stone); margin: 20px 0 0; max-width: none; }
+
+  .ov-grid { display: grid; grid-template-columns: 320px minmax(0,1fr); gap: 56px; align-items: start; margin-top: 44px; border-top: 1px solid var(--hair); }
+  @media (max-width: 860px) { .ov-grid { grid-template-columns: 1fr; gap: 8px; } }
+  .meta-list p { font-size: 15px; line-height: 1.45; margin: 0; padding: 13px 0; border-bottom: 1px solid var(--hair-soft); color: #322c23; }
+  .meta-list .k { color: var(--ink-soft); }
+  .ov-lead { font-size: clamp(15.5px,1.4vw,17px); line-height: 1.6; color: var(--ink); margin: 0; padding-top: 13px; }
+
+  .hl-moss { color: var(--ink); font-weight: 600; background: linear-gradient(transparent 56%, var(--moss-tint) 56%); padding: 0 2px; }
+  .hl-clay { color: var(--ink); font-weight: 600; background: linear-gradient(transparent 56%, var(--clay-tint) 56%); padding: 0 2px; }
+
+  /* media */
+  .media { border-radius: 14px; overflow: hidden; margin: 40px 0; border: 1px solid var(--hair-soft); background: var(--milk); }
+  .media img.shot, .media video.shot { display: block; width: 100%; height: auto; }
+  .media .frame {
+    aspect-ratio: var(--ar, 16/9); position: relative;
+    background: repeating-linear-gradient(45deg, rgba(46,40,31,0.05) 0 11px, transparent 11px 22px), var(--mb, #E7DFCC);
+    display: flex; align-items: center; justify-content: center; text-align: center;
+  }
+  .media .frame .lab { font-family: var(--mono); font-size: 11px; color: var(--stone); background: rgba(255,255,255,0.82); padding: 6px 12px; border-radius: 6px; max-width: 80%; line-height: 1.5; }
+  .media .cap { font-family: var(--mono); font-size: 11.5px; color: var(--ink-soft); padding: 11px 15px; border-top: 1px solid var(--hair-soft); background: var(--milk); }
+  /* overview hero — photo on a soft stone panel */
+  .media--hero { background: #D9D6D1; }
+  .media--hero img.shot { width: 100%; display: block; }
+
+  .duo-img { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin: 36px 0; }
+  .duo-img .media { margin: 0; }
+  @media (max-width: 640px) { .duo-img { grid-template-columns: 1fr; } }
+
+  .trio-img { display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px; margin: 36px 0; }
+  .trio-img .media { margin: 0; }
+  @media (max-width: 640px) { .trio-img { grid-template-columns: 1fr; } }
+
+  .block { margin-top: 56px; }
+  .block .subhead + .media, .block .subhead + .duo-img { margin-top: 22px; }
+  .block-copy { max-width: 64ch; margin-top: 22px; }
+  .subhead { font-family: var(--display); font-weight: 600; font-size: clamp(18px,1.7vw,23px); letter-spacing: -0.01em; margin: 0 0 14px; }
+
+  /* problem statement / HMW */
+  .hmw { font-family: var(--display); font-weight: 600; font-size: clamp(22px,2.5vw,34px); line-height: 1.2; letter-spacing: -0.015em; margin: 0 0 6px; max-width: 22ch; color: var(--ink); }
+  .hmw.hmw--wide { max-width: none; margin-bottom: 40px; }
+  .hmw .hl { background: linear-gradient(transparent 56%, var(--moss-tint) 56%); padding: 0 3px; }
+
+  /* definition card */
+  .defn { background: var(--bone); border: 1px solid var(--hair-soft); border-radius: 16px; padding: 30px 32px; }
+  .defn .dk { font-family: var(--mono); font-size: 11px; letter-spacing: 0.14em; text-transform: uppercase; color: var(--moss); margin: 0 0 12px; }
+  .defn .dt { font-family: var(--display); font-weight: 700; font-size: clamp(19px,2vw,24px); letter-spacing: -0.01em; line-height: 1.25; margin: 0 0 14px; color: var(--ink); }
+  .defn p { font-size: 15.5px; line-height: 1.55; margin: 0; color: var(--stone); }
+
+  .prob-grid { display: grid; grid-template-columns: minmax(0,1fr) minmax(0,1.05fr); gap: 56px; align-items: start; }
+  @media (max-width: 860px) { .prob-grid { grid-template-columns: 1fr; gap: 28px; } }
+
+  /* numbered concept steps */
+  .steps { display: grid; grid-template-columns: repeat(3,1fr); gap: 30px 44px; margin-top: 14px; }
+  .steps .s { border-top: 1px solid var(--hair); padding-top: 14px; }
+  .steps .s .sn { font-family: var(--mono); font-size: 11px; letter-spacing: 0.06em; color: var(--moss); margin-bottom: 10px; }
+  .steps .s h4 { font-family: var(--display); font-weight: 600; font-size: 18px; letter-spacing: -0.01em; margin: 0 0 8px; }
+  .steps .s p { font-size: 15.5px; line-height: 1.55; margin: 0; color: var(--stone); }
+  @media (max-width: 640px) { .steps { grid-template-columns: 1fr; gap: 22px; } }
+
+  /* iteration progression — placeholder-led cards */
+  .iter-lead { margin: 0 0 28px; max-width: 64ch; }
+  .iters { display: grid; grid-template-columns: repeat(auto-fit, minmax(190px, 1fr)); gap: 30px 22px; }
+  .iters .it .media { margin: 0 0 14px; }
+  .iters .it .sn { font-family: var(--mono); font-size: 11px; letter-spacing: 0.06em; color: var(--moss); margin-bottom: 8px; }
+  .iters .it h4 { font-family: var(--display); font-weight: 600; font-size: 17px; letter-spacing: -0.01em; margin: 0 0 7px; }
+  .iters .it p { font-size: 14.5px; line-height: 1.5; margin: 0; color: var(--stone); }
+  .iters .it.is-final .sn { color: var(--clay); }
+
+  /* data-source pairing table */
+  .pairs { margin-top: 28px; border-top: 1px solid var(--hair); }
+  .pairs .row { display: grid; grid-template-columns: 1fr 1fr 1.4fr; gap: 24px; padding: 16px 0; border-bottom: 1px solid var(--hair-soft); align-items: baseline; }
+  .pairs .row.head { font-family: var(--mono); font-size: 10.5px; letter-spacing: 0.12em; text-transform: uppercase; color: var(--stone); }
+  .pairs .row .src { font-family: var(--display); font-weight: 600; font-size: 15px; color: var(--ink); }
+  .pairs .row .out { font-size: 14.5px; line-height: 1.5; color: var(--stone); }
+  @media (max-width: 640px) { .pairs .row { grid-template-columns: 1fr; gap: 6px; } .pairs .row.head { display: none; } .pairs .row .out { margin-top: 4px; } }
+
+  /* pull statement */
+  .pull { font-family: var(--display); font-weight: 600; font-size: clamp(22px,2.6vw,34px); line-height: 1.24; letter-spacing: -0.015em; color: var(--ink); max-width: 24ch; margin: 0; }
+  .pull .hl { background: linear-gradient(transparent 56%, var(--clay-tint) 56%); padding: 0 3px; }
+
+  .thanks { font-size: 16px; line-height: 1.6; color: var(--ink-soft); margin: 36px 0 0; max-width: 72ch; }
+  .thanks + .thanks { margin-top: 18px; }
+  .thanks .em { color: var(--ink); font-weight: 600; }
+
+  .next { display: flex; align-items: center; justify-content: space-between; gap: 20px; border-top: 1px solid var(--hair); margin-top: 90px; padding-top: 30px; flex-wrap: wrap; }
+  .next .lab { font-family: var(--mono); font-size: 12px; color: var(--ink-soft); letter-spacing: .1em; text-transform: uppercase; }
+  .next a { font-family: var(--display); font-weight: 700; font-size: clamp(28px,4vw,48px); letter-spacing: -0.02em; line-height: 1; transition: color .18s ease; }
+  .next a:hover { color: var(--moss); }
+
+  /* footer */
+  .site-footer { --rose: #8A7C5E; grid-column: 1 / -1; margin-top: 0; padding: 0 48px; }
+  .site-footer .ft-grid { border-top: 1.5px solid #9C8E6F; padding-top: 22px; }
+  .ft-grid { display: grid; grid-template-columns: 1fr auto; column-gap: 40px; row-gap: 16px; align-items: stretch; padding-bottom: 36px; }
+  .ft-name { grid-column: 1; grid-row: 1; font-family: var(--sans); font-weight: 400; font-size: 15px; color: var(--rose); letter-spacing: -0.01em; }
+  .ft-links { grid-column: 2; grid-row: 1 / span 2; display: flex; flex-direction: column; align-items: flex-end; justify-content: space-between; }
+  .ft-links a { font-family: var(--sans); font-size: 12px; color: var(--rose); display: inline-flex; align-items: center; gap: 2px; transition: opacity .18s ease; }
+  .ft-links a .ar { font-size: 10px; }
+  .ft-links a:hover { opacity: 0.6; }
+  .ft-edu { grid-column: 1; grid-row: 2; display: grid; grid-template-columns: repeat(3, max-content); gap: 10px 44px; }
+  .ft-edu .ft-deg, .ft-edu .ft-school { font-family: var(--sans); font-size: 12px; line-height: 1.4; color: var(--rose); white-space: nowrap; }
+  .ft-edu .ft-deg { font-style: italic; }
+  @media (max-width: 700px) {
+    .ft-grid { grid-template-columns: 1fr; }
+    .ft-links { grid-column: 1; grid-row: auto; align-items: flex-start; flex-direction: row; flex-wrap: wrap; gap: 18px; }
+    .ft-edu { grid-template-columns: 1fr; }
+  }
+
+  @media (max-width: 900px) {
+    .cs-layout { grid-template-columns: 1fr; }
+    .cs-side {
+      position: sticky; top: 0; height: auto; flex-direction: row; align-items: center; gap: 14px;
+      padding: 12px 18px; border-bottom: 1px solid var(--hair); background: var(--paper); z-index: 50;
+      overflow-x: auto; -webkit-overflow-scrolling: touch;
+    }
+    .cs-nav { flex-direction: row; gap: 4px; padding: 0; border: 0; }
+    .cs-nav a { font-size: 13px; padding: 6px 11px; white-space: nowrap; border-radius: 999px; }
+    .cs-nav a.active { background: rgba(81,112,60,0.14); color: var(--moss); }
+    .cs-main { padding: 40px 24px 0; }
+  }
+</style>
+</head>
+<body data-screen-label="Case study / Cairn">
+  <div class="cs-layout">
+    <!-- LEFT RAIL -->
+    <aside class="cs-side">
+      <a class="back" href="../index.html" aria-label="Back to all work"><span class="ar">←</span></a>
+      <nav class="cs-nav" aria-label="Sections">
+        <a href="#overview"     data-spy>Overview</a>
+        <a href="#problem"      data-spy>Problem</a>
+        <a href="#system"       data-spy>The System</a>
+        <a href="#portrait"     data-spy>Digital Portrait</a>
+        <a href="#object"       data-spy>The Object</a>
+        <a href="#reflection"   data-spy>Reflection</a>
+        <a href="#thanks"       data-spy>Thanks</a>
+      </nav>
+    </aside>
+
+    <!-- MAIN -->
+    <main class="cs-main">
+      <!-- OVERVIEW -->
+      <section id="overview" class="cs-sec" data-screen-label="Cairn / Overview">
+        <h1 class="cs-hero-title">Cairn</h1>
+        <div class="ov-grid">
+          <div class="meta-list">
+            <p><span class="k">role</span> — Solo MFA Thesis · Research &amp; Design</p>
+            <p><span class="k">program</span> — MFA Design &amp; Technology, Parsons</p>
+            <p><span class="k">timeline</span> — Sept 2025 – May 2026 (9 months)</p>
+            <p><span class="k">advisors</span> — John Sharp, Andrew Zornoza, David Carroll, Barbara Morris</p>
+            <p><span class="k">tools</span> — Figma · Blender · Claude Code · Cursor · 3D printing</p>
+          </div>
+          <div class="ov-lead-wrap">
+            <p class="ov-lead">Cairn is a speculative IoT smart home system that builds a <span class="hl-moss">digital portrait of a home's emotional climate</span>. It proposes using machine learning to read deviations related to emotions from combining data from the wearables and this smart home device in a household and lets people choose whether to share their aggregate signal locally with the people they live with to promote better understanding and communication. It is set in a near future where the data our devices generate belongs to the people who produce it, and where AI has become quiet infrastructure that, like nature, <span class="hl-clay">exists in symbiosis with us</span>.</p>
+          </div>
+        </div>
+        <div class="media media--hero">
+          <img class="shot" src="../assets/work/cairn-on.png" alt="Cairn — a 3D-printed white stone-stack lamp threaded with green moss, glowing warmly from between its blocks, beside an amber glass vessel on a wood table" loading="eager" />
+          <div class="cap">Cairn in it's ON state.</div>
+        </div>
+      </section>
+
+      <!-- PROBLEM -->
+      <section id="problem" class="cs-sec">
+        <div class="sec-tag">Problem</div>
+        <h2 class="hmw hmw--wide">How might technology lower the <span class="hl">barrier</span> to understanding others in our domestic spaces?</h2>
+        <div class="prob-grid">
+          <div class="cs-copy" style="max-width:none;">
+            <p>The year after I finished my undergraduate degree, my close friends and I scattered into different fields with different days. We did our best to support one another, but our lives had diverged so quickly that reading someone's mood became guesswork, and that guesswork quietly bred conflict, rooted not in indifference but in a <span class="em">lack of understanding</span> of what was shaping each other's days.</p>
+            <p>No technology should replace the work of actually talking to each other through that. But what if it could lower the barrier to entering it? Instead of fumbling in the dark trying to read someone, what if you had just enough awareness to know when to reach out, how to time a conversation, or simply that something was worth acknowledging?</p>
+          </div>
+          <div class="defn">
+            <p class="dk">The leading question</p>
+            <p class="dt">The distinction between technology that <em>replaces</em> human connection and technology that creates the <em>conditions</em> for it.</p>
+            <p>That line is what drove this project, and it is one that HCI researchers are still actively exploring. Cairn lives squarely on the second side of it.</p>
+          </div>
+        </div>
+      </section>
+
+      <!-- THE SYSTEM -->
+      <section id="system" class="cs-sec">
+        <div class="sec-tag">The System</div>
+        <div class="sec-grid">
+          <div><h2 class="cs-h">Reading emotion against a household's own baseline, never against “good” or “bad.”</h2></div>
+          <div class="cs-copy" style="max-width:none;">
+            <p>To keep the project speculative but grounded, I ran a literature review with Dr. Jorge Ortiz, Director of the Sensing &amp; Reasoning Lab at Rutgers. The technology Cairn needs doesn't fully exist yet, but it could soon, and the science already points the way.</p>
+          </div>
+        </div>
+
+        <div class="block">
+          <div class="steps">
+            <div class="s">
+              <div class="sn">01 — Combine</div>
+              <h4>One signal, many sources</h4>
+              <p>Cairn links data a home already produces (Oura, WHOOP, Fitbit, Apple Watch, Nest, Echo) rather than installing a wall of new, costly, surveillance-feeling sensors.</p>
+            </div>
+            <div class="s">
+              <div class="sn">02 — Baseline</div>
+              <h4>Trained on you, for two weeks</h4>
+              <p>ML compares each reading to a baseline learned from that specific home, not to a universal “healthy” score. A sports fan mid-game looks stressed, but that's joy in context.</p>
+            </div>
+            <div class="s">
+              <div class="sn">03 — Reason</div>
+              <h4>An LLM that understands context</h4>
+              <p>Current LLMs can reason about the relationship between a situation and the language used to express it (something command-based smart homes fail at) to infer what a deviation means.</p>
+            </div>
+          </div>
+
+          <div class="block-copy cs-copy" style="max-width:none; margin-top:40px;">
+            <p>The system shows the <span class="em">aggregate</span> rather than individual data points (a choice user interviews supported) and everything stays local, never leaving the home it was collected in. Sharing is consensual: you choose what becomes part of the household's whole.</p>
+          </div>
+
+          <div class="subhead" style="margin-top:48px;">What combining sources can reveal</div>
+          <div class="pairs">
+            <div class="row head"><div>Wearable signal</div><div>Ambient signal</div><div>What the pairing can surface</div></div>
+            <div class="row"><div class="src">Elevated HRV stress</div><div class="src" style="color:var(--stone);font-weight:500;">Late-night room activity</div><div class="out">A hard evening that hasn't been talked about yet.</div></div>
+            <div class="row"><div class="src">Poor sleep score</div><div class="src" style="color:var(--stone);font-weight:500;">Earlier, quieter mornings</div><div class="out">Someone running low on rest before the day even starts.</div></div>
+            <div class="row"><div class="src">Raised skin temp + HR</div><div class="src" style="color:var(--stone);font-weight:500;">Animated voice in shared space</div><div class="out">Excitement, not distress, read in the context it happened.</div></div>
+          </div>
+          <p class="cs-copy" style="max-width:none; margin-top:18px; font-size:13px; color:var(--ink-soft);">A fuller version of this mapping is documented in the thesis appendix.</p>
+        </div>
+      </section>
+
+      <!-- DIGITAL PORTRAIT -->
+      <section id="portrait" class="cs-sec">
+        <div class="sec-tag">Output 01 — Digital Portrait</div>
+        <div class="sec-grid">
+          <div><h2 class="cs-h">An emotional signature for the household, redrawn every evening.</h2></div>
+          <div class="cs-copy" style="max-width:none;">
+            <p>The interface is a piece of data humanism, inspired by Giorgia Lupi and Stefanie Posavec (abstract, poetic, and legible at a glance rather than a dashboard of raw numbers). Each evening it generates a fresh visualization from the modalities people have consented to share that day.</p>
+          </div>
+        </div>
+
+        <div class="block">
+          <div class="duo-img" style="margin-top:0;">
+            <div class="media" style="margin:0;">
+              <img class="shot" src="../assets/work/cairn-ui-home.png" alt="Cairn home page — three household members' radial emotional signatures shown side by side: Alexandra, Claire, and Hailey" loading="lazy" />
+              <div class="cap">The home page shows each member's signature side by side — the household read at a glance.</div>
+            </div>
+            <div class="media" style="margin:0;">
+              <img class="shot" src="../assets/work/cairn-ui-radial.png" alt="Cairn radial detail — Thursday May 14th, a single signature mapped against a 24-hour clock" loading="lazy" />
+              <div class="cap">Drilling in: the same signature mapped against a 24-hour clock, showing when in the day the signal was heaviest.</div>
+            </div>
+          </div>
+
+          <div class="steps">
+            <div class="s">
+              <div class="sn">Layer 01</div>
+              <h4>The household, whole</h4>
+              <p>First you see the aggregate, the home read as one shared climate, not two separate parts.</p>
+            </div>
+            <div class="s">
+              <div class="sn">Layer 02</div>
+              <h4>Each person's signature</h4>
+              <p>Then the individuals, shown together, so deviations from the shared baseline are visible side by side.</p>
+            </div>
+            <div class="s">
+              <div class="sn">Layer 03</div>
+              <h4>An inference, in plain words</h4>
+              <p>Each person gets a short, general inference, the way you'd update a friend about someone without revealing the details.</p>
+            </div>
+          </div>
+
+          <div class="trio-img" style="margin-top:40px;">
+            <div class="media" style="margin:0;">
+              <img class="shot" src="../assets/work/cairn-ui-alexandra.png" alt="Alexandra's individual signature with inference — operating outside her baseline for four of the last five days" loading="lazy" />
+              <div class="cap">Alexandra — a pattern of accumulated tension, not an acute event.</div>
+            </div>
+            <div class="media" style="margin:0;">
+              <img class="shot" src="../assets/work/cairn-ui-claire.png" alt="Claire's individual signature with inference — carrying a lot for several days, peaking in the evening" loading="lazy" />
+              <div class="cap">Claire — building across the day, heaviest by the time the house is fullest.</div>
+            </div>
+            <div class="media" style="margin:0;">
+              <img class="shot" src="../assets/work/cairn-ui-hailey.png" alt="Hailey's individual signature with inference — mostly okay, a slight shift in the last couple of days" loading="lazy" />
+              <div class="cap">Hailey — mostly baseline, a quiet shift worth a gentle check-in.</div>
+            </div>
+          </div>
+
+          <div class="cs-copy block-copy" style="max-width:none;">
+            <p>Navigation divides into inferences about the day (shown only after 8pm), inferences about housemates from the day before, the home's physical environment, the logged-in user's own stats, and a <span class="em">privacy tab kept in the main navigation</span>, a deliberate choice to make how the system works as visible as everything else. It closes each day with a gentle nudge to actually go connect.</p>
+          </div>
+        </div>
+
+        <div class="block">
+          <h3 class="subhead">Iteration</h3>
+          <p class="iter-lead">The visualization went through three distinct directions before the radial signature, and each one reshaped not just the form, but what data it should draw from in the first place.</p>
+          <div class="iters">
+            <div class="it">
+              <div class="media"><div class="frame" style="--ar: 4/3; --mb:#E7DFCC;"><span class="lab">[ placeholder ] Coral-reef square system</span></div></div>
+              <div class="sn">01 · Mapping</div>
+              <h4>A square, shaped by data</h4>
+              <p>Inspired by Giorgia Lupi, a base square was manipulated by each signal: amplitude to size, sentiment to color, speech length to width, grouped by conversation.</p>
+            </div>
+            <div class="it">
+              <div class="media"><div class="frame" style="--ar: 4/3; --mb:#E4ECD9;"><span class="lab">[ placeholder ] Dandelion levels (vibe-coded)</span></div></div>
+              <div class="sn">02 · Layering</div>
+              <h4>The dandelion levels</h4>
+              <p>A layered dandelion, vibe-coded in Cursor and Claude Code, drilled from household aggregate to individual readings. Critique: the aggregate didn't read as a whole, and the deepest level was undiscoverable.</p>
+            </div>
+            <div class="it is-final">
+              <div class="media"><div class="frame" style="--ar: 4/3; --mb:#E4ECD9;"><span class="lab">[ placeholder ] Radial signature (final)</span></div></div>
+              <div class="sn">03 · Final</div>
+              <h4>The radial signature</h4>
+              <p>The pivot to combining existing sensing data called for a new form. I built a custom radial-graph tool with Gemini, designed it in Figma, and brought it to life with Claude.</p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- THE OBJECT -->
+      <section id="object" class="cs-sec">
+        <div class="sec-tag">Output 02 — The Object</div>
+        <div class="sec-grid">
+          <div><h2 class="cs-h">A cairn: something that marks a path toward each other.</h2></div>
+          <div class="cs-copy">
+            <p>The physical object had to be beautiful enough to earn a place in a home the way luxury wearables do, without mimicking them, and without ever feeling like it was watching you.</p>
+          </div>
+        </div>
+
+        <div class="block">
+          <div class="cs-copy block-copy" style="max-width:none; margin-top:0;">
+            <p>The breakthrough came from a nature metaphor. A cairn is a stack of stones placed in a landscape to mark a path. People have built them for thousands of years, with no technology at all, to say <span class="em">“someone has been here before you; here's where to go next.”</span> That is exactly what this system is for: not to judge a home's emotional landscape, but to help the people in it find their way toward one another.</p>
+          </div>
+
+          <div class="media">
+            <div class="frame" style="--ar: 16/9; --mb:#E4ECD9;"><span class="lab">[ placeholder ] Blender — stacked blocks with displacement modifiers, then 3D-printed in white PLA</span></div>
+          </div>
+
+          <div class="cs-copy block-copy" style="max-width:none;">
+            <p>I learned Blender from scratch to model it, and Jovana Gavrilović helped 3D-print it in white PLA. I added soft fake moss by hand, a reference to a future where we live in <span class="em">symbiosis with technology and nature</span>. I deliberately left off any microphone or camera texture: visible surveillance cues would make it feel watched. Instead, the sensors hide in the gaps between the stones, present but never staring.</p>
+          </div>
+
+          <div class="media">
+            <img class="shot" src="../assets/work/cairn-on.png" alt="Cairn in its ON state — warm light glowing from between the stacked 3D-printed stones, moss threading up the form" loading="lazy" />
+            <div class="cap">Figure 28 — Cairn's home-sensing system, ON. Light between the blocks gives visual confirmation that sensing is active.</div>
+          </div>
+
+          <div class="duo-img">
+            <div class="media" style="margin:0;">
+              <div class="frame" style="--ar: 1/1; --mb:#DAD7D2;"><span class="lab">[ placeholder ] Figure 29 — Cairn, OFF (no glow, sensing paused)</span></div>
+            </div>
+            <div class="media" style="margin:0;">
+              <div class="frame" style="--ar: 1/1; --mb:#E7DFCC;"><span class="lab">[ placeholder ] Sensor placement diagram — concealed in the gaps between stones</span></div>
+            </div>
+          </div>
+
+          <div class="cs-copy block-copy" style="max-width:none;">
+            <p>The on/off state is controlled from the interface, with the lights as physical confirmation, so a household always has a legible, at-a-glance answer to whether the home is sensing. In testing, people said they could look at it for a while and would happily put it anywhere in their house.</p>
+          </div>
+        </div>
+
+        <div class="block">
+          <h3 class="subhead">Iteration</h3>
+          <p class="iter-lead">The form took the longest to find. Three earlier directions each tested well in parts but never as a whole, until a nature metaphor pulled them together.</p>
+          <div class="iters">
+            <div class="it">
+              <div class="media"><div class="frame" style="--ar: 1/1; --mb:#E7DFCC;"><span class="lab">[ placeholder ] Air-dry clay studies</span></div></div>
+              <div class="sn">01 · Clay</div>
+              <h4>First forms</h4>
+              <p>A set of small air-dry clay studies. Tested with users, none of the shapes elicited any emotion at all. A rough start.</p>
+            </div>
+            <div class="it">
+              <div class="media"><div class="frame" style="--ar: 1/1; --mb:#E4ECD9;"><span class="lab">[ placeholder ] Lid on/off (Project Alias)</span></div></div>
+              <div class="sn">02 · The lid</div>
+              <h4>A visible on/off</h4>
+              <p>Inspired by Bjørn Karmann's Project Alias, a sliding lid made sensing visibly on or off. The state resonated; the shape didn't, and where does the lid go when it's off?</p>
+            </div>
+            <div class="it">
+              <div class="media"><div class="frame" style="--ar: 1/1; --mb:#E7DFCC;"><span class="lab">[ placeholder ] Organic lamp forms</span></div></div>
+              <div class="sn">03 · Lamp</div>
+              <h4>Organic shapes</h4>
+              <p>More abstract, organic lamp forms came closer to something you'd live with, but still didn't spark the emotional response I was after.</p>
+            </div>
+            <div class="it is-final">
+              <div class="media"><div class="frame" style="--ar: 1/1; --mb:#E4ECD9;"><span class="lab">[ placeholder ] The cairn (final)</span></div></div>
+              <div class="sn">04 · Final</div>
+              <h4>The cairn</h4>
+              <p>The metaphor clicked, visually and conceptually. Users said they'd display it; the lid was dropped, and on/off moved into the interface and the lights.</p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- REFLECTION -->
+      <section id="reflection" class="cs-sec">
+        <div class="sec-tag">Reflection</div>
+        <h2 class="cs-h refl-h">What a quantified home adds to the field.</h2>
+        <div class="refl-copy">
+          <div class="col">
+            <p>Cairn's contribution is a reframing. It moves the quantified self (the individual body optimized in isolation) toward the <span class="em">quantified home</span>, where the unit of measurement is the shared emotional life of a household rather than a single set of metrics.</p>
+            <p>The same sensing that smart homes and wearables already perform for corporate benefit is turned back toward the people who produce the data: kept local, offered on their terms, and aimed not at optimizing feelings but at making them a little more legible to the people you live with.</p>
+          </div>
+          <div class="col">
+            <p>By grounding a speculative future in technology that already exists, Cairn argues that the future of smart homes and wearables lies in their <span class="hl-moss">integration</span>, an ambient AI that processes quietly in the background and, like nature, exists in symbiosis with us rather than against us.</p>
+            <p>And because that technology is so close, the project is also an argument for responsibility: the ethical and security landscape of this data is still ours to shape, while the design decisions that will define it are being made.</p>
+          </div>
+        </div>
+        <div style="margin-top:56px; border-top:1px solid var(--hair); padding-top:48px;">
+          <p class="pull">The future is bright, and we are lucky to get to <span class="hl">design</span> what living alongside it feels like.</p>
+        </div>
+      </section>
+
+      <!-- THANKS -->
+      <section id="thanks" class="cs-sec">
+        <div class="sec-tag">Finally…</div>
+        <h2 class="cs-h refl-h">With thanks.</h2>
+        <p class="thanks" style="max-width:none;">To my thesis faculty, <span class="em">John Sharp, Andrew Zornoza, David Carroll, and Barbara Morris</span>, thank you for the questions that kept this honest and ambitious at once.</p>
+        <p class="thanks" style="max-width:none;">To <span class="em">Dr. Jorge Ortiz</span>, Director of the Sensing &amp; Reasoning Lab at Rutgers, who shaped my understanding of where smart homes and AI in the home are actually headed, and patiently answered my many questions; to <span class="em">Mani Nilchiani, Richard The, and Vasuki Sunder</span> for conversations that sharpened the direction of the work; and to <span class="em">Jovana Gavrilović</span>, to whom I owe the 3D printing of this project entirely.</p>
+        <p class="thanks" style="max-width:none;">And to my loved ones, for their unconditional support.</p>
+      </section>
+    </main>
+
+    <!-- FOOTER -->
+    <footer class="site-footer">
+      <div class="ft-grid">
+        <div class="ft-name">Diana Chalakova</div>
+        <div class="ft-links">
+          <a href="https://drive.google.com/file/d/1g0gbaHcaRyhGhXmZ6D6GhgDW67F-e5g2/view" target="_blank" rel="noopener">Resume <span class="ar">↗</span></a>
+          <a href="mailto:dchalakova@outlook.com">Email <span class="ar">↗</span></a>
+          <a href="https://www.linkedin.com/in/dchalakova/" target="_blank" rel="noopener">LinkedIn <span class="ar">↗</span></a>
+        </div>
+        <div class="ft-edu">
+          <div class="ft-col">
+            <div class="ft-deg">MFA, Design and Technology</div>
+            <div class="ft-school">Parsons School of Design</div>
+          </div>
+          <div class="ft-col">
+            <div class="ft-deg">BA, Psychology</div>
+            <div class="ft-school">University of Washington</div>
+          </div>
+          <div class="ft-col">
+            <div class="ft-deg">Certificate, Human-Computer Interaction for User Experience Design</div>
+            <div class="ft-school">Massachusetts Institute of Technology</div>
+          </div>
+        </div>
+      </div>
+    </footer>
+  </div>
+
+  <script>
+    var links = Array.prototype.slice.call(document.querySelectorAll('.cs-nav a[data-spy]'));
+    var map = {};
+    links.forEach(function (l) { map[l.getAttribute('href').slice(1)] = l; });
+    var sections = Array.prototype.slice.call(document.querySelectorAll('.cs-sec'));
+    var current = null;
+
+    function setActive(id) {
+      if (id === current) return;
+      current = id;
+      links.forEach(function (l) { l.classList.remove('active'); });
+      if (map[id]) map[id].classList.add('active');
+    }
+
+    function onScroll() {
+      var probe = window.scrollY + window.innerHeight * 0.3;
+      var id = sections[0].id;
+      for (var i = 0; i < sections.length; i++) {
+        if (sections[i].offsetTop <= probe) id = sections[i].id; else break;
+      }
+      if (window.innerHeight + window.scrollY >= document.documentElement.scrollHeight - 4) {
+        id = sections[sections.length - 1].id;
+      }
+      setActive(id);
+    }
+    window.addEventListener('scroll', onScroll, { passive: true });
+    window.addEventListener('resize', onScroll);
+    onScroll();
+  </script>
+</body>
+</html>
