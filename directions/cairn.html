@@ -214,6 +214,16 @@
     .cs-nav a.active { background: rgba(81,112,60,0.14); color: var(--moss); }
     .cs-main { padding: 40px 24px 0; }
   }
+  /* Slideshow */
+  .slideshow { margin: 32px 0 0; }
+  .slideshow .slide { display: none; }
+  .slideshow .slide.active { display: block; }
+  .slideshow .slide .media { margin: 0; }
+  .slide-nav { display: flex; align-items: center; gap: 12px; padding: 10px 15px; background: #fff; border: 1px solid var(--hair-soft); border-top: none; font-family: var(--mono); font-size: 11.5px; color: var(--ink-soft); }
+  .slide-nav .slide-cap { flex: 1; }
+  .slide-nav .slide-count { white-space: nowrap; opacity: 0.5; }
+  .slide-btn { background: none; border: none; cursor: pointer; font-size: 15px; color: var(--ink); padding: 0; line-height: 1; opacity: 0.45; transition: opacity .12s; flex-shrink: 0; }
+  .slide-btn:hover { opacity: 1; }
 </style>
 </head>
 <body data-screen-label="Case study / Cairn">
@@ -252,6 +262,10 @@
         <div class="media media--hero">
           <img class="shot" src="../assets/work/cairn-on.png" alt="Cairn — a 3D-printed white stone-stack lamp threaded with green moss, glowing warmly from between its blocks, beside an amber glass vessel on a wood table" loading="eager" />
           <div class="cap">Cairn in it's ON state.</div>
+        </div>
+        <div class="media">
+          <img class="shot" src="../assets/work/cairn-ui-home.png" alt="Cairn app — aggregate home view showing the household's shared emotional climate as a radial signature" loading="lazy" />
+          <div class="cap">The user-facing aggregate data visualization.</div>
         </div>
       </section>
 
@@ -358,21 +372,75 @@
         <div class="block">
           <h3 class="subhead">Iterating Layered Data Levels</h3>
           <p class="iter-lead">Before landing on the radial signature, the harder question was what data the visualization should draw from — the form followed once that shifted.</p>
-          <div class="iters">
-            <div class="it" style="grid-column: 1 / -1;">
-              <p>I built a fully functional earlier direction in React using Cursor and Claude Code — three navigable levels drilling from household aggregate down to a single modality's time-series. The problem that surfaced: showing two members as two separate radials made the household feel like two people, not one shared space. That critique is what pushed both the data source and the visual form toward what Cairn became.</p>
-              <div class="trio-img" style="margin-top:18px; gap:4px;">
+
+          <div class="media" style="border:none; background:none; margin-top:0;">
+            <img class="shot" src="../assets/work/cairn-iter-wireframe.png" alt="Early wireframe — scatter chart mapping household sensor events across hours 1–23 with device state timeline below" loading="lazy" />
+          </div>
+          <div class="cs-copy block-copy" style="max-width:none; margin-top:16px;">
+            <p>Designing for multiple people in one household is a fundamentally different problem than designing for one person. The questions compound fast: how does data evolve between weeks? How does the interface hold a single-person household just as well as a family of three? If an aggregate week is shown, what happens to the individual data points — and how does someone navigate between members without losing the sense of a shared home? What about the time of day a signal happened, the context behind it? Each of these was not an aesthetic question. Each was a structural decision about what the system was even claiming to say — and the wrong answer would make the household feel like two people sharing a screen rather than one place they both lived.</p>
+          </div>
+
+          <!-- Dandelion iteration slideshow -->
+          <div class="slideshow" style="margin-top:40px;">
+            <div class="slides">
+              <div class="slide active" data-cap="Level 1 — The household aggregate. Two members shown as separate networks — which inadvertently made the home feel like two people rather than one shared space.">
                 <div class="media" style="margin:0;">
-                  <img class="shot" src="../assets/work/cairn-iter-network-home.png" alt="Grove — home view showing two household members as radial weekday networks (AC and JL)" loading="lazy" />
-                </div>
-                <div class="media" style="margin:0;">
-                  <img class="shot" src="../assets/work/cairn-iter-network-individual.png" alt="Grove — Jordan Lee individual view, Saturday April 18, showing signals on a scatter axis relative to baseline" loading="lazy" />
-                </div>
-                <div class="media" style="margin:0;">
-                  <img class="shot" src="../assets/work/cairn-iter-network-modality.png" alt="Grove — Micro-expressions detail for Jordan Lee, time-series from 12AM to 12AM" loading="lazy" />
+                  <img class="shot" src="../assets/work/cairn-iter-network-home.png" alt="Grove — home view showing two household members as radial weekday networks" loading="lazy" />
                 </div>
               </div>
-              <div class="cap" style="border: 1px solid var(--hair-soft); border-top: none; background: #ffffff; padding: 11px 15px; font-family: var(--mono); font-size: 11.5px; color: var(--ink-soft); margin-top: -12px;">Left to right: household home view, individual day view, single modality drill-down.</div>
+              <div class="slide" data-cap="Level 2 — An individual's signals for a single day, plotted above and below their baseline. Useful data, but buried behind navigation that most people never found.">
+                <div class="media" style="margin:0;">
+                  <img class="shot" src="../assets/work/cairn-iter-network-individual.png" alt="Grove — individual day view, signals plotted above/below baseline by modality" loading="lazy" />
+                </div>
+              </div>
+              <div class="slide" data-cap="Level 3 — A single modality's readings as a full-day time-series. The most granular view, but almost impossible to reach without intentionally drilling down.">
+                <div class="media" style="margin:0;">
+                  <img class="shot" src="../assets/work/cairn-iter-network-modality.png" alt="Grove — modality drill-down, time-series from 12AM to 12AM" loading="lazy" />
+                </div>
+              </div>
+            </div>
+            <div class="slide-nav">
+              <button class="slide-btn slide-prev" aria-label="Previous">&#8592;</button>
+              <span class="slide-cap">Level 1 — The household aggregate. Two members shown as separate networks — which inadvertently made the home feel like two people rather than one shared space.</span>
+              <span class="slide-count">1 / 3</span>
+              <button class="slide-btn slide-next" aria-label="Next">&#8594;</button>
+            </div>
+          </div>
+
+          <!-- Final radial slideshow -->
+          <div class="slideshow" style="margin-top:40px;">
+            <div class="slides">
+              <div class="slide active" data-cap="The household's aggregate — all members read as one shared emotional climate, not two separate parts.">
+                <div class="media" style="margin:0;">
+                  <img class="shot" src="../assets/work/cairn-final-home.png" alt="Cairn final — aggregate home view showing the household's combined radial signature" loading="lazy" />
+                </div>
+              </div>
+              <div class="slide" data-cap="Moving from the household view into individual signatures — the transition between shared and personal.">
+                <div class="media" style="margin:0;">
+                  <img class="shot" src="../assets/work/cairn-final-after-home.png" alt="Cairn final — transition between aggregate and individual views" loading="lazy" />
+                </div>
+              </div>
+              <div class="slide" data-cap="Alexandra's individual radial signature with a short AI-generated inference about her day.">
+                <div class="media" style="margin:0;">
+                  <img class="shot" src="../assets/work/cairn-final-person-1.png" alt="Cairn final — first household member's individual signature" loading="lazy" />
+                </div>
+              </div>
+              <div class="slide" data-cap="Claire's individual radial signature with a short AI-generated inference about her day.">
+                <div class="media" style="margin:0;">
+                  <img class="shot" src="../assets/work/cairn-final-person-2.png" alt="Cairn final — second household member's individual signature" loading="lazy" />
+                </div>
+              </div>
+              <div class="slide" data-cap="Hailey's individual radial signature with a short AI-generated inference about her day.">
+                <div class="media" style="margin:0;">
+                  <img class="shot" src="../assets/work/cairn-final-person-3.png" alt="Cairn final — third household member's individual signature" loading="lazy" />
+                </div>
+              </div>
+            </div>
+            <div class="slide-nav">
+              <button class="slide-btn slide-prev" aria-label="Previous">&#8592;</button>
+              <span class="slide-cap">The household's aggregate — all members read as one shared emotional climate, not two separate parts.</span>
+              <span class="slide-count">1 / 5</span>
+              <button class="slide-btn slide-next" aria-label="Next">&#8594;</button>
             </div>
           </div>
         </div>
@@ -528,6 +596,23 @@
     window.addEventListener('scroll', onScroll, { passive: true });
     window.addEventListener('resize', onScroll);
     onScroll();
+
+    // Slideshows
+    document.querySelectorAll('.slideshow').forEach(function(sw) {
+      var slides = Array.from(sw.querySelectorAll('.slide'));
+      var capEl = sw.querySelector('.slide-cap');
+      var countEl = sw.querySelector('.slide-count');
+      var idx = 0;
+      function show(n) {
+        slides[idx].classList.remove('active');
+        idx = (n + slides.length) % slides.length;
+        slides[idx].classList.add('active');
+        if (capEl) capEl.textContent = slides[idx].dataset.cap;
+        if (countEl) countEl.textContent = (idx + 1) + ' / ' + slides.length;
+      }
+      sw.querySelector('.slide-prev').addEventListener('click', function() { show(idx - 1); });
+      sw.querySelector('.slide-next').addEventListener('click', function() { show(idx + 1); });
+    });
   </script>
 </body>
 </html>
