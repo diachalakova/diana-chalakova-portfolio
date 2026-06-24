@@ -380,10 +380,15 @@
           <h3 class="subhead">Iteration</h3>
           <p class="iter-lead">The visualization went through three distinct directions before the radial signature, and each one reshaped not just the form, but what data it should draw from in the first place.</p>
           <div class="iters">
+            <div class="it">
+              <div class="sn">01 · Mapping</div>
+              <h4>A square, shaped by data</h4>
+              <p>Inspired by Giorgia Lupi's data-drawing system, a base square was manipulated by each modality signal: amplitude to size, sentiment to color, length of speech to width, pauses to dots on the perimeter, language family to a corner shape, filler words to a center line with ticks, speech rate to sprouts. Data grouped by conversation, connected by household member. Visually rich — but unreadable to anyone who hadn't built it.</p>
+            </div>
             <div class="it" style="grid-column: 1 / -1;">
-              <div class="sn">01 · Network</div>
-              <h4>The weekly modality network</h4>
-              <p>The first working prototype, built in React and named Grove. Each person sits at the center of a radial network; arms extend to each day of the week, and nodes on each arm encode individual modalities by shape — circles below baseline, squares at baseline, triangles above. Drilling into a node revealed a time-series for that modality across the day. Critique: the visual was dense and required too much learning to read at a glance. The hierarchy made the household aggregate invisible.</p>
+              <div class="sn">02 · Dandelion</div>
+              <h4>Layered levels, vibe-coded</h4>
+              <p>To make the data more intuitive, I layered it into three levels rather than showing everything at once. Built fully in React using Cursor and Claude Code. Level 1: household members' weekly deviations per modality (circles = below baseline, squares = at, triangles = above). Level 2: one person's modalities for a specific day, with AI-generated insight. Level 3: a single modality's readings across the day as a plot graph. Critique after review with MS Data Visualization students: the two-member aggregate felt like two separate objects, not one household; Level 3 was too buried to discover.</p>
               <div class="duo-img" style="margin-top:18px;">
                 <div class="media" style="margin:0;">
                   <img class="shot" src="../assets/work/cairn-iter-network-home.png" alt="Grove — home view showing two household members as radial weekday networks (AC and JL)" loading="lazy" />
@@ -405,17 +410,10 @@
                 </div>
               </div>
             </div>
-            <div class="it">
-              <div class="media"><div class="frame" style="--ar: 4/3; --mb:#E4ECD9;"><span class="lab">[ placeholder ] Dandelion levels (vibe-coded)</span></div></div>
-              <div class="sn">02 · Layering</div>
-              <h4>The dandelion levels</h4>
-              <p>A layered dandelion, vibe-coded in Cursor and Claude Code, drilled from household aggregate to individual readings. Critique: the aggregate didn't read as a whole, and the deepest level was undiscoverable.</p>
-            </div>
             <div class="it is-final">
-              <div class="media"><div class="frame" style="--ar: 4/3; --mb:#E4ECD9;"><span class="lab">[ placeholder ] Radial signature (final)</span></div></div>
-              <div class="sn">03 · Final</div>
+              <div class="sn">03 · Radial</div>
               <h4>The radial signature</h4>
-              <p>The pivot to combining existing sensing data called for a new form. I built a custom radial-graph tool with Gemini, designed it in Figma, and brought it to life with Claude.</p>
+              <p>After feedback that the aggregate needed to feel like one household, not two people, and that the data source had to shift to existing sensing modalities, I designed a new form from scratch. A custom radial-graph rendering tool built with Gemini, designed in Figma, brought to life with Claude. Each person's signature is a single radial clock that contains the full week at a glance — the household's aggregate first, then individuals side by side.</p>
             </div>
           </div>
         </div>
@@ -437,7 +435,8 @@
           </div>
 
           <div class="media">
-            <div class="frame" style="--ar: 16/9; --mb:#E4ECD9;"><span class="lab">[ placeholder ] Blender — stacked blocks with displacement modifiers, then 3D-printed in white PLA</span></div>
+              <img class="shot" src="../assets/work/cairn-obj-blender.png" alt="Two Blender viewport screenshots side by side: left shows sharp rectangular block stack, right shows the same stack after subdivision modifier applied — edges become soft and stone-like" loading="lazy" />
+              <div class="cap">Figures 26–27 — Blender model before and after subdivision modifiers. Starting from stacked boxes, the modifier rounds the edges into the stone-like form that would be 3D-printed in white PLA.</div>
           </div>
 
           <div class="cs-copy block-copy" style="max-width:none;">
@@ -451,10 +450,11 @@
 
           <div class="duo-img">
             <div class="media" style="margin:0;">
-              <img class="shot" src="../assets/work/cairn-off-1.png" alt="Cairn object — OFF state, white stacked blocks with preserved moss, sensing paused, no glow" loading="lazy" />
+              <img class="shot" src="../assets/work/cairn-off.jpg" alt="Cairn object — OFF state, white stacked blocks with preserved moss, sensing paused, no glow between stones" loading="lazy" />
+              <div class="cap">Figure 29 — Cairn, OFF. Sensing paused, no light between the stones.</div>
             </div>
             <div class="media" style="margin:0;">
-              <div class="frame" style="--ar: 1/1; --mb:#E7DFCC;"><span class="lab">[ placeholder ] Sensor placement diagram — concealed in the gaps between stones</span></div>
+              <img class="shot" src="../assets/work/cairn-sensor-diagram.svg" alt="Sensor placement diagram — cairn side profile with labeled sensors in the gaps: PIR, UWB radar, VOC, temperature, humidity, microphone (dB only), ambient light, and a local SBC at the base" loading="lazy" style="background:#F7F3EC;" />
             </div>
           </div>
 
@@ -468,28 +468,28 @@
           <p class="iter-lead">The form took the longest to find. Three earlier directions each tested well in parts but never as a whole, until a nature metaphor pulled them together.</p>
           <div class="iters">
             <div class="it">
-              <div class="media"><div class="frame" style="--ar: 1/1; --mb:#E7DFCC;"><span class="lab">[ placeholder ] Air-dry clay studies</span></div></div>
-              <div class="sn">01 · Clay</div>
-              <h4>First forms</h4>
-              <p>A set of small air-dry clay studies. Tested with users, none of the shapes elicited any emotion at all. A rough start.</p>
-            </div>
-            <div class="it">
-              <div class="media"><div class="frame" style="--ar: 1/1; --mb:#E4ECD9;"><span class="lab">[ placeholder ] Lid on/off (Project Alias)</span></div></div>
-              <div class="sn">02 · The lid</div>
+              <div class="media" style="margin:0 0 12px;">
+                <img class="shot" src="../assets/work/cairn-obj-iter1.png" alt="Left: diagram of lid placement showing A (off state, lid covers light like snuffing a candle) and B (on state, light shines through). Right: air-dry clay prototype of an organic L-shaped form." loading="lazy" />
+              </div>
+              <div class="sn">01 · The lid</div>
               <h4>A visible on/off</h4>
-              <p>Inspired by Bjørn Karmann's Project Alias, a sliding lid made sensing visibly on or off. The state resonated; the shape didn't, and where does the lid go when it's off?</p>
+              <p>Inspired by Bjørn Karmann's Project Alias, a sliding lid would move between two ends of the object — covering the light to snuff it like a candle (OFF) or revealing it (ON). The on/off mechanic resonated clearly with users. The shape didn't, and a new problem emerged: where does the lid live when sensing is off?</p>
             </div>
             <div class="it">
-              <div class="media"><div class="frame" style="--ar: 1/1; --mb:#E7DFCC;"><span class="lab">[ placeholder ] Organic lamp forms</span></div></div>
-              <div class="sn">03 · Lamp</div>
+              <div class="media" style="margin:0 0 12px;">
+                <img class="shot" src="../assets/work/cairn-obj-iter2.png" alt="Left: sketches of organic lamp form with frosted glass lid and 360 camera, shown in front and top view with microphone and Arduino notes. Right: cardboard mockup of stacked rounded forms." loading="lazy" />
+              </div>
+              <div class="sn">02 · Lamp</div>
               <h4>Organic shapes</h4>
-              <p>More abstract, organic lamp forms came closer to something you'd live with, but still didn't spark the emotional response I was after.</p>
+              <p>From there, I explored more abstract, organic lamp forms — shapes you'd already expect to live on a shelf or side table. Cardboard prototypes tested the proportions. Closer, but still not sparking the emotional response I was after. The sensor placement problem also remained: how do you embed a camera and microphone without making the object feel like it's staring at you?</p>
             </div>
             <div class="it is-final">
-              <div class="media"><div class="frame" style="--ar: 1/1; --mb:#E4ECD9;"><span class="lab">[ placeholder ] The cairn (final)</span></div></div>
-              <div class="sn">04 · Final</div>
-              <h4>The cairn</h4>
-              <p>The metaphor clicked, visually and conceptually. Users said they'd display it; the lid was dropped, and on/off moved into the interface and the lights.</p>
+              <div class="media" style="margin:0 0 12px;">
+                <img class="shot" src="../assets/work/cairn-obj-iter3.png" alt="Left: sketch of stacked cairn stones with sensor labels — camera for posture, gait, and expression; thermal imaging; microphone for speech and sentiment. Right: air-dry clay prototype of stacked rounded stones." loading="lazy" />
+              </div>
+              <div class="sn">03 · Cairn</div>
+              <h4>The metaphor clicked</h4>
+              <p>Stacked stones. A cairn marks a path through unfamiliar terrain — <span class="em">someone has been here; here's where to go next.</span> That is exactly what this system does. The organic stacked form also solved the sensor problem: cameras, thermal sensor, and microphone sit in the gaps between the stones, present but never staring. Users responded immediately and positively. The lid was dropped entirely; on/off moved into the interface and lights.</p>
             </div>
           </div>
         </div>

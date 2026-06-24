@@ -1,0 +1,168 @@
+<svg viewBox="0 0 780 520" xmlns="http://www.w3.org/2000/svg" font-family="'Space Mono', 'Courier New', monospace">
+  <defs>
+    <style>
+      .stone { fill: #ECE6D8; stroke: #8C7D6A; stroke-width: 1.5; }
+      .gap   { fill: #51703C; opacity: 0.28; }
+      .dot   { fill: #51703C; }
+      .line  { stroke: #8C7D6A; stroke-width: 1; stroke-dasharray: 3 3; fill: none; }
+      .label-head { font-size: 10px; font-weight: 700; fill: #2E281F; letter-spacing: 0.08em; text-transform: uppercase; }
+      .label-body { font-size: 9.5px; fill: #6E6453; }
+      .section-tag { font-size: 8.5px; fill: #51703C; letter-spacing: 0.14em; text-transform: uppercase; font-weight: 700; }
+      .base-label  { font-size: 9px; fill: #B07A45; letter-spacing: 0.06em; }
+      .caption { font-size: 9px; fill: #8C7D6A; }
+    </style>
+  </defs>
+
+  <!-- background -->
+  <rect width="780" height="520" fill="#F7F3EC" rx="6"/>
+
+  <!-- title -->
+  <text x="36" y="40" class="section-tag">Sensor placement — concealed in the gaps between stones</text>
+
+  <!-- ── CAIRN SILHOUETTE ─────────────────────────────────── -->
+  <!-- stone 1 (base, widest) -->
+  <rect x="112" y="406" width="136" height="54" rx="16" class="stone"/>
+  <!-- gap 1 -->
+  <rect x="118" y="396" width="124" height="12" rx="3" class="gap"/>
+  <!-- stone 2 -->
+  <rect x="118" y="334" width="124" height="64" rx="14" class="stone"/>
+  <!-- gap 2 -->
+  <rect x="124" y="324" width="112" height="12" rx="3" class="gap"/>
+  <!-- stone 3 -->
+  <rect x="126" y="258" width="108" height="68" rx="13" class="stone"/>
+  <!-- gap 3 -->
+  <rect x="132" y="248" width="96"  height="12" rx="3" class="gap"/>
+  <!-- stone 4 -->
+  <rect x="134" y="188" width="92"  height="62" rx="12" class="stone"/>
+  <!-- gap 4 -->
+  <rect x="140" y="178" width="80"  height="12" rx="3" class="gap"/>
+  <!-- stone 5 (top, narrowest) -->
+  <rect x="142" y="126" width="76"  height="54" rx="11" class="stone"/>
+  <!-- top gap (ambient light slot) -->
+  <rect x="148" y="116" width="64"  height="12" rx="3" class="gap"/>
+  <!-- tiny capstone -->
+  <rect x="154" y="92"  width="52"  height="26" rx="9"  class="stone"/>
+
+  <!-- moss hint (tiny green dots scattered on stones) -->
+  <circle cx="148" cy="158" r="3" fill="#51703C" opacity="0.18"/>
+  <circle cx="163" cy="165" r="2" fill="#51703C" opacity="0.14"/>
+  <circle cx="138" cy="290" r="3" fill="#51703C" opacity="0.18"/>
+  <circle cx="215" cy="360" r="2.5" fill="#51703C" opacity="0.14"/>
+  <circle cx="175" cy="218" r="2" fill="#51703C" opacity="0.16"/>
+
+  <!-- base / SBC block -->
+  <rect x="122" y="460" width="116" height="30" rx="4" fill="#B07A4520" stroke="#B07A45" stroke-width="1" stroke-dasharray="4 3"/>
+  <text x="180" y="479" text-anchor="middle" class="base-label">SBC + WiFi / BT</text>
+
+  <!-- ── GAP CALLOUT DOTS ─────────────────────────────────── -->
+  <circle cx="180" cy="402" r="4" class="dot"/>
+  <circle cx="180" cy="330" r="4" class="dot"/>
+  <circle cx="180" cy="254" r="4" class="dot"/>
+  <circle cx="180" cy="184" r="4" class="dot"/>
+  <circle cx="180" cy="122" r="4" class="dot"/>
+
+  <!-- ── CONNECTOR LINES (left side — sensors) ────────────── -->
+  <!-- gap 1 → PIR + UWB -->
+  <path class="line" d="M 176 402 L 60 402 L 60 138"/>
+  <circle cx="60" cy="138" r="3" fill="#8C7D6A"/>
+
+  <!-- gap 2 → VOC + Temp + Humidity -->
+  <path class="line" d="M 176 330 L 56 330 L 56 226"/>
+  <circle cx="56" cy="226" r="3" fill="#8C7D6A"/>
+
+  <!-- gap 3 → Microphone -->
+  <path class="line" d="M 176 254 L 52 254 L 52 310"/>
+  <circle cx="52" cy="310" r="3" fill="#8C7D6A"/>
+
+  <!-- ── CONNECTOR LINES (right side — light + compute) ──── -->
+  <!-- gap 4 → nothing additional, use gap 5 (top) for ambient light -->
+  <!-- ambient light (top gap) -->
+  <path class="line" d="M 184 122 L 420 122"/>
+  <circle cx="420" cy="122" r="3" fill="#51703C"/>
+
+  <!-- gap 4 → (shared: UWB, secondary) already on left -->
+
+  <!-- SBC line right -->
+  <path class="line" d="M 238 474 L 420 474"/>
+  <circle cx="420" cy="474" r="3" fill="#B07A45"/>
+
+  <!-- ── LEFT LABEL COLUMN ──────────────────────────────────── -->
+  <!-- PIR -->
+  <text x="36" y="105" class="section-tag">motion · presence</text>
+  <text x="36" y="120" class="label-head">PIR sensor</text>
+  <text x="36" y="133" class="label-body">Heat signatures — occupancy</text>
+  <text x="36" y="145" class="label-body">and activity level. No imaging.</text>
+  <!-- UWB -->
+  <text x="36" y="164" class="label-head">UWB radar</text>
+  <text x="36" y="177" class="label-body">Precise presence — detects</text>
+  <text x="36" y="189" class="label-body">a still person vs. empty room.</text>
+
+  <!-- divider -->
+  <line x1="36" y1="202" x2="260" y2="202" stroke="#8C7D6A" stroke-width="0.5" opacity="0.4"/>
+
+  <!-- VOC / Temp / Humidity -->
+  <text x="36" y="218" class="section-tag">environment</text>
+  <text x="36" y="232" class="label-head">VOC sensor</text>
+  <text x="36" y="245" class="label-body">Volatile organic compounds —</text>
+  <text x="36" y="257" class="label-body">cleaning, cooking, air quality.</text>
+  <text x="36" y="274" class="label-head">Temperature</text>
+  <text x="36" y="287" class="label-body">Ambient room temp, cross-</text>
+  <text x="36" y="299" class="label-body">referenced with wearable data.</text>
+  <text x="36" y="316" class="label-head">Humidity</text>
+  <text x="36" y="329" class="label-body">Air moisture, comfort context.</text>
+
+  <!-- divider -->
+  <line x1="36" y1="342" x2="260" y2="342" stroke="#8C7D6A" stroke-width="0.5" opacity="0.4"/>
+
+  <!-- Microphone -->
+  <text x="36" y="358" class="section-tag">acoustic</text>
+  <text x="36" y="372" class="label-head">Microphone</text>
+  <text x="36" y="385" class="label-body">Decibel level only — never</text>
+  <text x="36" y="397" class="label-body">records or processes audio.</text>
+
+  <!-- ── RIGHT LABEL COLUMN ─────────────────────────────────── -->
+  <!-- Ambient light -->
+  <text x="428" y="110" class="section-tag">light</text>
+  <text x="428" y="125" class="label-head">Ambient light sensor</text>
+  <text x="428" y="138" class="label-body">Room light levels — time-of-day</text>
+  <text x="428" y="150" class="label-body">context and circadian relevance.</text>
+
+  <!-- divider -->
+  <line x1="428" y1="164" x2="680" y2="164" stroke="#8C7D6A" stroke-width="0.5" opacity="0.4"/>
+
+  <!-- SBC -->
+  <text x="428" y="180" class="section-tag">compute · connectivity</text>
+  <text x="428" y="195" class="label-head">Single-board computer</text>
+  <text x="428" y="208" class="label-body">All inference runs locally.</text>
+  <text x="428" y="220" class="label-body">Nothing is sent to external servers.</text>
+  <text x="428" y="240" class="label-head">WiFi + Bluetooth</text>
+  <text x="428" y="253" class="label-body">Receives wearable data from</text>
+  <text x="428" y="265" class="label-body">residents over the local network</text>
+  <text x="428" y="277" class="label-body">only. No external connection.</text>
+
+  <!-- divider -->
+  <line x1="428" y1="291" x2="680" y2="291" stroke="#8C7D6A" stroke-width="0.5" opacity="0.4"/>
+
+  <!-- data flow note -->
+  <text x="428" y="308" class="section-tag">data flow</text>
+  <text x="428" y="323" class="label-body">Environmental signals  →  SBC</text>
+  <text x="428" y="337" class="label-body">Wearable data (WiFi/BT)  →  SBC</text>
+  <text x="428" y="355" class="label-body">SBC runs inference  →  Cairn app</text>
+  <text x="428" y="369" class="label-body">(local network only, opt-in per signal)</text>
+
+  <!-- divider -->
+  <line x1="428" y1="383" x2="680" y2="383" stroke="#8C7D6A" stroke-width="0.5" opacity="0.4"/>
+
+  <!-- privacy note -->
+  <text x="428" y="400" class="section-tag">by design</text>
+  <text x="428" y="415" class="label-body">No camera. No audio recording.</text>
+  <text x="428" y="429" class="label-body">Sensors hidden in stone gaps —</text>
+  <text x="428" y="443" class="label-body">present but never staring.</text>
+
+  <!-- SBC connector line reaching right column -->
+  <path class="line" d="M 420 474 L 428 474 L 428 260"/>
+  <circle cx="428" cy="260" r="3" fill="#B07A45"/>
+
+  <!-- caption -->
+  <text x="36" y="508" class="caption">All sensors are environmental — no video, no audio content. Inference runs entirely on-device.</text>
+</svg>
