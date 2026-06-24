@@ -322,7 +322,7 @@
         <div class="sec-grid">
           <div><h2 class="cs-h">An emotional signature for the household, redrawn every evening.</h2></div>
           <div class="cs-copy" style="max-width:none;">
-            <p>The interface is a piece of data humanism, inspired by Giorgia Lupi and Stefanie Posavec (abstract, poetic, and legible at a glance rather than a dashboard of raw numbers). Each evening it generates a fresh visualization from the modalities people have consented to share that day.</p>
+            <p>The interface is a piece of data humanism, inspired by Giorgia Lupi and Stefanie Posavec (abstract, poetic, and legible at a glance rather than a dashboard of raw numbers). Each evening it generates a fresh visualization from the modalities people have consented to share that day. The form is a custom radial clock — built with Gemini, designed in Figma, brought to life with Claude — where each ring encodes a week of signal and each arc is a day. The household sees its aggregate first, then each person's signature individually, each with a short plain-language inference.</p>
           </div>
         </div>
 
@@ -357,37 +357,23 @@
 
         <div class="block">
           <h3 class="subhead">Iteration</h3>
-          <p class="iter-lead">The visualization went through three distinct directions before the radial signature, and each one reshaped not just the form, but what data it should draw from in the first place.</p>
+          <p class="iter-lead">Before landing on the radial signature, the harder question was what data the visualization should draw from — the form followed once that shifted.</p>
           <div class="iters">
             <div class="it" style="grid-column: 1 / -1;">
-              <div class="sn">02 · Dandelion</div>
               <h4>Layered levels, vibe-coded</h4>
-              <p>To make the data more intuitive, I layered it into three levels rather than showing everything at once. Built fully in React using Cursor and Claude Code. Level 1: household members' weekly deviations per modality (circles = below baseline, squares = at, triangles = above). Level 2: one person's modalities for a specific day, with AI-generated insight. Level 3: a single modality's readings across the day as a plot graph. Critique after review with MS Data Visualization students: the two-member aggregate felt like two separate objects, not one household; Level 3 was too buried to discover.</p>
-              <div class="duo-img" style="margin-top:18px;">
+              <p>I built a fully functional earlier direction in React using Cursor and Claude Code — three navigable levels drilling from household aggregate down to a single modality's time-series. The problem that surfaced: showing two members as two separate radials made the household feel like two people, not one shared space. That critique is what pushed both the data source and the visual form toward what Cairn became.</p>
+              <div class="trio-img" style="margin-top:18px;">
                 <div class="media" style="margin:0;">
                   <img class="shot" src="../assets/work/cairn-iter-network-home.png" alt="Grove — home view showing two household members as radial weekday networks (AC and JL)" loading="lazy" />
-                  <div class="cap">Home: two members' weekly network side by side.</div>
                 </div>
-                <div class="media" style="margin:0;">
-                  <img class="shot" src="../assets/work/cairn-iter-network-key.png" alt="Grove — legend: reading the network, explaining shapes and arm length" loading="lazy" />
-                  <div class="cap">The legend — required to read the visualization at all.</div>
-                </div>
-              </div>
-              <div class="duo-img" style="margin-top:12px;">
                 <div class="media" style="margin:0;">
                   <img class="shot" src="../assets/work/cairn-iter-network-individual.png" alt="Grove — Jordan Lee individual view, Saturday April 18, showing signals on a scatter axis relative to baseline" loading="lazy" />
-                  <div class="cap">Individual day view: each modality plotted above or below baseline.</div>
                 </div>
                 <div class="media" style="margin:0;">
                   <img class="shot" src="../assets/work/cairn-iter-network-modality.png" alt="Grove — Micro-expressions detail for Jordan Lee, time-series from 12AM to 12AM" loading="lazy" />
-                  <div class="cap">Drilling in: a single modality over the full day.</div>
                 </div>
               </div>
-            </div>
-            <div class="it is-final">
-              <div class="sn">03 · Radial</div>
-              <h4>The radial signature</h4>
-              <p>After feedback that the aggregate needed to feel like one household, not two people, and that the data source had to shift to existing sensing modalities, I designed a new form from scratch. A custom radial-graph rendering tool built with Gemini, designed in Figma, brought to life with Claude. Each person's signature is a single radial clock that contains the full week at a glance — the household's aggregate first, then individuals side by side.</p>
+              <div class="cap" style="border: 1px solid var(--hair-soft); border-top: none; background: #ffffff; padding: 11px 15px; font-family: var(--mono); font-size: 11.5px; color: var(--ink-soft); margin-top: -12px;">Left to right: household home view, individual day view, single modality drill-down.</div>
             </div>
           </div>
         </div>
