@@ -380,11 +380,30 @@
           <h3 class="subhead">Iteration</h3>
           <p class="iter-lead">The visualization went through three distinct directions before the radial signature, and each one reshaped not just the form, but what data it should draw from in the first place.</p>
           <div class="iters">
-            <div class="it">
-              <div class="media"><div class="frame" style="--ar: 4/3; --mb:#E7DFCC;"><span class="lab">[ placeholder ] Coral-reef square system</span></div></div>
-              <div class="sn">01 · Mapping</div>
-              <h4>A square, shaped by data</h4>
-              <p>Inspired by Giorgia Lupi, a base square was manipulated by each signal: amplitude to size, sentiment to color, speech length to width, grouped by conversation.</p>
+            <div class="it" style="grid-column: 1 / -1;">
+              <div class="sn">01 · Network</div>
+              <h4>The weekly modality network</h4>
+              <p>The first working prototype, built in React and named Grove. Each person sits at the center of a radial network; arms extend to each day of the week, and nodes on each arm encode individual modalities by shape — circles below baseline, squares at baseline, triangles above. Drilling into a node revealed a time-series for that modality across the day. Critique: the visual was dense and required too much learning to read at a glance. The hierarchy made the household aggregate invisible.</p>
+              <div class="duo-img" style="margin-top:18px;">
+                <div class="media" style="margin:0;">
+                  <img class="shot" src="../assets/work/cairn-iter-network-home.png" alt="Grove — home view showing two household members as radial weekday networks (AC and JL)" loading="lazy" />
+                  <div class="cap">Home: two members' weekly network side by side.</div>
+                </div>
+                <div class="media" style="margin:0;">
+                  <img class="shot" src="../assets/work/cairn-iter-network-key.png" alt="Grove — legend: reading the network, explaining shapes and arm length" loading="lazy" />
+                  <div class="cap">The legend — required to read the visualization at all.</div>
+                </div>
+              </div>
+              <div class="duo-img" style="margin-top:12px;">
+                <div class="media" style="margin:0;">
+                  <img class="shot" src="../assets/work/cairn-iter-network-individual.png" alt="Grove — Jordan Lee individual view, Saturday April 18, showing signals on a scatter axis relative to baseline" loading="lazy" />
+                  <div class="cap">Individual day view: each modality plotted above or below baseline.</div>
+                </div>
+                <div class="media" style="margin:0;">
+                  <img class="shot" src="../assets/work/cairn-iter-network-modality.png" alt="Grove — Micro-expressions detail for Jordan Lee, time-series from 12AM to 12AM" loading="lazy" />
+                  <div class="cap">Drilling in: a single modality over the full day.</div>
+                </div>
+              </div>
             </div>
             <div class="it">
               <div class="media"><div class="frame" style="--ar: 4/3; --mb:#E4ECD9;"><span class="lab">[ placeholder ] Dandelion levels (vibe-coded)</span></div></div>
@@ -432,7 +451,7 @@
 
           <div class="duo-img">
             <div class="media" style="margin:0;">
-              <div class="frame" style="--ar: 1/1; --mb:#DAD7D2;"><span class="lab">[ placeholder ] Figure 29 — Cairn, OFF (no glow, sensing paused)</span></div>
+              <img class="shot" src="../assets/work/cairn-off-1.png" alt="Cairn object — OFF state, white stacked blocks with preserved moss, sensing paused, no glow" loading="lazy" />
             </div>
             <div class="media" style="margin:0;">
               <div class="frame" style="--ar: 1/1; --mb:#E7DFCC;"><span class="lab">[ placeholder ] Sensor placement diagram — concealed in the gaps between stones</span></div>
