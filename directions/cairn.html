@@ -276,7 +276,7 @@
       <section id="system" class="cs-sec">
         <div class="sec-tag">The System</div>
         <div class="sec-grid">
-          <div><h2 class="cs-h">Reading emotion against a household's own baseline, never against “good” or “bad.”</h2></div>
+          <div><h2 class="cs-h">Reading emotion against a household's own baseline, never against "good" or "bad."</h2></div>
           <div class="cs-copy" style="max-width:none;">
             <p>To keep the project speculative but grounded, I ran a literature review with Dr. Jorge Ortiz, Director of the Sensing &amp; Reasoning Lab at Rutgers. The technology Cairn needs doesn't fully exist yet, but it could soon, and the science already points the way.</p>
           </div>
@@ -292,7 +292,7 @@
             <div class="s">
               <div class="sn">02 — Baseline</div>
               <h4>Trained on you, for two weeks</h4>
-              <p>ML compares each reading to a baseline learned from that specific home, not to a universal “healthy” score. A sports fan mid-game looks stressed, but that's joy in context.</p>
+              <p>ML compares each reading to a baseline learned from that specific home, not to a universal "healthy" score. A sports fan mid-game looks stressed, but that's joy in context.</p>
             </div>
             <div class="s">
               <div class="sn">03 — Reason</div>
@@ -389,13 +389,34 @@
         </div>
 
         <div class="block">
-          <div class="cs-copy block-copy" style="max-width:none; margin-top:0;">
-            <p>The breakthrough came from a nature metaphor. A cairn is a stack of stones placed in a landscape to mark a path. People have built them for thousands of years, with no technology at all, to say <span class="em">“someone has been here before you; here's where to go next.”</span> That is exactly what this system is for: not to judge a home's emotional landscape, but to help the people in it find their way toward one another.</p>
+
+          <div class="sn" style="margin-bottom:10px;">The lid</div>
+          <div class="media" style="border:none; background:none; margin-top:0;">
+            <img class="shot" src="../assets/work/cairn-obj-iter1.png" alt="Left: diagram of lid placement showing A off state and B on state. Right: air-dry clay prototype of an organic L-shaped form." loading="lazy" />
+          </div>
+          <div class="cs-copy block-copy" style="max-width:none; margin-top:16px;">
+            <p>Inspired by Bjørn Karmann's Project Alias, a sliding lid would move between two ends of the object — covering the light to snuff it like a candle (OFF) or revealing it (ON). The on/off mechanic resonated clearly with users. The shape didn't, and a new problem emerged: where does the lid live when sensing is off?</p>
           </div>
 
-          <div class="media">
-              <img class="shot" src="../assets/work/cairn-obj-blender.png" alt="Two Blender viewport screenshots side by side: left shows sharp rectangular block stack, right shows the same stack after subdivision modifier applied — edges become soft and stone-like" loading="lazy" />
-              <div class="cap">Figures 26–27 — Blender model before and after subdivision modifiers. Starting from stacked boxes, the modifier rounds the edges into the stone-like form that would be 3D-printed in white PLA.</div>
+          <div class="sn" style="margin-bottom:10px; margin-top:48px;">Organic shapes</div>
+          <div class="media" style="border:none; background:none; margin-top:0;">
+            <img class="shot" src="../assets/work/cairn-obj-iter2.png" alt="Left: sketches of organic lamp form with frosted glass lid and 360 camera. Right: cardboard mockup of stacked rounded forms." loading="lazy" />
+          </div>
+          <div class="cs-copy block-copy" style="max-width:none; margin-top:16px;">
+            <p>More abstract, organic lamp forms — shapes you'd already expect to live on a shelf or side table. Cardboard prototypes tested the proportions. Closer, but still not sparking the emotional response I was after. The sensor placement problem also remained: how do you embed sensors without making the object feel like it's staring at you?</p>
+          </div>
+
+          <div class="sn" style="margin-bottom:10px; margin-top:48px;">The metaphor clicked</div>
+          <div class="media" style="border:none; background:none; margin-top:0;">
+            <img class="shot" src="../assets/work/cairn-obj-iter3.png" alt="Left: sketch of stacked cairn stones with sensor labels. Right: air-dry clay prototype of stacked rounded stones." loading="lazy" />
+          </div>
+          <div class="cs-copy block-copy" style="max-width:none; margin-top:16px;">
+            <p>Stacked stones placed in a landscape to mark a path — people have built them for thousands of years to say <span class="em">"someone has been here before you; here's where to go next."</span> That is exactly what this system is for: not to judge a home's emotional landscape, but to help the people in it find their way toward one another. The organic stacked form also solved the sensor placement problem that had followed every earlier direction: the gaps between stones could hold the sensors — present but never staring. Users responded immediately. The lid was dropped entirely; on/off moved into the interface and the light.</p>
+          </div>
+
+          <div class="media" style="margin-top:48px;">
+            <img class="shot" src="../assets/work/cairn-obj-blender.png" alt="Two Blender viewport screenshots side by side: left shows sharp rectangular block stack, right shows the same stack after subdivision modifier applied — edges become soft and stone-like" loading="lazy" />
+            <div class="cap">Blender model before and after subdivision modifiers. Starting from stacked boxes, the modifier rounds the edges into the stone-like form that would be 3D-printed in white PLA.</div>
           </div>
 
           <div class="cs-copy block-copy" style="max-width:none;">
@@ -404,52 +425,21 @@
 
           <div class="media">
             <img class="shot" src="../assets/work/cairn-on.png" alt="Cairn in its ON state — warm light glowing from between the stacked 3D-printed stones, moss threading up the form" loading="lazy" />
-            <div class="cap">Figure 28 — Cairn's home-sensing system, ON. Light between the blocks gives visual confirmation that sensing is active.</div>
+            <div class="cap">Cairn's home-sensing system, ON. Light between the blocks gives visual confirmation that sensing is active.</div>
           </div>
 
           <div class="duo-img">
             <div class="media" style="margin:0;">
               <img class="shot" src="../assets/work/cairn-off.jpg" alt="Cairn object — OFF state, white stacked blocks with preserved moss, sensing paused, no glow between stones" loading="lazy" />
-              <div class="cap">Figure 29 — Cairn, OFF. Sensing paused, no light between the stones.</div>
+              <div class="cap">Cairn, OFF. Sensing paused, no light between the stones.</div>
             </div>
             <div class="media" style="margin:0;">
-              <img class="shot" src="../assets/work/cairn-sensor-diagram.svg" alt="Sensor placement diagram — cairn side profile with labeled sensors in the gaps: PIR, UWB radar, VOC, temperature, humidity, microphone (dB only), ambient light, and a local SBC at the base" loading="lazy" style="background:#F7F3EC;" />
+              <img class="shot" src="../assets/work/cairn-sensor-diagram.svg" alt="Sensor placement diagram — cairn side profile with labeled sensors in the gaps" loading="lazy" style="background:#F7F3EC;" />
             </div>
           </div>
 
           <div class="cs-copy block-copy" style="max-width:none;">
             <p>The on/off state is controlled from the interface, with the lights as physical confirmation, so a household always has a legible, at-a-glance answer to whether the home is sensing. In testing, people said they could look at it for a while and would happily put it anywhere in their house.</p>
-          </div>
-        </div>
-
-        <div class="block">
-          <h3 class="subhead">Iteration</h3>
-          <p class="iter-lead">The form took the longest to find. Three earlier directions each tested well in parts but never as a whole, until a nature metaphor pulled them together.</p>
-          <div class="iters">
-            <div class="it">
-              <div class="media" style="margin:0 0 12px;">
-                <img class="shot" src="../assets/work/cairn-obj-iter1.png" alt="Left: diagram of lid placement showing A (off state, lid covers light like snuffing a candle) and B (on state, light shines through). Right: air-dry clay prototype of an organic L-shaped form." loading="lazy" />
-              </div>
-              <div class="sn">01 · The lid</div>
-              <h4>A visible on/off</h4>
-              <p>Inspired by Bjørn Karmann's Project Alias, a sliding lid would move between two ends of the object — covering the light to snuff it like a candle (OFF) or revealing it (ON). The on/off mechanic resonated clearly with users. The shape didn't, and a new problem emerged: where does the lid live when sensing is off?</p>
-            </div>
-            <div class="it">
-              <div class="media" style="margin:0 0 12px;">
-                <img class="shot" src="../assets/work/cairn-obj-iter2.png" alt="Left: sketches of organic lamp form with frosted glass lid and 360 camera, shown in front and top view with microphone and Arduino notes. Right: cardboard mockup of stacked rounded forms." loading="lazy" />
-              </div>
-              <div class="sn">02 · Lamp</div>
-              <h4>Organic shapes</h4>
-              <p>From there, I explored more abstract, organic lamp forms — shapes you'd already expect to live on a shelf or side table. Cardboard prototypes tested the proportions. Closer, but still not sparking the emotional response I was after. The sensor placement problem also remained: how do you embed a camera and microphone without making the object feel like it's staring at you?</p>
-            </div>
-            <div class="it is-final">
-              <div class="media" style="margin:0 0 12px;">
-                <img class="shot" src="../assets/work/cairn-obj-iter3.png" alt="Left: sketch of stacked cairn stones with sensor labels — camera for posture, gait, and expression; thermal imaging; microphone for speech and sentiment. Right: air-dry clay prototype of stacked rounded stones." loading="lazy" />
-              </div>
-              <div class="sn">03 · Cairn</div>
-              <h4>The metaphor clicked</h4>
-              <p>Stacked stones. A cairn marks a path through unfamiliar terrain — <span class="em">someone has been here; here's where to go next.</span> That is exactly what this system does. The organic stacked form also solved the sensor problem: cameras, thermal sensor, and microphone sit in the gaps between the stones, present but never staring. Users responded immediately and positively. The lid was dropped entirely; on/off moved into the interface and lights.</p>
-            </div>
           </div>
         </div>
       </section>
