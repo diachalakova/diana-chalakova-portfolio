@@ -106,7 +106,7 @@
   .hl-clay { color: var(--ink); font-weight: 600; background: linear-gradient(transparent 56%, var(--clay-tint) 56%); padding: 0 2px; }
 
   /* media */
-  .media { border-radius: 14px; overflow: hidden; margin: 40px 0; border: 1px solid var(--hair-soft); background: var(--milk); }
+  .media { border-radius: 0; overflow: hidden; margin: 40px 0; border: 1px solid var(--hair-soft); background: var(--milk); }
   .media img.shot, .media video.shot { display: block; width: 100%; height: auto; }
   .media .frame {
     aspect-ratio: var(--ar, 16/9); position: relative;
@@ -318,7 +318,7 @@
 
       <!-- DIGITAL PORTRAIT -->
       <section id="portrait" class="cs-sec">
-        <div class="sec-tag">Output 01 — Digital Portrait</div>
+        <div class="sec-tag">Digital Portrait</div>
         <div class="sec-grid">
           <div><h2 class="cs-h">An emotional signature for the household, redrawn every evening.</h2></div>
           <div class="cs-copy" style="max-width:none;">
@@ -327,49 +327,28 @@
         </div>
 
         <div class="block">
-          <div class="duo-img" style="margin-top:0;">
-            <div class="media" style="margin:0;">
-              <img class="shot" src="../assets/work/cairn-ui-home.png" alt="Cairn home page — three household members' radial emotional signatures shown side by side: Alexandra, Claire, and Hailey" loading="lazy" />
-              <div class="cap">The home page shows each member's signature side by side — the household read at a glance.</div>
-            </div>
-            <div class="media" style="margin:0;">
-              <img class="shot" src="../assets/work/cairn-ui-radial.png" alt="Cairn radial detail — Thursday May 14th, a single signature mapped against a 24-hour clock" loading="lazy" />
-              <div class="cap">Drilling in: the same signature mapped against a 24-hour clock, showing when in the day the signal was heaviest.</div>
-            </div>
+          <div class="media" style="margin-top:0;">
+            <img class="shot" src="../assets/work/cairn-ui-home.png" alt="Cairn home page — three household members' radial emotional signatures shown side by side: Alexandra, Claire, and Hailey" loading="lazy" />
+            <div class="cap">Layer 01 — First you see the aggregate, the home read as one shared climate, not two separate parts.</div>
           </div>
 
-          <div class="steps">
-            <div class="s">
-              <div class="sn">Layer 01</div>
-              <h4>The household, whole</h4>
-              <p>First you see the aggregate, the home read as one shared climate, not two separate parts.</p>
-            </div>
-            <div class="s">
-              <div class="sn">Layer 02</div>
-              <h4>Each person's signature</h4>
-              <p>Then the individuals, shown together, so deviations from the shared baseline are visible side by side.</p>
-            </div>
-            <div class="s">
-              <div class="sn">Layer 03</div>
-              <h4>An inference, in plain words</h4>
-              <p>Each person gets a short, general inference, the way you'd update a friend about someone without revealing the details.</p>
-            </div>
+          <div class="media">
+            <img class="shot" src="../assets/work/cairn-ui-radial.png" alt="Cairn radial detail — Thursday May 14th, a single signature mapped against a 24-hour clock" loading="lazy" />
+            <div class="cap">Layer 02 — Then the individuals, shown together, so deviations from the shared baseline are visible side by side.</div>
           </div>
 
           <div class="trio-img" style="margin-top:40px;">
             <div class="media" style="margin:0;">
               <img class="shot" src="../assets/work/cairn-ui-alexandra.png" alt="Alexandra's individual signature with inference — operating outside her baseline for four of the last five days" loading="lazy" />
-              <div class="cap">Alexandra — a pattern of accumulated tension, not an acute event.</div>
             </div>
             <div class="media" style="margin:0;">
               <img class="shot" src="../assets/work/cairn-ui-claire.png" alt="Claire's individual signature with inference — carrying a lot for several days, peaking in the evening" loading="lazy" />
-              <div class="cap">Claire — building across the day, heaviest by the time the house is fullest.</div>
             </div>
             <div class="media" style="margin:0;">
               <img class="shot" src="../assets/work/cairn-ui-hailey.png" alt="Hailey's individual signature with inference — mostly okay, a slight shift in the last couple of days" loading="lazy" />
-              <div class="cap">Hailey — mostly baseline, a quiet shift worth a gentle check-in.</div>
             </div>
           </div>
+          <div class="cap" style="border: 1px solid var(--hair-soft); border-top: none; background: #ffffff; padding: 11px 15px; font-family: var(--mono); font-size: 11.5px; color: var(--ink-soft); margin-top: -36px;">Layer 03 — Each person gets a short, general inference, the way you'd update a friend about someone without revealing the details.</div>
 
           <div class="cs-copy block-copy" style="max-width:none;">
             <p>Navigation divides into inferences about the day (shown only after 8pm), inferences about housemates from the day before, the home's physical environment, the logged-in user's own stats, and a <span class="em">privacy tab kept in the main navigation</span>, a deliberate choice to make how the system works as visible as everything else. It closes each day with a gentle nudge to actually go connect.</p>
@@ -380,11 +359,6 @@
           <h3 class="subhead">Iteration</h3>
           <p class="iter-lead">The visualization went through three distinct directions before the radial signature, and each one reshaped not just the form, but what data it should draw from in the first place.</p>
           <div class="iters">
-            <div class="it">
-              <div class="sn">01 · Mapping</div>
-              <h4>A square, shaped by data</h4>
-              <p>Inspired by Giorgia Lupi's data-drawing system, a base square was manipulated by each modality signal: amplitude to size, sentiment to color, length of speech to width, pauses to dots on the perimeter, language family to a corner shape, filler words to a center line with ticks, speech rate to sprouts. Data grouped by conversation, connected by household member. Visually rich — but unreadable to anyone who hadn't built it.</p>
-            </div>
             <div class="it" style="grid-column: 1 / -1;">
               <div class="sn">02 · Dandelion</div>
               <h4>Layered levels, vibe-coded</h4>
