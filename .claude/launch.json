@@ -1,0 +1,19 @@
+{
+  "version": "0.0.1",
+  "configurations": [
+    {
+      "name": "portfolio",
+      "runtimeExecutable": "npx",
+      "runtimeArgs": [
+        "browser-sync",
+        "start",
+        "--server",
+        "--port", "3456",
+        "--files", "**/*.html,**/*.css,**/*.js,assets/**/*",
+        "--no-open",
+        "--no-notify"
+      ],
+      "port": 3456
+    }
+  ]
+}
