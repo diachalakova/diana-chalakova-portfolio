@@ -169,6 +169,7 @@
   .pairs .row { display: grid; grid-template-columns: 1fr 1fr 1.4fr; gap: 24px; padding: 16px 0; border-bottom: 1px solid var(--hair-soft); align-items: baseline; }
   .pairs .row.head { font-family: var(--mono); font-size: 10.5px; letter-spacing: 0.12em; text-transform: uppercase; color: var(--stone); }
   .pairs .row .src { font-family: var(--display); font-weight: 600; font-size: 15px; color: var(--ink); }
+  .pairs .row .src.amb { color: var(--stone); font-weight: 500; }
   .pairs .row .out { font-size: 14.5px; line-height: 1.5; color: var(--stone); }
   @media (max-width: 640px) { .pairs .row { grid-template-columns: 1fr; gap: 6px; } .pairs .row.head { display: none; } .pairs .row .out { margin-top: 4px; } }
 
@@ -325,11 +326,32 @@
           <div class="subhead" style="margin-top:48px;">What combining sources can reveal</div>
           <div class="pairs">
             <div class="row head"><div>Wearable signal</div><div>Ambient signal</div><div>What the pairing can surface</div></div>
-            <div class="row"><div class="src">Elevated HRV stress</div><div class="src" style="color:var(--stone);font-weight:500;">Late-night room activity</div><div class="out">A hard evening that hasn't been talked about yet.</div></div>
-            <div class="row"><div class="src">Poor sleep score</div><div class="src" style="color:var(--stone);font-weight:500;">Earlier, quieter mornings</div><div class="out">Someone running low on rest before the day even starts.</div></div>
-            <div class="row"><div class="src">Raised skin temp + HR</div><div class="src" style="color:var(--stone);font-weight:500;">Animated voice in shared space</div><div class="out">Excitement, not distress, read in the context it happened.</div></div>
+            <div class="row">
+              <div class="src">Sleep schedule &amp; quality</div>
+              <div class="src amb">Sleep schedule &amp; quality</div>
+              <div class="out">When to time difficult conversations — sleep deprivation consistently impairs emotional regulation and patience, so the data can flag the wrong moment before it becomes a conflict.</div>
+            </div>
+            <div class="row">
+              <div class="src">HRV, resting heart rate &amp; changes throughout the day</div>
+              <div class="src amb">Behavior when arriving home, voice requests, temperature changes</div>
+              <div class="out">Whether a person is in a physiologically stressed state — and a prompt to open a conversation that helps talk through or problem-solve that stress, rather than leave it unspoken.</div>
+            </div>
+            <div class="row">
+              <div class="src" style="color:var(--ink-soft); font-weight:400; font-size:13px;">No wearable signal needed</div>
+              <div class="src amb">Deviations in morning routine, eating habits, or room occupancy</div>
+              <div class="out">Routine disruption is often an early signal of emotional struggle — increased awareness here can open a conversation before things get worse.</div>
+            </div>
+            <div class="row">
+              <div class="src">Activity level changes</div>
+              <div class="src amb">Music choices, TV &amp; media consumption patterns</div>
+              <div class="out">Low activity combined with sad music and increased screen time can signal withdrawal or low mood that housemates are well-placed to help alleviate.</div>
+            </div>
+            <div class="row">
+              <div class="src" style="color:var(--ink-soft); font-weight:400; font-size:13px;">No wearable signal needed</div>
+              <div class="src amb">Kitchen activity, coffee timing, grocery &amp; delivery patterns</div>
+              <div class="out">Changes in eating are closely tied to emotional states — stress eating, skipping meals, or sudden food delivery increases are early signals that rarely get named out loud.</div>
+            </div>
           </div>
-          <p class="cs-copy" style="max-width:none; margin-top:18px; font-size:13px; color:var(--ink-soft);">A fuller version of this mapping is documented in the thesis appendix.</p>
         </div>
       </section>
 
