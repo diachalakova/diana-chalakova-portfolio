@@ -148,7 +148,7 @@ body::before {
 }
 
 /* ---- Custom cursor ---- */
-body.has-cursor *, body.has-cursor *::before, body.has-cursor *::after { cursor: none !important; }
+html:has(body.has-cursor), body.has-cursor, body.has-cursor *, body.has-cursor *::before, body.has-cursor *::after { cursor: none !important; }
 
 #cursor {
   position: fixed;
