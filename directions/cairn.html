@@ -115,10 +115,9 @@
   }
   .media .frame .lab { font-family: var(--mono); font-size: 11px; color: var(--stone); background: rgba(255,255,255,0.82); padding: 6px 12px; border-radius: 6px; max-width: 80%; line-height: 1.5; }
   .media .cap { font-family: var(--mono); font-size: 11.5px; color: var(--ink-soft); padding: 11px 15px; border-top: 1px solid var(--hair-soft); background: #ffffff; }
-  /* overview hero — photo on a soft stone panel */
-  .media--hero { background: #D9D6D1; }
-  .media--hero { overflow: hidden; }
-  .media--hero img.shot { width: 140%; margin-left: -22%; display: block; }
+  /* overview side-by-side */
+  #overview .duo-img .media { background: none; border: none; height: 500px; overflow: hidden; }
+  #overview .duo-img img.shot { width: 100%; height: 100%; object-fit: cover; display: block; }
 
   .duo-img { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin: 36px 0; }
   .duo-img .media { margin: 0; }
