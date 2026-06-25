@@ -148,12 +148,12 @@ body::before {
 }
 
 /* ---- Custom cursor ---- */
-*, *::before, *::after { cursor: none !important; }
+body.has-cursor *, body.has-cursor *::before, body.has-cursor *::after { cursor: none !important; }
 
 #cursor {
   position: fixed;
-  width: 10px;
-  height: 10px;
+  width: 14px;
+  height: 14px;
   background: #D8576C;
   border-radius: 50%;
   pointer-events: none;
@@ -164,7 +164,7 @@ body::before {
 }
 
 #cursor.hover {
-  transform: translate(-50%, -50%) scale(2);
+  transform: translate(-50%, -50%) scale(1.8);
 }
 
 /* ---- Mobile overflow + link-arrow cleanup ---- */
