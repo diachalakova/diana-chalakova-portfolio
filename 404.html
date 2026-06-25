@@ -38,6 +38,7 @@
 </style>
 </head>
 <body>
+<div id="cursor"></div>
   <div class="nf">
     <svg class="mark" viewBox="0 0 48 48" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
       <ellipse cx="24" cy="12" rx="7" ry="11" fill="#E1462C" transform="rotate(0 24 24)" />
@@ -51,5 +52,22 @@
     <p>This page wandered off. Let's get you back to the work.</p>
     <a class="home" href="index.html">← Back to portfolio</a>
   </div>
+  <script>
+    (function() {
+      var c = document.getElementById('cursor');
+      if (!c) return;
+      document.addEventListener('mousemove', function(e) {
+        c.style.left = e.clientX + 'px';
+        c.style.top  = e.clientY + 'px';
+      });
+      var hover = 'a,button,input,select,textarea,[role="button"],[tabindex]';
+      document.addEventListener('mouseover', function(e) {
+        if (e.target.closest(hover)) c.classList.add('hover');
+      });
+      document.addEventListener('mouseout', function(e) {
+        if (e.target.closest(hover)) c.classList.remove('hover');
+      });
+    })();
+  </script>
 </body>
 </html>

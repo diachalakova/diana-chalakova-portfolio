@@ -116,6 +116,7 @@
 </style>
 </head>
 <body>
+<div id="cursor"></div>
   <div class="wrap relayer">
     <header class="masthead" data-screen-label="Home">
       <h1 class="brand">Diana C</h1>
@@ -312,6 +313,23 @@
         if (!card) return;
         card.addEventListener('mouseenter', function () { v.play().catch(function(){}); });
         card.addEventListener('mouseleave', function () { v.pause(); });
+      });
+    })();
+  </script>
+  <script>
+    (function() {
+      var c = document.getElementById('cursor');
+      if (!c) return;
+      document.addEventListener('mousemove', function(e) {
+        c.style.left = e.clientX + 'px';
+        c.style.top  = e.clientY + 'px';
+      });
+      var hover = 'a,button,input,select,textarea,[role="button"],[tabindex]';
+      document.addEventListener('mouseover', function(e) {
+        if (e.target.closest(hover)) c.classList.add('hover');
+      });
+      document.addEventListener('mouseout', function(e) {
+        if (e.target.closest(hover)) c.classList.remove('hover');
       });
     })();
   </script>

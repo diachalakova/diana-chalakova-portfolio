@@ -223,6 +223,7 @@
 </style>
 </head>
 <body data-screen-label="Case study / Through AI's Eyes">
+<div id="cursor"></div>
   <div class="cs-layout">
     <!-- LEFT RAIL -->
     <aside class="cs-side">
@@ -514,6 +515,23 @@
       vids.forEach(function (v) { v.addEventListener('canplay', update); });
       update();
       setInterval(update, 800);
+    })();
+  </script>
+  <script>
+    (function() {
+      var c = document.getElementById('cursor');
+      if (!c) return;
+      document.addEventListener('mousemove', function(e) {
+        c.style.left = e.clientX + 'px';
+        c.style.top  = e.clientY + 'px';
+      });
+      var hover = 'a,button,input,select,textarea,[role="button"],[tabindex]';
+      document.addEventListener('mouseover', function(e) {
+        if (e.target.closest(hover)) c.classList.add('hover');
+      });
+      document.addEventListener('mouseout', function(e) {
+        if (e.target.closest(hover)) c.classList.remove('hover');
+      });
     })();
   </script>
 </body>

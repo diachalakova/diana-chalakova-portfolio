@@ -93,6 +93,7 @@
 </style>
 </head>
 <body data-screen-label="About">
+<div id="cursor"></div>
   <a class="back" href="index.html" aria-label="Back to work"><span class="ar">←</span></a>
 
   <main class="about">
@@ -279,6 +280,23 @@
     }
     requestAnimationFrame(frame);
   })();
+  </script>
+  <script>
+    (function() {
+      var c = document.getElementById('cursor');
+      if (!c) return;
+      document.addEventListener('mousemove', function(e) {
+        c.style.left = e.clientX + 'px';
+        c.style.top  = e.clientY + 'px';
+      });
+      var hover = 'a,button,input,select,textarea,[role="button"],[tabindex]';
+      document.addEventListener('mouseover', function(e) {
+        if (e.target.closest(hover)) c.classList.add('hover');
+      });
+      document.addEventListener('mouseout', function(e) {
+        if (e.target.closest(hover)) c.classList.remove('hover');
+      });
+    })();
   </script>
 </body>
 </html>
