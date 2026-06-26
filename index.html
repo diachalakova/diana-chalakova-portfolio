@@ -144,7 +144,7 @@
       </a>
 
       <a class="pcard" href="directions/contextpath.html" style="--ar:16/9; --sb:#EFE4D6; --accent:#C8102E;">
-        <div class="ph" style="background:#EC012A;"><video class="thumb thumb--ctx" src="assets/work/contextpath-cover-card.mp4" autoplay muted loop playsinline style="width:100%;height:100%;object-fit:cover;display:block;"></video></div>
+        <div class="ph" style="background:#EC012A;"><video class="thumb thumb--ctx" src="assets/work/contextpath-cover-card.mp4" autoplay muted loop playsinline data-autoplay="always" style="width:100%;height:100%;object-fit:cover;display:block;"></video></div>
         <div class="cap"><span class="t">ContextPath</span><div class="tagrow"><span>Product Design</span><span>AI Integration</span><span>Figma MCP</span></div></div>
         <div class="d">AI visitor companion app for the MET's collaboration with Anthropic.</div>
         <h3 class="impact">Designed a working prototype in a single one-day Anthropic × Met hackathon.</h3>
@@ -159,11 +159,11 @@
       </a>
       -->
 
-      <a class="pcard" href="directions/through-ais-eyes.html" style="--ar:4/3; --sb:#E6EFE8; --accent:#2C6E49;">
-        <div class="ph" style="background:#F2F2F2; overflow:hidden;"><img class="thumb thumb--moseyes" src="assets/work/moseyes-card.jpg" alt="The FAST table installed on the Museum of Science floor — the forest scene glowing on the tabletop" loading="lazy" style="object-position:50% 85%;" /></div>
-        <div class="cap"><span class="t">Through AI's Eyes</span><div class="tagrow"><span>Interaction</span><span>Usability</span><span>Exhibit</span></div></div>
-        <div class="d">Teaching AI object recognition principles through an interactive installation in the Museum of Science.</div>
-        <h3 class="impact">26.7% of tested visitors learned something new about AI.</h3>
+      <a class="pcard" href="https://dchalakova.github.io/mo_amongthetrees/" target="_blank" rel="noopener" style="--ar:6/5; --sb:#E2E6E9; --accent:#463121;">
+        <div class="ph" style="background:#F2F2F2;"><img class="thumb" src="assets/work/among-the-trees-ipad-web.png" alt="The Among The Trees interactive site shown on an iPad Pro — Mary Oliver's poem set in a circular arrangement with a typographic-transformation menu" loading="lazy" style="object-fit:contain; padding:10px 14px; box-sizing:border-box;" /></div>
+        <div class="cap"><span class="t">Among The Trees</span><div class="tagrow"><span>AI</span><span>Interaction</span><span>Live Website</span></div></div>
+        <div class="d">Investigating the interplay between text and form with AI, using Mary Oliver's <em>When I Am Among The Trees</em> as a canvas for typographic experimentation.</div>
+        <h3 class="impact">Shipped as a live, interactive typographic experiment.</h3>
       </a>
 
       <a class="pcard" href="directions/watch-out.html" style="--ar:16/10; --sb:#F2DEC6; --accent:#5F1B29;">
@@ -180,11 +180,11 @@
         <h3 class="impact">Led a team in a hi-fi prototype addressing a fear 33% of real estate agents report.</h3>
       </a>
 
-      <a class="pcard" href="https://dchalakova.github.io/mo_amongthetrees/" target="_blank" rel="noopener" style="--ar:6/5; --sb:#E2E6E9; --accent:#463121;">
-        <div class="ph" style="background:#F2F2F2;"><img class="thumb" src="assets/work/among-the-trees-ipad-web.png" alt="The Among The Trees interactive site shown on an iPad Pro — Mary Oliver's poem set in a circular arrangement with a typographic-transformation menu" loading="lazy" style="object-fit:contain; padding:10px 14px; box-sizing:border-box;" /></div>
-        <div class="cap"><span class="t">Among The Trees</span><div class="tagrow"><span>AI</span><span>Interaction</span><span>Live Website</span></div></div>
-        <div class="d">Investigating the interplay between text and form with AI, using Mary Oliver's <em>When I Am Among The Trees</em> as a canvas for typographic experimentation.</div>
-        <h3 class="impact">Shipped as a live, interactive typographic experiment.</h3>
+      <a class="pcard" href="directions/through-ais-eyes.html" style="--ar:4/3; --sb:#E6EFE8; --accent:#2C6E49;">
+        <div class="ph" style="background:#F2F2F2; overflow:hidden;"><img class="thumb thumb--moseyes" src="assets/work/moseyes-card.jpg" alt="The FAST table installed on the Museum of Science floor — the forest scene glowing on the tabletop" loading="lazy" style="object-position:50% 85%;" /></div>
+        <div class="cap"><span class="t">Through AI's Eyes</span><div class="tagrow"><span>Interaction</span><span>Usability</span><span>Exhibit</span></div></div>
+        <div class="d">Teaching AI object recognition principles through an interactive installation in the Museum of Science.</div>
+        <h3 class="impact">26.7% of tested visitors learned something new about AI.</h3>
       </a>
 
       <a class="pcard" href="directions/for-stillness.html" style="--ar:16/11; --sb:#ECE6D8; --accent:#3E6B66;">
@@ -307,6 +307,7 @@
     (function () {
       var vids = Array.prototype.slice.call(document.querySelectorAll('.pcard video'));
       vids.forEach(function (v) {
+        if (v.dataset.autoplay === 'always') { v.muted = true; v.loop = true; v.play().catch(function(){}); return; }
         v.muted = true; v.loop = true; v.playsInline = true;
         v.removeAttribute('controls'); v.removeAttribute('autoplay'); v.pause();
         var card = v.closest('.pcard');
