@@ -99,6 +99,11 @@
   .pcard:hover .ph .thumb, .pcard:hover .ph .screen video { transform: scale(1.06); }
   .pcard .ph .thumb.thumb--ctx { transform: none; }
   .pcard:hover .ph .thumb.thumb--ctx { transform: scale(1.04); }
+  .thumb--ctx-still { display: none; }
+  @media (max-width: 720px) {
+    .thumb--ctx-video { display: none; }
+    .thumb--ctx-still { display: block; width: 100%; height: 100%; object-fit: cover; }
+  }
   .pcard .ph .thumb.thumb--cairn { object-fit: cover; object-position: 66% 50%; transform: scale(1.04); }
   .pcard:hover .ph .thumb.thumb--cairn { transform: scale(1.1); }
   .pcard .cap { display: flex; align-items: center; justify-content: space-between; gap: 14px; padding: 14px 18px 8px; }
@@ -146,7 +151,8 @@
 
       <a class="pcard" href="directions/contextpath.html" style="--ar:16/9; --sb:#EFE4D6; --accent:#C8102E;">
         <div class="ph" style="background:#EC012A;">
-          <video class="thumb thumb--ctx ctx-vid" src="assets/work/contextpath-cover-card.mp4" muted loop playsinline poster="assets/work/contextpath-cover-card.jpg" style="width:100%;height:100%;object-fit:cover;display:block;"></video>
+          <video class="thumb thumb--ctx thumb--ctx-video ctx-vid" src="assets/work/contextpath-cover-card.mp4" muted loop playsinline data-autoplay="always" style="width:100%;height:100%;object-fit:cover;display:block;"></video>
+          <img class="thumb thumb--ctx thumb--ctx-still" src="assets/work/contextpath-cover-card-still.jpg" alt="Anthropic x The Met gradient" />
         </div>
         <div class="cap"><span class="t">ContextPath</span><div class="tagrow"><span class="hide-mobile">Product Design</span><span>AI Integration</span><span>Figma MCP</span></div></div>
         <div class="d">AI visitor companion app for the MET's collaboration with Anthropic.</div>
