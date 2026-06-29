@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wght@700&display=swap" rel="stylesheet">
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body {
+    background: #e0e0e0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 100vh;
+  }
+  .card {
+    width: 1600px;
+    height: 900px;
+    background: #ffffff;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 40px;
+    transform-origin: center center;
+  }
+  .logo-wrap {
+    width: 30%;
+  }
+  video {
+    width: 100%;
+    display: block;
+  }
+  .label {
+    font-family: 'Archivo', Arial, sans-serif;
+    font-size: 62px;
+    font-weight: 700;
+    color: #fd0e00;
+    letter-spacing: 0.01em;
+    white-space: nowrap;
+  }
+</style>
+</head>
+<body>
+  <div class="card" id="card">
+    <div class="logo-wrap">
+      <video muted loop playsinline id="logo-video">
+        <source src="mos-logo.mp4" type="video/mp4">
+      </video>
+    </div>
+    <div class="label" id="label">Museum of Science</div>
+  </div>
+  <script>
+    function scaleCard() {
+      var card = document.getElementById('card');
+      var scaleX = window.innerWidth / 1600;
+      var scaleY = window.innerHeight / 900;
+      var scale = Math.min(scaleX, scaleY) * 0.95;
+      card.style.transform = 'scale(' + scale + ')';
+    }
+    scaleCard();
+    window.addEventListener('resize', scaleCard);
+
+    var video = document.getElementById('logo-video');
+    var card = document.getElementById('card');
+    card.addEventListener('mouseenter', function() { video.play(); });
+    card.addEventListener('mouseleave', function() { video.pause(); video.currentTime = 0; });
+  </script>
+</body>
+</html>
