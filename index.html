@@ -99,10 +99,11 @@
   .pcard:hover .ph .thumb, .pcard:hover .ph .screen video { transform: scale(1.06); }
   .pcard .ph .thumb.thumb--ctx { transform: none; }
   .pcard:hover .ph .thumb.thumb--ctx { transform: scale(1.04); }
+  .thumb--ctx-video, .thumb--ctx-still { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; display: block; }
   .thumb--ctx-still { display: none; }
   @media (max-width: 720px) {
     .thumb--ctx-video { display: none; }
-    .thumb--ctx-still { display: block; width: 100%; height: 100%; object-fit: cover; }
+    .thumb--ctx-still { display: block; }
   }
   .pcard .ph .thumb.thumb--cairn { object-fit: cover; object-position: 66% 50%; transform: scale(1.04); }
   .pcard:hover .ph .thumb.thumb--cairn { transform: scale(1.1); }
