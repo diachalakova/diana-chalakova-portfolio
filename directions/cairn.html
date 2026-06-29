@@ -353,7 +353,7 @@
         <div class="sec-grid">
           <div><h2 class="cs-h">An emotional signature for the household, redrawn every evening.</h2></div>
           <div class="cs-copy" style="max-width:none;">
-            <p>The form of the visualization followed from a harder question: what data should it actually draw from, and how should it hold multiple people at once. Designing for a household means accounting for how data evolves across weeks, how the interface works for one person as well as three, and what the relationship is between an aggregate view and each member's individual signal — including when in the day something happened and what context surrounds it. Each of those was a structural decision about what the system was claiming to say.</p>
+            <p>The form of the visualization followed from a harder question: what data should it actually draw from, and how should it hold multiple people at once. Designing for a household means accounting for how data evolves across weeks, how the interface works for one person as well as three, and what the relationship is between an aggregate view and each member's individual signal, including when in the day something happened and what context surrounds it. Each of those was a structural decision about what the system was claiming to say.</p>
           </div>
         </div>
 
@@ -389,7 +389,7 @@
           </div>
 
           <div class="cs-copy block-copy" style="max-width:none; margin-top:24px;">
-            <p>After reviewing this iteration with MS Data Visualization students at Parsons, it became evident that Level 1's presentation of the aggregate didn't feel like a representation of a whole — it read as two separate parts, which wasn't the story. The circular structure also made day-to-day comparison difficult, and Level 3 wasn't obviously accessible from Level 2. Talking with Richard The, Assistant Professor of Interaction Design at Parsons, was a pivotal moment: I realized that not only did the visual representation have to change, but the data collection method had to as well. The conceptual pivot into combining existing sensing modalities — rather than building on camera-based inputs like thermal imaging or micro-expressions — came from that conversation.</p>
+            <p>After reviewing this iteration with MS Data Visualization students at Parsons, it became evident that Level 1's presentation of the aggregate didn't feel like a representation of a whole, but rather two separate parts, which wasn't the story. The circular structure also made day-to-day comparison difficult, and Level 3 wasn't obviously accessible from Level 2. Talking with Richard The, Assistant Professor of Interaction Design at Parsons, was a pivotal moment: I realized that not only did the visual representation have to change, but the data collection method had to as well. The conceptual pivot into combining existing sensing modalities (rather than building on camera-based inputs like thermal imaging or micro-expressions) came from that conversation.</p>
           </div>
 
           <!-- Final radial slideshow -->
@@ -430,7 +430,7 @@
               <button class="slide-btn slide-next" aria-label="Next">&#8594;</button>
             </div>
           <div class="cs-copy block-copy" style="max-width:none; margin-top:24px;">
-            <p>The new visualization is generated every evening. Existing data visualization tools couldn't produce the specific radial form I needed, so I built it in collaboration with Gemini — whose long context window and coding capabilities made it the right fit for generating and iterating on a custom SVG structure — and Claude. Inspired by the layered flower representations in MIT Senseable City Lab's <em>Beijing Inside Out</em> and Stefanie Posavec's work, the form became a custom radial clock where each ring encodes a week of signal and each arc is a day. The household sees its aggregate first — all members read as one shared emotional climate — then each person's individual signature, each accompanied by a short plain-language inference written the way one might update a friend about someone else without exposing their personal details. The data visualization language is abstract and poetic rather than a dashboard of raw numbers, legible at a glance rather than requiring interpretation.</p>
+            <p>The new visualization is generated every evening. Existing data visualization tools couldn't produce the specific radial form I needed, so I built it in collaboration with Gemini (whose long context window and coding capabilities made it the right fit for generating and iterating on a custom SVG structure) and Claude. Inspired by the layered flower representations in MIT Senseable City Lab's <em>Beijing Inside Out</em> and Stefanie Posavec's work, the form became a custom radial clock where each ring encodes a week of signal and each arc is a day. The household sees its aggregate first (all members read as one shared emotional climate), then each person's individual signature, each accompanied by a short plain-language inference written the way one might update a friend about someone else without exposing their personal details. The data visualization language is abstract and poetic rather than a dashboard of raw numbers, legible at a glance rather than requiring interpretation.</p>
           </div>
           </div>
         </div>
@@ -453,7 +453,7 @@
             <img class="shot" src="../assets/work/cairn-obj-iter1.png" alt="Left: diagram of lid placement showing A off state and B on state. Right: air-dry clay prototype of an organic L-shaped form." loading="lazy" />
           </div>
           <div class="cs-copy block-copy" style="max-width:none; margin-top:16px;">
-            <p>Inspired by Bjørn Karmann's Project Alias, a sliding lid would move between two ends of the object — covering the light to snuff it like a candle (OFF) or revealing it (ON). The on/off mechanic resonated clearly with users. The shape didn't, and a new problem emerged: where does the lid live when sensing is off?</p>
+            <p>Inspired by Bjørn Karmann's Project Alias, a sliding lid would move between two ends of the object, covering the light to snuff it like a candle (OFF) or revealing it (ON). The on/off mechanic resonated clearly with users. The shape didn't, and a new problem emerged: where does the lid live when sensing is off?</p>
           </div>
 
           <div class="sn" style="margin-bottom:10px; margin-top:48px; font-weight:700;">Iteration 2</div>
@@ -461,7 +461,7 @@
             <img class="shot" src="../assets/work/cairn-obj-iter2.png" alt="Left: sketches of organic lamp form with frosted glass lid and 360 camera. Right: cardboard mockup of stacked rounded forms." loading="lazy" />
           </div>
           <div class="cs-copy block-copy" style="max-width:none; margin-top:16px;">
-            <p>More abstract, organic lamp forms — shapes you'd already expect to live on a shelf or side table. Cardboard prototypes tested the proportions. Closer, but still not sparking the emotional response I was after. The sensor placement problem also remained: how do you embed sensors without making the object feel like it's staring at you?</p>
+            <p>More abstract, organic lamp forms (shapes you'd already expect to live on a shelf or side table). Cardboard prototypes tested the proportions. Closer, but still not sparking the emotional response I was after. The sensor placement problem also remained: how do you embed sensors without making the object feel like it's staring at you?</p>
           </div>
 
           <div class="sn" style="margin-bottom:10px; margin-top:48px; font-weight:700;">Iteration 3</div>
@@ -469,7 +469,7 @@
             <img class="shot" src="../assets/work/cairn-obj-iter3.png" alt="Left: sketch of stacked cairn stones with sensor labels. Right: air-dry clay prototype of stacked rounded stones." loading="lazy" />
           </div>
           <div class="cs-copy block-copy" style="max-width:none; margin-top:16px;">
-            <p>Stacked stones placed in a landscape to mark a path — people have built them for thousands of years to say <span class="em">"here's where to go next."</span> That is exactly what this system is for: not to judge a home's emotional landscape, but to help the people in it find their way toward one another. The organic stacked form also solved the sensor placement problem that had followed every earlier direction: the gaps between stones could hold the sensors — present but never staring. Users responded immediately. The lid was dropped entirely; on/off moved into the interface and the light.</p>
+            <p>Stacked stones placed in a landscape to mark a path; people have built them for thousands of years to say <span class="em">"here's where to go next."</span> That is exactly what this system is for: not to judge a home's emotional landscape, but to help the people in it find their way toward one another. The organic stacked form also solved the sensor placement problem that had followed every earlier direction: the gaps between stones could hold the sensors, present but never staring. Users responded immediately. The lid was dropped entirely; on/off moved into the interface and the light.</p>
           </div>
 
           <div class="sn" style="margin-bottom:10px; margin-top:48px; font-weight:700;">Modeling in Blender</div>
