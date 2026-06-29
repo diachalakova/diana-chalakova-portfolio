@@ -83,9 +83,17 @@
   .side-photo { position: fixed; right: 20px; bottom: 20px; width: 42%; z-index: 5; }
   .side-photo img { display: block; width: 100%; height: auto; }
 
+  .mobile-links { display: none; }
   @media (max-width: 760px) {
     .about { width: auto; max-width: 600px; margin: 0 auto; padding: 120px 28px 56px; }
-    .side-photo { position: static; width: 100%; }
+    .side-photo { display: none; }
+    .mobile-links { display: flex; flex-direction: column; align-items: flex-start; gap: 14px; margin-top: 20px; }
+    .mobile-links a {
+      font-family: var(--mono); font-weight: 400; font-size: 12.5px; letter-spacing: 0.02em; color: var(--ink);
+      display: inline-flex; align-items: center; gap: 4px; padding-bottom: 2px;
+      border-bottom: 1px solid rgba(27,23,20,0.25); transition: color .18s ease, border-color .18s ease;
+    }
+    .mobile-links a:hover { color: var(--bright); border-color: var(--bright); }
   }
 
   /* cursor glow + pixie-dust trail */
@@ -157,6 +165,12 @@
       <h2 class="block-h">Languages</h2>
       <p class="langs-line">English (Native), Bulgarian (Fluent), French (Working)</p>
     </section>
+
+    <div class="mobile-links">
+      <a href="https://drive.google.com/file/d/1g0gbaHcaRyhGhXmZ6D6GhgDW67F-e5g2/view" target="_blank" rel="noopener">Resume ↗</a>
+      <a href="mailto:dchalakova@outlook.com">Email ↗</a>
+      <a href="https://www.linkedin.com/in/dchalakova/" target="_blank" rel="noopener">LinkedIn ↗</a>
+    </div>
 
     <div class="made-credit">Made with Claude Design + Code. Diana Chalakova 2026 All Rights Reserved</div>
   </main>

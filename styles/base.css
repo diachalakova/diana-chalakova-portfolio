@@ -168,10 +168,13 @@ html:has(body.has-cursor), body.has-cursor, body.has-cursor *, body.has-cursor *
 }
 
 /* ---- Mobile overflow + link-arrow cleanup ---- */
+@media (max-width: 760px) {
+  /* prevent any element from punching past the right edge */
+  body, .wrap, main, section, article, .cs-sec, .block { overflow-x: hidden; }
+  img, video, iframe, svg, canvas { max-width: 100% !important; }
+  table { display: block; overflow-x: auto; }
+}
 @media (max-width: 640px) {
   /* hide external-link arrows (↗) on small screens */
   .ar { display: none; }
-  /* prevent any child from punching through the right margin */
-  .wrap { overflow-x: hidden; }
-  img, video, iframe { max-width: 100%; }
 }
