@@ -68,11 +68,10 @@
   .intro-line .big { font-family: var(--display); font-weight: 800; font-size: clamp(20px,2vw,28px); letter-spacing: -0.01em; }
   .intro-line .meta { font-family: var(--mono); font-size: 12px; color: var(--ink-soft); display: flex; gap: 18px; }
 
-  /* masonry: explicit 2-column grid for precise placement */
+  /* masonry: two independent column containers */
   .masonry { display: grid; grid-template-columns: 1fr 1fr; gap: 28px; align-items: start; }
-  .masonry .col-l { grid-column: 1; }
-  .masonry .col-r { grid-column: 2; }
-  @media (max-width: 720px) { .masonry { grid-template-columns: 1fr; } .masonry .col-l, .masonry .col-r { grid-column: 1; } }
+  .masonry .col-l, .masonry .col-r { display: flex; flex-direction: column; gap: 28px; }
+  @media (max-width: 720px) { .masonry { grid-template-columns: 1fr; } }
 
   .pcard {
     display: block; break-inside: avoid; margin-bottom: 28px;
@@ -129,51 +128,54 @@
     <div class="flower-divider" aria-hidden="true"></div>
 
     <main class="masonry" style="margin-top:0;">
+      <div class="col-l">
       <!-- LEFT COLUMN -->
-      <a class="pcard col-l" href="directions/flux.html" style="--ar:16/10; --sb:#EAE0CC; --accent:#684726;">
+      <a class="pcard" href="directions/flux.html" style="--ar:16/10; --sb:#EAE0CC; --accent:#684726;">
         <div class="ph" style="background:#F2F2F2;"><img class="thumb" src="assets/work/flux-card.jpg" alt="FLUX thesis show poster — circle cutouts revealing photos and the flux wordmark" fetchpriority="high" decoding="async" /></div>
         <div class="cap"><span class="t">Flux</span><div class="tagrow"><span>Web</span><span>0→1</span><span>Cross-Collaboration</span></div></div>
         <div class="d">Public thesis website for the Parsons School of Design's Design and Technology program.</div>
         <h3 class="impact">Launched for a 200+ attendee showcase, scaled across 170+ pages.</h3>
       </a>
 
-      <a class="pcard col-l" href="directions/arc-security.html" style="--ar:1/1; --sb:#E7EAF0; --accent:#2148C9;">
+      <a class="pcard" href="directions/arc-security.html" style="--ar:1/1; --sb:#E7EAF0; --accent:#2148C9;">
         <div class="ph" style="background:#F2F2F2;"><img class="thumb" src="assets/work/arc-card.png" alt="The Arc safety app — Safety Mode, home schedule, and insights screens" loading="lazy" style="object-fit:contain; padding:34px 30px; box-sizing:border-box;" /></div>
         <div class="cap"><span class="t">Arc Security</span><div class="tagrow"><span>Internship</span><span>UX/UI</span><span>Cross-Collaboration</span></div></div>
         <div class="d">Reimagining safety for real estate agents.</div>
         <h3 class="impact">Led a team in a hi-fi prototype addressing a fear 33% of real estate agents report.</h3>
       </a>
 
-      <a class="pcard col-l" href="directions/contextpath.html" style="--ar:16/9; --sb:#EFE4D6; --accent:#C8102E;">
+      <a class="pcard" href="directions/contextpath.html" style="--ar:16/9; --sb:#EFE4D6; --accent:#C8102E;">
         <div class="ph" style="background:#EC012A;"><video class="thumb thumb--ctx" src="assets/work/contextpath-cover-card.mp4" muted loop playsinline style="width:100%;height:100%;object-fit:cover;display:block;"></video></div>
         <div class="cap"><span class="t">ContextPath</span><div class="tagrow"><span>Product Design</span><span>AI Integration</span><span>Figma MCP</span></div></div>
         <div class="d">AI visitor companion app for the MET's collaboration with Anthropic.</div>
         <h3 class="impact">Designed a working prototype in a single one-day Anthropic × Met hackathon.</h3>
       </a>
 
-      <a class="pcard col-l" href="https://dchalakova.github.io/mo_amongthetrees/" target="_blank" rel="noopener" style="--ar:6/5; --sb:#E2E6E9; --accent:#463121;">
+      <a class="pcard" href="https://dchalakova.github.io/mo_amongthetrees/" target="_blank" rel="noopener" style="--ar:6/5; --sb:#E2E6E9; --accent:#463121;">
         <div class="ph" style="background:#F2F2F2;"><img class="thumb" src="assets/work/among-the-trees-ipad-web.png" alt="The Among The Trees interactive site shown on an iPad Pro — Mary Oliver's poem set in a circular arrangement with a typographic-transformation menu" loading="lazy" style="object-fit:contain; padding:10px 14px; box-sizing:border-box;" /></div>
         <div class="cap"><span class="t">Among The Trees</span><div class="tagrow"><span>AI</span><span>Interaction</span><span>Live Website</span></div></div>
         <div class="d">Investigating the interplay between text and form with AI, using Mary Oliver's <em>When I Am Among The Trees</em> as a canvas for typographic experimentation.</div>
         <h3 class="impact">Shipped as a live, interactive typographic experiment.</h3>
       </a>
 
-      <a class="pcard col-l" href="directions/watch-out.html" style="--ar:16/10; --sb:#F2DEC6; --accent:#5F1B29;">
+      <a class="pcard" href="directions/watch-out.html" style="--ar:16/10; --sb:#F2DEC6; --accent:#5F1B29;">
         <div class="ph" style="background:#F2F2F2; overflow:hidden;"><img class="thumb" src="assets/work/watchout-cover.jpg" alt="A warm illustrated cabin in an evergreen forest at sunset — the opening frame of the Watch Out film" loading="lazy" /></div>
         <div class="cap"><span class="t">Watch Out</span><div class="tagrow"><span>AI</span><span>Rapid Prototyping</span><span>Award-Winning</span></div></div>
         <div class="d">Award-winning AI-generated video for wildlife preservation and fire prevention.</div>
         <h3 class="impact">Won the Human + AI Co-Creation Award, made in a one-hour sprint.</h3>
       </a>
 
+      </div><!-- end col-l -->
+      <div class="col-r">
       <!-- RIGHT COLUMN -->
-      <a class="pcard col-r" href="directions/seal.html" style="--ar:16/10; --sb:#ECE7F5; --accent:#4B2E83;">
+      <a class="pcard" href="directions/seal.html" style="--ar:16/10; --sb:#ECE7F5; --accent:#4B2E83;">
         <div class="ph" style="background:#F2F2F2;"><img class="thumb" src="assets/work/seal-card.png" alt="The redesigned SEAL lab dashboard, shown on a laptop" decoding="async" style="object-fit:cover;" /></div>
         <div class="cap"><span class="t">SEAL</span><div class="tagrow"><span>Internship</span><span>UX/UI</span><span>Usability</span></div></div>
         <div class="d">Internal dashboard for 300+ engineers.</div>
         <h3 class="impact">Unified a multi-spreadsheet workflow into one dashboard for 300+ engineers.</h3>
       </a>
 
-      <a class="pcard col-r" href="directions/through-ais-eyes.html" style="--ar:4/3; --sb:#E6EFE8; --accent:#2C6E49;">
+      <a class="pcard" href="directions/through-ais-eyes.html" style="--ar:4/3; --sb:#E6EFE8; --accent:#2C6E49;">
         <div class="ph" style="background:#ffffff; overflow:hidden; display:flex; flex-direction:column; align-items:center; justify-content:center; gap:20px; border-bottom: 1px solid #e0e0e0;">
           <video muted loop playsinline class="mos-logo-vid" style="width:30%; display:block;">
             <source src="assets/work/mos-logo.mp4" type="video/mp4">
@@ -185,19 +187,21 @@
         <h3 class="impact">26.7% of tested visitors learned something new about AI.</h3>
       </a>
 
-      <a class="pcard col-r" href="directions/for-stillness.html" style="--ar:16/11; --sb:#ECE6D8; --accent:#3E6B66;">
+      <a class="pcard" href="directions/for-stillness.html" style="--ar:16/11; --sb:#ECE6D8; --accent:#3E6B66;">
         <div class="ph" style="background:#F2F2F2;"><img class="thumb" src="assets/work/stillness-cover.jpg" alt="The For Stillness pop-up book held open to a layered orange funnel pop-up spread" loading="lazy" /></div>
         <div class="cap"><span class="t">For Stillness</span><div class="tagrow"><span>Product</span><span>Visual Design</span></div></div>
         <div class="d">Analog interaction design in a digital world.</div>
         <h3 class="impact">A solo, hand-bound pop-up book from concept to final print.</h3>
       </a>
 
-      <a class="pcard col-r" href="directions/atlas.html" style="--ar:4/3; --sb:#ECE3FB; --accent:#5B24BF;">
+      <a class="pcard" href="directions/atlas.html" style="--ar:4/3; --sb:#ECE3FB; --accent:#5B24BF;">
         <div class="ph" style="background:#F2F2F2;"><img class="thumb" src="assets/work/atlas-hero.png" alt="The Atlas app on two iPhones — a campus discovery home screen and a place detail page" loading="lazy" style="object-fit:contain; padding:22px 24px; box-sizing:border-box;" /></div>
         <div class="cap"><span class="t">Atlas</span><div class="tagrow"><span>UX/UI</span><span>Startup</span><span>AI Integration</span></div></div>
         <div class="d">Founding designer at a pre-seed EdTech startup for a campus navigation app connecting users to resources across their community.</div>
         <h3 class="impact">Placed top third of 117 teams at the UW Dempsey Startup Competition, supporting a $56K seed ask.</h3>
       </a>
+
+      </div><!-- end col-r -->
 
       <!-- CAIRN — working on case study before launch. Uncomment to restore.
       <a class="pcard" href="directions/cairn.html" style="--ar:1/1; --sb:#E5E1D6; --accent:#51703C;">
