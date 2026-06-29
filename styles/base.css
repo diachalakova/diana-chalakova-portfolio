@@ -148,7 +148,13 @@ body::before {
 }
 
 /* ---- Custom cursor ---- */
-html:has(body.has-cursor), body.has-cursor, body.has-cursor *, body.has-cursor *::before, body.has-cursor *::after { cursor: none !important; }
+@media (pointer: fine) {
+  html:has(body.has-cursor), body.has-cursor, body.has-cursor *, body.has-cursor *::before, body.has-cursor *::after { cursor: none !important; }
+}
+@media (pointer: coarse) {
+  #cursor { display: none !important; }
+  body.has-cursor, body.has-cursor *, body.has-cursor *::before, body.has-cursor *::after { cursor: auto !important; }
+}
 
 #cursor {
   position: fixed;
