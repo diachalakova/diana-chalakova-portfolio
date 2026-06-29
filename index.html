@@ -71,7 +71,7 @@
   /* masonry: two independent column containers */
   .masonry { display: grid; grid-template-columns: 1fr 1fr; gap: 28px; align-items: start; }
   .masonry .col-l, .masonry .col-r { display: flex; flex-direction: column; gap: 28px; }
-  @media (max-width: 720px) { .masonry { grid-template-columns: 1fr; } }
+  @media (max-width: 720px) { .masonry { grid-template-columns: 1fr; } .hide-mobile { display: none; } }
 
   .pcard {
     display: block; break-inside: avoid; margin-bottom: 28px;
@@ -145,8 +145,10 @@
       </a>
 
       <a class="pcard" href="directions/contextpath.html" style="--ar:16/9; --sb:#EFE4D6; --accent:#C8102E;">
-        <div class="ph" style="background:#EC012A;"><video class="thumb thumb--ctx" src="assets/work/contextpath-cover-card.mp4" muted loop playsinline style="width:100%;height:100%;object-fit:cover;display:block;"></video></div>
-        <div class="cap"><span class="t">ContextPath</span><div class="tagrow"><span>Product Design</span><span>AI Integration</span><span>Figma MCP</span></div></div>
+        <div class="ph" style="background:#EC012A;">
+          <video class="thumb thumb--ctx ctx-vid" src="assets/work/contextpath-cover-card.mp4" muted loop playsinline poster="assets/work/contextpath-cover-card.jpg" style="width:100%;height:100%;object-fit:cover;display:block;"></video>
+        </div>
+        <div class="cap"><span class="t">ContextPath</span><div class="tagrow"><span class="hide-mobile">Product Design</span><span>AI Integration</span><span>Figma MCP</span></div></div>
         <div class="d">AI visitor companion app for the MET's collaboration with Anthropic.</div>
         <h3 class="impact">Designed a working prototype in a single one-day Anthropic × Met hackathon.</h3>
       </a>
@@ -354,13 +356,14 @@
 
     // MOS card: show last frame by default, play on hover
     document.querySelectorAll('.mos-logo-vid').forEach(function(vid) {
-      vid.addEventListener('loadedmetadata', function() {
-        vid.currentTime = vid.duration;
-      });
+      function seekToEnd() { if (vid.duration && isFinite(vid.duration)) { vid.currentTime = vid.duration; } }
+      vid.addEventListener('loadedmetadata', seekToEnd);
+      vid.addEventListener('loadeddata', seekToEnd);
+      vid.addEventListener('canplay', seekToEnd);
       vid.load();
       var card = vid.closest('.pcard');
       card.addEventListener('mouseenter', function() { vid.currentTime = 0; vid.play(); });
-      card.addEventListener('mouseleave', function() { vid.pause(); vid.currentTime = vid.duration; });
+      card.addEventListener('mouseleave', function() { vid.pause(); seekToEnd(); });
     });
   </script>
 </body>
