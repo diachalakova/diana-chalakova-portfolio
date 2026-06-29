@@ -337,15 +337,15 @@
       });
     })();
 
-    // MOS card: show first frame, play on hover
+    // MOS card: show last frame by default, play on hover
     document.querySelectorAll('.mos-logo-vid').forEach(function(vid) {
-      vid.addEventListener('loadeddata', function() {
-        vid.currentTime = 0.001;
+      vid.addEventListener('loadedmetadata', function() {
+        vid.currentTime = vid.duration;
       });
       vid.load();
       var card = vid.closest('.pcard');
-      card.addEventListener('mouseenter', function() { vid.play(); });
-      card.addEventListener('mouseleave', function() { vid.pause(); vid.currentTime = 0.001; });
+      card.addEventListener('mouseenter', function() { vid.currentTime = 0; vid.play(); });
+      card.addEventListener('mouseleave', function() { vid.pause(); vid.currentTime = vid.duration; });
     });
   </script>
 </body>
