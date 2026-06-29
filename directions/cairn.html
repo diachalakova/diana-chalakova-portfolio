@@ -221,10 +221,12 @@
   .slideshow .slide { display: none; }
   .slideshow .slide.active { display: block; }
   .slideshow .slide .media { margin: 0; }
+  .slide-stage { display: flex; align-items: center; gap: 14px; }
+  .slide-stage .slides { flex: 1; min-width: 0; }
   .slide-nav { display: flex; align-items: center; gap: 12px; padding: 10px 15px; background: #fff; border: 1px solid var(--hair-soft); border-top: none; font-family: var(--mono); font-size: 11.5px; color: var(--ink-soft); }
   .slide-nav .slide-cap { flex: 1; }
   .slide-nav .slide-count { white-space: nowrap; opacity: 0.5; }
-  .slide-btn { background: none; border: none; cursor: pointer; font-size: 15px; color: var(--ink); padding: 0; line-height: 1; opacity: 0.45; transition: opacity .12s; flex-shrink: 0; }
+  .slide-btn { background: none; border: none; cursor: pointer; font-size: 20px; color: var(--ink); padding: 0; line-height: 1; opacity: 0.35; transition: opacity .12s; flex-shrink: 0; }
   .slide-btn:hover { opacity: 1; }
 </style>
 </head>
@@ -358,65 +360,69 @@
 
           <!-- Dandelion iteration slideshow -->
           <div class="slideshow" style="margin-top:40px;">
-            <div class="slides">
-              <div class="slide active" data-cap="Level 1 — The household aggregate. Two members shown as separate networks — which inadvertently made the home feel like two people rather than one shared space.">
-                <div class="media" style="margin:0;">
-                  <img class="shot" src="../assets/work/cairn-iter-network-home.png" alt="Grove — home view showing two household members as radial weekday networks" loading="lazy" />
+            <div class="slide-stage">
+              <button class="slide-btn slide-prev" aria-label="Previous">&#8592;</button>
+              <div class="slides">
+                <div class="slide active" data-cap="Level 1 — The household aggregate. Two members shown as separate networks — which inadvertently made the home feel like two people rather than one shared space.">
+                  <div class="media" style="margin:0;">
+                    <img class="shot" src="../assets/work/cairn-iter-network-home.png" alt="Grove — home view showing two household members as radial weekday networks" loading="lazy" />
+                  </div>
+                </div>
+                <div class="slide" data-cap="Level 2 — An individual's signals for a single day, plotted above and below their baseline. Useful data, but buried behind navigation that most people never found.">
+                  <div class="media" style="margin:0;">
+                    <img class="shot" src="../assets/work/cairn-iter-network-individual.png" alt="Grove — individual day view, signals plotted above/below baseline by modality" loading="lazy" />
+                  </div>
+                </div>
+                <div class="slide" data-cap="Level 3 — A single modality's readings as a full-day time-series. The most granular view, but almost impossible to reach without intentionally drilling down.">
+                  <div class="media" style="margin:0;">
+                    <img class="shot" src="../assets/work/cairn-iter-network-modality.png" alt="Grove — modality drill-down, time-series from 12AM to 12AM" loading="lazy" />
+                  </div>
                 </div>
               </div>
-              <div class="slide" data-cap="Level 2 — An individual's signals for a single day, plotted above and below their baseline. Useful data, but buried behind navigation that most people never found.">
-                <div class="media" style="margin:0;">
-                  <img class="shot" src="../assets/work/cairn-iter-network-individual.png" alt="Grove — individual day view, signals plotted above/below baseline by modality" loading="lazy" />
-                </div>
-              </div>
-              <div class="slide" data-cap="Level 3 — A single modality's readings as a full-day time-series. The most granular view, but almost impossible to reach without intentionally drilling down.">
-                <div class="media" style="margin:0;">
-                  <img class="shot" src="../assets/work/cairn-iter-network-modality.png" alt="Grove — modality drill-down, time-series from 12AM to 12AM" loading="lazy" />
-                </div>
-              </div>
+              <button class="slide-btn slide-next" aria-label="Next">&#8594;</button>
             </div>
             <div class="slide-nav">
-              <button class="slide-btn slide-prev" aria-label="Previous">&#8592;</button>
               <span class="slide-cap">Level 1 — The household aggregate. Two members shown as separate networks — which inadvertently made the home feel like two people rather than one shared space.</span>
               <span class="slide-count">1 / 3</span>
-              <button class="slide-btn slide-next" aria-label="Next">&#8594;</button>
             </div>
           </div>
 
           <!-- Final radial slideshow -->
           <div class="slideshow" style="margin-top:40px;">
-            <div class="slides">
-              <div class="slide active" data-cap="The household's aggregate — all members read as one shared emotional climate, not two separate parts.">
-                <div class="media" style="margin:0;">
-                  <img class="shot" src="../assets/work/cairn-final-home.png" alt="Cairn final — aggregate home view showing the household's combined radial signature" loading="lazy" />
+            <div class="slide-stage">
+              <button class="slide-btn slide-prev" aria-label="Previous">&#8592;</button>
+              <div class="slides">
+                <div class="slide active" data-cap="The household's aggregate — all members read as one shared emotional climate, not two separate parts.">
+                  <div class="media" style="margin:0;">
+                    <img class="shot" src="../assets/work/cairn-final-home.png" alt="Cairn final — aggregate home view showing the household's combined radial signature" loading="lazy" />
+                  </div>
+                </div>
+                <div class="slide" data-cap="Moving from the household view into individual signatures — the transition between shared and personal.">
+                  <div class="media" style="margin:0;">
+                    <img class="shot" src="../assets/work/cairn-final-after-home.png" alt="Cairn final — transition between aggregate and individual views" loading="lazy" />
+                  </div>
+                </div>
+                <div class="slide" data-cap="Alexandra's individual radial signature with a short AI-generated inference about her day.">
+                  <div class="media" style="margin:0;">
+                    <img class="shot" src="../assets/work/cairn-final-person-1.png" alt="Cairn final — first household member's individual signature" loading="lazy" />
+                  </div>
+                </div>
+                <div class="slide" data-cap="Claire's individual radial signature with a short AI-generated inference about her day.">
+                  <div class="media" style="margin:0;">
+                    <img class="shot" src="../assets/work/cairn-final-person-2.png" alt="Cairn final — second household member's individual signature" loading="lazy" />
+                  </div>
+                </div>
+                <div class="slide" data-cap="Hailey's individual radial signature with a short AI-generated inference about her day.">
+                  <div class="media" style="margin:0;">
+                    <img class="shot" src="../assets/work/cairn-final-person-3.png" alt="Cairn final — third household member's individual signature" loading="lazy" />
+                  </div>
                 </div>
               </div>
-              <div class="slide" data-cap="Moving from the household view into individual signatures — the transition between shared and personal.">
-                <div class="media" style="margin:0;">
-                  <img class="shot" src="../assets/work/cairn-final-after-home.png" alt="Cairn final — transition between aggregate and individual views" loading="lazy" />
-                </div>
-              </div>
-              <div class="slide" data-cap="Alexandra's individual radial signature with a short AI-generated inference about her day.">
-                <div class="media" style="margin:0;">
-                  <img class="shot" src="../assets/work/cairn-final-person-1.png" alt="Cairn final — first household member's individual signature" loading="lazy" />
-                </div>
-              </div>
-              <div class="slide" data-cap="Claire's individual radial signature with a short AI-generated inference about her day.">
-                <div class="media" style="margin:0;">
-                  <img class="shot" src="../assets/work/cairn-final-person-2.png" alt="Cairn final — second household member's individual signature" loading="lazy" />
-                </div>
-              </div>
-              <div class="slide" data-cap="Hailey's individual radial signature with a short AI-generated inference about her day.">
-                <div class="media" style="margin:0;">
-                  <img class="shot" src="../assets/work/cairn-final-person-3.png" alt="Cairn final — third household member's individual signature" loading="lazy" />
-                </div>
-              </div>
+              <button class="slide-btn slide-next" aria-label="Next">&#8594;</button>
             </div>
             <div class="slide-nav">
-              <button class="slide-btn slide-prev" aria-label="Previous">&#8592;</button>
               <span class="slide-cap">The household's aggregate — all members read as one shared emotional climate, not two separate parts.</span>
               <span class="slide-count">1 / 5</span>
-              <button class="slide-btn slide-next" aria-label="Next">&#8594;</button>
             </div>
           </div>
         </div>
