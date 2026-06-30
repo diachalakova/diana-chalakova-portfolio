@@ -100,9 +100,11 @@
   .pcard .ph .thumb.thumb--ctx { transform: none; }
   .pcard:hover .ph .thumb.thumb--ctx { transform: scale(1.04); }
   .thumb--ctx-video, .thumb--ctx-still { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; display: block; }
+  .thumb--ctx-video { transition: transform .45s cubic-bezier(.2,.7,.2,1); transform: none; }
+  .pcard:hover .ph .thumb--ctx-video { transform: scale(1.04); }
   .thumb--ctx-still { display: none; }
   @media (max-width: 720px) {
-    .thumb--ctx-video { display: none; }
+    .thumb--ctx-video { display: none !important; }
     .thumb--ctx-still { display: block; }
   }
   .pcard .ph .thumb.thumb--cairn { object-fit: cover; object-position: 66% 50%; transform: scale(1.04); }
