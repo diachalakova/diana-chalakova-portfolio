@@ -334,7 +334,7 @@
       var t; window.addEventListener('resize', function () { clearTimeout(t); t = setTimeout(build, 160); });
     })();
     (function () {
-      var vids = Array.prototype.slice.call(document.querySelectorAll('.pcard video'));
+      var vids = Array.prototype.slice.call(document.querySelectorAll('.pcard video:not(.mos-logo-vid)'));
       vids.forEach(function (v) {
         if (v.dataset.autoplay === 'always') { v.muted = true; v.loop = true; v.play().catch(function(){}); return; }
         v.muted = true; v.loop = true; v.playsInline = true;
