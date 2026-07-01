@@ -365,14 +365,35 @@
 
     // MOS card: show last frame by default, play on hover
     document.querySelectorAll('.mos-logo-vid').forEach(function(vid) {
-      function seekToEnd() { if (vid.duration && isFinite(vid.duration)) { vid.currentTime = vid.duration; } }
+      vid.loop = false;
+      vid.style.opacity = '0';
+      vid.style.transition = 'opacity 0.2s';
+      var hovering = false;
+
+      function seekToEnd() {
+        if (vid.duration && isFinite(vid.duration)) { vid.currentTime = vid.duration; }
+      }
+
+      vid.addEventListener('seeked', function() {
+        if (!hovering) vid.style.opacity = '1';
+      });
+
       vid.addEventListener('loadedmetadata', seekToEnd);
-      vid.addEventListener('loadeddata', seekToEnd);
-      vid.addEventListener('canplay', seekToEnd);
       vid.load();
+
       var card = vid.closest('.pcard');
-      card.addEventListener('mouseenter', function() { vid.currentTime = 0; vid.play(); });
-      card.addEventListener('mouseleave', function() { vid.pause(); seekToEnd(); });
+      card.addEventListener('mouseenter', function() {
+        hovering = true;
+        vid.style.opacity = '1';
+        vid.currentTime = 0;
+        vid.play().catch(function(){});
+      });
+      card.addEventListener('mouseleave', function() {
+        hovering = false;
+        vid.pause();
+        vid.style.opacity = '0';
+        seekToEnd();
+      });
     });
   </script>
 </body>
