@@ -82,6 +82,15 @@
   /* RIGHT column — image, fixed to the bottom and filled to the column width */
   .side-photo { position: fixed; right: 20px; bottom: 20px; width: 42%; z-index: 5; }
   .side-photo img { display: block; width: 100%; height: auto; }
+  .lava-btn {
+    display: inline-block; margin-bottom: 12px;
+    font-family: var(--mono); font-size: 12.5px; letter-spacing: 0.02em;
+    color: var(--ink); padding-bottom: 2px;
+    border-bottom: 1px solid rgba(27,23,20,0.25);
+    transition: color .18s ease, border-color .18s ease;
+    text-decoration: none;
+  }
+  .lava-btn:hover { color: #D8576C; border-color: #D8576C; }
 
   .mobile-links { display: none; }
   @media (max-width: 760px) {
@@ -112,8 +121,6 @@
       <p>I use AI throughout my workflow to extend what's possible, explore directions, and prototype faster. I've always excelled at writing, which has been a massive boon to writing prompts and engaging tactfully with AI agents.</p>
       <p>Outside of class and work, I enjoy photography, painting, and have been training for a half-marathon!</p>
     </div>
-
-    <a href="https://interactive-lava-lamp-mini-creative-portfolio-1083914200933.us-west1.run.app/" target="_blank" rel="noopener" style="display:inline-block; margin-top:28px; font-family:var(--mono); font-size:13px; letter-spacing:0.03em; padding:11px 20px; border:1.5px solid var(--ink); color:var(--ink); transition:background .2s, color .2s; text-decoration:none;" onmouseover="this.style.background='var(--ink)';this.style.color='#fff';" onmouseout="this.style.background='';this.style.color='var(--ink)';">Explore an interactive experience about me ↗</a>
 
     <div class="mobile-links">
       <a href="assets/Diana%20Chalakova%20Resume.pdf" target="_blank" rel="noopener">Resume</a>
@@ -183,6 +190,7 @@
       <a href="mailto:dchalakova@outlook.com">Email <span class="ar">↗</span></a>
       <a href="https://www.linkedin.com/in/dchalakova/" target="_blank" rel="noopener">LinkedIn <span class="ar">↗</span></a>
     </div>
+    <a href="https://interactive-lava-lamp-mini-creative-portfolio-1083914200933.us-west1.run.app/" target="_blank" rel="noopener" class="lava-btn">My interests made interactive ↗</a>
     <img src="assets/about-portrait.jpg" alt="Diana Chalakova, holding a compact camera in a mirror" loading="lazy" />
   </div>
 
