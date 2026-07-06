@@ -49,13 +49,15 @@
   .links-row a:hover { color: var(--bright); border-color: var(--bright); }
 
   /* right-side links, sitting above the photo */
-  .side-links { display: flex; justify-content: flex-end; flex-wrap: wrap; gap: 22px; margin-bottom: 16px; }
+  .side-links { display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 12px; align-items: center; }
   .side-links a {
-    font-family: var(--mono); font-weight: 400; font-size: 12.5px; letter-spacing: 0.02em; color: var(--ink);
-    display: inline-flex; align-items: center; gap: 4px; padding-bottom: 2px;
-    border-bottom: 1px solid rgba(27,23,20,0.25); transition: color .18s ease, border-color .18s ease;
+    font-family: var(--mono); font-weight: 400; font-size: 12px; letter-spacing: 0.02em; color: var(--ink);
+    display: inline-flex; align-items: center;
+    padding: 6px 13px; border: 1.5px solid rgba(27,23,20,0.3); border-radius: 0;
+    transition: color .18s ease, border-color .18s ease, background .18s ease;
+    text-decoration: none; white-space: nowrap;
   }
-  .side-links a:hover { color: var(--bright); border-color: var(--bright); }
+  .side-links a:hover { color: #D8576C; border-color: #D8576C; }
 
   /* blocks */
   .about-block { margin-top: 54px; }
@@ -82,15 +84,6 @@
   /* RIGHT column — image, fixed to the bottom and filled to the column width */
   .side-photo { position: fixed; right: 20px; bottom: 20px; width: 42%; z-index: 5; }
   .side-photo img { display: block; width: 100%; height: auto; }
-  .lava-btn {
-    display: inline-block; margin-bottom: 12px;
-    font-family: var(--mono); font-size: 12.5px; letter-spacing: 0.02em;
-    color: var(--ink); padding-bottom: 2px;
-    border-bottom: 1px solid rgba(27,23,20,0.25);
-    transition: color .18s ease, border-color .18s ease;
-    text-decoration: none;
-  }
-  .lava-btn:hover { color: #D8576C; border-color: #D8576C; }
 
   .mobile-links { display: none; }
   @media (max-width: 760px) {
@@ -186,11 +179,11 @@
 
   <div class="side-photo">
     <div class="side-links">
-      <a href="assets/Diana%20Chalakova%20Resume.pdf" target="_blank" rel="noopener">Resume <span class="ar">↗</span></a>
-      <a href="mailto:dchalakova@outlook.com">Email <span class="ar">↗</span></a>
-      <a href="https://www.linkedin.com/in/dchalakova/" target="_blank" rel="noopener">LinkedIn <span class="ar">↗</span></a>
+      <a href="assets/Diana%20Chalakova%20Resume.pdf" target="_blank" rel="noopener">Resume</a>
+      <a href="mailto:dchalakova@outlook.com">Email</a>
+      <a href="https://www.linkedin.com/in/dchalakova/" target="_blank" rel="noopener">LinkedIn</a>
+      <a href="https://interactive-lava-lamp-mini-creative-portfolio-1083914200933.us-west1.run.app/" target="_blank" rel="noopener">My Creative Interests Made Interactive</a>
     </div>
-    <a href="https://interactive-lava-lamp-mini-creative-portfolio-1083914200933.us-west1.run.app/" target="_blank" rel="noopener" class="lava-btn">My interests made interactive ↗</a>
     <img src="assets/about-portrait.jpg" alt="Diana Chalakova, holding a compact camera in a mirror" loading="lazy" />
   </div>
 
