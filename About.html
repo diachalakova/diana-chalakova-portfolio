@@ -35,7 +35,8 @@
   /* LEFT column — text, scrolls with the page */
   .about { width: 54%; box-sizing: border-box; padding: 84px 4vw 20px 96px; }
 
-  .lead { font-size: 21px; line-height: 1.3; letter-spacing: -0.01em; color: var(--ink); margin: 0 0 30px; font-weight: 700; }
+  .about-intro { display: flex; align-items: center; justify-content: space-between; gap: 24px; width: 100%; margin-bottom: 30px; }
+  .lead { font-size: 21px; line-height: 1.3; letter-spacing: -0.01em; color: var(--ink); margin: 0; font-weight: 700; }
 
   .bio p { font-size: 14.5px; line-height: 1.75; color: #3a342e; margin: 0 0 16px; font-weight: 400; text-align: justify; }
   .bio p:last-child { margin-bottom: 0; }
@@ -48,10 +49,10 @@
   }
   .links-row a:hover { color: var(--bright); border-color: var(--bright); }
 
-  /* right-side links, sitting above the photo */
+  /* Contact links share the greeting row on desktop. */
   .side-links {
     display: flex; justify-content: space-between; align-items: center;
-    margin-bottom: 0; gap: 8px; flex-wrap: wrap;
+    margin-bottom: 0; gap: 8px; flex-shrink: 0;
   }
   .side-links-right { display: flex; align-items: center; gap: 2px; }
   .side-links a {
@@ -68,8 +69,8 @@
   .side-links a:hover { color: #fff; }
   .side-links a:hover::before { height: 100%; }
 
-  .creative-link { color: var(--ink); text-decoration: underline; text-underline-offset: 3px; transition: color .18s ease; }
-  .creative-link:hover { color: var(--bright); }
+  .creative-link { font: inherit; color: inherit; text-decoration: underline; text-underline-offset: 3px; }
+  .creative-link:hover { color: inherit; }
 
   /* blocks */
   .about-block { margin-top: 54px; }
@@ -93,17 +94,18 @@
   /* bottom credit */
   .made-credit { font-family: var(--mono); font-weight: 400; font-size: 11px; letter-spacing: 0.04em; color: var(--ink-soft); margin-top: 64px; }
 
-  /* Links align with the first bio line; the photo stays near the bottom. */
+  /* Photo gallery stays near the bottom of the right column. */
   .side-photo { position: fixed; right: 20px; top: 141.3px; bottom: 20px; width: 42%; z-index: 5; display: flex; flex-direction: column; gap: 28px; overflow-y: auto; }
   .kodak-gallery { margin: auto 0 0; flex-shrink: 0; }
   .kodak-gallery figcaption { margin-bottom: 12px; font-size: 12.5px; line-height: 1.75; color: #3a342e; }
-  .kodak-frame { position: relative; width: 100%; aspect-ratio: 4 / 3; max-height: max(180px, calc(100dvh - 290px)); overflow: hidden; border-radius: 5px; background: #f4f1ed; }
+  .kodak-frame { position: relative; width: 100%; aspect-ratio: 4 / 3; max-height: max(180px, calc(100dvh - 290px)); overflow: hidden; border-radius: 0; background: #f4f1ed; }
   .kodak-frame img { position: absolute; inset: 0; display: block; width: 100%; height: 100%; object-fit: cover; transform: translateX(100%); }
   .kodak-frame img.is-visible { transform: translateX(0); }
-  .kodak-toggle { position: absolute; right: 10px; bottom: 10px; z-index: 2; border: 1px solid rgba(27,23,20,.16); border-radius: 4px; padding: 5px 9px; background: rgba(255,255,255,.92); color: var(--ink); font-family: var(--mono); font-size: 11px; cursor: pointer; }
 
   .mobile-links { display: none; }
   @media (max-width: 760px) {
+    .about-intro { flex-direction: column; align-items: stretch; gap: 12px; width: 100%; }
+    .about-intro .side-links { justify-content: flex-end; }
     .about { width: auto; max-width: 600px; margin: 0 auto; padding: 60px 28px 56px; }
     .side-photo { position: static; width: auto; max-width: 544px; margin: 0 auto 28px; padding: 0 28px; overflow: visible; }
     .kodak-frame { max-height: none; }
@@ -124,18 +126,21 @@
   <a class="back" href="index.html" aria-label="Back to work"><span class="ar">←</span></a>
 
   <main class="about">
-    <p class="lead">Hi, I'm Diana Chalakova!</p>
+    <div class="about-intro">
+      <p class="lead">Hi, I'm Diana Chalakova!</p>
+      <div class="side-links">
+        <div class="side-links-right">
+          <a href="assets/Diana%20Chalakova%20Resume.pdf" target="_blank" rel="noopener">Resume</a>
+          <a href="mailto:dchalakova@outlook.com">Email</a>
+          <a href="https://www.linkedin.com/in/dchalakova/" target="_blank" rel="noopener">LinkedIn</a>
+        </div>
+      </div>
+    </div>
 
     <div class="bio">
       <p>I'm a product designer with 3+ years of experience spanning digital, analog, and hybrid digital-physical design, with a focus on AI-driven systems and human-computer interaction. I bring both hands-on technical fluency and rigorous research methods to complex design challenges and believe the best experiences are built when data, empathy, and craft work together. I use AI throughout my workflow to extend what's possible, explore directions, and prototype faster. I've always excelled at writing, which has been a massive boon to writing prompts and engaging tactfully with AI agents.</p>
       <p>Outside of class and work, I enjoy photography, painting, and have been training for a half-marathon!</p>
       <p class="creative-interests"><a href="https://interactive-lava-lamp-mini-creative-portfolio-1083914200933.us-west1.run.app/" target="_blank" rel="noopener" class="creative-link">Explore my creative interests here!</a></p>
-    </div>
-
-    <div class="mobile-links">
-      <a href="assets/Diana%20Chalakova%20Resume.pdf" target="_blank" rel="noopener">Resume</a>
-      <a href="mailto:dchalakova@outlook.com">Email</a>
-      <a href="https://www.linkedin.com/in/dchalakova/" target="_blank" rel="noopener">LinkedIn</a>
     </div>
 
     <section class="about-block">
@@ -195,19 +200,11 @@
   </main>
 
   <div class="side-photo">
-    <div class="side-links">
-      <div class="side-links-right">
-        <a href="assets/Diana%20Chalakova%20Resume.pdf" target="_blank" rel="noopener">Resume</a>
-        <a href="mailto:dchalakova@outlook.com">Email</a>
-        <a href="https://www.linkedin.com/in/dchalakova/" target="_blank" rel="noopener">LinkedIn</a>
-      </div>
-    </div>
     <figure class="kodak-gallery" aria-label="Photos from my Kodak camera">
       <figcaption>Some of my faves from my Kodak camera...it goes with me everywhere!</figcaption>
       <div class="kodak-frame">
         <img class="is-visible" src="assets/kodak/100_0014.jpg" alt="A favorite photograph from Diana's Kodak camera (1 of 14)" decoding="async" />
         <img alt="" aria-hidden="true" decoding="async" />
-        <button class="kodak-toggle" type="button" aria-label="Pause photo slideshow">Pause</button>
       </div>
     </figure>
   </div>
@@ -217,14 +214,9 @@
     var photos = ["assets/kodak/100_0014.jpg", "assets/kodak/100_0016.jpg", "assets/kodak/100_0018.jpg", "assets/kodak/100_0071.jpg", "assets/kodak/100_0230.jpg", "assets/kodak/100_0328.jpg", "assets/kodak/100_0333.jpg", "assets/kodak/100_0414.jpg", "assets/kodak/100_0445.jpg", "assets/kodak/100_0620.jpg", "assets/kodak/100_0623.jpg", "assets/kodak/100_0640.jpg", "assets/kodak/100_0762.jpg", "assets/kodak/100_0779.jpg"];
     var frame = document.querySelector('.kodak-frame');
     var slides = frame.querySelectorAll('img');
-    var toggle = frame.querySelector('button');
     var reduced = window.matchMedia('(prefers-reduced-motion: reduce)');
     var paused = reduced.matches;
     var index = 0, active = 0, timer, version = 0;
-    function label() {
-      toggle.textContent = paused ? 'Play' : 'Pause';
-      toggle.setAttribute('aria-label', (paused ? 'Play' : 'Pause') + ' photo slideshow');
-    }
     function schedule() {
       clearTimeout(timer);
       if (!paused && !document.hidden) timer = setTimeout(advance, 5000);
@@ -251,10 +243,8 @@
       index = next;
       schedule();
     }
-    toggle.addEventListener('click', function () { paused = !paused; version++; label(); schedule(); });
-    reduced.addEventListener('change', function () { paused = reduced.matches; version++; label(); schedule(); });
+    reduced.addEventListener('change', function () { paused = reduced.matches; version++; schedule(); });
     document.addEventListener('visibilitychange', function () { version++; schedule(); });
-    label();
     schedule();
   })();
   </script>
