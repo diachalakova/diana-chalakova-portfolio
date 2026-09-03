@@ -69,8 +69,18 @@
   .side-links a:hover { color: #fff; }
   .side-links a:hover::before { height: 100%; }
 
-  .creative-link { font: inherit; color: inherit; text-decoration: underline; text-underline-offset: 3px; }
-  .creative-link:hover { color: inherit; }
+  .creative-link {
+    position: relative; display: inline-block; isolation: isolate;
+    margin-left: 4px; padding: 2px 6px; font: inherit; color: inherit; text-decoration: none;
+    transition: color .18s ease .02s;
+  }
+  .creative-link::before {
+    content: ""; position: absolute; left: 0; right: 0; bottom: 0; height: 0;
+    background: #D8576C; z-index: -1;
+    transition: height .24s cubic-bezier(.3,.7,.2,1);
+  }
+  .creative-link:hover { color: #fff; }
+  .creative-link:hover::before { height: 100%; }
 
   /* blocks */
   .about-block { margin-top: 54px; }
@@ -140,8 +150,7 @@
 
     <div class="bio">
       <p>I'm a product designer with 3+ years of experience spanning digital, analog, and hybrid digital-physical design, with a focus on AI-driven systems and human-computer interaction. I bring both hands-on technical fluency and rigorous research methods to complex design challenges and believe the best experiences are built when data, empathy, and craft work together. I am able to use AI to extend what's possible, explore directions, and ship faster.</p>
-      <p>Outside of class and work, I enjoy photography, painting, and have been training for a half-marathon!</p>
-      <p class="creative-interests"><a href="https://interactive-lava-lamp-mini-creative-portfolio-1083914200933.us-west1.run.app/" target="_blank" rel="noopener" class="creative-link">Explore my creative interests here!</a></p>
+      <p>Outside of class and work, I enjoy photography, painting, and have been training for a half-marathon! <a href="https://interactive-lava-lamp-mini-creative-portfolio-1083914200933.us-west1.run.app/" target="_blank" rel="noopener" class="creative-link">Explore my creative interests here!</a></p>
     </div>
 
     <section class="about-block">
