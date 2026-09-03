@@ -99,8 +99,9 @@
   .kodak-gallery { margin: auto 0 0; flex-shrink: 0; }
   .kodak-gallery figcaption { margin-bottom: 12px; font-size: 12.5px; line-height: 1.75; color: #3a342e; }
   .kodak-frame { position: relative; width: 100%; aspect-ratio: 4 / 3; max-height: max(180px, calc(100dvh - 290px)); overflow: hidden; border-radius: 0; background: #f4f1ed; }
-  .kodak-frame img { position: absolute; inset: 0; display: block; width: 100%; height: 100%; object-fit: cover; transform: translateX(100%); }
-  .kodak-frame img.is-visible { transform: translateX(0); }
+  .kodak-frame img { position: absolute; inset: 0; display: block; width: 100%; height: 100%; object-fit: cover; visibility: hidden; transform: translate3d(100%, 0, 0); backface-visibility: hidden; will-change: transform; }
+  .kodak-frame img.is-visible { visibility: visible; transform: translate3d(0, 0, 0); }
+  .kodak-frame img.is-entering { visibility: visible; z-index: 1; }
 
   .mobile-links { display: none; }
   @media (max-width: 760px) {
@@ -215,36 +216,72 @@
     var frame = document.querySelector('.kodak-frame');
     var slides = frame.querySelectorAll('img');
     var reduced = window.matchMedia('(prefers-reduced-motion: reduce)');
-    var paused = reduced.matches;
     var index = 0, active = 0, timer, version = 0;
+    var prepared, transition = null;
+
+    // Decode the next photo while the current one is on screen.
+    function prepare() {
+      var target = slides[1 - active];
+      target.src = photos[(index + 1) % photos.length];
+      prepared = target.decode().then(function () { return true; }, function () { return false; });
+    }
     function schedule() {
       clearTimeout(timer);
-      if (!paused && !document.hidden) timer = setTimeout(advance, 5000);
+      if (!reduced.matches && !document.hidden) timer = setTimeout(advance, 5000);
+    }
+    function settle() {
+      if (!transition) return;
+      var current = transition;
+      transition = null;
+      // Commit final visibility before removing animation effects.
+      current.target.classList.add('is-visible');
+      current.target.classList.remove('is-entering');
+      current.target.removeAttribute('aria-hidden');
+      current.outgoing.classList.remove('is-visible');
+      current.outgoing.setAttribute('aria-hidden', 'true');
+      active = 1 - active;
+      index = (index + 1) % photos.length;
+      current.animations.forEach(function (animation) { animation.cancel(); });
+      prepare();
+    }
+    function motionFrames(incoming) {
+      var frames = [];
+      var end = 1 - 9 * Math.exp(-8);
+      for (var step = 0; step <= 60; step++) {
+        var t = step / 60;
+        // Critically damped spring: accelerates gently and settles without a gap-producing bounce.
+        var progress = step === 60 ? 1 : (1 - (1 + 8 * t) * Math.exp(-8 * t)) / end;
+        var x = incoming ? 100 * (1 - progress) : -18 * progress;
+        frames.push({ transform: 'translate3d(' + x + '%, 0, 0)', offset: t });
+      }
+      return frames;
     }
     async function advance() {
       var request = ++version;
-      var next = (index + 1) % photos.length;
-      var target = slides[1 - active];
-      target.src = photos[next];
-      try { await target.decode(); } catch (error) { schedule(); return; }
-      if (request !== version || paused || document.hidden) return;
-      target.alt = "A favorite photograph from Diana's Kodak camera (" + (next + 1) + ' of ' + photos.length + ')';
-      target.removeAttribute('aria-hidden');
-      var outgoing = slides[active];
-      target.classList.add('is-visible');
-      outgoing.classList.remove('is-visible');
-      outgoing.setAttribute('aria-hidden', 'true');
-      if (!reduced.matches && typeof target.animate === 'function') {
-        var timing = { duration: 650, easing: 'cubic-bezier(.22, 1, .36, 1)' };
-        target.animate([{ transform: 'translateX(100%)' }, { transform: 'translateX(0)' }], timing);
-        outgoing.animate([{ transform: 'translateX(0)' }, { transform: 'translateX(-100%)' }], timing);
+      if (!await prepared) { prepare(); schedule(); return; }
+      if (request !== version || reduced.matches || document.hidden) return;
+      var target = slides[1 - active], outgoing = slides[active];
+      target.alt = "A favorite photograph from Diana's Kodak camera (" + ((index + 1) % photos.length + 1) + ' of ' + photos.length + ')';
+      transition = { target: target, outgoing: outgoing, animations: [] };
+      if (typeof target.animate === 'function') {
+        target.classList.add('is-entering');
+        // The outgoing photo remains underneath throughout, so the frame never becomes empty.
+        var timing = { duration: 850, easing: 'linear', fill: 'both' };
+        transition.animations = [target.animate(motionFrames(true), timing), outgoing.animate(motionFrames(false), timing)];
+        await Promise.all(transition.animations.map(function (animation) { return animation.finished.catch(function () {}); }));
+        if (request !== version) return;
       }
-      active = 1 - active;
-      index = next;
+      settle();
       schedule();
     }
-    reduced.addEventListener('change', function () { paused = reduced.matches; version++; schedule(); });
-    document.addEventListener('visibilitychange', function () { version++; schedule(); });
+    function suspendOrResume() {
+      version++;
+      settle();
+      schedule();
+    }
+    reduced.addEventListener('change', suspendOrResume);
+    document.addEventListener('visibilitychange', suspendOrResume);
+    prepare();
     schedule();
   })();
   </script>
