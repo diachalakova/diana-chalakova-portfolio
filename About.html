@@ -236,7 +236,7 @@
     }
     function schedule() {
       clearTimeout(timer);
-      if (!reduced.matches && !document.hidden) timer = setTimeout(advance, 5000);
+      if (!reduced.matches && !document.hidden) timer = setTimeout(advance, 3000);
     }
     function settle() {
       if (!transition) return;
