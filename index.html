@@ -37,7 +37,8 @@
 
   /* line divider between the header and the work grid — bows away from the cursor */
   .flower-divider {
-    margin: 6px 0 18px; height: 36px; cursor: default;
+    /* Keep the centered line in place while removing empty space beneath it. */
+    margin: 16px 0 8px; height: 16px; cursor: default;
   }
   .flower-divider svg { display: block; width: 100%; height: 100%; overflow: visible; }
   .flower-divider path {
@@ -61,6 +62,25 @@
     .masthead .tag { grid-column: 1 / -1; order: 3; }
   }
 
+  .project-filters {
+    display: flex; gap: 10px; margin: 0 0 8px;
+    font-family: var(--mono); font-size: 13px;
+  }
+  .project-filters button {
+    position: relative; padding: 4px 7px; border: 0; background: transparent;
+    color: var(--ink); font: inherit; cursor: pointer; isolation: isolate;
+    transition: color .18s ease .02s;
+  }
+  .project-filters button::before {
+    content: ""; position: absolute; left: 0; right: 0; bottom: 0; height: 0;
+    background: #D8576C; z-index: -1;
+    transition: height .24s cubic-bezier(.3,.7,.2,1);
+  }
+  .project-filters button:hover { color: #fff; }
+  .project-filters button:hover::before { height: 100%; }
+  .project-filters button[aria-pressed="true"] { color: #D8576C; }
+  .project-filters button[aria-pressed="true"]:hover { color: #fff; }
+
   .intro-line {
     display: flex; align-items: baseline; justify-content: space-between; gap: 20px;
     padding: 14px 0 26px; border-bottom: 2px solid var(--ink); margin-bottom: 36px; flex-wrap: wrap;
@@ -68,19 +88,19 @@
   .intro-line .big { font-family: var(--display); font-weight: 800; font-size: clamp(20px,2vw,28px); letter-spacing: -0.01em; }
   .intro-line .meta { font-family: var(--mono); font-size: 12px; color: var(--ink-soft); display: flex; gap: 18px; }
 
-  /* masonry: two independent column containers */
-  .masonry { display: grid; grid-template-columns: 1fr 1fr; gap: 28px; align-items: start; }
-  .masonry .col-l, .masonry .col-r { display: flex; flex-direction: column; gap: 28px; }
+  /* Shared grid rows keep neighboring case studies aligned. */
+  .masonry { position: relative; display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 28px; align-items: stretch; }
   @media (max-width: 720px) { .masonry { grid-template-columns: 1fr; } .hide-mobile { display: none; } }
 
   .pcard {
-    display: block; break-inside: avoid; margin-bottom: 28px;
-    background: var(--paper); border: 1.5px solid rgba(27,23,20,0.28);
-    overflow: hidden; border-radius: 0;
+    display: flex; flex-direction: column; min-width: 0; margin: 0;
+    background: var(--paper); border: 1px solid rgba(27,23,20,0.16);
+    overflow: hidden; border-radius: 5px;
   }
+  .pcard[hidden] { display: none; }
   .pcard .ph { overflow: hidden; }
   .pcard .ph {
-    position: relative; aspect-ratio: var(--ar, 4/3);
+    position: relative; aspect-ratio: 16 / 10; flex-shrink: 0;
     background: #F5F5F5;
     display: flex; align-items: center; justify-content: center;
   }
@@ -94,7 +114,7 @@
     border-radius: 5px; overflow: hidden;
   }
   .pcard .ph .screen video { width: 100%; height: 100%; object-fit: cover; display: block; }
-  .pcard .ph .thumb { width: 100%; height: 100%; object-fit: cover; display: block; transition: transform .45s cubic-bezier(.2,.7,.2,1); }
+  .pcard .ph .thumb { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; display: block; transition: transform .45s cubic-bezier(.2,.7,.2,1); }
   .pcard .ph .screen video { transition: transform .45s cubic-bezier(.2,.7,.2,1); }
   .pcard:hover .ph .thumb, .pcard:hover .ph .screen video { transform: scale(1.06); }
   .pcard .ph .thumb.thumb--ctx { transform: none; }
@@ -113,9 +133,10 @@
   .pcard .cap .t { font-family: var(--display); font-weight: 800; font-size: clamp(22px,2.4vw,30px); letter-spacing: -0.015em; line-height: 1; flex: 0 1 auto; min-width: 0; }
   .pcard .cap .y { font-family: var(--mono); font-size: 12px; color: var(--ink-soft); }
   .pcard .d { padding: 0 18px 9px; color: var(--ink-soft); font-size: 14px; }
-  .pcard .impact { margin: 0; padding: 0 18px 18px; font-family: var(--mono); font-size: 11.5px; line-height: 1.45; font-weight: 700; letter-spacing: 0.01em; color: #866168; display: flex; gap: 7px; align-items: baseline; }
+  .pcard .impact { margin: auto 0 0; padding: 0 18px 18px; font-family: var(--mono); font-size: 11.5px; line-height: 1.45; font-weight: 700; letter-spacing: 0.01em; color: #866168; display: flex; gap: 7px; align-items: baseline; }
   .pcard .impact::before { content: "\2192"; flex: none; opacity: 0.85; }
   .pcard .tagrow { padding: 0; display: flex; gap: 7px; flex-wrap: wrap; justify-content: flex-end; flex: 0 1 auto; }
+  .pcard[href="directions/contextpath.html"] .tagrow { flex-wrap: nowrap; flex-shrink: 0; white-space: nowrap; }
   .pcard .tagrow span { font-family: var(--mono); font-size: 10.5px; letter-spacing: 0.03em; color: var(--ink-soft); border: 1px solid rgba(27,23,20,0.3); border-radius: 4px; padding: 4px 9px; }
 
   /* bottom credit line */
@@ -135,94 +156,94 @@
 
     <div class="flower-divider" aria-hidden="true"></div>
 
+    <div class="project-filters" role="group" aria-label="Filter projects">
+      <button type="button" data-filter="all" aria-pressed="true">all</button>
+      <button type="button" data-filter="ux" aria-pressed="false">ux</button>
+      <button type="button" data-filter="creative" aria-pressed="false">creative</button>
+      <button type="button" data-filter="ai" aria-pressed="false">ai</button>
+    </div>
+
     <main class="masonry" style="margin-top:0;">
-      <div class="col-l">
-      <!-- LEFT COLUMN -->
-      <a class="pcard" href="directions/flux.html" style="--ar:16/10; --sb:#EAE0CC; --accent:#684726;">
+      <a class="pcard" data-categories="ux" href="directions/flux.html" style="--ar:16/10; --sb:#EAE0CC; --accent:#684726;">
         <div class="ph" style="background:#F2F2F2;"><img class="thumb" src="assets/work/flux-card.jpg" alt="FLUX thesis show poster — circle cutouts revealing photos and the flux wordmark" fetchpriority="high" decoding="async" /></div>
         <div class="cap"><span class="t">Flux</span><div class="tagrow"><span>Web</span><span>0→1</span><span>Cross-Collaboration</span></div></div>
         <div class="d">Public thesis website for the Parsons School of Design's Design and Technology program.</div>
         <h3 class="impact">Launched for a 200+ attendee showcase, scaled across 170+ pages.</h3>
       </a>
 
-      <a class="pcard" href="directions/arc-security.html" style="--ar:1/1; --sb:#E7EAF0; --accent:#2148C9;">
-        <div class="ph" style="background:#F2F2F2;"><img class="thumb" src="assets/work/arc-card.jpg" alt="The Arc safety app — Safety Mode, home schedule, and insights screens" loading="lazy" style="object-fit:contain; padding:34px 30px; box-sizing:border-box;" /></div>
-        <div class="cap"><span class="t">Arc Security</span><div class="tagrow"><span>Internship</span><span>UX/UI</span><span>Cross-Collaboration</span></div></div>
-        <div class="d">Reimagining safety for real estate agents.</div>
-        <h3 class="impact">Led a team in a hi-fi prototype addressing a fear 33% of real estate agents report.</h3>
-      </a>
-
-      <a class="pcard" href="directions/contextpath.html" style="--ar:16/9; --sb:#EFE4D6; --accent:#C8102E;">
-        <div class="ph" style="background:#EC012A;">
-          <video class="thumb thumb--ctx thumb--ctx-video ctx-vid" src="assets/work/contextpath-cover-card.mp4" muted loop playsinline style="width:100%;height:100%;object-fit:cover;display:block;"></video>
-          <img class="thumb thumb--ctx thumb--ctx-still" src="assets/work/contextpath-cover-card-still.jpg" alt="Anthropic x The Met gradient" />
-        </div>
-        <div class="cap"><span class="t">ContextPath</span><div class="tagrow"><span class="hide-mobile">Product Design</span><span>AI Integration</span><span>Figma MCP</span></div></div>
-        <div class="d">AI visitor companion app for the MET's collaboration with Anthropic.</div>
-        <h3 class="impact">Designed a working prototype in a single one-day Anthropic × Met hackathon.</h3>
-      </a>
-
-      <a class="pcard" href="https://dchalakova.github.io/mo_amongthetrees/" target="_blank" rel="noopener" style="--ar:6/5; --sb:#E2E6E9; --accent:#463121;">
-        <div class="ph" style="background:#F2F2F2;"><img class="thumb" src="assets/work/among-the-trees-ipad-web.jpg" alt="The Among The Trees interactive site shown on an iPad Pro — Mary Oliver's poem set in a circular arrangement with a typographic-transformation menu" loading="lazy" style="object-fit:contain; padding:10px 14px; box-sizing:border-box;" /></div>
-        <div class="cap"><span class="t">Among The Trees</span><div class="tagrow"><span>AI</span><span>Interaction</span><span>Live Website</span></div></div>
-        <div class="d">Investigating the interplay between text and form with AI, using Mary Oliver's <em>When I Am Among The Trees</em> as a canvas for typographic experimentation.</div>
-        <h3 class="impact">Shipped as a live, interactive typographic experiment.</h3>
-      </a>
-
-      <a class="pcard" href="directions/watch-out.html" style="--ar:16/10; --sb:#F2DEC6; --accent:#5F1B29;">
-        <div class="ph" style="background:#F2F2F2; overflow:hidden;"><img class="thumb" src="assets/work/watchout-cover.jpg" alt="A warm illustrated cabin in an evergreen forest at sunset — the opening frame of the Watch Out film" loading="lazy" /></div>
-        <div class="cap"><span class="t">Watch Out</span><div class="tagrow"><span>AI</span><span>Rapid Prototyping</span><span>Award-Winning</span></div></div>
-        <div class="d">Award-winning AI-generated video for wildlife preservation and fire prevention.</div>
-        <h3 class="impact">Won the Human + AI Co-Creation Award, made in a one-hour sprint.</h3>
-      </a>
-
-      </div><!-- end col-l -->
-      <div class="col-r">
-      <!-- RIGHT COLUMN -->
-      <a class="pcard" href="directions/seal.html" style="--ar:16/10; --sb:#ECE7F5; --accent:#4B2E83;">
+      <a class="pcard" data-categories="ux" href="directions/seal.html" style="--ar:16/10; --sb:#ECE7F5; --accent:#4B2E83;">
         <div class="ph" style="background:#F2F2F2;"><img class="thumb" src="assets/work/seal-card.png" alt="The redesigned SEAL lab dashboard, shown on a laptop" fetchpriority="high" decoding="async" style="object-fit:cover;" /></div>
-        <div class="cap"><span class="t">SEAL</span><div class="tagrow"><span>Internship</span><span>UX/UI</span><span>Usability</span></div></div>
+        <div class="cap"><span class="t">SEAL</span><div class="tagrow"><span>Internship</span><span>Usability</span></div></div>
         <div class="d">Internal dashboard for 300+ engineers.</div>
         <h3 class="impact">73% faster task completion, 85% improved workflow efficiency, and user satisfaction up 40%.</h3>
       </a>
 
-      <a class="pcard" href="directions/through-ais-eyes.html" style="--ar:4/3; --sb:#E6EFE8; --accent:#2C6E49;">
+      <a class="pcard" data-categories="ux" href="directions/arc-security.html" style="--ar:1/1; --sb:#E7EAF0; --accent:#2148C9;">
+        <div class="ph" style="background:#F2F2F2;"><img class="thumb" src="assets/work/arc-card.jpg" alt="The Arc safety app — Safety Mode, home schedule, and insights screens" loading="lazy" style="object-fit:contain; padding:34px 30px; box-sizing:border-box;" /></div>
+        <div class="cap"><span class="t">Arc Security</span><div class="tagrow"><span>Internship</span><span>Cross-Collaboration</span></div></div>
+        <div class="d">Reimagining safety for real estate agents.</div>
+        <h3 class="impact">Led a team in a hi-fi prototype addressing a fear 33% of real estate agents report.</h3>
+      </a>
+
+      <a class="pcard" data-categories="creative" href="directions/through-ais-eyes.html" style="--ar:4/3; --sb:#E6EFE8; --accent:#2C6E49;">
         <div class="ph" style="background:#ffffff; overflow:hidden; display:flex; flex-direction:column; align-items:center; justify-content:center; gap:20px; border-bottom: 1px solid #e0e0e0;">
           <video muted loop playsinline class="mos-logo-vid" style="width:30%; display:block;">
             <source src="assets/work/mos-logo.mp4" type="video/mp4">
           </video>
           <div style="font-family:'Archivo',Arial,sans-serif; font-weight:700; font-size:clamp(14px,2.8vw,42px); color:#fd0e00; white-space:nowrap; letter-spacing:0.01em;">Museum of Science</div>
         </div>
-        <div class="cap"><span class="t">Through AI's Eyes</span><div class="tagrow"><span>Interaction</span><span>Usability</span><span>Stakeholders</span></div></div>
+        <div class="cap"><span class="t">Through AI's Eyes</span><div class="tagrow"><span>Interaction</span><span>Usability</span></div></div>
         <div class="d">Teaching AI object recognition principles through an interactive installation in the Museum of Science.</div>
         <h3 class="impact">26.7% of tested visitors learned something new about AI.</h3>
       </a>
 
-      <a class="pcard" href="directions/for-stillness.html" style="--ar:16/11; --sb:#ECE6D8; --accent:#3E6B66;">
+      <a class="pcard" data-categories="ux ai" href="directions/contextpath.html" style="--ar:16/9; --sb:#EFE4D6; --accent:#C8102E;">
+        <div class="ph" style="background:#EC012A;">
+          <video class="thumb thumb--ctx thumb--ctx-video ctx-vid" src="assets/work/contextpath-cover-card.mp4" muted loop playsinline style="width:100%;height:100%;object-fit:cover;display:block;"></video>
+          <img class="thumb thumb--ctx thumb--ctx-still" src="assets/work/contextpath-cover-card-still.jpg" alt="Anthropic x The Met gradient" />
+        </div>
+        <div class="cap"><span class="t">ContextPath</span><div class="tagrow"><span>AI</span><span>Figma MCP</span></div></div>
+        <div class="d">AI visitor companion for the MET's collab with Anthropic.</div>
+        <h3 class="impact">Designed a working prototype in a single one-day Anthropic × Met hackathon.</h3>
+      </a>
+
+      <a class="pcard" data-categories="creative" href="directions/for-stillness.html" style="--ar:16/11; --sb:#ECE6D8; --accent:#3E6B66;">
         <div class="ph" style="background:#F2F2F2;"><img class="thumb" src="assets/work/stillness-cover.jpg" alt="The For Stillness pop-up book held open to a layered orange funnel pop-up spread" loading="lazy" /></div>
         <div class="cap"><span class="t">For Stillness</span><div class="tagrow"><span>Product</span><span>Visual Design</span></div></div>
         <div class="d">Analog interaction design in a digital world.</div>
         <h3 class="impact">A solo, hand-bound pop-up book from concept to final print.</h3>
       </a>
 
-      <a class="pcard" href="directions/atlas.html" style="--ar:4/3; --sb:#ECE3FB; --accent:#5B24BF;">
+      <a class="pcard" data-categories="ai creative" href="https://dchalakova.github.io/mo_amongthetrees/" target="_blank" rel="noopener" style="--ar:6/5; --sb:#E2E6E9; --accent:#463121;">
+        <div class="ph" style="background:#F2F2F2;"><img class="thumb" src="assets/work/among-the-trees-ipad-web.jpg" alt="The Among The Trees interactive site shown on an iPad Pro — Mary Oliver's poem set in a circular arrangement with a typographic-transformation menu" loading="lazy" style="object-fit:contain; padding:10px 14px; box-sizing:border-box;" /></div>
+        <div class="cap"><span class="t">Among The Trees</span><div class="tagrow"><span>AI</span><span>Interaction</span><span>Live Website</span></div></div>
+        <div class="d">Investigating the interplay between text and form with AI, using Mary Oliver's <em>When I Am Among The Trees</em> as a canvas for typographic experimentation.</div>
+        <h3 class="impact">Shipped as a live, interactive typographic experiment.</h3>
+      </a>
+
+      <a class="pcard" data-categories="ux ai" href="directions/atlas.html" style="--ar:4/3; --sb:#ECE3FB; --accent:#5B24BF;">
         <div class="ph" style="background:#F2F2F2;"><img class="thumb" src="assets/work/atlas-hero.jpg" alt="The Atlas app on two iPhones — a campus discovery home screen and a place detail page" loading="lazy" style="object-fit:contain; padding:22px 24px; box-sizing:border-box;" /></div>
-        <div class="cap"><span class="t">Atlas</span><div class="tagrow"><span>UX/UI</span><span>Startup</span><span>AI Integration</span></div></div>
+        <div class="cap"><span class="t">Atlas</span><div class="tagrow"><span>Startup</span><span>AI Integration</span></div></div>
         <div class="d">Founding designer at a pre-seed EdTech startup for a campus navigation app connecting users to resources across their community.</div>
         <h3 class="impact">Placed top third of 117 teams at the UW Dempsey Startup Competition, supporting a $56K seed ask.</h3>
       </a>
 
-      <a class="pcard" href="directions/cairn.html" style="--ar:4/3; --sb:#E8EDE8; --accent:#3A6B3A;">
+      <a class="pcard" data-categories="creative ai" href="directions/watch-out.html" style="--ar:16/10; --sb:#F2DEC6; --accent:#5F1B29;">
+        <div class="ph" style="background:#F2F2F2; overflow:hidden;"><img class="thumb" src="assets/work/watchout-cover.jpg" alt="A warm illustrated cabin in an evergreen forest at sunset — the opening frame of the Watch Out film" loading="lazy" /></div>
+        <div class="cap"><span class="t">Watch Out</span><div class="tagrow"><span>AI</span><span>Rapid Prototyping</span><span>Award-Winning</span></div></div>
+        <div class="d">Award-winning AI-generated video for wildlife preservation and fire prevention.</div>
+        <h3 class="impact">Won the Human + AI Co-Creation Award, made in a one-hour sprint.</h3>
+      </a>
+
+      <a class="pcard" data-categories="creative" href="directions/cairn.html" style="--ar:4/3; --sb:#E8EDE8; --accent:#3A6B3A;">
         <div class="ph" style="background:#F0F0EE;"><img class="thumb" src="assets/work/cairn-card.jpg" alt="Cairn — a 3D-printed white stone-stack object threaded with green moss, glowing from between its blocks" loading="lazy" style="object-fit:cover;" /></div>
         <div class="cap"><span class="t">Cairn</span><div class="tagrow"><span>IoT</span><span>AI</span><span>Data Viz</span></div></div>
         <div class="d">A speculative IoT smart home system that builds a digital portrait of a home's emotional climate.</div>
         <h3 class="impact">Proposing the future of smart home sensing systems.</h3>
       </a>
 
-      </div><!-- end col-r -->
-
       <!-- CAIRN — working on case study before launch. Uncomment to restore.
-      <a class="pcard" href="directions/cairn.html" style="--ar:1/1; --sb:#E5E1D6; --accent:#51703C;">
+      <a class="pcard" data-categories="creative" href="directions/cairn.html" style="--ar:1/1; --sb:#E5E1D6; --accent:#51703C;">
         <div class="ph" style="background:#C7C4BF;"><img class="thumb thumb--cairn" src="assets/work/cairn-card.png" alt="Cairn — a 3D-printed white stone-stack lamp threaded with green moss, glowing warmly beside an amber glass vessel" decoding="async" /></div>
         <div class="cap"><span class="t">Cairn</span><div class="tagrow"><span>MFA Thesis</span><span>Speculative Design</span><span>Product Design</span><span>AI Integration</span></div></div>
         <div class="d">A speculative IoT smart home system that builds a digital portrait of a home's emotional climate — an extension of the quantified self.</div>
@@ -231,7 +252,7 @@
       -->
     </main>
 
-    <div class="made-credit">Made with Claude Design + Code. Diana Chalakova 2026 All Rights Reserved</div>
+    <div class="made-credit">Made with Claude Code &amp; OpenAI's Codex. Diana Chalakova 2026 All Rights Reserved</div>
   </div>
 
   <script>
@@ -347,6 +368,93 @@
     })();
   </script>
   <script>
+    (function() {
+      var filters = Array.prototype.slice.call(document.querySelectorAll('.project-filters button'));
+      var grid = document.querySelector('.masonry');
+      var cards = Array.prototype.slice.call(grid.querySelectorAll('.pcard'));
+      var reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)');
+      var animations = [];
+      var departing = [];
+      var selected = 'all';
+
+      function clearMotion() {
+        animations.forEach(function(animation) { animation.cancel(); });
+        animations = [];
+        departing.forEach(function(card) { card.remove(); });
+        departing = [];
+      }
+
+      // Sample a damped spring: quick acceleration, a small overshoot, then rest.
+      function springFrames(dx, dy, entering) {
+        var frames = [];
+        for (var step = 0; step <= 48; step++) {
+          var t = step / 48;
+          var remaining = step === 48 ? 0 : Math.exp(-8 * t) * (Math.cos(10 * t) + 0.8 * Math.sin(10 * t));
+          frames.push({
+            transform: 'translate(' + (dx * remaining) + 'px,' + (dy * remaining) + 'px) scale(' + (entering ? 1 - 0.025 * remaining : 1) + ')',
+            opacity: entering ? Math.min(1, t * 4) : 1,
+            offset: t
+          });
+        }
+        return frames;
+      }
+
+      filters.forEach(function(button) {
+        button.addEventListener('click', function() {
+          var category = button.dataset.filter;
+          if (category === selected) return;
+          selected = category;
+          // Read rendered positions before cancelling an interrupted transition.
+          var before = new Map();
+          cards.forEach(function(card) {
+            if (!card.hidden) before.set(card, card.getBoundingClientRect());
+          });
+          clearMotion();
+          var animate = !reduceMotion.matches && typeof grid.animate === 'function';
+          var gridRect = grid.getBoundingClientRect();
+          filters.forEach(function(item) { item.setAttribute('aria-pressed', String(item === button)); });
+          cards.forEach(function(card) {
+            var hide = category !== 'all' && card.dataset.categories.split(' ').indexOf(category) === -1;
+            var oldRect = before.get(card);
+            if (hide && oldRect && animate) {
+              // Non-interactive copies fade away without reserving grid space.
+              var ghost = card.cloneNode(true);
+              ghost.removeAttribute('id');
+              ghost.querySelectorAll('[id]').forEach(function(item) { item.removeAttribute('id'); });
+              ghost.setAttribute('aria-hidden', 'true');
+              ghost.inert = true;
+              ghost.tabIndex = -1;
+              ghost.style.cssText = card.style.cssText + ';position:absolute;pointer-events:none;margin:0;z-index:1;left:' + (oldRect.left - gridRect.left) + 'px;top:' + (oldRect.top - gridRect.top) + 'px;width:' + oldRect.width + 'px;height:' + oldRect.height + 'px;';
+              grid.appendChild(ghost);
+              departing.push(ghost);
+              var fade = ghost.animate([{ opacity: 1, transform: 'scale(1)' }, { opacity: 0, transform: 'scale(.975)' }], { duration: 160, easing: 'ease-out', fill: 'forwards' });
+              fade.onfinish = function() { ghost.remove(); };
+              animations.push(fade);
+            }
+            card.hidden = hide;
+            if (hide) {
+              card.querySelectorAll('video').forEach(function(video) { video.pause(); });
+            } else {
+              grid.appendChild(card);
+            }
+          });
+          if (animate) {
+            // Measure the final layout together before starting any motion.
+            var after = new Map();
+            cards.forEach(function(card) { if (!card.hidden) after.set(card, card.getBoundingClientRect()); });
+            after.forEach(function(rect, card) {
+              var oldRect = before.get(card);
+              var dx = oldRect ? oldRect.left - rect.left : 0;
+              var dy = oldRect ? oldRect.top - rect.top : 18;
+              animations.push(card.animate(springFrames(dx, dy, !oldRect), { duration: 620, easing: 'linear' }));
+            });
+          }
+        });
+      });
+      window.addEventListener('resize', clearMotion);
+      reduceMotion.addEventListener('change', clearMotion);
+    })();
+
     (function() {
       var c = document.getElementById('cursor');
       if (!c) return;

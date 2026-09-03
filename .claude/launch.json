@@ -3,9 +3,8 @@
   "configurations": [
     {
       "name": "portfolio",
-      "runtimeExecutable": "npx",
+      "runtimeExecutable": "/Users/dchala/Desktop/diana-chalakova-portfolio:index/project/diana-chalakova-portfolio/node_modules/.bin/browser-sync",
       "runtimeArgs": [
-        "browser-sync",
         "start",
         "--server",
         "--port", "3456",
