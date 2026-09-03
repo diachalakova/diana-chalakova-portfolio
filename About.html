@@ -51,7 +51,7 @@
   /* right-side links, sitting above the photo */
   .side-links {
     display: flex; justify-content: space-between; align-items: center;
-    margin-bottom: 12px; gap: 8px;
+    margin-bottom: 0; gap: 8px; flex-wrap: wrap;
   }
   .side-links-right { display: flex; align-items: center; gap: 2px; }
   .side-links a {
@@ -67,6 +67,9 @@
   }
   .side-links a:hover { color: #fff; }
   .side-links a:hover::before { height: 100%; }
+
+  .creative-link { color: var(--ink); text-decoration: underline; text-underline-offset: 3px; transition: color .18s ease; }
+  .creative-link:hover { color: var(--bright); }
 
   /* blocks */
   .about-block { margin-top: 54px; }
@@ -90,15 +93,21 @@
   /* bottom credit */
   .made-credit { font-family: var(--mono); font-weight: 400; font-size: 11px; letter-spacing: 0.04em; color: var(--ink-soft); margin-top: 64px; }
 
-  /* RIGHT column — image, fixed to the bottom and filled to the column width */
-  .side-photo { position: fixed; right: 20px; bottom: 20px; width: 42%; z-index: 5; }
-  .side-photo img { display: block; width: 100%; height: auto; }
+  /* Links align with the first bio line; the photo stays near the bottom. */
+  .side-photo { position: fixed; right: 20px; top: 141.3px; bottom: 20px; width: 42%; z-index: 5; display: flex; flex-direction: column; gap: 28px; overflow-y: auto; }
+  .kodak-gallery { margin: auto 0 0; flex-shrink: 0; }
+  .kodak-gallery figcaption { margin-bottom: 12px; font-size: 12.5px; line-height: 1.75; color: #3a342e; }
+  .kodak-frame { position: relative; width: 100%; aspect-ratio: 4 / 3; max-height: max(180px, calc(100dvh - 290px)); overflow: hidden; border-radius: 5px; background: #f4f1ed; }
+  .kodak-frame img { position: absolute; inset: 0; display: block; width: 100%; height: 100%; object-fit: cover; transform: translateX(100%); }
+  .kodak-frame img.is-visible { transform: translateX(0); }
+  .kodak-toggle { position: absolute; right: 10px; bottom: 10px; z-index: 2; border: 1px solid rgba(27,23,20,.16); border-radius: 4px; padding: 5px 9px; background: rgba(255,255,255,.92); color: var(--ink); font-family: var(--mono); font-size: 11px; cursor: pointer; }
 
   .mobile-links { display: none; }
   @media (max-width: 760px) {
     .about { width: auto; max-width: 600px; margin: 0 auto; padding: 60px 28px 56px; }
-    .side-photo { display: none; }
-    .mobile-links { display: flex; flex-direction: row; justify-content: space-between; align-items: center; margin-top: 20px; }
+    .side-photo { position: static; width: auto; max-width: 544px; margin: 0 auto 28px; padding: 0 28px; overflow: visible; }
+    .kodak-frame { max-height: none; }
+    .mobile-links { display: none; flex-direction: row; justify-content: space-between; align-items: center; margin-top: 20px; }
     .mobile-links a {
       font-family: var(--mono); font-weight: 400; font-size: 12.5px; letter-spacing: 0.02em; color: var(--ink);
       display: inline-flex; align-items: center; gap: 4px; padding-bottom: 2px;
@@ -120,6 +129,7 @@
     <div class="bio">
       <p>I'm a product designer with 3+ years of experience spanning digital, analog, and hybrid digital-physical design, with a focus on AI-driven systems and human-computer interaction. I bring both hands-on technical fluency and rigorous research methods to complex design challenges and believe the best experiences are built when data, empathy, and craft work together. I use AI throughout my workflow to extend what's possible, explore directions, and prototype faster. I've always excelled at writing, which has been a massive boon to writing prompts and engaging tactfully with AI agents.</p>
       <p>Outside of class and work, I enjoy photography, painting, and have been training for a half-marathon!</p>
+      <p class="creative-interests"><a href="https://interactive-lava-lamp-mini-creative-portfolio-1083914200933.us-west1.run.app/" target="_blank" rel="noopener" class="creative-link">Explore my creative interests here!</a></p>
     </div>
 
     <div class="mobile-links">
@@ -181,20 +191,73 @@
       <p class="langs-line">English (Native), Bulgarian (Fluent), French (Working)</p>
     </section>
 
-    <div class="made-credit">Made with Claude Design + Code. Diana Chalakova 2026 All Rights Reserved</div>
+    <div class="made-credit">Made with code and a shaken brown sugar espresso latte. Diana Chalakova 2026 - All Rights Reserved.</div>
   </main>
 
   <div class="side-photo">
     <div class="side-links">
-      <a href="https://interactive-lava-lamp-mini-creative-portfolio-1083914200933.us-west1.run.app/" target="_blank" rel="noopener">Explore My Creative Interests!</a>
       <div class="side-links-right">
         <a href="assets/Diana%20Chalakova%20Resume.pdf" target="_blank" rel="noopener">Resume</a>
         <a href="mailto:dchalakova@outlook.com">Email</a>
         <a href="https://www.linkedin.com/in/dchalakova/" target="_blank" rel="noopener">LinkedIn</a>
       </div>
     </div>
-    <img src="assets/about-portrait.jpg" alt="Diana Chalakova, holding a compact camera in a mirror" loading="lazy" />
+    <figure class="kodak-gallery" aria-label="Photos from my Kodak camera">
+      <figcaption>Some of my faves from my Kodak camera...it goes with me everywhere!</figcaption>
+      <div class="kodak-frame">
+        <img class="is-visible" src="assets/kodak/100_0014.jpg" alt="A favorite photograph from Diana's Kodak camera (1 of 14)" decoding="async" />
+        <img alt="" aria-hidden="true" decoding="async" />
+        <button class="kodak-toggle" type="button" aria-label="Pause photo slideshow">Pause</button>
+      </div>
+    </figure>
   </div>
+
+  <script>
+  (function () {
+    var photos = ["assets/kodak/100_0014.jpg", "assets/kodak/100_0016.jpg", "assets/kodak/100_0018.jpg", "assets/kodak/100_0071.jpg", "assets/kodak/100_0230.jpg", "assets/kodak/100_0328.jpg", "assets/kodak/100_0333.jpg", "assets/kodak/100_0414.jpg", "assets/kodak/100_0445.jpg", "assets/kodak/100_0620.jpg", "assets/kodak/100_0623.jpg", "assets/kodak/100_0640.jpg", "assets/kodak/100_0762.jpg", "assets/kodak/100_0779.jpg"];
+    var frame = document.querySelector('.kodak-frame');
+    var slides = frame.querySelectorAll('img');
+    var toggle = frame.querySelector('button');
+    var reduced = window.matchMedia('(prefers-reduced-motion: reduce)');
+    var paused = reduced.matches;
+    var index = 0, active = 0, timer, version = 0;
+    function label() {
+      toggle.textContent = paused ? 'Play' : 'Pause';
+      toggle.setAttribute('aria-label', (paused ? 'Play' : 'Pause') + ' photo slideshow');
+    }
+    function schedule() {
+      clearTimeout(timer);
+      if (!paused && !document.hidden) timer = setTimeout(advance, 5000);
+    }
+    async function advance() {
+      var request = ++version;
+      var next = (index + 1) % photos.length;
+      var target = slides[1 - active];
+      target.src = photos[next];
+      try { await target.decode(); } catch (error) { schedule(); return; }
+      if (request !== version || paused || document.hidden) return;
+      target.alt = "A favorite photograph from Diana's Kodak camera (" + (next + 1) + ' of ' + photos.length + ')';
+      target.removeAttribute('aria-hidden');
+      var outgoing = slides[active];
+      target.classList.add('is-visible');
+      outgoing.classList.remove('is-visible');
+      outgoing.setAttribute('aria-hidden', 'true');
+      if (!reduced.matches && typeof target.animate === 'function') {
+        var timing = { duration: 650, easing: 'cubic-bezier(.22, 1, .36, 1)' };
+        target.animate([{ transform: 'translateX(100%)' }, { transform: 'translateX(0)' }], timing);
+        outgoing.animate([{ transform: 'translateX(0)' }, { transform: 'translateX(-100%)' }], timing);
+      }
+      active = 1 - active;
+      index = next;
+      schedule();
+    }
+    toggle.addEventListener('click', function () { paused = !paused; version++; label(); schedule(); });
+    reduced.addEventListener('change', function () { paused = reduced.matches; version++; label(); schedule(); });
+    document.addEventListener('visibilitychange', function () { version++; schedule(); });
+    label();
+    schedule();
+  })();
+  </script>
 
   <canvas id="dust" aria-hidden="true"></canvas>
   <script>
