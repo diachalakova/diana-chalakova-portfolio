@@ -4,12 +4,12 @@
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 <title>Flux | Diana C</title>
-<meta name="description" content="Flux — a public thesis website for Parsons School of Design's Design & Technology program. A case study by Diana Chalakova." />
+<meta name="description" content="Flux, a public thesis website for Parsons School of Design's Design & Technology program. A case study by Diana Chalakova." />
 <meta name="author" content="Diana Chalakova" />
 <meta name="theme-color" content="#ffffff" />
 <link rel="icon" type="image/svg+xml" href="../assets/favicon.svg" />
 <meta property="og:type" content="article" />
-<meta property="og:title" content="Flux — Diana Chalakova" />
+<meta property="og:title" content="Flux | Diana Chalakova" />
 <meta property="og:description" content="A public thesis website for Parsons School of Design's Design & Technology program." />
 <meta property="og:image" content="../assets/work/flux-card.jpg" />
 <meta name="twitter:card" content="summary_large_image" />
@@ -22,7 +22,7 @@
     --paper: #ffffff; --bright: #F5392B;
     --hair: rgba(27,23,20,0.12);
     --hair-soft: rgba(27,23,20,0.08);
-    /* Flux brand colors — accents in the MAIN column only. Lemon & lilac never
+    /* Flux brand colors, accents in the MAIN column only. Lemon & lilac never
        carry text on white (they fail contrast); they sit BEHIND dark text as
        highlights / little buttons. Taupe & charcoal pass AA as text on white. */
     --lilac: #B8B0FF; --lemon: #EBFF6A; --sand: #E3CEAF;
@@ -220,9 +220,10 @@
       <a class="back" href="../index.html" aria-label="Back to all work"><span class="ar">←</span></a>
       <nav class="cs-nav" aria-label="Sections">
         <a href="#overview"     data-spy>Overview</a>
-        <a href="#branding"     data-spy>Branding</a>
-        <a href="#ideation"     data-spy>Ideation</a>
+        <a href="#problem"      data-spy>Problem</a>
         <a href="#architecture" data-spy>Architecture</a>
+        <a href="#branding"     data-spy>Visual System</a>
+        <a href="#ideation"     data-spy>Iteration</a>
         <a href="#solution"     data-spy>Solution</a>
         <a href="#reflection"   data-spy>Reflection</a>
       </nav>
@@ -238,10 +239,10 @@
         <h1 class="cs-hero-title">Flux</h1>
         <div class="ov-grid">
           <div class="meta-list">
-            <p><span class="k">role</span> — Lead UX Designer</p>
-            <p><span class="k">timeline</span> — Jan – May 2026 (5 months)</p>
-            <p><span class="k">team</span> — 8-person design, branding &amp; dev team</p>
-            <p><span class="k">tools</span> — Figma · Webflow</p>
+            <p><span class="k">role</span>: Lead UX Designer</p>
+            <p><span class="k">timeline</span>: Jan – May 2026 (5 months)</p>
+            <p><span class="k">team</span>: 8-person design, branding &amp; dev team</p>
+            <p><span class="k">tools</span>: Figma · Webflow</p>
           </div>
           <div class="ov-lead-wrap">
             <p class="ov-lead">I led end-to-end design for Flux, the public thesis exhibition site for Parsons' MFA Design &amp; Technology program. I delivered a fully responsive design system on Webflow CMS, scaled across <span class="hl-lemon">170+ pages</span> with developer-ready prototypes, restructured the program's information architecture for the first time, and coordinated design, branding, and development to an on-schedule launch, a two-day showcase with <span class="hl-lemon">200+ attendees</span>.</p>
@@ -254,13 +255,48 @@
         <a class="visit-btn" href="https://parsons.edu/dt-2026/" target="_blank" rel="noopener">Visit live site <span class="ar">↗</span></a>
       </section>
 
+
+      <!-- PROBLEM -->
+      <section id="problem" class="cs-sec">
+        <div class="sec-tag">Problem &amp; Constraints</div>
+        <div class="sec-grid">
+          <div><h2 class="cs-h">One exhibition had to represent a multidisciplinary cohort without sacrificing usability.</h2></div>
+          <div class="cs-copy">
+            <p>Flux needed to give student, project, and exhibition content one coherent public experience while preserving the experimental identity of Parsons' Design and Technology program. Previous thesis sites also blurred the distinction between browsing designers and browsing their work, sending both journeys to essentially the same destination.</p>
+            <p>The new site had to feel expressive enough to represent a cohort spanning creative technology, UX research, game design, and bio-design, without presenting the program as communication-design-only.</p>
+          </div>
+        </div>
+        <div class="sec-grid" style="margin-top:44px;">
+          <div><h2 class="cs-h">A fixed launch date, an evolving identity, and 170+ responsive pages.</h2></div>
+          <div class="cs-copy">
+            <p>I was translating a newly developed identity into a working product while coordinating an eight-person branding, design, and development team. The system had to preserve strict visual rules, support CMS-generated content across desktop and mobile, and give our developer enough runway to launch before the two-day exhibition.</p>
+          </div>
+        </div>
+      </section>
+
+      <!-- ARCHITECTURE -->
+      <section id="architecture" class="cs-sec">
+        <div class="sec-tag">Information Architecture</div>
+        <div class="sec-grid">
+          <div><h2 class="cs-h">Previous sites treated designers and their projects as the same journey.</h2></div>
+          <div class="cs-copy">
+            <p>Reviewing previous thesis sites revealed two overlapping journeys. The "Events" tab repeated information already available on the home page, while the <span class="em">"People" tab</span> sent visitors to a person's <span class="em">project</span> just as the "Projects" tab did.</p>
+            <p>I reframed the structure around visitor intent: People should help someone understand the <span class="mark">designer themselves</span>, while Projects should foreground the work. I proposed distinct page types, moved the event schedule into About, and kept designers and projects connected through contextual links rather than forcing both journeys through the same destination.</p>
+          </div>
+        </div>
+        <div class="media media--pad">
+          <img class="shot" src="../assets/brand/web/information-architecture.png" alt="Information architecture, before and after the restructure" loading="lazy" />
+          <div class="cap">The revised structure removes the redundant Events destination and separates People from Projects by visitor intent.</div>
+        </div>
+      </section>
+
       <!-- BRANDING -->
       <section id="branding" class="cs-sec">
-        <div class="sec-tag">Branding</div>
+        <div class="sec-tag">Visual System</div>
         <div class="sec-grid">
-          <div><h2 class="cs-h">A system of circles, lemon &amp; lilac.</h2></div>
+          <div><h2 class="cs-h">Turning an expressive identity into a repeatable interface system.</h2></div>
           <div class="cs-copy">
-            <p>I collaborated on the brand handoff and translated it into a responsive web system. The identity runs on two primaries (<span class="em">lemon and lilac</span>, never in focus together), a typographic pairing of Helvetica Neue caps with Instrumental Serif italics, and a visual language of <span class="em">outlined, filled, and photo-cutout circles</span>: the dots are holes in a top layer that reveal a meaningful image of the program beneath.</p>
+            <p>I collaborated on the brand handoff and translated it into a responsive web system. The identity's strict rules (<span class="em">lemon and lilac</span> never in focus together, Helvetica Neue caps paired with Instrumental Serif italics, and <span class="em">outlined, filled, and photo-cutout circles</span>) became reusable layout and interaction rules rather than one-off compositions.</p>
           </div>
         </div>
 
@@ -273,80 +309,52 @@
           <div><div class="chip" style="background:#2F2D29;"></div><div class="nm">Charcoal</div><div class="hex">#2F2D29</div></div>
         </div>
         <div class="media">
-          <img class="shot" src="../assets/brand/web/logo.png" alt="Flux logo — connected serif with lemon glow" loading="lazy" />
-          <div class="cap">A connected serif with stroke + texture; lemon/lilac highlights on dark grounds.</div>
-        </div>
-        <div class="media">
-          <img class="shot" src="../assets/brand/web/elements.png" alt="Visual elements — outlined, filled, photo-cutout circles" loading="lazy" />
-          <div class="cap">Outlined, filled, and photo-cutout circles that transition outline → photo.</div>
-        </div>
-        <div class="media">
-          <img class="shot" src="../assets/brand/web/typography.png" alt="Typography — Helvetica Neue caps with Instrumental Serif italics" loading="lazy" />
-          <div class="cap">Helvetica Neue (caps) + Instrumental Serif (italics, no caps), split across two lines.</div>
-        </div>
-        <div class="media">
-          <img class="shot" src="../assets/brand/web/grid.png" alt="Grid system — square cells" loading="lazy" />
-          <div class="cap">Always-square cells; 80/100px margins, 20px padding, text set top/bottom-left.</div>
+          <img class="shot" src="../assets/brand/web/flux-visual-system.jpg" alt="Flux visual system showing the logo, grid, typography rules, and circle elements" loading="lazy" decoding="async" />
+          <div class="cap">One system connects the logo, square-cell grid, typography, and circle interactions across every page type.</div>
         </div>
       </section>
 
       <!-- IDEATION -->
       <section id="ideation" class="cs-sec">
-        <div class="sec-tag">Ideation</div>
+        <div class="sec-tag">Iteration</div>
         <div class="sec-grid">
-          <div><h2 class="cs-h">Balancing the program's funkiness with real usability.</h2></div>
+          <div><h2 class="cs-h">Testing how far the identity could stretch without losing clarity.</h2></div>
           <div class="cs-copy">
-            <p>The goal was a balance between the uniqueness of the Design and Technology program, its visual aesthetic, and usability. The program is home to many different design interests, and its students are proud of that, so we needed to be <span class="mark">"funky" enough to honor it</span> without branding ourselves as a communication-design-only program.</p>
+            <p>Each direction had to preserve the cohort's experimental character while remaining legible, responsive, repeatable through the CMS, and feasible within the launch schedule. We needed to be <span class="mark">"funky" enough to honor the program</span> without letting the identity overpower its students' work.</p>
           </div>
         </div>
 
         <div class="block">
           <h3 class="subhead">Wireframe</h3>
           <div class="media media--inset" style="background:#F2F2F2;">
-            <img class="shot" src="../assets/work/flux-wireframe.png" alt="Flux wireframe — dots as holes revealing a bottom layer" loading="lazy" />
-            <div class="cap">Dots as holes in a top layer, revealing the image beneath.</div>
+            <img class="shot" src="../assets/work/flux-wireframe.png" alt="Flux wireframe, with dots acting as holes that reveal a bottom layer" loading="lazy" />
+            <div class="cap">The wireframe established the layered-circle mechanic and repeatable content zones before visual styling.</div>
           </div>
           <div class="cs-copy block-copy">
-            <p>All of us experimented with ways to translate the dotted pattern to the web. We settled on this wireframe as the basis for the high-fidelity prototyping that followed, the idea being that the dots are holes on a top layer that reveal a bottom layer, ideally an image meaningful to the program.</p>
+            <p>The team explored ways to translate the dotted pattern to the web. This wireframe established the central interaction, with circles acting as openings in a top layer, and gave the developer an early view of how the system would organize content.</p>
           </div>
         </div>
 
         <div class="block">
           <h3 class="subhead">Rapid hi-fi prototyping</h3>
           <div class="media">
-            <img class="shot" src="../assets/work/flux-rapid-1.png" alt="Rapid hi-fi prototype explorations — lemon circles & blur photography" loading="lazy" />
-            <div class="cap">Rapid explorations across many aesthetics and presentations of the brand.</div>
+            <img class="shot" src="../assets/work/flux-rapid-1.png" alt="Rapid high-fidelity prototype explorations with lemon circles and blurred photography" loading="lazy" />
+            <div class="cap">Alternative directions tested color balance, circle density, imagery, and how strongly the identity competed with content.</div>
           </div>
           <div class="cs-copy block-copy">
-            <p>This became a prolonged but very rapid sprint through many aesthetics and presentations of the branding guidelines, figuring out quickly what resonated most with the cohort so our developer had enough runway before launch.</p>
+            <p>We moved quickly through high-fidelity directions because visual consensus and development could not happen sequentially. The explorations compared color balance, circle density, imagery, and content hierarchy while our developer still had enough runway before launch.</p>
           </div>
         </div>
 
         <div class="block">
           <h3 class="subhead">Option 3 &amp; "Coming Soon"</h3>
-          <div class="duo-img">
-            <div class="media" style="background:#F2F2F2;"><img class="shot" src="../assets/work/flux-comingsoon-1.png" alt="Coming Soon page — desktop breakpoint" loading="lazy" /></div>
-            <div class="media" style="background:#F2F2F2;"><img class="shot" src="../assets/work/flux-comingsoon-2.png" alt="Coming Soon page — tablet & mobile breakpoints" loading="lazy" /></div>
+          <div class="media" style="background:#F2F2F2;">
+            <img class="shot" src="../assets/work/flux-comingsoon-2.png" alt="Coming Soon page across desktop, tablet, and mobile breakpoints" loading="lazy" />
+            <div class="cap">One responsive view shows how the selected direction adapted across desktop, tablet, and mobile.</div>
           </div>
           <div class="cs-copy block-copy">
-            <p>Option three earned the most positive reviews. Many felt the Lemon color overpowered the base, so we swapped some filled circles for open ones. We shipped a responsive "Coming Soon" page to the public link two weeks before the full site launched, shown here across breakpoints.</p>
+            <p>The cohort responded most positively to option three, but the amount of lemon competed with the content. We converted selected filled circles to outlines, preserving the identity while creating more breathing room and hierarchy. The revised direction shipped as a responsive "Coming Soon" page two weeks before the full launch.</p>
           </div>
-        </div>
-      </section>
-
-      <!-- ARCHITECTURE -->
-      <section id="architecture" class="cs-sec">
-        <div class="sec-tag">Information Architecture</div>
-        <div class="sec-grid">
-          <div><h2 class="cs-h">The critical consideration of user intention.</h2></div>
-          <div class="cs-copy">
-            <p>Looking through previous years' thesis sites, I found a serious information-architecture issue. Beyond an "Events" tab that duplicated the home page, the real problem was the <span class="em">"People" tab</span>: it sent viewers to a person's <span class="em">project</span> the same way the "Project" tab did, instead of telling them about the person.</p>
-            <p>My point to the team: if a viewer is on the "People" tab, their intent is to learn about the <span class="mark">designer themselves</span>, not the project. Linking the project to the designer still matters, but landing on the same page regardless of intent was bad IA and a lack of user consideration, so I insisted we fix it.</p>
-          </div>
-        </div>
-        <div class="media media--pad">
-          <img class="shot" src="../assets/brand/web/information-architecture.png" alt="Information architecture — before and after restructure" loading="lazy" />
-          <div class="cap">Before / after of the information architecture I restructured.</div>
         </div>
       </section>
 
@@ -356,18 +364,7 @@
         <div class="sec-grid">
           <div><h2 class="cs-h">A fully responsive system, scaled across 170+ pages.</h2></div>
           <div class="cs-copy">
-            <p>Built on Webflow CMS architecture with developer-ready prototypes, Flux launched on schedule for a two-day showcase with 200+ attendees, the program's first thesis site with a deliberately restructured information architecture.</p>
-          </div>
-        </div>
-
-        <div class="block">
-          <h3 class="subhead">Home page</h3>
-          <div class="media">
-            <video class="shot" src="../assets/brand/web/home-solution-flux.mp4" muted loop autoplay playsinline preload="metadata" style="display:block;width:100%;height:auto;"></video>
-            <div class="cap">Clicking a circle reveals the halftone floor beneath.</div>
-          </div>
-          <div class="cs-copy block-copy">
-            <p>An interactive hero that reveals a halftone image of the program's floor when a circle is clicked, dots as holes uncovering the layer beneath. On scroll, the two days' RSVPs and links to previous years' thesis sites appear.</p>
+            <p>Built on Webflow CMS architecture with developer-ready prototypes, Flux launched on schedule across 170+ responsive pages for a two-day showcase attended by 200+ people. The launch demonstrates delivery at scale; this case study does not attribute attendance to the site or claim a measured usability improvement.</p>
           </div>
         </div>
 
@@ -375,7 +372,7 @@
           <h3 class="subhead">People page</h3>
           <div class="media">
             <video class="shot" src="../assets/brand/web/people-flux.mp4" muted loop autoplay playsinline preload="metadata" style="display:block;width:100%;height:auto;"></video>
-            <div class="cap">Grid of graduating students, each opening to a personal page.</div>
+            <div class="cap">The People journey now opens a designer-focused page with a bio, thesis summary, and links to additional work.</div>
           </div>
           <div class="cs-copy block-copy">
             <p>A grid of that year's graduating students; open a student to read their bio, a summary of their thesis, and more of their projects.</p>
@@ -386,38 +383,28 @@
           <h3 class="subhead">Project page</h3>
           <div class="media">
             <video class="shot" src="../assets/brand/web/project-flux.mp4" muted loop autoplay playsinline preload="metadata" style="display:block;width:100%;height:auto;"></video>
-            <div class="cap">Grid of projects, each with abstract, categories, and faculty.</div>
+            <div class="cap">The Projects journey foregrounds the work, including its abstract, categories, faculty, and designer attribution.</div>
           </div>
           <div class="cs-copy block-copy">
             <p>A grid of projects; each shows the project's abstract, categories, thesis faculty, and the student's own description.</p>
           </div>
         </div>
 
-        <div class="block">
-          <h3 class="subhead">About page</h3>
-          <div class="media">
-            <video class="shot" src="../assets/brand/web/about-flux.mp4" muted loop autoplay playsinline preload="metadata" style="display:block;width:100%;height:auto;"></video>
-            <div class="cap">Theme, schedule, acknowledgments, and the Sven Travis cursor nod.</div>
-          </div>
-          <div class="cs-copy block-copy">
-            <p>The show's theme, full schedule, and acknowledgments, including a playful nod to founder Sven Travis, whose face the cursor becomes on hover, marking his retirement this year.</p>
-          </div>
-        </div>
 
       </section>
 
       <!-- REFLECTION -->
       <section id="reflection" class="cs-sec">
         <div class="sec-tag">Reflection</div>
-        <h2 class="cs-h refl-h">To The Best Team</h2>
+        <h2 class="cs-h refl-h">Expression works best when the system underneath it is clear.</h2>
         <div class="cs-copy refl-copy">
           <div class="col">
-            <p>Leading the design for Flux was one of the most rewarding experiences of my time at Parsons, and that's entirely because of the people I got to build it with.</p>
-            <p>To my eight-person team: watching everyone bring their ideas to the table, push through rounds of rapid prototyping, and trust each other through the hard decisions made this project something I'm genuinely proud of. The creativity, the openness to feedback, and the commitment to getting it right all the way down to the smallest details made every late night worth it.</p>
+            <p>Flux taught me that translating a bold identity into a digital product is an exercise in restraint. The strongest direction was not the one with the most visual expression; it was the one that gave the identity clear rules and left room for the students' work.</p>
+            <p>Separating People from Projects reinforced the same lesson at the structural level: a visually polished site still fails if it does not respect why someone arrived.</p>
           </div>
           <div class="col">
-            <p>What we launched together is a reflection of all of you, and I couldn't have asked for a better team to do it with. Thank you.</p>
-            <p>A special extra thank you to my co-leads, <a href="https://rin.kim/projects" target="_blank" rel="noopener">Rin Kim</a> and <a href="https://pranavchaparala.com/projects.html" target="_blank" rel="noopener">Pranav Chaparala</a> — you're the best!</p>
+            <p>Leading an eight-person team under a fixed exhibition deadline also meant building alignment quickly enough for development to move. Rapid prototypes made feedback concrete, while the responsive Coming Soon page let us validate the direction in public before the full launch.</p>
+            <p>Flux was created with my co-leads, <a href="https://rin.kim/projects" target="_blank" rel="noopener">Rin Kim</a> and <a href="https://pranavchaparala.com/projects.html" target="_blank" rel="noopener">Pranav Chaparala</a>, and our design, branding, and development team.</p>
           </div>
         </div>
       </section>
