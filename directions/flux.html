@@ -221,10 +221,10 @@
       <nav class="cs-nav" aria-label="Sections">
         <a href="#overview"     data-spy>Overview</a>
         <a href="#problem"      data-spy>Problem</a>
+        <a href="#solution"     data-spy>Solution</a>
         <a href="#architecture" data-spy>Architecture</a>
         <a href="#branding"     data-spy>Visual System</a>
         <a href="#ideation"     data-spy>Iteration</a>
-        <a href="#solution"     data-spy>Solution</a>
         <a href="#reflection"   data-spy>Reflection</a>
       </nav>
       <span class="spark" aria-hidden="true">
@@ -260,18 +260,54 @@
       <section id="problem" class="cs-sec">
         <div class="sec-tag">Problem &amp; Constraints</div>
         <div class="sec-grid">
-          <div><h2 class="cs-h">One exhibition had to represent a multidisciplinary cohort without sacrificing usability.</h2></div>
+          <div><h2 class="cs-h">One exhibition had to represent a multidisciplinary cohort across 170+ responsive pages without sacrificing usability.</h2></div>
           <div class="cs-copy">
             <p>Flux needed to give student, project, and exhibition content one coherent public experience while preserving the experimental identity of Parsons' Design and Technology program. Previous thesis sites also blurred the distinction between browsing designers and browsing their work, sending both journeys to essentially the same destination.</p>
-            <p>The new site had to feel expressive enough to represent a cohort spanning creative technology, UX research, game design, and bio-design, without presenting the program as communication-design-only.</p>
+            <p>The site had to feel expressive enough to represent a cohort spanning creative technology, UX research, game design, and bio-design, without presenting the program as communication-design-only.</p>
+            <p>At the same time, I was translating an evolving identity into a working product while coordinating an eight-person branding, design, and development team. The system had to preserve strict visual rules, support CMS-generated content across desktop and mobile, and give our developer enough runway to meet a fixed launch date.</p>
           </div>
         </div>
-        <div class="sec-grid" style="margin-top:44px;">
-          <div><h2 class="cs-h">A fixed launch date, an evolving identity, and 170+ responsive pages.</h2></div>
+      </section>
+
+      <!-- SOLUTION -->
+      <section id="solution" class="cs-sec">
+        <div class="sec-tag">Final Solution</div>
+        <div class="sec-grid">
+          <div><h2 class="cs-h">A fully responsive system, scaled across 170+ pages.</h2></div>
           <div class="cs-copy">
-            <p>I was translating a newly developed identity into a working product while coordinating an eight-person branding, design, and development team. The system had to preserve strict visual rules, support CMS-generated content across desktop and mobile, and give our developer enough runway to launch before the two-day exhibition.</p>
+            <p>Built in WordPress with developer-ready prototypes and custom interactions, Flux launched on schedule across 170+ responsive pages for a two-day showcase attended by 200+ people. The launch demonstrates delivery at scale; this case study does not attribute attendance to the site or claim a measured usability improvement.</p>
           </div>
         </div>
+        <div class="block">
+          <h3 class="subhead">From Figma to WordPress with Gemini</h3>
+          <div class="cs-copy block-copy">
+            <p>After finalizing the visual layouts in Figma, we gave Gemini screenshots of the approved designs and described the interactions we wanted to create. We used its HTML, CSS, and JavaScript output as a starting point for bringing those interactions into WordPress, then refined the implementation so it matched the visual system and worked across screen sizes.</p>
+          </div>
+        </div>
+
+        <div class="block">
+          <h3 class="subhead">People page</h3>
+          <div class="media">
+            <video class="shot" src="../assets/brand/web/people-flux.mp4" muted loop autoplay playsinline preload="metadata" style="display:block;width:100%;height:auto;"></video>
+            <div class="cap">The People journey now opens a designer-focused page with a bio, thesis summary, and links to additional work.</div>
+          </div>
+          <div class="cs-copy block-copy">
+            <p>A grid of that year's graduating students; open a student to read their bio, a summary of their thesis, and more of their projects.</p>
+          </div>
+        </div>
+
+        <div class="block">
+          <h3 class="subhead">Project page</h3>
+          <div class="media">
+            <video class="shot" src="../assets/brand/web/project-flux.mp4" muted loop autoplay playsinline preload="metadata" style="display:block;width:100%;height:auto;"></video>
+            <div class="cap">The Projects journey foregrounds the work, including its abstract, categories, faculty, and designer attribution.</div>
+          </div>
+          <div class="cs-copy block-copy">
+            <p>A grid of projects; each shows the project's abstract, categories, thesis faculty, and the student's own description.</p>
+          </div>
+        </div>
+
+
       </section>
 
       <!-- ARCHITECTURE -->
@@ -356,47 +392,6 @@
             <p>The cohort responded most positively to option three, but the amount of lemon competed with the content. We converted selected filled circles to outlines, preserving the identity while creating more breathing room and hierarchy. The revised direction shipped as a responsive "Coming Soon" page two weeks before the full launch.</p>
           </div>
         </div>
-
-        <div class="block">
-          <h3 class="subhead">From Figma to WordPress with Gemini</h3>
-          <div class="cs-copy block-copy">
-            <p>After finalizing the visual layouts in Figma, we gave Gemini screenshots of the approved designs and described the interactions we wanted to create. We used its HTML, CSS, and JavaScript output as a starting point for bringing those interactions into WordPress, then refined the implementation so it matched the visual system and worked across screen sizes.</p>
-          </div>
-        </div>
-      </section>
-
-      <!-- SOLUTION -->
-      <section id="solution" class="cs-sec">
-        <div class="sec-tag">Final Solution</div>
-        <div class="sec-grid">
-          <div><h2 class="cs-h">A fully responsive system, scaled across 170+ pages.</h2></div>
-          <div class="cs-copy">
-            <p>Built in WordPress with developer-ready prototypes and custom interactions, Flux launched on schedule across 170+ responsive pages for a two-day showcase attended by 200+ people. The launch demonstrates delivery at scale; this case study does not attribute attendance to the site or claim a measured usability improvement.</p>
-          </div>
-        </div>
-
-        <div class="block">
-          <h3 class="subhead">People page</h3>
-          <div class="media">
-            <video class="shot" src="../assets/brand/web/people-flux.mp4" muted loop autoplay playsinline preload="metadata" style="display:block;width:100%;height:auto;"></video>
-            <div class="cap">The People journey now opens a designer-focused page with a bio, thesis summary, and links to additional work.</div>
-          </div>
-          <div class="cs-copy block-copy">
-            <p>A grid of that year's graduating students; open a student to read their bio, a summary of their thesis, and more of their projects.</p>
-          </div>
-        </div>
-
-        <div class="block">
-          <h3 class="subhead">Project page</h3>
-          <div class="media">
-            <video class="shot" src="../assets/brand/web/project-flux.mp4" muted loop autoplay playsinline preload="metadata" style="display:block;width:100%;height:auto;"></video>
-            <div class="cap">The Projects journey foregrounds the work, including its abstract, categories, faculty, and designer attribution.</div>
-          </div>
-          <div class="cs-copy block-copy">
-            <p>A grid of projects; each shows the project's abstract, categories, thesis faculty, and the student's own description.</p>
-          </div>
-        </div>
-
 
       </section>
 
