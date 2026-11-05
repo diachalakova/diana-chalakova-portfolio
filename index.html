@@ -49,7 +49,7 @@ a:focus-visible,button:focus-visible { outline:2px solid #000; outline-offset:4p
 .slideshow-next:hover { transform:translate(3px,-50%); }
 .slideshow-next .ar, .slideshow-prev .ar { font-size:28px; line-height:1; }
 .slideshow-control svg { width:13px; height:13px; fill:currentColor; }
-.intro { position:relative; z-index:3; font-size:10.05vw; margin-top:-.41em; padding:0 17px 30px; pointer-events:none; }
+.intro { position:relative; z-index:3; font-size:10.05vw; margin-top:calc(-1 * var(--title-overlap, .41em)); padding:0 17px 30px; pointer-events:none; }
 .intro h1 { -webkit-text-stroke:0.25px #fff; font-size:1em; font-weight:500; letter-spacing:-.025em; line-height:1; white-space:nowrap; margin:0 0 6px -8px; }
 .intro p { margin:0; font-size:clamp(16px,1.6vw,23px); font-weight:400; line-height:1.35; color:#414141; }
 .education { display:flex; flex-wrap:wrap; gap:18px; margin-top:19px; }
@@ -171,6 +171,35 @@ carousel.addEventListener('focusout',event=>{if(!carousel.contains(event.related
 document.addEventListener('visibilitychange',schedule);
 window.addEventListener('resize',measure);
 motion.addEventListener('change',()=>{paused=motion.matches;if(spring&&motion.matches){offset=spring.target;spring=null;paint();}updateControl();schedule();});
+// Align the slideshow edge with the top of the rendered H crossbar.
+function alignTitleCrossbar() {
+ const title=document.querySelector('.intro h1');
+ const style=getComputedStyle(title);
+ const size=parseFloat(style.fontSize);
+ const canvas=document.createElement('canvas');
+ canvas.width=Math.ceil(size*2); canvas.height=Math.ceil(size*2);
+ const ctx=canvas.getContext('2d', {willReadFrequently:true});
+ if(!ctx)return;
+ ctx.font=style.fontWeight+' '+style.fontSize+' '+style.fontFamily;
+ const metrics=ctx.measureText('H');
+ if(!Number.isFinite(metrics.fontBoundingBoxAscent)||!Number.isFinite(metrics.fontBoundingBoxDescent))return;
+ const baseline=Math.ceil(metrics.fontBoundingBoxAscent)+2;
+ ctx.fillText('H',2,baseline);
+ // The center of H contains only its crossbar, not either vertical stem.
+ const x=Math.round(2+metrics.width/2);
+ const pixels=ctx.getImageData(x,0,1,canvas.height).data;
+ for(let y=0;y<canvas.height;y++) {
+  if(pixels[y*4+3]<128)continue;
+  const lineHeight=parseFloat(style.lineHeight);
+  const textBaseline=(lineHeight-metrics.fontBoundingBoxAscent-metrics.fontBoundingBoxDescent)/2+metrics.fontBoundingBoxAscent;
+  const overlap=textBaseline+y-baseline;
+  document.querySelector('.intro').style.setProperty('--title-overlap',overlap+'px');
+  break;
+ }
+}
+alignTitleCrossbar();
+document.fonts.ready.then(alignTitleCrossbar);
+window.addEventListener('resize',alignTitleCrossbar);
 render();updateControl();
 
 </script>
