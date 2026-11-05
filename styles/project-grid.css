@@ -17,7 +17,7 @@ button { font:inherit; color:inherit; }
 .nav-links svg { width:17px; height:17px; fill:none; stroke:currentColor; stroke-width:1.4; }
 a:focus-visible,button:focus-visible { outline:2px solid #000; outline-offset:4px; }
 
-.home-nav { position:relative; top:auto; left:auto; right:auto; margin:25px 17px 0; }
+.home-nav { position:relative; top:auto; left:auto; right:auto; margin:30px 19px 0 17px; }
 .nav-pill { background:#f5f5f5; }
 .filters > a[aria-current="page"] { text-decoration:underline; text-underline-offset:4px; }
 .work-page { padding:48px 44px 48px; }

@@ -74,7 +74,7 @@
     font-family: var(--mono); font-size: 12px; letter-spacing: 0.16em; text-transform: uppercase;
     color: var(--taupe); margin-bottom: 44px;
   }
-  .sec-tag::after { content: ""; flex: 1; height: 1px; background: var(--hair); }
+  .sec-tag::after { content: none; }
 
   .sec-grid { display: grid; grid-template-columns: 1fr; gap: 22px; align-items: start; }
   .sec-grid .cs-copy { max-width: none; }
@@ -89,7 +89,7 @@
   @media (max-width: 640px) { .refl-copy .col + .col { margin-top: 16px; } }
 
   .cs-h { font-family: var(--display); font-weight: 700; letter-spacing: -0.02em; line-height: 1.04; margin: 0; font-size: clamp(26px, 3vw, 42px); }
-  .cs-main p { font-size: 15px; line-height: 1.62; margin: 0 0 18px; color: #2c2722; }
+  .cs-main p { font-size: 17px; line-height: 1.62; margin: 0 0 18px; color: #2c2722; }
   .cs-main p:last-child { margin-bottom: 0; }
   .cs-main p .mark, .hl-lemon, .hl-lav, .hl-sand, .hl-sage, .hl-cream, .hmw .hl, .pull .hl, .statement .hl { background: none !important; padding: 0 !important; }
   .cs-main p .em { color: var(--ink); font-weight: 600; }
@@ -104,11 +104,19 @@
 
   .cs-hero-title { font-family: var(--display); font-weight: 600; text-transform: uppercase; font-size: clamp(64px, 12vw, 156px); letter-spacing: -0.02em; line-height: 0.86; margin: 0; }
 
-  .ov-grid { display: grid; grid-template-columns: 300px minmax(0,1fr); gap: 56px; align-items: start; margin-top: 44px; border-top: 1px solid var(--hair); }
-  @media (max-width: 860px) { .ov-grid { grid-template-columns: 1fr; gap: 8px; } }
-  .meta-list p { font-size: 16px; line-height: 1.5; margin: 0; padding: 13px 0; border-bottom: 1px solid var(--hair-soft); color: #2c2722; }
-  .meta-list .k { color: var(--ink-soft); }
-  .ov-lead { font-size: clamp(15.5px,1.4vw,17px); line-height: 1.6; color: var(--ink); margin: 0; padding-top: 13px; }
+  .ov-grid { margin-top: 36px; }
+  .ov-lead { font-size: 17px; line-height: 1.6; color: var(--ink); margin: 0; }
+  .project-details { display: grid; grid-template-columns: 1fr 1fr; gap: 38px 56px; margin: 48px 0 0; }
+  .project-details > div { min-width: 0; }
+  .project-details dt { font-family: var(--sans); font-size: 13px; font-weight: 400; letter-spacing: .06em; text-transform: uppercase; color: #888; margin-bottom: 14px; }
+  .project-details dd { margin: 0; font-family: var(--sans); font-size: 17px; line-height: 1.5; color: #171717; }
+  .scope-tags { display: flex; flex-wrap: wrap; gap: 8px; }
+  .scope-tags span { background: #f5f5f5; border-radius: 6px; padding: 6px 10px; font-size: 14px; }
+  .tool-icons { display: flex; align-items: center; gap: 22px; }
+  .tool-icons img { display: block; width: 36px; height: 36px; object-fit: contain; }
+  .project-details a { display: inline-flex; gap: 10px; align-items: center; overflow-wrap: anywhere; }
+  .project-details a:hover { color: #D8576C; }
+  @media (max-width: 640px) { .project-details { grid-template-columns: 1fr; gap: 28px; } }
 
   .linkout { display: inline-flex; align-items: center; gap: 8px; font-family: var(--mono); font-size: 13px; color: var(--ink); border-bottom: 1px solid var(--ink); padding-bottom: 2px; margin-top: 18px; transition: color .2s ease, border-color .2s ease; }
   .ov-lead-wrap { position: relative; }
@@ -123,7 +131,8 @@
   .visit-btn:hover { background: transparent; color: var(--ink); transform: translateY(-2px); }
 
   /* media */
-  .media { border-radius: 14px; overflow: hidden; margin: 40px 0; border: 1px solid var(--hair-soft); background: #F6F3EC; }
+  .media { border-radius: 0; overflow: hidden; margin: 40px 0; border: 0; background: #F6F3EC; }
+  .cs-main img, .cs-main video { border: 0; border-radius: 0; }
   .media img.shot { display: block; width: 100%; height: auto; }
   .media--pad { background: #fff; }
   .media--pad img.shot { padding: 22px 24px 6px; box-sizing: border-box; }
@@ -135,7 +144,7 @@
     background: repeating-linear-gradient(45deg, rgba(27,23,20,0.04) 0 11px, transparent 11px 22px), var(--mb, #F1ECE2);
     display: flex; align-items: center; justify-content: center;
   }
-  .media .cap { font-family: var(--mono); font-size: 11.5px; color: var(--ink-soft); padding: 11px 15px; border-top: 1px solid var(--hair-soft); background: #fff; }
+  .media .cap { font-family: var(--mono); font-size: 11.5px; color: var(--ink-soft); padding: 11px 15px; border: 0; border-radius: 0; background: #fff; }
 
   .media-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); gap: 10px; margin: 36px 0; }
   .media-grid .ph { aspect-ratio: 3/4; border-radius: 10px; border: 1px solid var(--hair-soft); display: flex; align-items: center; justify-content: center; text-align: center;
@@ -156,7 +165,7 @@
   .palette .nm { font-family: var(--mono); font-size: 11.5px; color: var(--ink); margin-top: 9px; }
   .palette .hex { font-family: var(--mono); font-size: 11px; color: var(--ink-soft); margin-top: 2px; }
   @media (max-width: 640px) { .palette { grid-template-columns: repeat(3, 1fr); gap: 12px; } }
-  .brand-note { font-size: 15px; line-height: 1.55; color: var(--ink-soft); max-width: 62ch; margin: 0 0 8px; }
+  .brand-note { font-size: 17px; line-height: 1.55; color: var(--ink-soft); max-width: 62ch; margin: 0 0 8px; }
   .brand-note .em { color: var(--ink); font-weight: 600; }
 
   .pull { font-family: var(--display); font-weight: 600; font-size: clamp(23px,2.6vw,36px); line-height: 1.18; letter-spacing: -0.015em; margin: 12px 0 4px; max-width: 24ch; color: var(--ink); }
@@ -171,7 +180,7 @@
 
   .pages { display: grid; grid-template-columns: 1fr 1fr; gap: 30px 44px; margin-top: 14px; }
   .pages .pg h4 { font-family: var(--display); font-weight: 600; font-size: 18px; letter-spacing: -0.01em; margin: 0 0 8px; padding-top: 14px; border-top: 1px solid var(--hair); }
-  .pages .pg p { font-size: 15.5px; line-height: 1.55; margin: 0; }
+  .pages .pg p { font-size: 17px; line-height: 1.55; margin: 0; }
   @media (max-width: 640px) { .pages { grid-template-columns: 1fr; gap: 22px; } }
 
   .next { display: flex; align-items: center; justify-content: space-between; gap: 20px; border-top: 1px solid var(--hair); margin-top: 90px; padding-top: 30px; flex-wrap: wrap; }
@@ -211,6 +220,7 @@
     .cs-main { padding: 40px 24px 0; }
   }
 </style>
+<link rel="stylesheet" href="../styles/case-study-v1-5.css">
 </head>
 <body data-screen-label="Case study / Flux" class="has-cursor">
 <div id="cursor"></div>
@@ -238,12 +248,6 @@
       <section id="overview" class="cs-sec">
         <h1 class="cs-hero-title">Flux</h1>
         <div class="ov-grid">
-          <div class="meta-list">
-            <p><span class="k">role</span>: Lead UX Designer</p>
-            <p><span class="k">timeline</span>: Jan – May 2026 (5 months)</p>
-            <p><span class="k">team</span>: 8-person design, branding &amp; dev</p>
-            <p><span class="k">tools</span>: Figma · Gemini · WordPress</p>
-          </div>
           <div class="ov-lead-wrap">
             <p class="ov-lead">I led end-to-end design for Flux, the public thesis exhibition site for Parsons' MFA Design &amp; Technology program. I delivered a fully responsive design system on WordPress, using Gemini-generated HTML, CSS, and JavaScript as a starting point for custom interactions. I also restructured the program's information architecture for the first time and created developer-ready prototypes that scaled across <span class="hl-lemon">170+ pages</span>. The site launched on schedule for a two-day showcase with <span class="hl-lemon">200+ attendees</span>.</p>
           </div>
@@ -252,7 +256,14 @@
           <video class="shot" src="../assets/brand/web/home-flux.mp4" muted loop autoplay playsinline preload="metadata" style="display:block;width:100%;height:auto;"></video>
           <div class="cap">The publicly launched Design &amp; Technology thesis exhibition site.</div>
         </div>
-        <a class="visit-btn" href="https://parsons.edu/dt-2026/" target="_blank" rel="noopener">Visit live site <span class="ar">↗</span></a>
+        <dl class="project-details" aria-label="Project details">
+          <div><dt>Timeline</dt><dd>5 months<br>Jan – May 2026</dd></div>
+          <div><dt>Role</dt><dd>Lead UX Designer</dd></div>
+          <div><dt>Team</dt><dd>8-person design, branding &amp; dev</dd></div>
+          <div><dt>Scope</dt><dd class="scope-tags"><span>UX/UI Design</span><span>Information Architecture</span><span>Design Systems</span><span>Visual Identity</span></dd></div>
+          <div><dt>Tools</dt><dd class="tool-icons"><span class="tool-icon"><img src="../assets/tools/figma.svg" alt="" width="36" height="36"><span class="tool-name">Figma</span></span><span class="tool-icon"><img src="../assets/tools/gemini.svg" alt="" width="36" height="36"><span class="tool-name">Gemini</span></span><span class="tool-icon"><img src="../assets/tools/wordpress.svg" alt="" width="36" height="36"><span class="tool-name">WordPress</span></span></dd></div>
+          <div><dt>Live link</dt><dd><a href="https://parsons.edu/dt-2026/" target="_blank" rel="noopener">PARSONS.EDU/DT-2026 <span aria-hidden="true">↗</span></a></dd></div>
+        </dl>
       </section>
 
 
@@ -260,11 +271,9 @@
       <section id="problem" class="cs-sec">
         <div class="sec-tag">Problem &amp; Constraints</div>
         <div class="sec-grid">
-          <div><h2 class="cs-h">One exhibition had to represent a multidisciplinary cohort across 170+ responsive pages without sacrificing usability.</h2></div>
+          <div><h2 class="cs-h">One exhibition had to represent a multidisciplinary cohort without sacrificing usability.</h2></div>
           <div class="cs-copy">
-            <p>Flux needed to give student, project, and exhibition content one coherent public experience while preserving the experimental identity of Parsons' Design and Technology program. Previous thesis sites also blurred the distinction between browsing designers and browsing their work, sending both journeys to essentially the same destination.</p>
-            <p>The site had to feel expressive enough to represent a cohort spanning creative technology, UX research, game design, and bio-design, without presenting the program as communication-design-only.</p>
-            <p>At the same time, I was translating an evolving identity into a working product while coordinating an eight-person branding, design, and development team. The system had to preserve strict visual rules, support CMS-generated content across desktop and mobile, and give our developer enough runway to meet a fixed launch date.</p>
+            <p>Previous thesis sites blurred the distinction between browsing designers and their work, sending both journeys to essentially the same destination. The site had to feel expressive enough to represent a cohort spanning creative technology, UX research, game design, and bio-design, without presenting the program as communication-design-only.</p>
           </div>
         </div>
       </section>
@@ -275,7 +284,7 @@
         <div class="sec-grid">
           <div><h2 class="cs-h">Approved Figma layouts became responsive WordPress interactions with Gemini-assisted code.</h2></div>
           <div class="cs-copy">
-            <p>After finalizing the visual layouts in Figma, we gave Gemini screenshots of the approved designs and described the interactions we wanted to create. We used its HTML, CSS, and JavaScript output as a starting point, then refined the interactions in WordPress to match the visual system and work across screen sizes. Flux launched on schedule across 170+ responsive pages for a two-day showcase attended by 200+ people. The launch demonstrates delivery at scale; this case study does not attribute attendance to the site or claim a measured usability improvement.</p>
+            <p>After finalizing the visual layouts in Figma, we gave Gemini screenshots of the approved designs and described the interactions we wanted to create. We used its HTML, CSS, and JavaScript output as a starting point, then refined the interactions in WordPress to match the visual system and work across screen sizes.</p>
           </div>
         </div>
 

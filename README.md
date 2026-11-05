@@ -67,11 +67,14 @@ Add a `CNAME` file at the root containing your domain (e.g. `dianachalakova.com`
 
 © Diana Chalakova. All work and imagery belong to their respective owners.
 
-## Local versions
+## Portfolio versions
 
-- **V1.5** (`v1.5` branch): V2 slideshow landing page and project-category pages, linked to the original V1 individual project pages. This is the current local preview.
+- **V1.5** (`main` and `v1.5` branches; `V1.5-release` tag): slideshow landing page and project-category pages, with V1 case-study layouts updated with project metadata below the overview media, tool icons and labels, and borderless media. Published version.
 - **V2** (`v2` branch): the full redesign, including sticky-text case studies. Saved intact for future work.
 - **V1** (`V1` tag): the original rollback snapshot.
+- **Last published V1** (`V1-live-before-v1.5` tag): exact live site immediately before the V1.5 release, including the Featured project update.
+
+To restore the last published V1 without rewriting history, restore the complete tracked tree from `V1-live-before-v1.5` on `main`, commit the restoration, then push `main`. The V1.5 release remains saved by its tag and branch.
 
 The V2 layout notes below apply when working on V2; V1.5 intentionally uses V1 case-study layouts. Do not publish a version unless the user asks.
 

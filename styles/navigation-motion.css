@@ -1,3 +1,6 @@
+/* Keep viewport width consistent across short and scrolling navigation pages. */
+html { scrollbar-gutter: stable; overflow-x: clip; }
+
 /* V1 coral hover treatment, shared across the V2 navigation. */
 .home-nav .brand,
 .home-nav .filters > a,
