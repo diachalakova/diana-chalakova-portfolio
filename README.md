@@ -67,6 +67,14 @@ Add a `CNAME` file at the root containing your domain (e.g. `dianachalakova.com`
 
 © Diana Chalakova. All work and imagery belong to their respective owners.
 
+## Local versions
+
+- **V1.5** (`v1.5` branch): V2 slideshow landing page and project-category pages, linked to the original V1 individual project pages. This is the current local preview.
+- **V2** (`v2` branch): the full redesign, including sticky-text case studies. Saved intact for future work.
+- **V1** (`V1` tag): the original rollback snapshot.
+
+The V2 layout notes below apply when working on V2; V1.5 intentionally uses V1 case-study layouts. Do not publish a version unless the user asks.
+
 ## V2 project-page layout — agreed design
 
 Use the current Flux case-study layout as the reference for all V2 individual project pages.
