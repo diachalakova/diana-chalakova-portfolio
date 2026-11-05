@@ -66,3 +66,20 @@ Add a `CNAME` file at the root containing your domain (e.g. `dianachalakova.com`
 ---
 
 © Diana Chalakova. All work and imagery belong to their respective owners.
+
+## V2 project-page layout — agreed design
+
+Use the current Flux case-study layout as the reference for all V2 individual project pages.
+
+- Desktop: roughly two-thirds scrolling media on the left and one-third sticky text on the right. Text stays sticky within its section and releases as the next section arrives; use natural page scrolling.
+- Open at Overview, presenting the finished solution first. Keep each project's relevant later sections and content.
+- Put the project title above the right-hand text, 40px and bold. The first Overview media starts 8px below the column top, aligned with the visible top of the title lettering.
+- Body text is 17px on desktop (16px at narrower sizes). Preserve project metadata and links.
+- Images and videos have no added background panels or decorative borders. Keep captions directly beneath media. Use the shared viewport-aware spacing; do not reintroduce large fixed-height media containers.
+- Iteration media on Flux has captions only, without the extra paragraphs beneath each image.
+- Videos have no user playback controls. Autoplay only the most-visible video when at least 55% is visible; pause all others. Respect reduced motion and hidden tabs.
+- Keep a fixed white section-navigation bar at the bottom, centered with generous spacing and an underlined active section. Do not add divider lines between sections.
+- Use the shared V2 top navigation with pink (#D8576C) backgrounds and white text on hover, including the magnetic interaction.
+- On narrow screens, stack text and media and disable sticky text so all content remains readable.
+- Shared implementation: `styles/case-study-v2.css`, `js/case-study-v2.js`; migrated-page compatibility and galleries live in `styles/case-study-migrated.css`, `styles/project-details/`, and `js/case-study-widgets.js`.
+- V2 stays local until the user explicitly asks to push. Preserve the original `V1` Git tag as the rollback snapshot.
