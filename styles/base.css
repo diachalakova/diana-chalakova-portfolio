@@ -21,8 +21,8 @@
   --purple: #7C4DD4;
 
   /* Type */
-  --display: "Archivo", "Helvetica Neue", Helvetica, Arial, sans-serif;
-  --sans:    "Archivo", "Helvetica Neue", Helvetica, Arial, sans-serif;
+  --display: "Helvetica Neue", Helvetica, Arial, sans-serif;
+  --sans:    "Helvetica Neue", Helvetica, Arial, sans-serif;
   --mono:    "Helvetica Neue", Helvetica, Arial, sans-serif;
   --hand:    "Caveat", "Comic Sans MS", cursive;
 
@@ -184,3 +184,10 @@ body::before {
   /* hide external-link arrows (↗) on small screens */
   .ar { display: none; }
 }
+
+/* Shared Helvetica typography. */
+h1 { font-family: var(--display); }
+h2, h3, h4, h5, h6, .subhead { font-family: var(--sans) !important; }
+
+/* Shared navigation font stack. */
+.home-nav, .home-nav a, .home-nav button, .nav, .nav a, .nav .brand, .cs-nav, .cs-nav a { font-family: var(--sans); }

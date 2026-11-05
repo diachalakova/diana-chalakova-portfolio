@@ -5,7 +5,7 @@ html { scrollbar-gutter: stable; overflow-x: clip; }
 .home-nav .brand,
 .home-nav .filters > a,
 .home-nav .nav-links > a {
-  transition: background-color .18s ease, color .18s ease;
+  transition: color .18s ease;
 }
 .home-nav .brand:hover,
 .home-nav .filters > a:hover,
@@ -13,13 +13,10 @@ html { scrollbar-gutter: stable; overflow-x: clip; }
 .home-nav .brand:focus-visible,
 .home-nav .filters > a:focus-visible,
 .home-nav .nav-links > a:focus-visible {
-  background-color: #D8576C;
-  color: #fff;
+  color: #D8576C;
 }
 @media (prefers-reduced-motion: reduce) {
   .home-nav a { transition: none; }
 }
-.home-nav a.is-magnetic {
-  background-color: #D8576C;
-  color: #fff;
-}
+
+.home-nav a { font-weight:500; letter-spacing:.02em; }
