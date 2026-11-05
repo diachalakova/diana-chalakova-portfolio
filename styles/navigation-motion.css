@@ -20,3 +20,24 @@ html { scrollbar-gutter: stable; overflow-x: clip; }
 }
 
 .home-nav a { font-weight:500; letter-spacing:.02em; }
+
+/* Shared navigation sizing keeps the landing and category pages aligned. */
+.home-nav { font-size:18px; }
+.home-nav .brand { font-size:20px; }
+.home-nav .nav-pill { min-height:44px; }
+.home-nav .filters > a { padding:12px 13px; }
+.home-nav .nav-links > a { padding:10px 14px; }
+.home-nav .nav-links svg { width:19px; height:19px; }
+@media (min-width:1600px) {
+  .home-nav { font-size:20px; }
+  .home-nav .brand { font-size:22px; }
+}
+@media (max-width:1050px) {
+  .home-nav .filters > a { padding:12px 9px; }
+}
+@media (max-width:780px) {
+  .home-nav { font-size:15px; }
+  .home-nav .brand { font-size:17px; }
+  .home-nav .filters > a { font-size:15px; padding:10px 6px; }
+  .home-nav .nav-links > a { padding:9px 10px; }
+}
