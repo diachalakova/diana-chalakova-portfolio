@@ -36,6 +36,12 @@
       const response = await fetch(destination.href, { signal: AbortSignal.timeout(10000) });
       if (!response.ok) throw new Error('Category unavailable');
       const page = new DOMParser().parseFromString(await response.text(), 'text/html');
+      // Category swaps retain the document; refresh a revised shared stylesheet too.
+      const nextStyles = page.querySelector('link[href*="styles/project-grid.css"]');
+      const currentStyles = document.querySelector('link[href*="styles/project-grid.css"]');
+      if (nextStyles && currentStyles && nextStyles.getAttribute('href') !== currentStyles.getAttribute('href')) {
+        currentStyles.setAttribute('href', nextStyles.getAttribute('href'));
+      }
       const incoming = page.querySelector('main.work-page');
       if (!incoming) throw new Error('Category layout unavailable');
       await Promise.all(Array.from(incoming.querySelectorAll('img')).slice(0, 4).map(img => {
