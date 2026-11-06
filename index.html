@@ -44,7 +44,7 @@ a:focus-visible,button:focus-visible { outline:2px solid #000; outline-offset:4p
 .project-slide[href="directions/for-stillness.html"] { background:linear-gradient(to bottom,#c5c5c4,#bdbbb7); }
 .project-slide[href="directions/for-stillness.html"] img { object-fit:contain; object-position:center; transform:none; }
 .slideshow-control { position:absolute; right:18px; bottom:85px; z-index:2; border:0; background:rgba(255,255,255,.5); border-radius:50%; width:32px; height:32px; cursor:pointer; display:grid; place-items:center; }
-.slideshow-next, .slideshow-prev { position:absolute; right:18px; top:50%; transform:translateY(-50%); z-index:4; width:52px; height:52px; border:0; border-radius:0; background:transparent; color:var(--ink); font-family:var(--mono); display:grid; place-items:center; cursor:pointer; transition:color .2s ease, transform .2s ease; }
+.slideshow-next, .slideshow-prev { position:absolute; right:18px; top:50%; transform:translateY(-50%); z-index:4; width:52px; height:52px; border:0; border-radius:50%; background:rgba(255,255,255,.2); color:var(--ink); font-family:var(--mono); display:grid; place-items:center; cursor:pointer; transition:color .2s ease, transform .2s ease; }
 .slideshow-prev { left:18px; right:auto; }
 .slideshow-prev:hover { transform:translate(-3px,-50%); }
 .slideshow-next:hover { transform:translate(3px,-50%); }
@@ -82,8 +82,8 @@ body > main { height:100svh; display:flex; flex-direction:column; overflow:clip;
 </nav></header><main>
 <section class="slideshow" aria-label="Project slideshow" aria-roledescription="carousel">
 <div class="slide-track"><a class="project-slide" style="--slide-bg:#725132" href="directions/zarizar.html" aria-label="View ZariZar"><img src="assets/work/v2-slideshow/zarizar-1440.webp" alt="ZariZar" decoding="async" srcset="assets/work/v2-slideshow/zarizar-720.webp 720w, assets/work/v2-slideshow/zarizar-1440.webp 1440w" sizes="(max-width: 780px) 72vw, 38.5vw" fetchpriority="high" /></a><a class="project-slide" style="--slide-bg:#fffdea" href="directions/flux.html" aria-label="View Flux"><img src="assets/work/v2-slideshow/flux-1440.webp" alt="Flux" decoding="async" srcset="assets/work/v2-slideshow/flux-720.webp 720w, assets/work/v2-slideshow/flux-1440.webp 1440w" sizes="(max-width: 780px) 72vw, 38.5vw" fetchpriority="high" /></a><a class="project-slide" style="--slide-bg:#efe5dd" href="directions/contextpath.html" aria-label="View ContextPath"><img src="assets/work/v2-slideshow/contextpath-1440.webp" alt="ContextPath" decoding="async" srcset="assets/work/v2-slideshow/contextpath-720.webp 720w, assets/work/v2-slideshow/contextpath-1440.webp 1440w" sizes="(max-width: 780px) 72vw, 38.5vw" fetchpriority="high" /></a><a class="project-slide" style="--slide-bg:#e4f0ff" href="directions/arc-security.html" aria-label="View Arc Security"><img src="assets/work/v2-slideshow/arc-1440.webp" alt="Arc Security" decoding="async" srcset="assets/work/v2-slideshow/arc-720.webp 720w, assets/work/v2-slideshow/arc-1440.webp 1440w" sizes="(max-width: 780px) 72vw, 38.5vw" fetchpriority="low" /></a><a class="project-slide" style="--slide-bg:#a7a7a3" href="https://dchalakova.github.io/mo_amongthetrees/" aria-label="View Among The Trees"><img src="assets/work/v2-slideshow/amongthetrees-1440.webp" alt="Among The Trees" decoding="async" srcset="assets/work/v2-slideshow/amongthetrees-720.webp 720w, assets/work/v2-slideshow/amongthetrees-1440.webp 1440w" sizes="(max-width: 780px) 72vw, 38.5vw" fetchpriority="low" /></a><a class="project-slide" style="--slide-bg:#f5f5f5" href="directions/seal.html" aria-label="View SEAL"><img src="assets/work/v2-slideshow/seal-1440.webp" alt="SEAL" decoding="async" srcset="assets/work/v2-slideshow/seal-720.webp 720w, assets/work/v2-slideshow/seal-1440.webp 1440w" sizes="(max-width: 780px) 72vw, 38.5vw" fetchpriority="low" /></a><a class="project-slide" style="--slide-bg:#f5f0f8" href="directions/atlas.html" aria-label="View Atlas"><img src="assets/work/v2-slideshow/atlas-1440.webp" alt="Atlas" decoding="async" srcset="assets/work/v2-slideshow/atlas-720.webp 720w, assets/work/v2-slideshow/atlas-1440.webp 1440w" sizes="(max-width: 780px) 72vw, 38.5vw" fetchpriority="low" /></a><a class="project-slide" style="--slide-bg:#c5c5c4" href="directions/for-stillness.html" aria-label="View For Stillness"><img src="assets/work/v2-slideshow/stillness-book-1440.webp" alt="For Stillness" decoding="async" srcset="assets/work/v2-slideshow/stillness-book-720.webp 720w, assets/work/v2-slideshow/stillness-book-1440.webp 1440w" sizes="(max-width: 780px) 72vw, 38.5vw" fetchpriority="low" /></a><a class="project-slide" style="--slide-bg:#858587" href="directions/cairn.html" aria-label="View Cairn"><img src="assets/work/v2-slideshow/cairn-1440.webp" alt="Cairn" decoding="async" srcset="assets/work/v2-slideshow/cairn-720.webp 720w, assets/work/v2-slideshow/cairn-1440.webp 1440w" sizes="(max-width: 780px) 72vw, 38.5vw" fetchpriority="low" /></a></div>
-<button class="slideshow-prev" type="button" aria-label="Previous three projects"><span class="ar" aria-hidden="true">←</span></button>
-<button class="slideshow-next" type="button" aria-label="Next three projects"><span class="ar" aria-hidden="true">→</span></button>
+<button class="slideshow-prev" type="button" aria-label="Previous project"><span class="ar" aria-hidden="true">←</span></button>
+<button class="slideshow-next" type="button" aria-label="Next project"><span class="ar" aria-hidden="true">→</span></button>
 <button class="slideshow-control" type="button" aria-label="Pause slideshow"><svg viewBox="0 0 16 16" aria-hidden="true"><path d="M3 2h3v12H3zM10 2h3v12h-3z"/></svg></button>
 </section>
 <section class="intro" aria-label="Introduction"><h1>DIANA CHALAKOVA</h1>
@@ -127,7 +127,7 @@ function tick(time) {
  const dt=lastTime?Math.min((time-lastTime)/1000,.04):0;
  lastTime=time;
  if(spring) {
-  // A damped spring preserves momentum and eases into the next group.
+  // A damped spring preserves momentum and eases into the next card.
   let remaining=dt;
   while(remaining>0) {
    const h=Math.min(remaining,1/120);
@@ -144,15 +144,14 @@ function schedule() {
  if(document.hidden||active.length<2||(!spring&&(paused||focused)))return;
  frame=requestAnimationFrame(tick);
 }
-function moveGroup(direction) {
- const group=Math.floor((passed+offset/step)/3);
- const target=spring?spring.target+direction*3*step:(group+direction)*3*step-passed*step;
+function moveCard(direction) {
+ const target=(spring?spring.target:offset)+direction*step;
  if(motion.matches) { spring=null; offset=target; paint(); }
  else spring={target,velocity:spring?spring.velocity:speed};
  schedule();
 }
-document.querySelector('.slideshow-next').addEventListener('click',()=>moveGroup(1));
-document.querySelector('.slideshow-prev').addEventListener('click',()=>moveGroup(-1));
+document.querySelector('.slideshow-next').addEventListener('click',()=>moveCard(1));
+document.querySelector('.slideshow-prev').addEventListener('click',()=>moveCard(-1));
 function render() {
  cancelAnimationFrame(frame); offset=0; step=0; lastTime=0; passed=0; spring=null;
  track.style.transform='translateX(0)';
