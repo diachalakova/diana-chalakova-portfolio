@@ -200,7 +200,7 @@
 </style>
 <link rel="stylesheet" href="../styles/case-study-v1-5.css">
 </head>
-<body data-screen-label="Case study / Watch Out" class="has-cursor">
+<body data-screen-label="Case study / Watch Out" >
 <div id="cursor"></div>
   <div class="cs-layout">
     <!-- LEFT RAIL -->
@@ -388,22 +388,7 @@
     window.addEventListener('resize', onScroll);
     onScroll();
   </script>
-  <script>
-    (function() {
-      var c = document.getElementById('cursor');
-      if (!c) return;
-      document.addEventListener('mousemove', function(e) {
-        c.style.left = e.clientX + 'px';
-        c.style.top  = e.clientY + 'px';
-      });
-      var hover = 'a,button,input,select,textarea,[role="button"],[tabindex]';
-      document.addEventListener('mouseover', function(e) {
-        if (e.target.closest(hover)) c.classList.add('hover');
-      });
-      document.addEventListener('mouseout', function(e) {
-        if (e.target.closest(hover)) c.classList.remove('hover');
-      });
-    })();
-  </script>
+
+<script src="../js/cursor.js"></script>
 </body>
 </html>

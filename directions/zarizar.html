@@ -227,7 +227,7 @@
 </style>
 <link rel="stylesheet" href="../styles/case-study-v1-5.css">
 </head>
-<body data-screen-label="Case study / ZariZar" class="has-cursor">
+<body data-screen-label="Case study / ZariZar" >
 <div id="cursor"></div><div class="cs-layout">
 <aside class="cs-side"><a class="back" href="../index.html" aria-label="Back to work"><span class="ar">←</span></a><nav class="cs-nav" aria-label="Sections"><a href="#overview" data-spy>Overview</a><a href="#identity" data-spy>Visual Identity</a><a href="#web" data-spy>Web Design</a></nav></aside>
 <main class="cs-main">
@@ -313,22 +313,7 @@
     onScroll();
 
   </script>
-  <script>
-    (function() {
-      var c = document.getElementById('cursor');
-      if (!c) return;
-      document.addEventListener('mousemove', function(e) {
-        c.style.left = e.clientX + 'px';
-        c.style.top  = e.clientY + 'px';
-      });
-      var hover = 'a,button,input,select,textarea,[role="button"],[tabindex]';
-      document.addEventListener('mouseover', function(e) {
-        if (e.target.closest(hover)) c.classList.add('hover');
-      });
-      document.addEventListener('mouseout', function(e) {
-        if (e.target.closest(hover)) c.classList.remove('hover');
-      });
-    })();
-  </script>
+
+<script src="../js/cursor.js"></script>
 </body>
 </html>
