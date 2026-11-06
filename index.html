@@ -28,7 +28,7 @@ body::before { display:none; }
 * { box-sizing:border-box; }
 a { color:inherit; text-decoration:none; }
 button { font:inherit; color:inherit; }
-.home-nav { position:absolute; top:30px; left:17px; right:19px; z-index:5; display:flex; align-items:center; gap:32px; font-size:16px; }
+.home-nav { position:fixed; top:30px; left:17px; right:19px; z-index:5; display:flex; align-items:center; gap:32px; font-size:16px; }
 .nav-pill { background:rgba(255,255,255,.7); border:0; border-radius:999px; min-height:38px; display:flex; align-items:center; justify-content:center; }
 .brand { padding:7px 35px; font-size:18px; font-weight:700; white-space:nowrap; }
 .filters { gap:12px; padding:0 5px; }
@@ -55,7 +55,7 @@ a:focus-visible,button:focus-visible { outline:2px solid #000; outline-offset:4p
 .intro h1 { font-family:"Inter", sans-serif; font-size:1em; font-weight:500; letter-spacing:-.005em; line-height:1; white-space:nowrap; margin:0 0 6px -8px; }
 .intro p { margin:0; font-size:clamp(16px,1.6vw,23px); font-weight:400; line-height:1.35; color:#414141; }
 .education { display:flex; flex-wrap:wrap; gap:18px; margin-top:19px; }
-.education span { padding:0; font-size:16px; line-height:24px; color:#888; }
+.education span { padding:0; font-size:16px; line-height:24px; color:#888; text-transform:uppercase; }
 @media(min-width:1600px) { .home-nav { font-size:18px; } .brand { font-size:20px; } }
 @media(max-width:1050px) { .home-nav { gap:14px; } .brand { padding:7px 20px; } .filters { gap:0; } .filters button, .filters > a { padding:9px; } .nav-links { gap:8px; } }
 @media(max-width:780px) { .home-nav { top:18px; left:14px; right:14px; flex-wrap:wrap; gap:12px; font-size:13px; } .brand { padding:7px 20px; font-size:15px; } .nav-links { order:1; } .filters { order:2; flex-basis:100%; justify-content:space-around; } .filters button, .filters > a { font-size:13px; padding:8px 10px; } .slideshow { height:calc(74svh - 24px); min-height:406px; } .project-slide { flex-basis:72vw; } .intro { padding:0 14px 24px; font-size:9.8vw; } .intro h1 { margin-left:-4px; font-size:1em; } .intro p { margin-top:10px; font-size:16px; max-width:58ch; } .education { gap:10px; margin-top:18px; } .education span { font-size:13px; padding:0; } .slideshow-control { bottom:48px; } }
@@ -205,7 +205,7 @@ window.addEventListener('resize',alignTitleCrossbar);
 render();updateControl();
 
 </script>
-<script src="js/navigation-motion.js"></script>
+<script src="js/navigation-motion.js?v=category-swipe"></script>
 <script src="js/cursor.js"></script>
 </body>
 </html>

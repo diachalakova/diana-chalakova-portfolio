@@ -1,0 +1,36 @@
+/* Shared contact footer, deliberately excluded from the slideshow landing page. */
+.portfolio-footer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 24px;
+  width: 100%;
+  /* Nav outer margins plus the padding inside DIANA C and ABOUT. */
+  padding: 40px calc(19px + 14px) 40px calc(17px + 35px);
+  margin-top: 48px;
+  background: #fff;
+  color: #1a1a1a;
+  font-family: var(--sans);
+  font-size: 18px;
+  font-weight: 500;
+  letter-spacing: .02em;
+  line-height: 1.4;
+}
+.portfolio-footer__copyright { white-space: nowrap; }
+.portfolio-footer__links { display: flex; align-items: center; gap: 48px; }
+.portfolio-footer__links a { color: inherit; text-decoration: none; padding: 8px 0; }
+.portfolio-footer__links a:hover { color: #D8576C; }
+.portfolio-footer__links a:focus-visible { outline: 2px solid #D8576C; outline-offset: 5px; }
+@media (min-width: 1600px) {
+  .portfolio-footer { font-size: 20px; }
+}
+@media (max-width: 1050px) {
+  .portfolio-footer { padding-left: calc(17px + 20px); }
+}
+@media (max-width: 780px) {
+  .portfolio-footer { font-size: 15px; padding-left: calc(14px + 20px); padding-right: calc(14px + 10px); }
+}
+@media (max-width: 640px) {
+  .portfolio-footer { flex-wrap: wrap; padding-top: 28px; padding-bottom: 28px; margin-top: 32px; gap: 12px 24px; }
+  .portfolio-footer__links { gap: 28px; }
+}

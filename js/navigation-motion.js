@@ -2,6 +2,9 @@
   const reduced = window.matchMedia('(prefers-reduced-motion: reduce)');
   const main = document.querySelector('main');
   const pages = ['index.html', 'shop-all.html', 'ux.html', 'creative.html', 'ai.html', 'branding.html'];
+  const categories = pages.filter(page => page !== 'index.html');
+  // Category lists depart in navigation order; the incoming list settles on a spring.
+  const swipe = { exitMs: 220, enterMs: 720, damping: 8, frequency: 9, exitFraction: .35 };
   const key = 'portfolio-navigation-motion';
   let leaving = false;
   const current = location.pathname.split('/').pop() || 'index.html';
@@ -10,18 +13,20 @@
     arrival = JSON.parse(sessionStorage.getItem(key) || 'null');
     sessionStorage.removeItem(key);
   } catch (_) {}
-  if (main && arrival && arrival.to === current && Date.now() - arrival.time < 10000 && !reduced.matches) {
+  if (main && arrival && arrival.to === current && Date.now() - arrival.time < 10000 && !reduced.matches && typeof main.animate === 'function') {
+    const categorySwipe = arrival.kind === 'category' && categories.includes(current) && categories.includes(arrival.from);
+    const distance = categorySwipe ? document.documentElement.clientWidth : 36;
     const frames = [];
     for (let i = 0; i <= 60; i++) {
       const t = i / 60;
-      const spring = i === 60 ? 0 : Math.exp(-7 * t) * Math.cos(9 * t);
+      const spring = i === 60 ? 0 : Math.exp(-(categorySwipe ? swipe.damping : 7) * t) * Math.cos((categorySwipe ? swipe.frequency : 9) * t);
       frames.push({
-        transform: `translateX(${arrival.direction * 36 * spring}px)`,
+        transform: `translateX(${arrival.direction * distance * spring}px)`,
         opacity: Math.min(1, t * 5),
         offset: t
       });
     }
-    main.animate(frames, { duration: 650, easing: 'linear' });
+    main.animate(frames, { duration: categorySwipe ? swipe.enterMs : 650, easing: 'linear' });
   }
   document.querySelectorAll('.home-nav a').forEach(link => {
     link.addEventListener('click', event => {
@@ -35,11 +40,13 @@
       if (leaving) return;
       leaving = true;
       const direction = pages.indexOf(next) > pages.indexOf(current) ? 1 : -1;
-      try { sessionStorage.setItem(key, JSON.stringify({ to: next, direction, time: Date.now() })); } catch (_) {}
+      const categorySwipe = categories.includes(current) && categories.includes(next);
+      const distance = categorySwipe ? document.documentElement.clientWidth * swipe.exitFraction : 16;
+      try { sessionStorage.setItem(key, JSON.stringify({ from: current, to: next, kind: categorySwipe ? 'category' : 'page', direction, time: Date.now() })); } catch (_) {}
       const animation = main.animate([
         { transform: 'translateX(0)', opacity: 1 },
-        { transform: `translateX(${-direction * 16}px)`, opacity: 0 }
-      ], { duration: 130, easing: 'ease-in', fill: 'forwards' });
+        { transform: `translateX(${-direction * distance}px)`, opacity: 0 }
+      ], { duration: categorySwipe ? swipe.exitMs : 130, easing: categorySwipe ? 'cubic-bezier(.55,0,.85,.45)' : 'ease-in', fill: 'forwards' });
       animation.finished.catch(() => {}).then(() => location.assign(destination.href));
     });
   });
