@@ -31,10 +31,8 @@ a:focus-visible,button:focus-visible { outline:2px solid #000; outline-offset:4p
 .cap { display:flex; align-items:center; justify-content:space-between; gap:12px; margin-bottom:5px; }
 .t { font-family:var(--display); font-size:22px; font-weight:700; line-height:1.1; }
 .tagrow { display:flex; flex-wrap:wrap; justify-content:flex-end; gap:12px; }
-.tagrow span { border:0; padding:3px 0; font-size:12px; font-style:normal; line-height:1.2; }
+.tagrow span { font-weight:700; border:0; padding:3px 0; font-size:12px; font-style:normal; line-height:1.2; }
 .d { font-size:16px; line-height:1.45; }
-.impact { font-size:13px; font-style:italic; line-height:1.35; font-weight:500; margin:6px 0 0; color:#000; }
-.impact::before { content:'→ '; }
 .pcard:focus-visible { outline-offset:4px; }
 @media(min-width:1600px) { .home-nav { font-size:18px; } .brand { font-size:20px; } }
 @media(max-width:1050px) { .home-nav { gap:14px; } .brand { padding:7px 20px; } .filters { gap:0; } .filters > a { padding:9px; } .nav-links { gap:8px; } .work-page { padding:44px 28px; } .work-grid { gap:24px; } .cap { align-items:flex-start; flex-direction:column; gap:7px; } .tagrow { justify-content:flex-start; } }
@@ -42,10 +40,9 @@ a:focus-visible,button:focus-visible { outline:2px solid #000; outline-offset:4p
 
 .pcard .mos-logo-vid { height:auto; object-fit:contain; }
 
-.impact { font-family:var(--sans); }
 
 /* Secondary project information sits below black project titles. */
-.pcard .d, .pcard .impact, .pcard .tagrow { color:#4a4a4a; }
+.pcard .d, .pcard .tagrow { color:#4a4a4a; }
 
 /* Define the light thumbnail edge without changing its dimensions. */
 .pcard[href^="directions/through-ais-eyes.html"] .ph::after {

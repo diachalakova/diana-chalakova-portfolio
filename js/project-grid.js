@@ -1,4 +1,7 @@
+function initializeProjectVideos() {
 document.querySelectorAll('.pcard video').forEach(video=>{
+ if(video.dataset.interactionsReady)return;
+ video.dataset.interactionsReady='true';
  const card=video.closest('.pcard');
  const museum=video.classList.contains('mos-logo-vid');
  let hovering=false;
@@ -11,3 +14,7 @@ document.querySelectorAll('.pcard video').forEach(video=>{
  card.addEventListener('focus',play);
  card.addEventListener('blur',pause);
 });
+
+}
+initializeProjectVideos();
+document.addEventListener("portfolio:category-ready", initializeProjectVideos);
