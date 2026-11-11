@@ -49,3 +49,6 @@ body { background:#FAFAFA; }
 @media(max-width:780px) {
   .v3-project-filters { position:relative; top:auto; margin-bottom:10px; }
 }
+
+.v3-project-filters { justify-content:flex-start; text-align:left; margin-left:0; }
+.v3-project-filters button:first-child { padding-left:0; }

@@ -15,6 +15,41 @@
   const filters=document.querySelector('.v3-project-filters');
   const reduced=matchMedia('(prefers-reduced-motion: reduce)');
   let start=0,end=1,scale=1,target=0,value=0,velocity=0,last=0,frame=0;
+  const filterScroll = { stiffness:110, damping:23, topInset:76 };
+  let scrollFrame=0, keepFiltersVisible=false;
+  function cancelFilterScroll() { cancelAnimationFrame(scrollFrame);scrollFrame=0; }
+  function scrollToProjects() {
+    cancelFilterScroll();
+    const destination=Math.max(0,Math.min(
+      grid.getBoundingClientRect().top+scrollY-(64+filters.offsetHeight+16),
+      document.documentElement.scrollHeight-innerHeight
+    ));
+    if(reduced.matches) { window.scrollTo({top:destination,behavior:'instant'});return; }
+    let position=scrollY,speed=0,previous=0;
+    function advance(time) {
+      let dt=previous?Math.min((time-previous)/1000,.04):1/60;previous=time;
+      while(dt>0) {
+        const h=Math.min(dt,1/120);
+        speed+=(filterScroll.stiffness*(destination-position)-filterScroll.damping*speed)*h;
+        position+=speed*h;dt-=h;
+      }
+      if(Math.abs(destination-position)<.5 && Math.abs(speed)<2) {
+        window.scrollTo({top:destination,behavior:'instant'});scrollFrame=0;return;
+      }
+      window.scrollTo({top:position,behavior:'instant'});
+      scrollFrame=requestAnimationFrame(advance);
+    }
+    scrollFrame=requestAnimationFrame(advance);
+  }
+  // Manual input takes control immediately instead of fighting the animated scroll.
+  addEventListener('wheel',cancelFilterScroll,{passive:true});
+  addEventListener('touchstart',cancelFilterScroll,{passive:true});
+  addEventListener('pointerdown',cancelFilterScroll,{passive:true});
+  addEventListener('keydown',event=>{
+    if(['ArrowUp','ArrowDown','PageUp','PageDown','Home','End',' ','Escape'].includes(event.key))cancelFilterScroll();
+  });
+  addEventListener('resize',cancelFilterScroll);
+  reduced.addEventListener('change',cancelFilterScroll);
   const clamp=n=>Math.max(0,Math.min(1,n));
   function paint() {
     const p=clamp(value), fade=1-clamp(p/.65);
@@ -26,9 +61,10 @@
     document.documentElement.style.setProperty('--v3-progress',clamp((p-.55)/.45));
     home.style.display=p>.98?'block':'none';
     home.tabIndex=p>.98?0:-1;
-    filters.style.opacity=1-clamp((p-.8)/.18);
-    filters.style.visibility=p>.98?'hidden':'visible';
-    filters.inert=p>.98;
+    const pinFilters=keepFiltersVisible && matchMedia('(min-width:781px)').matches;
+    filters.style.opacity=pinFilters?1:1-clamp((p-.8)/.18);
+    filters.style.visibility=!pinFilters && p>.98?'hidden':'visible';
+    filters.inert=!pinFilters && p>.98;
     const compact=p>.98?'true':'false';
     if(document.documentElement.dataset.introCompact!==compact) {
       document.documentElement.dataset.introCompact=compact;
@@ -57,12 +93,15 @@
     grid.closest('main').style.paddingTop=Math.max(0,cardsTop-filters.offsetHeight-filterGap)+'px';
     const gridTop=grid.getBoundingClientRect().top+scrollY;
     start=Math.max(0,gridTop-(top+title.offsetHeight)-config.clearance);
-    end=Math.max(start+120,gridTop-100);
+    const compactInset=keepFiltersVisible && !mobile ? 64+filters.offsetHeight+16 : 100;
+    end=Math.max(start+120,gridTop-compactInset);
     update();
   }
   filters.addEventListener('click',event=>{
     const button=event.target.closest('button[data-filter]');
     if(!button)return;
+    const shouldScroll=matchMedia('(min-width:781px)').matches && scrollY<=2;
+    if(shouldScroll)keepFiltersVisible=true;
     const selected=button.dataset.filter;
     filters.querySelectorAll('button').forEach(item=>item.setAttribute('aria-pressed',String(item===button)));
     grid.querySelectorAll('.pcard').forEach(card=>{
@@ -70,8 +109,9 @@
       if(card.hidden)card.querySelectorAll('video').forEach(video=>video.pause());
     });
     measure();
+    if(shouldScroll)scrollToProjects();
   });
-  home.addEventListener('click',event=>{ event.preventDefault();window.scrollTo({top:0,behavior:reduced.matches?'instant':'smooth'}); });
+  home.addEventListener('click',event=>{ event.preventDefault();keepFiltersVisible=false;measure();window.scrollTo({top:0,behavior:reduced.matches?'instant':'smooth'}); });
   addEventListener('scroll',update,{passive:true});
   addEventListener('resize',measure);
   addEventListener('pageshow',measure);
