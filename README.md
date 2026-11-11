@@ -16,7 +16,6 @@ A personal portfolio site for designer Diana Chalakova: a work-first landing gri
 │   ├── contextpath.html
 │   ├── watch-out.html
 │   ├── arc-security.html
-│   ├── through-ais-eyes.html
 │   ├── atlas.html
 │   └── for-stillness.html
 ├── styles/
@@ -94,3 +93,15 @@ Use the current Flux case-study layout as the reference for all V2 individual pr
 - On narrow screens, stack text and media and disable sticky text so all content remains readable.
 - Shared implementation: `styles/case-study-v2.css`, `js/case-study-v2.js`; migrated-page compatibility and galleries live in `styles/case-study-migrated.css`, `styles/project-details/`, and `js/case-study-widgets.js`.
 - V2 stays local until the user explicitly asks to push. Preserve the original `V1` Git tag as the rollback snapshot.
+
+## Archived Museum of Science project
+
+Through AI’s Eyes was removed from the public project listings and its case-study URL on November 10, 2026. The complete pre-removal state is preserved in the Git tag `archive-museum-of-science-2026-11-10`, including the case study, cards, styles, and assets.
+
+To restore the case-study file later:
+
+```sh
+git restore --source=archive-museum-of-science-2026-11-10 -- directions/through-ais-eyes.html
+```
+
+Reinsert its card from that tag’s `creative.html` and `shop-all.html` into the current pages rather than reverting entire category pages. The About page’s Museum of Science experience remains.

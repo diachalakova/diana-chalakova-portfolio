@@ -49,12 +49,3 @@ a:focus-visible,button:focus-visible { outline:2px solid #000; outline-offset:4p
 
 /* Secondary project information sits below black project titles. */
 .pcard .d, .pcard .tagrow { color:#4a4a4a; }
-
-/* Define the light thumbnail edge without changing its dimensions. */
-.pcard[href^="directions/through-ais-eyes.html"] .ph::after {
-  content: "";
-  position: absolute;
-  inset: 0;
-  border: 1px solid #b8b8b8;
-  pointer-events: none;
-}
