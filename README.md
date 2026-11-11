@@ -14,7 +14,6 @@ A personal portfolio site for designer Diana Chalakova: a work-first landing gri
 │   ├── flux.html
 │   ├── seal.html
 │   ├── contextpath.html
-│   ├── watch-out.html
 │   ├── arc-security.html
 │   ├── atlas.html
 │   └── for-stillness.html
@@ -105,3 +104,15 @@ git restore --source=archive-museum-of-science-2026-11-10 -- directions/through-
 ```
 
 Reinsert its card from that tag’s `creative.html` and `shop-all.html` into the current pages rather than reverting entire category pages. The About page’s Museum of Science experience remains.
+
+## Archived Watch Out project
+
+Watch Out was removed from the public project listings and its case-study URL on November 10, 2026. The complete pre-removal state is preserved in the Git tag `archive-watch-out-2026-11-10`, including the case study, cards, styles, and assets.
+
+To restore the case-study file later:
+
+```sh
+git restore --source=archive-watch-out-2026-11-10 -- directions/watch-out.html
+```
+
+Reinsert its card from that tag’s `shop-all.html`, `creative.html`, and `ai.html` into the current pages rather than reverting entire category pages.
