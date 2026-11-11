@@ -1,0 +1,26 @@
+/* V3: generous introduction, then a two-column index of all work. */
+:root { --v3-inset:2.35vw; --v3-progress:0; }
+html { scroll-behavior:auto; }
+body { background:#fff; }
+.v3-header { position:fixed; inset:0 0 auto; height:76px; z-index:30; pointer-events:none; }
+.v3-header::before { content:""; position:absolute; inset:0; background:rgba(255,255,255,.94); opacity:var(--v3-progress); }
+.v3-info { position:absolute; top:24px; right:var(--v3-inset); pointer-events:auto; font:400 18px/1.4 var(--sans); }
+.v3-info:hover { color:#D8576C; }
+.v3-intro { position:fixed; top:22px; left:var(--v3-inset); width:75vw; z-index:31; pointer-events:none; transform-origin:top left; will-change:transform; }
+.v3-intro h1 { font-family:var(--sans); font-weight:400; font-size:clamp(32px,3.4vw,76px); line-height:1.22; letter-spacing:-.025em; margin:0; }
+.v3-name { font-family:Inter,var(--sans); font-weight:500; }
+.v3-statement,.v3-surname { opacity:1; }
+.v3-home { display:none; position:absolute; inset:0 auto auto 0; width:4.6em; height:1.3em; font-size:clamp(32px,3.4vw,76px); pointer-events:auto; }
+.v3-work { padding:67svh var(--v3-inset) 48px; }
+.v3-work .work-grid { gap:48px 14px; }
+.v3-work .pcard .ph { aspect-ratio:1.35; }
+.v3-work .project-info { padding-top:16px; }
+@media(max-width:780px) {
+ :root { --v3-inset:20px; }
+ .v3-intro { top:24px; width:calc(100vw - 70px); }
+ .v3-intro h1 { font-size:clamp(28px,5.4vw,42px); }
+ .v3-info { font-size:15px; right:20px; top:26px; }
+ .v3-work { padding-top:70svh; }
+ .v3-work .work-grid { grid-template-columns:1fr; gap:32px; }
+}
+@media(prefers-reduced-motion:reduce) { .v3-intro { will-change:auto; } }

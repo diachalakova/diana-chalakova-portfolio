@@ -3,208 +3,87 @@
 <head>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<title>Diana Chalakova | Portfolio</title>
+<title>Diana Chalakova — Product Designer</title>
 <meta name="description" content="Diana Chalakova is a designer working across UX/UI, product, and interaction — selected work spanning web, AI, and physical design." />
 <meta name="author" content="Diana Chalakova" />
 <meta name="theme-color" content="#ffffff" />
 <link rel="icon" type="image/svg+xml" href="assets/favicon.svg" />
 <meta property="og:type" content="website" />
-<meta property="og:title" content="Diana Chalakova — Portfolio" />
+<meta property="og:title" content="Diana Chalakova — Product Designer" />
 <meta property="og:description" content="A designer working across UX/UI, product, and interaction. Selected work spanning web, AI, and physical design." />
 <meta property="og:image" content="assets/og-home.jpg" />
 <meta name="twitter:card" content="summary_large_image" />
 <link rel="preconnect" href="https://fonts.googleapis.com" />
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-<link href="https://fonts.googleapis.com/css2?family=Caveat:wght@500;600;700&amp;family=Inter:wght@500&amp;display=swap" rel="stylesheet" />
-<link rel="preload" as="image" href="assets/work/v2-slideshow/zarizar-1440.webp" imagesrcset="assets/work/v2-slideshow/zarizar-720.webp 720w, assets/work/v2-slideshow/zarizar-1440.webp 1440w" imagesizes="(max-width: 780px) 72vw, 38.5vw" fetchpriority="high">
-<link rel="preload" as="image" href="assets/work/v2-slideshow/flux-1440.webp" imagesrcset="assets/work/v2-slideshow/flux-720.webp 720w, assets/work/v2-slideshow/flux-1440.webp 1440w" imagesizes="(max-width: 780px) 72vw, 38.5vw" fetchpriority="high">
-<link rel="preload" as="image" href="assets/work/v2-slideshow/contextpath-1440.webp" imagesrcset="assets/work/v2-slideshow/contextpath-720.webp 720w, assets/work/v2-slideshow/contextpath-1440.webp 1440w" imagesizes="(max-width: 780px) 72vw, 38.5vw" fetchpriority="high">
+<link href="https://fonts.googleapis.com/css2?family=Caveat:wght@500;600;700&amp;display=swap" rel="stylesheet" />
 <link rel="stylesheet" href="styles/base.css" />
-<style>
-
-:root { --paper:#fff; --ink:#000; }
-body { margin:0; background:#fff; color:#000; font-family:var(--sans); }
-body::before { display:none; }
-* { box-sizing:border-box; }
-a { color:inherit; text-decoration:none; }
-button { font:inherit; color:inherit; }
-.home-nav { position:fixed; top:30px; left:17px; right:19px; z-index:5; display:flex; align-items:center; gap:32px; font-size:16px; }
-.nav-pill { background:rgba(255,255,255,.7); border:0; border-radius:999px; min-height:38px; display:flex; align-items:center; justify-content:center; }
-.brand { padding:7px 35px; font-size:18px; font-weight:700; white-space:nowrap; }
-.filters { gap:12px; padding:0 5px; }
-.filters button, .filters > a { border:0; background:none; border-radius:999px; padding:9px 11px; white-space:nowrap; cursor:pointer; line-height:20px; }
-.nav-links { margin-left:auto; display:flex; gap:13px; }
-.nav-links a { gap:8px; padding:7px 12px; white-space:nowrap; }
-.nav-links svg { width:17px; height:17px; fill:none; stroke:currentColor; stroke-width:1.4; }
-a:focus-visible,button:focus-visible { outline:2px solid #000; outline-offset:4px; }
-.slideshow { position:relative; height:calc(80svh - 24px); min-height:416px; overflow:hidden; background:#fff; }
-.slide-track { height:100%; display:flex; gap:9px; transform:translateX(0); will-change:transform; }
-.project-slide { position:relative; flex:0 0 calc(38.5vw - 9px); height:100%; overflow:hidden; background:var(--slide-bg,#e3ceaf); display:flex; align-items:flex-start; justify-content:center; }
-.project-slide img { opacity:.7; display:block; width:100%; height:100%; object-fit:cover; object-position:center; }
-.project-slide[href="directions/for-stillness.html"] { background:linear-gradient(to bottom,#c5c5c4,#bdbbb7); }
-.project-slide[href="directions/atlas.html"] img { object-fit:contain; object-position:center; transform:none; }
-.project-slide[href="directions/for-stillness.html"] img { object-fit:contain; object-position:center; transform:none; }
-.slideshow-control { position:absolute; right:18px; bottom:85px; z-index:2; border:0; background:rgba(255,255,255,.5); border-radius:50%; width:32px; height:32px; cursor:pointer; display:grid; place-items:center; }
-.slideshow-next, .slideshow-prev { position:absolute; right:18px; top:50%; transform:translateY(-50%); z-index:4; width:52px; height:52px; border:0; border-radius:50%; background:rgba(255,255,255,.2); color:var(--ink); font-family:var(--mono); display:grid; place-items:center; cursor:pointer; transition:color .2s ease, transform .2s ease; }
-.slideshow-prev { left:18px; right:auto; }
-.slideshow-prev:hover { transform:translate(-3px,-50%); }
-.slideshow-next:hover { transform:translate(3px,-50%); }
-.slideshow-next .ar, .slideshow-prev .ar { font-size:28px; line-height:1; }
-.slideshow-control svg { width:13px; height:13px; fill:currentColor; }
-.intro { position:relative; z-index:3; font-size:10.05vw; margin-top:calc(-1 * var(--title-overlap, .41em)); padding:0 17px 30px; pointer-events:none; }
-.intro h1 { font-family:"Inter", sans-serif; font-size:1em; font-weight:500; letter-spacing:-.005em; line-height:1; white-space:nowrap; margin:0 0 6px -8px; }
-.intro p { margin:0; font-size:clamp(16px,1.6vw,23px); font-weight:400; line-height:1.35; color:#414141; }
-.education { display:flex; flex-wrap:wrap; gap:18px; margin-top:19px; }
-.education span { padding:0; font-size:16px; line-height:24px; color:#888; text-transform:uppercase; }
-@media(min-width:1600px) { .home-nav { font-size:18px; } .brand { font-size:20px; } }
-@media(max-width:1050px) { .home-nav { gap:14px; } .brand { padding:7px 20px; } .filters { gap:0; } .filters button, .filters > a { padding:9px; } .nav-links { gap:8px; } }
-@media(max-width:780px) { .home-nav { top:18px; left:14px; right:14px; flex-wrap:wrap; gap:12px; font-size:13px; } .brand { padding:7px 20px; font-size:15px; } .nav-links { order:1; } .filters { order:2; flex-basis:100%; justify-content:space-around; } .filters button, .filters > a { font-size:13px; padding:8px 10px; } .slideshow { height:calc(74svh - 24px); min-height:406px; } .project-slide { flex-basis:72vw; } .intro { padding:0 14px 24px; font-size:9.8vw; } .intro h1 { margin-left:-4px; font-size:1em; } .intro p { margin-top:10px; font-size:16px; max-width:58ch; } .education { gap:10px; margin-top:18px; } .education span { font-size:13px; padding:0; } .slideshow-control { bottom:48px; } }
-/* Fit the landing composition to the viewport while retaining the title overlap. */
-body > main { height:100svh; display:flex; flex-direction:column; overflow:clip; }
-.slideshow { flex:1 1 0; height:auto; min-height:0; }
-.intro { flex:0 0 auto; }
-@media(prefers-reduced-motion:reduce) { .slide-track { transition:none!important; } }
-
-</style>
+<link rel="stylesheet" href="styles/project-grid.css?v=15" />
 <link rel="stylesheet" href="styles/navigation-motion.css" />
-</head>
-<body>
-<header class="home-nav">
-<a class="nav-pill brand" href="index.html" aria-label="Diana C home" aria-current="page">DIANA C</a>
-<nav class="nav-pill filters" aria-label="Filter projects">
-<a href="shop-all.html">ALL WORK</a>
-<a href="ux.html">UX</a>
-<a href="ai.html">AI</a>
-<a href="branding.html">BRANDING</a>
-</nav>
-<nav class="nav-links" aria-label="About and resume">
-<a class="nav-pill" href="assets/Diana%20Chalakova%20Resume.pdf" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="10" cy="10" r="8"/><path d="m16 16 6 6"/></svg>RESUME</a>
-<a class="nav-pill" href="About.html"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="7" r="4"/><path d="M3 22v-3a9 9 0 0 1 18 0v3"/></svg>ABOUT</a>
-</nav></header><main>
-<section class="slideshow" aria-label="Project slideshow" aria-roledescription="carousel">
-<div class="slide-track"><a class="project-slide" style="--slide-bg:#725132" href="directions/zarizar.html" aria-label="View ZariZar"><img src="assets/work/v2-slideshow/zarizar-1440.webp" alt="ZariZar" decoding="async" srcset="assets/work/v2-slideshow/zarizar-720.webp 720w, assets/work/v2-slideshow/zarizar-1440.webp 1440w" sizes="(max-width: 780px) 72vw, 38.5vw" fetchpriority="high" /></a><a class="project-slide" style="--slide-bg:#fffdea" href="directions/flux.html" aria-label="View Flux"><img src="assets/work/v2-slideshow/flux-1440.webp" alt="Flux" decoding="async" srcset="assets/work/v2-slideshow/flux-720.webp 720w, assets/work/v2-slideshow/flux-1440.webp 1440w" sizes="(max-width: 780px) 72vw, 38.5vw" fetchpriority="high" /></a><a class="project-slide" style="--slide-bg:#efe5dd" href="directions/contextpath.html" aria-label="View ContextPath"><img src="assets/work/v2-slideshow/contextpath-1440.webp" alt="ContextPath" decoding="async" srcset="assets/work/v2-slideshow/contextpath-720.webp 720w, assets/work/v2-slideshow/contextpath-1440.webp 1440w" sizes="(max-width: 780px) 72vw, 38.5vw" fetchpriority="high" /></a><a class="project-slide" style="--slide-bg:#e4f0ff" href="directions/arc-security.html" aria-label="View Arc Security"><img src="assets/work/v2-slideshow/arc-1440.webp" alt="Arc Security" decoding="async" srcset="assets/work/v2-slideshow/arc-720.webp 720w, assets/work/v2-slideshow/arc-1440.webp 1440w" sizes="(max-width: 780px) 72vw, 38.5vw" fetchpriority="low" /></a><a class="project-slide" style="--slide-bg:#a7a7a3" href="https://dchalakova.github.io/mo_amongthetrees/" aria-label="View Among The Trees"><img src="assets/work/v2-slideshow/amongthetrees-1440.webp" alt="Among The Trees" decoding="async" srcset="assets/work/v2-slideshow/amongthetrees-720.webp 720w, assets/work/v2-slideshow/amongthetrees-1440.webp 1440w" sizes="(max-width: 780px) 72vw, 38.5vw" fetchpriority="low" /></a><a class="project-slide" style="--slide-bg:#f5f0f8" href="directions/atlas.html" aria-label="View Atlas"><img src="assets/work/v2-slideshow/atlas-1440.webp" alt="Atlas" decoding="async" srcset="assets/work/v2-slideshow/atlas-720.webp 720w, assets/work/v2-slideshow/atlas-1440.webp 1440w" sizes="(max-width: 780px) 72vw, 38.5vw" fetchpriority="low" /></a><a class="project-slide" style="--slide-bg:#f5f5f5" href="directions/seal.html" aria-label="View SEAL"><img src="assets/work/v2-slideshow/seal-1440.webp" alt="SEAL" decoding="async" srcset="assets/work/v2-slideshow/seal-720.webp 720w, assets/work/v2-slideshow/seal-1440.webp 1440w" sizes="(max-width: 780px) 72vw, 38.5vw" fetchpriority="low" /></a><a class="project-slide" style="--slide-bg:#c5c5c4" href="directions/for-stillness.html" aria-label="View For Stillness"><img src="assets/work/v2-slideshow/stillness-book-1440.webp" alt="For Stillness" decoding="async" srcset="assets/work/v2-slideshow/stillness-book-720.webp 720w, assets/work/v2-slideshow/stillness-book-1440.webp 1440w" sizes="(max-width: 780px) 72vw, 38.5vw" fetchpriority="low" /></a><a class="project-slide" style="--slide-bg:#858587" href="directions/cairn.html" aria-label="View Cairn"><img src="assets/work/v2-slideshow/cairn-1440.webp" alt="Cairn" decoding="async" srcset="assets/work/v2-slideshow/cairn-720.webp 720w, assets/work/v2-slideshow/cairn-1440.webp 1440w" sizes="(max-width: 780px) 72vw, 38.5vw" fetchpriority="low" /></a></div>
-<button class="slideshow-prev" type="button" aria-label="Previous project"><span class="ar" aria-hidden="true">←</span></button>
-<button class="slideshow-next" type="button" aria-label="Next project"><span class="ar" aria-hidden="true">→</span></button>
-<button class="slideshow-control" type="button" aria-label="Pause slideshow"><svg viewBox="0 0 16 16" aria-hidden="true"><path d="M3 2h3v12H3zM10 2h3v12h-3z"/></svg></button>
-</section>
-<section class="intro" aria-label="Introduction"><h1>DIANA CHALAKOVA</h1>
-<p>Product designer and creative shipping clear, thoughtful experiences across digital design and interaction models.</p>
-<div class="education"><span>UW MHCI+D</span><span>PARSONS MFA</span></div></section>
-</main>
-<script>
+<link rel="stylesheet" href="styles/footer.css?v=3" />
+<link rel="stylesheet" href="styles/home-v3.css?v=1" />
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@500&display=swap" rel="stylesheet" />
+</head><body><header class="v3-header">
+<a class="v3-info" href="About.html">Info</a>
+</header>
+<section class="v3-intro" aria-label="Introduction">
+<h1><span class="v3-name">Diana C<span class="v3-surname">halakova</span></span><span class="v3-statement"> is a product designer and creative shipping clear, thoughtful experiences across digital design and interaction models.</span></h1>
+<a class="v3-home" href="#" aria-label="Diana C — back to top" tabindex="-1"></a>
+</section><main class="work-page v3-work" id="work" aria-label="All work"><div class="work-grid"><a class="pcard" data-categories="featured ux ai branding" href="directions/flux.html?from=index.html" style="--ar:16/10; --sb:#EAE0CC; --accent:#684726;">
+        <div class="ph" style="background:#F2F2F2;"><img class="thumb" src="assets/work/flux-card.jpg" alt="FLUX thesis show poster — circle cutouts revealing photos and the flux wordmark" fetchpriority="high" decoding="async" /></div>
+        <div class="project-info"><div class="cap"><span class="t">Flux</span><div class="tagrow"><span>Visual Identity</span><span>0→1</span><span>Cross-Collaboration</span></div></div>
+        <div class="d">Thesis exhibition website helping visitors discover the designers and multidisciplinary work of Parsons’ MFA Design &amp; Technology cohort.</div>
+      </div></a>
+<a class="pcard" data-categories="featured branding" href="directions/zarizar.html?from=index.html">
+        <div class="ph" style="background:#eee5db;"><img class="thumb" src="assets/work/zarizar/product-tag.jpg" alt="ZariZar product tag with a cream looping monogram on plum cardstock" loading="lazy" /></div>
+        <div class="project-info"><div class="cap"><span class="t">ZariZar</span><div class="tagrow"><span>Brand Identity</span><span>Web Design</span></div></div>
+        <div class="d">Brand identity and web design connecting luxury Indian shawls with the craftsmanship, heritage, and women behind them.</div>
+      </div></a>
+<a class="pcard" data-categories="featured ux" href="directions/arc-security.html?from=index.html" style="--ar:1/1; --sb:#E7EAF0; --accent:#2148C9;">
+        <div class="ph" style="background:#F2F2F2;"><img class="thumb" src="assets/work/arc-card.jpg" alt="The Arc safety app — Safety Mode, home schedule, and insights screens" loading="lazy" style="object-fit:contain; padding:34px 30px; box-sizing:border-box;" /></div>
+        <div class="project-info"><div class="cap"><span class="t">Arc Security</span><div class="tagrow"><span>Internship</span><span>Cross-Collaboration</span></div></div>
+        <div class="d">Safety app concept helping real estate agents stay connected to trusted contacts during isolated client meetings.</div>
+      </div></a>
+<a class="pcard" data-categories="featured ux ai" href="directions/contextpath.html?from=index.html" style="--ar:16/9; --sb:#EFE4D6; --accent:#C8102E;">
+        <div class="ph" style="background:#EC012A;">
+          <video class="thumb thumb--ctx thumb--ctx-video ctx-vid" src="assets/work/contextpath-cover-card.mp4" muted loop playsinline style="width:100%;height:100%;object-fit:cover;display:block;"></video>
+          <img class="thumb thumb--ctx thumb--ctx-still" src="assets/work/contextpath-cover-card-still.jpg" alt="Anthropic x The Met gradient" />
+        </div>
+        <div class="project-info"><div class="cap"><span class="t">ContextPath</span><div class="tagrow"><span>AI</span><span>Figma MCP</span></div></div>
+        <div class="d">AI museum companion bringing historical and cultural context to artworks without pulling visitors away from the piece in front of them.</div>
+      </div></a>
+<a class="pcard" data-categories="ux" href="directions/seal.html?from=index.html" style="--ar:16/10; --sb:#ECE7F5; --accent:#4B2E83;">
+        <div class="ph" style="background:#F2F2F2;"><img class="thumb" src="assets/work/seal-card.png" alt="The redesigned SEAL lab dashboard, shown on a laptop" fetchpriority="high" decoding="async" style="object-fit:cover;" /></div>
+        <div class="project-info"><div class="cap"><span class="t">SEAL</span><div class="tagrow"><span>Internship</span><span>Usability</span></div></div>
+        <div class="d">Internal dashboard bringing scattered tasks, projects, and resources into one workspace for 300+ engineers.</div>
+      </div></a>
+<a class="pcard" data-categories="ai creative" href="https://dchalakova.github.io/mo_amongthetrees/" target="_blank" rel="noopener" style="--ar:6/5; --sb:#E2E6E9; --accent:#463121;">
+        <div class="ph" style="background:#F2F2F2;"><img class="thumb" src="assets/work/among-the-trees-ipad-web.jpg" alt="The Among The Trees interactive site shown on an iPad Pro — Mary Oliver's poem set in a circular arrangement with a typographic-transformation menu" loading="lazy" style="object-fit:contain; padding:10px 14px; box-sizing:border-box;" /></div>
+        <div class="project-info"><div class="cap"><span class="t">Among The Trees</span><div class="tagrow"><span>AI</span><span>Interaction</span><span>Live Website</span></div></div>
+        <div class="d">Interactive poetry website exploring how AI-assisted typography can shape the experience of reading Mary Oliver’s words.</div>
+      </div></a>
 
-const projects=[{"title": "ZariZar", "href": "directions/zarizar.html", "categories": ["branding"], "image": "assets/work/v2-slideshow/zarizar-1440.webp", "background": "#725132", "fullComposition": true}, {"title": "Flux", "href": "directions/flux.html", "categories": ["featured", "ux", "ai", "branding"], "image": "assets/work/v2-slideshow/flux-1440.webp", "background": "#fffdea", "fullComposition": true}, {"title": "ContextPath", "href": "directions/contextpath.html", "categories": ["featured", "ux", "ai"], "image": "assets/work/v2-slideshow/contextpath-1440.webp", "background": "#efe5dd", "fullComposition": true}, {"title": "Arc Security", "href": "directions/arc-security.html", "categories": ["featured", "ux"], "image": "assets/work/v2-slideshow/arc-1440.webp", "background": "#e4f0ff", "fullComposition": true}, {"title": "Among The Trees", "href": "https://dchalakova.github.io/mo_amongthetrees/", "categories": ["ai", "creative"], "image": "assets/work/v2-slideshow/amongthetrees-1440.webp", "background": "#a7a7a3", "fullComposition": true}, {"title": "Atlas", "href": "directions/atlas.html", "categories": ["ux", "ai"], "image": "assets/work/v2-slideshow/atlas-1440.webp", "background": "#f5f0f8", "fullComposition": true}, {"title": "SEAL", "href": "directions/seal.html", "categories": ["ux"], "image": "assets/work/v2-slideshow/seal-1440.webp", "background": "#f5f5f5", "fullComposition": true}, {"title": "For Stillness", "href": "directions/for-stillness.html", "categories": ["creative"], "image": "assets/work/v2-slideshow/stillness-book-1440.webp", "background": "#c5c5c4"}, {"title": "Cairn", "href": "directions/cairn.html", "categories": ["creative"], "image": "assets/work/v2-slideshow/cairn-1440.webp", "background": "#858587", "fullComposition": true}];
-const track=document.querySelector('.slide-track');
-const carousel=document.querySelector('.slideshow');
-const control=document.querySelector('.slideshow-control');
-const motion=window.matchMedia('(prefers-reduced-motion: reduce)');
-let active=projects, frame=0, lastTime=0, offset=0, step=0, paused=motion.matches, focused=false;
-let passed=0, spring=null;
-const speed=18; // Continuous drift, in pixels per second.
-function card(project) {
- const a=document.createElement('a'); a.className='project-slide'; a.href=project.href;
- a.setAttribute('aria-label','View '+project.title);
- a.style.setProperty('--slide-bg',project.background);
- if(project.fullComposition) a.classList.add('project-slide--composed');
- if(project.href.startsWith('https:')) { a.target='_blank'; a.rel='noopener'; }
- const img=document.createElement('img'); img.srcset=project.image.replace('-1440.webp','-720.webp')+' 720w, '+project.image+' 1440w'; img.sizes='(max-width: 780px) 72vw, 38.5vw'; img.src=project.image; img.alt=project.title; img.decoding='async';
- a.append(img); return a;
-}
-function paint() {
- while(offset>=step) { offset-=step; passed++; if(spring)spring.target-=step; track.append(track.firstElementChild); }
- while(offset<0) { offset+=step; passed--; if(spring)spring.target+=step; track.prepend(track.lastElementChild); }
- track.style.transform='translateX(-'+offset+'px)';
-}
-function measure() {
- const previous=step;
- step=track.firstElementChild.getBoundingClientRect().width+9;
- if(previous) {
-  offset=offset/previous*step;
-  if(spring) { spring.target=spring.target/previous*step; spring.velocity=spring.velocity/previous*step; }
- }
- paint();
-}
-function tick(time) {
- const dt=lastTime?Math.min((time-lastTime)/1000,.04):0;
- lastTime=time;
- if(spring) {
-  // A damped spring preserves momentum and eases into the next card.
-  let remaining=dt;
-  while(remaining>0) {
-   const h=Math.min(remaining,1/120);
-   spring.velocity+=(130*(spring.target-offset)-20*spring.velocity)*h;
-   offset+=spring.velocity*h; remaining-=h;
-  }
-  if(Math.abs(spring.target-offset)<.25 && Math.abs(spring.velocity)<1) { offset=spring.target; spring=null; }
- } else if(!paused&&!focused) offset+=dt*speed;
- paint();
- if(spring||(!paused&&!focused)) frame=requestAnimationFrame(tick);
-}
-function schedule() {
- cancelAnimationFrame(frame); lastTime=0;
- if(document.hidden||active.length<2||(!spring&&(paused||focused)))return;
- frame=requestAnimationFrame(tick);
-}
-function moveCard(direction) {
- const target=(spring?spring.target:offset)+direction*step;
- if(motion.matches) { spring=null; offset=target; paint(); }
- else spring={target,velocity:spring?spring.velocity:speed};
- schedule();
-}
-document.querySelector('.slideshow-next').addEventListener('click',()=>moveCard(1));
-document.querySelector('.slideshow-prev').addEventListener('click',()=>moveCard(-1));
-function render() {
- cancelAnimationFrame(frame); offset=0; step=0; lastTime=0; passed=0; spring=null;
- track.style.transform='translateX(0)';
- // Reuse server-rendered images so early browser requests and decoding are preserved.
- if(!track.children.length) track.replaceChildren(...active.map(card));
- // Repeat short categories to fill the viewport throughout the seamless loop.
- while(track.children.length<6) active.forEach(project=>track.append(card(project)));
- measure(); schedule();
-}
-function updateControl() {
- control.setAttribute('aria-label',paused?'Play slideshow':'Pause slideshow');
- control.innerHTML=paused?'<svg viewBox="0 0 16 16" aria-hidden="true"><path d="m4 2 10 6-10 6z"/></svg>':'<svg viewBox="0 0 16 16" aria-hidden="true"><path d="M3 2h3v12H3zM10 2h3v12h-3z"/></svg>';
-}
-control.addEventListener('click',()=>{paused=!paused; updateControl(); schedule();});
-carousel.addEventListener('focusin',event=>{focused=event.target.matches('.project-slide');schedule();});
-carousel.addEventListener('focusout',event=>{if(!carousel.contains(event.relatedTarget)){focused=false;schedule();}});
-document.addEventListener('visibilitychange',schedule);
-window.addEventListener('resize',measure);
-motion.addEventListener('change',()=>{paused=motion.matches;if(spring&&motion.matches){offset=spring.target;spring=null;paint();}updateControl();schedule();});
-// Align the slideshow edge with the top of the rendered H crossbar.
-function alignTitleCrossbar() {
- const title=document.querySelector('.intro h1');
- const style=getComputedStyle(title);
- const size=parseFloat(style.fontSize);
- const canvas=document.createElement('canvas');
- canvas.width=Math.ceil(size*2); canvas.height=Math.ceil(size*2);
- const ctx=canvas.getContext('2d', {willReadFrequently:true});
- if(!ctx)return;
- ctx.font=style.fontWeight+' '+style.fontSize+' '+style.fontFamily;
- const metrics=ctx.measureText('H');
- if(!Number.isFinite(metrics.fontBoundingBoxAscent)||!Number.isFinite(metrics.fontBoundingBoxDescent))return;
- const baseline=Math.ceil(metrics.fontBoundingBoxAscent)+2;
- ctx.fillText('H',2,baseline);
- // The center of H contains only its crossbar, not either vertical stem.
- const x=Math.round(2+metrics.width/2);
- const pixels=ctx.getImageData(x,0,1,canvas.height).data;
- for(let y=0;y<canvas.height;y++) {
-  if(pixels[y*4+3]<128)continue;
-  const lineHeight=parseFloat(style.lineHeight);
-  const textBaseline=(lineHeight-metrics.fontBoundingBoxAscent-metrics.fontBoundingBoxDescent)/2+metrics.fontBoundingBoxAscent;
-  const overlap=textBaseline+y-baseline;
-  document.querySelector('.intro').style.setProperty('--title-overlap',overlap+'px');
-  break;
- }
-}
-alignTitleCrossbar();
-document.fonts.ready.then(alignTitleCrossbar);
-window.addEventListener('resize',alignTitleCrossbar);
-render();updateControl();
+<a class="pcard" data-categories="ux ai" href="directions/atlas.html?from=index.html" style="--ar:4/3; --sb:#ECE3FB; --accent:#5B24BF;">
+        <div class="ph" style="background:#F2F2F2;"><img class="thumb" src="assets/work/atlas-hero.jpg" alt="The Atlas app on two iPhones — a campus discovery home screen and a place detail page" loading="lazy" style="object-fit:contain; padding:22px 24px; box-sizing:border-box;" /></div>
+        <div class="project-info"><div class="cap"><span class="t">Atlas</span><div class="tagrow"><span>Startup</span><span>AI Integration</span></div></div>
+        <div class="d">Campus discovery app helping students find study spots, affordable food, events, and hidden gems across their university community.</div>
+      </div></a>
 
-</script>
-<script src="js/navigation-motion.js?v=no-creative"></script>
+<a class="pcard" data-categories="creative" href="directions/for-stillness.html?from=index.html" style="--ar:16/11; --sb:#ECE6D8; --accent:#3E6B66;">
+        <div class="ph" style="background:#F2F2F2;"><img class="thumb" src="assets/work/stillness-cover.jpg" alt="The For Stillness pop-up book held open to a layered orange funnel pop-up spread" loading="lazy" /></div>
+        <div class="project-info"><div class="cap"><span class="t">For Stillness</span><div class="tagrow"><span>Product</span><span>Visual Design</span></div></div>
+        <div class="d">Handcrafted pop-up book inviting readers to slow down and reflect on their relationship with digital technology.</div>
+      </div></a>
+<a class="pcard" data-categories="creative" href="directions/cairn.html?from=index.html" style="--ar:4/3; --sb:#E8EDE8; --accent:#3A6B3A;">
+        <div class="ph" style="background:#F0F0EE;"><img class="thumb" src="assets/work/cairn-card.jpg" alt="Cairn — a 3D-printed white stone-stack object threaded with green moss, glowing from between its blocks" loading="lazy" style="object-fit:cover;" /></div>
+        <div class="project-info"><div class="cap"><span class="t">Cairn</span><div class="tagrow"><span>IoT</span><span>AI</span><span>Data Viz</span></div></div>
+        <div class="d">Speculative smart home system exploring how shared emotional signals could help people better understand those they live with.</div>
+      </div></a></div></main><script src="js/project-grid.js?v=continuous-swipe"></script><script src="js/home-v3.js"></script>
 <script src="js/cursor.js"></script>
-</body>
-</html>
+<footer class="portfolio-footer" aria-label="Contact">
+  <span class="portfolio-footer__copyright">©DIANA CHALAKOVA 2026</span>
+  <nav class="portfolio-footer__links" aria-label="Social and email links">
+    <a href="https://www.linkedin.com/in/dchalakova/" target="_blank" rel="noopener noreferrer">LINKEDIN</a>
+    <a href="mailto:dchalakova@outlook.com">EMAIL</a>
+  </nav>
+</footer>
+</body></html>
