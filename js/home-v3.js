@@ -49,11 +49,12 @@
   function measure() {
     const top=parseFloat(getComputedStyle(intro).top);
     scale=config.compactSize/parseFloat(getComputedStyle(title).fontSize);
-    // Mobile: 400px from the expanded title's bottom to the first card.
-    // The filter row sits immediately above that card with its existing 24px spacing.
+    // Mobile filters end at the opening viewport edge; cards begin 10px below.
     const mobile=matchMedia('(max-width:780px)').matches;
-    const cardsTop=mobile ? top+title.offsetHeight+400 : innerHeight;
-    grid.closest('main').style.paddingTop=Math.max(0,cardsTop-filters.offsetHeight-24)+'px';
+    const viewportHeight=mobile && window.visualViewport ? window.visualViewport.height : innerHeight;
+    const filterGap=parseFloat(getComputedStyle(filters).marginBottom);
+    const cardsTop=mobile ? viewportHeight+filterGap : innerHeight;
+    grid.closest('main').style.paddingTop=Math.max(0,cardsTop-filters.offsetHeight-filterGap)+'px';
     const gridTop=grid.getBoundingClientRect().top+scrollY;
     start=Math.max(0,gridTop-(top+title.offsetHeight)-config.clearance);
     end=Math.max(start+120,gridTop-100);

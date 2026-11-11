@@ -45,3 +45,7 @@ body { background:#FAFAFA; }
 .v3-project-filters button:hover::before { height:100%; }
 .v3-work .pcard[hidden] { display:none; }
 @media(prefers-reduced-motion:reduce) { .v3-project-filters button,.v3-project-filters button::before { transition:none; } }
+
+@media(max-width:780px) {
+  .v3-project-filters { position:relative; top:auto; margin-bottom:10px; }
+}
