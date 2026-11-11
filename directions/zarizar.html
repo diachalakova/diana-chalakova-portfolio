@@ -225,12 +225,13 @@
   .cs-main .vision { font-size:clamp(26px,3vw,42px); line-height:1.2; font-weight:600; letter-spacing:-.02em; max-width:26ch; margin:0 0 28px; }
   @media(max-width:640px) { .cs-layout { padding:0 16px; } .cs-main { padding:32px 8px 0; } .brand-pair { grid-template-columns:1fr; } .site-footer { padding:0 8px; } .screen-view { max-height:520px; } }
 </style>
-<link rel="stylesheet" href="../styles/case-study-v1-5.css?v=black-headings">
-<link rel="stylesheet" href="../styles/footer.css?v=3" />
+<link rel="stylesheet" href="../styles/case-study-v1-5.css?v=v3-sticky-footer">
+<link rel="stylesheet" href="../styles/footer.css?v=v3-6" />
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400&amp;display=swap" rel="stylesheet" />
 </head>
 <body data-screen-label="Case study / ZariZar" >
 <div id="cursor"></div><div class="cs-layout">
-<aside class="cs-side"><a class="back" href="../index.html" aria-label="Back to work"><span class="ar">←</span></a><nav class="cs-nav" aria-label="Sections"><a href="#overview" data-spy>Overview</a><a href="#identity" data-spy>Visual Identity</a><a href="#web" data-spy>Web Design</a></nav></aside>
+<aside class="cs-side"><a class="back" href="../index.html" aria-label="Back to work"><svg class="back-arrow" width="38" height="28" viewBox="0 0 33 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M30 12H4m7-7-7 7 7 7"/></svg></a><nav class="cs-nav" aria-label="Sections"><a href="#overview" data-spy>Overview</a><a href="#identity" data-spy>Visual Identity</a><a href="#web" data-spy>Web Design</a></nav></aside>
 <main class="cs-main">
 <section id="overview" class="cs-sec">
 <h1 class="cs-hero-title">ZariZar</h1>
@@ -257,7 +258,14 @@
 <figure class="media media--square"><div class="screen-view" tabindex="0" role="region" aria-label="ZariZar landing page design with shawl collections, craftsmanship imagery, and artisan storytelling; scroll to explore"><img class="shot" src="../assets/work/zarizar/landing.jpg" alt="ZariZar landing page design with shawl collections, craftsmanship imagery, and artisan storytelling" loading="lazy" /></div><figcaption class="cap">Scroll to explore landing page.</figcaption></figure>
 </div><div class="block"><h3 class="subhead">Product page walkthrough</h3><figure class="media media--video"><video controls autoplay muted loop playsinline preload="metadata" style="display:block;width:100%;height:auto;"><source src="../assets/work/zarizar/walkthrough.mp4" type="video/mp4"></video></figure></div>
 </section></main>
-  </div>
+<footer class="portfolio-footer portfolio-footer--project" aria-label="Contact">
+  <span class="portfolio-footer__copyright">© Diana Chalakova 2026</span>
+  <nav class="portfolio-footer__links" aria-label="Social and email links">
+    <a href="https://www.linkedin.com/in/dchalakova/" target="_blank" rel="noopener noreferrer">LinkedIn</a>
+    <a href="mailto:dchalakova@outlook.com">Email</a>
+  </nav>
+</footer>
+</div>
 
   <script>
     var links = Array.prototype.slice.call(document.querySelectorAll('.cs-nav a[data-spy]'));
@@ -292,12 +300,6 @@
 
 <script src="../js/cursor.js"></script>
 <script src="../js/project-back.js?v=2"></script>
-<footer class="portfolio-footer" aria-label="Contact">
-  <span class="portfolio-footer__copyright">©DIANA CHALAKOVA 2026</span>
-  <nav class="portfolio-footer__links" aria-label="Social and email links">
-    <a href="https://www.linkedin.com/in/dchalakova/" target="_blank" rel="noopener noreferrer">LINKEDIN</a>
-    <a href="mailto:dchalakova@outlook.com">EMAIL</a>
-  </nav>
-</footer>
+
 </body>
 </html>

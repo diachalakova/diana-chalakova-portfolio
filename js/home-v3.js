@@ -4,21 +4,24 @@
    * A damped spring shrinks the remaining name into the top-left corner.
    * Scrolling back reverses the same movement. Native page scrolling stays intact.
    */
-  const config = { stiffness:180, damping:27, compactSize:24, clearance:80, headerTop:26 };
+  const config = { stiffness:180, damping:27, compactSize:22, clearance:80 };
   const intro=document.querySelector('.v3-intro');
   const title=intro.querySelector('h1');
   const statement=intro.querySelector('.v3-statement');
   const surname=intro.querySelector('.v3-surname');
+  const name=intro.querySelector('.v3-name');
   const home=intro.querySelector('.v3-home');
   const grid=document.querySelector('.work-grid');
   const reduced=matchMedia('(prefers-reduced-motion: reduce)');
-  let start=0,end=1,scale=1,top=22,target=0,value=0,velocity=0,last=0,frame=0;
+  let start=0,end=1,scale=1,target=0,value=0,velocity=0,last=0,frame=0;
   const clamp=n=>Math.max(0,Math.min(1,n));
   function paint() {
     const p=clamp(value), fade=1-clamp(p/.65);
-    intro.style.transform=`translateY(${(config.headerTop-top)*p}px) scale(${1+(scale-1)*p})`;
+    intro.style.transform=`scale(${1+(scale-1)*p})`;
     statement.style.opacity=fade;
     surname.style.opacity=fade;
+    const weightProgress=p*p*(3-2*p);
+    name.style.fontWeight=300+100*weightProgress;
     document.documentElement.style.setProperty('--v3-progress',clamp((p-.55)/.45));
     home.style.display=p>.98?'block':'none';
     home.tabIndex=p>.98?0:-1;
@@ -35,7 +38,7 @@
     else if(!frame) frame=requestAnimationFrame(tick);
   }
   function measure() {
-    top=parseFloat(getComputedStyle(intro).top);
+    const top=parseFloat(getComputedStyle(intro).top);
     scale=config.compactSize/parseFloat(getComputedStyle(title).fontSize);
     const gridTop=grid.getBoundingClientRect().top+scrollY;
     start=Math.max(0,gridTop-(top+title.offsetHeight)-config.clearance);

@@ -116,3 +116,11 @@ git restore --source=archive-watch-out-2026-11-10 -- directions/watch-out.html
 ```
 
 Reinsert its card from that tag’s `shop-all.html`, `creative.html`, and `ai.html` into the current pages rather than reverting entire category pages.
+
+## V3 release and rollback
+
+V3 replaces the slideshow homepage with an expansive introduction, a spring-driven compact Diana C header, and the all-work project grid.
+
+The exact previous live portfolio is saved in the annotated Git tag `V1.5-before-V3-2026-11-10` (commit `2740d82`). To preview that saved version without changing the current release, create a separate worktree from that tag. To republish it later, restore the tag’s tracked files on a new branch, review the diff, then commit and merge the restoration to `main`.
+
+The earlier sticky-right-column V2 experiment remains separate on branch `v2`.

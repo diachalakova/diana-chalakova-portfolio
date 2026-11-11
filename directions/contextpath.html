@@ -212,15 +212,16 @@
     .cs-main { padding: 40px 24px 0; }
   }
 </style>
-<link rel="stylesheet" href="../styles/case-study-v1-5.css?v=black-headings">
-<link rel="stylesheet" href="../styles/footer.css?v=3" />
+<link rel="stylesheet" href="../styles/case-study-v1-5.css?v=v3-sticky-footer">
+<link rel="stylesheet" href="../styles/footer.css?v=v3-6" />
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400&amp;display=swap" rel="stylesheet" />
 </head>
 <body data-screen-label="Case study / ContextPath" >
 <div id="cursor"></div>
   <div class="cs-layout">
     <!-- LEFT RAIL -->
     <aside class="cs-side">
-      <a class="back" href="../index.html" aria-label="Back to all work"><span class="ar">←</span></a>
+      <a class="back" href="../index.html" aria-label="Back to all work"><svg class="back-arrow" width="38" height="28" viewBox="0 0 33 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M30 12H4m7-7-7 7 7 7"/></svg></a>
       <nav class="cs-nav" aria-label="Sections">
         <a href="#overview"  data-spy>Overview</a>
         <a href="#brief"     data-spy>Brief</a>
@@ -252,7 +253,7 @@
       <dl class="project-details" aria-label="Project details">
   <div><dt>Role</dt><dd>Lead UX Designer</dd></div>
   <div><dt>Event</dt><dd>Anthropic × The Met</dd></div>
-  <div><dt>Tools</dt><dd class="tool-icons"><span class="tool-icon"><img src="../assets/tools/figma.svg" alt="" width="36" height="36"><span class="tool-name">Figma</span></span><span class="tool-icon"><img src="../assets/tools/figma.svg" alt="" width="36" height="36"><span class="tool-name">Figma MCP</span></span><span class="tool-icon"><img src="../assets/tools/claude.svg" alt="" width="36" height="36"><span class="tool-name">Claude Code</span></span></dd></div>
+  <div><dt>Tools</dt><dd class="tool-icons"><span class="tool-icon"><img src="../assets/tools/figma.svg" alt="" width="36" height="36"><span class="tool-name">Figma + Figma MCP</span></span><span class="tool-icon"><img src="../assets/tools/claude.svg" alt="" width="36" height="36"><span class="tool-name">Claude Code</span></span></dd></div>
 </dl>
 </section>
 
@@ -362,8 +363,14 @@
         <p class="thanks" style="max-width:none;">To <span class="em">The Metropolitan Museum of Art</span> — thank you for opening your doors, your collection, and your curiosity to us. There is something quietly profound about being invited to think about the future inside one of the world's great temples to human creativity.</p>
       </section>
     </main>
-
-  </div>
+<footer class="portfolio-footer portfolio-footer--project" aria-label="Contact">
+  <span class="portfolio-footer__copyright">© Diana Chalakova 2026</span>
+  <nav class="portfolio-footer__links" aria-label="Social and email links">
+    <a href="https://www.linkedin.com/in/dchalakova/" target="_blank" rel="noopener noreferrer">LinkedIn</a>
+    <a href="mailto:dchalakova@outlook.com">Email</a>
+  </nav>
+</footer>
+</div>
 
   <script>
     var links = Array.prototype.slice.call(document.querySelectorAll('.cs-nav a[data-spy]'));
@@ -421,12 +428,6 @@
 
 <script src="../js/cursor.js"></script>
 <script src="../js/project-back.js?v=2"></script>
-<footer class="portfolio-footer" aria-label="Contact">
-  <span class="portfolio-footer__copyright">©DIANA CHALAKOVA 2026</span>
-  <nav class="portfolio-footer__links" aria-label="Social and email links">
-    <a href="https://www.linkedin.com/in/dchalakova/" target="_blank" rel="noopener noreferrer">LINKEDIN</a>
-    <a href="mailto:dchalakova@outlook.com">EMAIL</a>
-  </nav>
-</footer>
+
 </body>
 </html>

@@ -229,16 +229,18 @@
   .slide-nav .slide-count { white-space: nowrap; opacity: 0.5; }
   .slide-btn { background: none; border: 1px solid var(--ink); border-radius: 50%; cursor: pointer; font-size: 17px; font-weight: 700; color: var(--ink); width: 36px; height: 36px; display: flex; align-items: center; justify-content: center; opacity: 0.6; transition: opacity .12s; flex-shrink: 0; }
   .slide-btn:hover { opacity: 1; }
+  .cs-main p .mark, .cs-main .mark, .cs-main .hl, .cs-main .hl-moss, .cs-main .hl-clay { background:none; padding:0; }
 </style>
-<link rel="stylesheet" href="../styles/case-study-v1-5.css?v=black-headings">
-<link rel="stylesheet" href="../styles/footer.css?v=3" />
+<link rel="stylesheet" href="../styles/case-study-v1-5.css?v=v3-sticky-footer">
+<link rel="stylesheet" href="../styles/footer.css?v=v3-6" />
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400&amp;display=swap" rel="stylesheet" />
 </head>
 <body data-screen-label="Case study / Cairn" >
 <div id="cursor"></div>
   <div class="cs-layout">
     <!-- LEFT RAIL -->
     <aside class="cs-side">
-      <a class="back" href="../index.html" aria-label="Back to all work"><span class="ar">←</span></a>
+      <a class="back" href="../index.html" aria-label="Back to all work"><svg class="back-arrow" width="38" height="28" viewBox="0 0 33 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M30 12H4m7-7-7 7 7 7"/></svg></a>
       <nav class="cs-nav" aria-label="Sections">
         <a href="#overview"     data-spy>Overview</a>
         <a href="#problem"      data-spy>Problem</a>
@@ -522,8 +524,14 @@
         <p class="thanks" style="max-width:none;">And to my loved ones, for their unconditional support.</p>
       </section>
     </main>
-
-  </div>
+<footer class="portfolio-footer portfolio-footer--project" aria-label="Contact">
+  <span class="portfolio-footer__copyright">© Diana Chalakova 2026</span>
+  <nav class="portfolio-footer__links" aria-label="Social and email links">
+    <a href="https://www.linkedin.com/in/dchalakova/" target="_blank" rel="noopener noreferrer">LinkedIn</a>
+    <a href="mailto:dchalakova@outlook.com">Email</a>
+  </nav>
+</footer>
+</div>
 
   <script>
     var links = Array.prototype.slice.call(document.querySelectorAll('.cs-nav a[data-spy]'));
@@ -574,12 +582,6 @@
 
 <script src="../js/cursor.js"></script>
 <script src="../js/project-back.js?v=2"></script>
-<footer class="portfolio-footer" aria-label="Contact">
-  <span class="portfolio-footer__copyright">©DIANA CHALAKOVA 2026</span>
-  <nav class="portfolio-footer__links" aria-label="Social and email links">
-    <a href="https://www.linkedin.com/in/dchalakova/" target="_blank" rel="noopener noreferrer">LINKEDIN</a>
-    <a href="mailto:dchalakova@outlook.com">EMAIL</a>
-  </nav>
-</footer>
+
 </body>
 </html>

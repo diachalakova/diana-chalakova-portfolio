@@ -15,7 +15,7 @@
 <meta name="twitter:card" content="summary_large_image" />
 <link rel="preconnect" href="https://fonts.googleapis.com" />
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-<link href="https://fonts.googleapis.com/css2?family=Caveat:wght@500;600;700&amp;display=swap" rel="stylesheet" />
+<link href="https://fonts.googleapis.com/css2?family=Caveat:wght@500;600;700&amp;family=Inter:wght@400;500;600;700&amp;display=swap" rel="stylesheet" />
 <link rel="stylesheet" href="styles/base.css" />
 <style>
   :root { --paper: #ffffff; --bright: #D8576C; }
@@ -36,7 +36,7 @@
   .about { width: 54%; box-sizing: border-box; padding: 84px 4vw 20px 96px; }
 
   .about-intro { display: flex; align-items: center; justify-content: space-between; gap: 24px; width: 100%; margin-bottom: 30px; }
-  .lead { font-size: 21px; line-height: 1.3; letter-spacing: -0.01em; color: var(--ink); margin: 0; font-weight: 700; }
+  .lead { font-family:Inter,var(--sans); font-size: 24px; line-height: 1.3; letter-spacing: -0.01em; color: var(--ink); margin: 0; font-weight: 700; }
 
   .bio p { font-size: 14.5px; line-height: 1.75; color: #3a342e; margin: 0 0 16px; font-weight: 400; text-align: justify; }
   .bio p:last-child { margin-bottom: 0; }
@@ -48,6 +48,8 @@
     border-bottom: 1px solid rgba(27,23,20,0.25); transition: color .18s ease, border-color .18s ease;
   }
   .links-row a:hover { color: var(--bright); border-color: var(--bright); }
+
+  .links-row a, .side-links a, .mobile-links a { font-family:Inter,var(--sans); }
 
   /* Contact links share the greeting row on desktop. */
   .side-links {
@@ -89,7 +91,7 @@
     font-family: var(--mono); font-weight: 400; font-size: 11px; letter-spacing: 0.18em; text-transform: uppercase;
     color: var(--ink-soft); margin: 0 0 14px;
   }
-  .block-h::after { content: ""; flex: 1; height: 1px; background: rgba(27,23,20,0.12); }
+  .block-h::after { content: none; }
 
   .entry { display: grid; grid-template-columns: 1fr auto; gap: 4px 24px; padding: 11px 0; border-bottom: 1px solid rgba(27,23,20,0.08); align-items: baseline; }
   .entry .role { font-family: var(--sans); font-weight: 400; font-size: 14px; letter-spacing: -0.005em; color: var(--ink); line-height: 1.35; }
@@ -131,11 +133,13 @@
 
   /* cursor glow + pixie-dust trail */
   #dust { position: fixed; inset: 0; width: 100%; height: 100%; pointer-events: none; z-index: 9999; }
+  .about-intro { flex-wrap:wrap; }
+  .side-links a, .links-row a, .mobile-links a { font-family:Inter,var(--sans); }
 </style>
-<link rel="stylesheet" href="styles/footer.css?v=3" />
+<link rel="stylesheet" href="styles/footer.css?v=v3-5" />
 </head>
 <body data-screen-label="About">
-  <a class="back" href="index.html" aria-label="Back to work"><span class="ar">←</span></a>
+  <a class="back" href="index.html" aria-label="Back to work"><svg class="back-arrow" width="38" height="28" viewBox="0 0 33 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M30 12H4m7-7-7 7 7 7"/></svg></a>
 
   <main class="about">
     <div class="about-intro">
@@ -211,7 +215,6 @@
       <p class="langs-line">English (Native), Bulgarian (Fluent), French (Working)</p>
     </section>
 
-    <div class="made-credit">Made with code and a brown sugar shaken espresso. Diana Chalakova 2026 All Rights Reserved.</div>
   </main>
 
   <div class="side-photo">
@@ -227,6 +230,11 @@
   <script>
   (function () {
     var photos = ["assets/kodak/100_0014.jpg", "assets/kodak/100_0016.jpg", "assets/kodak/100_0018.jpg", "assets/kodak/100_0071.jpg", "assets/kodak/100_0230.jpg", "assets/kodak/100_0328.jpg", "assets/kodak/100_0333.jpg", "assets/kodak/100_0414.jpg", "assets/kodak/100_0445.jpg", "assets/kodak/100_0620.jpg", "assets/kodak/100_0623.jpg", "assets/kodak/100_0640.jpg", "assets/kodak/100_0762.jpg", "assets/kodak/100_0779.jpg"];
+    // Keep the already-rendered opening photo, then mix the remaining photos on each visit.
+    for (var i = photos.length - 1; i > 1; i--) {
+      var j = 1 + Math.floor(Math.random() * i);
+      var photo = photos[i]; photos[i] = photos[j]; photos[j] = photo;
+    }
     var frame = document.querySelector('.kodak-frame');
     var slides = frame.querySelectorAll('img');
     var reduced = window.matchMedia('(prefers-reduced-motion: reduce)');
@@ -411,12 +419,8 @@
   })();
   </script>
 <script src="js/cursor.js"></script>
-<footer class="portfolio-footer" aria-label="Contact">
-  <span class="portfolio-footer__copyright">©DIANA CHALAKOVA 2026</span>
-  <nav class="portfolio-footer__links" aria-label="Social and email links">
-    <a href="https://www.linkedin.com/in/dchalakova/" target="_blank" rel="noopener noreferrer">LINKEDIN</a>
-    <a href="mailto:dchalakova@outlook.com">EMAIL</a>
-  </nav>
+<footer class="portfolio-footer portfolio-footer--about" aria-label="Contact">
+  <span class="portfolio-footer__copyright">© Diana Chalakova 2026</span>
 </footer>
 </body>
 </html>

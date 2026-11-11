@@ -37,3 +37,9 @@
 /* Keep the section rail attached to the viewport while the case study scrolls. */
 html, body { overflow-x: clip; }
 .cs-layout { overflow: visible; }
+
+/* Keep the desktop rail anchored even as the footer enters the viewport. */
+@media(min-width:901px) {
+  .cs-layout > .cs-side { position:fixed; top:0; left:calc(max(0px, (100vw - 1400px) / 2) + clamp(24px, 4vw, 64px)); width:186px; height:100dvh; z-index:20; }
+  .cs-layout > .cs-main { grid-column:2; }
+}

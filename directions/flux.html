@@ -220,15 +220,16 @@
     .cs-main { padding: 40px 24px 0; }
   }
 </style>
-<link rel="stylesheet" href="../styles/case-study-v1-5.css?v=black-headings">
-<link rel="stylesheet" href="../styles/footer.css?v=3" />
+<link rel="stylesheet" href="../styles/case-study-v1-5.css?v=v3-sticky-footer">
+<link rel="stylesheet" href="../styles/footer.css?v=v3-6" />
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400&amp;display=swap" rel="stylesheet" />
 </head>
 <body data-screen-label="Case study / Flux" >
 <div id="cursor"></div>
   <div class="cs-layout">
     <!-- LEFT RAIL -->
     <aside class="cs-side">
-      <a class="back" href="../index.html" aria-label="Back to all work"><span class="ar">←</span></a>
+      <a class="back" href="../index.html" aria-label="Back to all work"><svg class="back-arrow" width="38" height="28" viewBox="0 0 33 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M30 12H4m7-7-7 7 7 7"/></svg></a>
       <nav class="cs-nav" aria-label="Sections">
         <a href="#overview"     data-spy>Overview</a>
         <a href="#problem"      data-spy>Problem</a>
@@ -415,8 +416,14 @@
         </div>
       </section>
     </main>
-
-  </div>
+<footer class="portfolio-footer portfolio-footer--project" aria-label="Contact">
+  <span class="portfolio-footer__copyright">© Diana Chalakova 2026</span>
+  <nav class="portfolio-footer__links" aria-label="Social and email links">
+    <a href="https://www.linkedin.com/in/dchalakova/" target="_blank" rel="noopener noreferrer">LinkedIn</a>
+    <a href="mailto:dchalakova@outlook.com">Email</a>
+  </nav>
+</footer>
+</div>
 
   <script>
     var links = Array.prototype.slice.call(document.querySelectorAll('.cs-nav a[data-spy]'));
@@ -470,12 +477,6 @@
 
 <script src="../js/cursor.js"></script>
 <script src="../js/project-back.js?v=2"></script>
-<footer class="portfolio-footer" aria-label="Contact">
-  <span class="portfolio-footer__copyright">©DIANA CHALAKOVA 2026</span>
-  <nav class="portfolio-footer__links" aria-label="Social and email links">
-    <a href="https://www.linkedin.com/in/dchalakova/" target="_blank" rel="noopener noreferrer">LINKEDIN</a>
-    <a href="mailto:dchalakova@outlook.com">EMAIL</a>
-  </nav>
-</footer>
+
 </body>
 </html>
