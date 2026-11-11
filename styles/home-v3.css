@@ -4,7 +4,7 @@ html { scroll-behavior:auto; }
 body { background:#FAFAFA; }
 .v3-header { position:fixed; inset:0 0 auto; height:56px; z-index:30; pointer-events:none; }
 .v3-header::before { content:""; position:absolute; inset:0; background:#FAFAFA; opacity:var(--v3-progress); }
-.v3-info { position:absolute; top:24px; right:var(--v3-inset); pointer-events:auto; font:400 22px/1.4 Inter,var(--sans); letter-spacing:-.025em; }
+.v3-info { position:absolute; top:24px; right:var(--v3-inset); pointer-events:auto; font:400 20px/1.4 Inter,var(--sans); letter-spacing:-.025em; }
 .v3-info:hover { color:#D8576C; }
 .v3-intro { position:fixed; top:22px; left:var(--v3-inset); width:88vw; z-index:31; pointer-events:none; transform-origin:top left; will-change:transform; }
 .v3-intro h1 { font-family:var(--sans); font-weight:300; font-size:clamp(30px,3.1vw,68px); line-height:1.22; letter-spacing:-.025em; margin:0; }
