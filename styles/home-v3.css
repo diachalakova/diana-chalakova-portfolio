@@ -11,7 +11,8 @@ body { background:#FAFAFA; }
 .v3-name { font-family:Inter,var(--sans); font-weight:300; }
 .v3-statement,.v3-surname { opacity:1; }
 .v3-home { display:none; position:absolute; inset:0 auto auto 0; width:4.6em; height:1.3em; font-size:clamp(30px,3.1vw,68px); pointer-events:auto; }
-.v3-work { padding:67svh var(--v3-inset) 48px; }
+/* Place the filter row at the bottom of the opening viewport. */
+.v3-work { padding: calc(100svh - 58px) var(--v3-inset) 48px; }
 .v3-work .work-grid { gap:48px 36px; }
 .v3-work .pcard .ph { aspect-ratio:1.35; }
 .v3-work .project-info { padding-top:16px; }
@@ -20,7 +21,7 @@ body { background:#FAFAFA; }
  .v3-intro { top:24px; width:calc(100vw - 70px); }
  .v3-intro h1 { font-size:clamp(28px,5.4vw,42px); }
  .v3-info { font-size:22px; right:20px; top:26px; }
- .v3-work { padding-top:70svh; }
+ .v3-work { padding-top:calc(100svh - 58px); }
  .v3-work .work-grid { grid-template-columns:1fr; gap:32px; }
 }
 @media(prefers-reduced-motion:reduce) { .v3-intro { will-change:auto; } }
@@ -33,3 +34,14 @@ body { background:#FAFAFA; }
 @media(max-width:780px) { .portfolio-footer { font-size:15px; } }
 
 .v3-work .pcard .t { font-family:Inter,var(--sans); font-weight:500; }
+
+#home-dust { position:fixed; inset:0; pointer-events:none; z-index:9998; }
+
+.v3-project-filters { display:flex; flex-wrap:wrap; gap:10px; margin:0 0 24px; position:sticky; top:64px; z-index:25; font:400 17px/1.5 Inter,var(--sans); width:fit-content; background:#FAFAFA; }
+.v3-project-filters button { position:relative; padding:4px 7px; border:0; background:transparent; color:#000; font:inherit; isolation:isolate; transition:color .18s ease; }
+.v3-project-filters button::before { content:""; position:absolute; inset:auto 0 0; height:0; background:#D8576C; z-index:-1; transition:height .24s cubic-bezier(.3,.7,.2,1); }
+.v3-project-filters button[aria-pressed="true"] { color:#D8576C; }
+.v3-project-filters button:hover { color:#fff; }
+.v3-project-filters button:hover::before { height:100%; }
+.v3-work .pcard[hidden] { display:none; }
+@media(prefers-reduced-motion:reduce) { .v3-project-filters button,.v3-project-filters button::before { transition:none; } }

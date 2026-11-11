@@ -20,7 +20,7 @@
 <link rel="stylesheet" href="styles/project-grid.css?v=15" />
 <link rel="stylesheet" href="styles/navigation-motion.css" />
 <link rel="stylesheet" href="styles/footer.css?v=v3-5" />
-<link rel="stylesheet" href="styles/home-v3.css?v=10" />
+<link rel="stylesheet" href="styles/home-v3.css?v=16" />
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300..500&display=swap" rel="stylesheet" />
 </head><body><header class="v3-header">
 <a class="v3-info" href="About.html">About</a>
@@ -28,7 +28,13 @@
 <section class="v3-intro" aria-label="Introduction">
 <h1><span class="v3-name">Diana C<span class="v3-surname">halakova</span></span><span class="v3-statement"> is a product designer and<br class="v3-break"> creative shipping clear, thoughtful experiences<br class="v3-break"> across digital design and interaction models.</span></h1>
 <a class="v3-home" href="#" aria-label="Diana C — back to top" tabindex="-1"></a>
-</section><main class="work-page v3-work" id="work" aria-label="All work"><div class="work-grid"><a class="pcard" data-categories="featured ux ai branding" href="directions/flux.html?from=index.html" style="--ar:16/10; --sb:#EAE0CC; --accent:#684726;">
+</section><main class="work-page v3-work" id="work" aria-label="All work"><nav class="v3-project-filters" aria-label="Filter projects">
+<button type="button" data-filter="featured" aria-pressed="true">featured</button>
+<button type="button" data-filter="all" aria-pressed="false">all</button>
+<button type="button" data-filter="ux" aria-pressed="false">ux</button>
+<button type="button" data-filter="ai" aria-pressed="false">ai</button>
+<button type="button" data-filter="branding" aria-pressed="false">branding</button>
+</nav><div class="work-grid"><a class="pcard" data-categories="featured ux ai branding" href="directions/flux.html?from=index.html" style="--ar:16/10; --sb:#EAE0CC; --accent:#684726;">
         <div class="ph" style="background:#F2F2F2;"><img class="thumb" src="assets/work/flux-card.jpg" alt="FLUX thesis show poster — circle cutouts revealing photos and the flux wordmark" fetchpriority="high" decoding="async" /></div>
         <div class="project-info"><div class="cap"><span class="t">Flux</span><div class="tagrow"><span>Visual Identity</span><span>0→1</span><span>Cross-Collaboration</span></div></div>
         <div class="d">Thesis exhibition website helping visitors discover the designers and multidisciplinary work of Parsons’ MFA Design &amp; Technology cohort.</div>
@@ -51,34 +57,36 @@
         <div class="project-info"><div class="cap"><span class="t">ZariZar</span><div class="tagrow"><span>Brand Identity</span><span>Web Design</span></div></div>
         <div class="d">Brand identity and web design connecting luxury Indian shawls with the craftsmanship, heritage, and women behind them.</div>
       </div></a>
-<a class="pcard" data-categories="ux" href="directions/seal.html?from=index.html" style="--ar:16/10; --sb:#ECE7F5; --accent:#4B2E83;">
+<a class="pcard" data-categories="ux" href="directions/seal.html?from=index.html" style="--ar:16/10; --sb:#ECE7F5; --accent:#4B2E83;" hidden>
         <div class="ph" style="background:#F2F2F2;"><img class="thumb" src="assets/work/seal-card.png" alt="The redesigned SEAL lab dashboard, shown on a laptop" fetchpriority="high" decoding="async" style="object-fit:cover;" /></div>
         <div class="project-info"><div class="cap"><span class="t">SEAL</span><div class="tagrow"><span>Internship</span><span>Usability</span></div></div>
         <div class="d">Internal dashboard bringing scattered tasks, projects, and resources into one workspace for 300+ engineers.</div>
       </div></a>
-<a class="pcard" data-categories="ai creative" href="https://dchalakova.github.io/mo_amongthetrees/" target="_blank" rel="noopener" style="--ar:6/5; --sb:#E2E6E9; --accent:#463121;">
+<a class="pcard" data-categories="ai creative" href="https://dchalakova.github.io/mo_amongthetrees/" target="_blank" rel="noopener" style="--ar:6/5; --sb:#E2E6E9; --accent:#463121;" hidden>
         <div class="ph" style="background:#F2F2F2;"><img class="thumb" src="assets/work/among-the-trees-ipad-web.jpg" alt="The Among The Trees interactive site shown on an iPad Pro — Mary Oliver's poem set in a circular arrangement with a typographic-transformation menu" loading="lazy" style="object-fit:contain; padding:10px 14px; box-sizing:border-box;" /></div>
         <div class="project-info"><div class="cap"><span class="t">Among The Trees</span><div class="tagrow"><span>AI</span><span>Interaction</span><span>Live Website</span></div></div>
         <div class="d">Interactive poetry website exploring how AI-assisted typography can shape the experience of reading Mary Oliver’s words.</div>
       </div></a>
 
-<a class="pcard" data-categories="ux ai" href="directions/atlas.html?from=index.html" style="--ar:4/3; --sb:#ECE3FB; --accent:#5B24BF;">
+<a class="pcard" data-categories="ux ai" href="directions/atlas.html?from=index.html" style="--ar:4/3; --sb:#ECE3FB; --accent:#5B24BF;" hidden>
         <div class="ph" style="background:#F2F2F2;"><img class="thumb" src="assets/work/atlas-hero.jpg" alt="The Atlas app on two iPhones — a campus discovery home screen and a place detail page" loading="lazy" style="object-fit:contain; padding:22px 24px; box-sizing:border-box;" /></div>
         <div class="project-info"><div class="cap"><span class="t">Atlas</span><div class="tagrow"><span>Startup</span><span>AI Integration</span></div></div>
         <div class="d">Campus discovery app helping students find study spots, affordable food, events, and hidden gems across their university community.</div>
       </div></a>
 
-<a class="pcard" data-categories="creative" href="directions/for-stillness.html?from=index.html" style="--ar:16/11; --sb:#ECE6D8; --accent:#3E6B66;">
+<a class="pcard" data-categories="creative" href="directions/for-stillness.html?from=index.html" style="--ar:16/11; --sb:#ECE6D8; --accent:#3E6B66;" hidden>
         <div class="ph" style="background:#F2F2F2;"><img class="thumb" src="assets/work/stillness-cover.jpg" alt="The For Stillness pop-up book held open to a layered orange funnel pop-up spread" loading="lazy" /></div>
         <div class="project-info"><div class="cap"><span class="t">For Stillness</span><div class="tagrow"><span>Product</span><span>Visual Design</span></div></div>
         <div class="d">Handcrafted pop-up book inviting readers to slow down and reflect on their relationship with digital technology.</div>
       </div></a>
-<a class="pcard" data-categories="creative" href="directions/cairn.html?from=index.html" style="--ar:4/3; --sb:#E8EDE8; --accent:#3A6B3A;">
+<a class="pcard" data-categories="creative" href="directions/cairn.html?from=index.html" style="--ar:4/3; --sb:#E8EDE8; --accent:#3A6B3A;" hidden>
         <div class="ph" style="background:#F0F0EE;"><img class="thumb" src="assets/work/cairn-card.jpg" alt="Cairn — a 3D-printed white stone-stack object threaded with green moss, glowing from between its blocks" loading="lazy" style="object-fit:cover;" /></div>
         <div class="project-info"><div class="cap"><span class="t">Cairn</span><div class="tagrow"><span>IoT</span><span>AI</span><span>Data Viz</span></div></div>
         <div class="d">Speculative smart home system exploring how shared emotional signals could help people better understand those they live with.</div>
-      </div></a></div></main><script src="js/project-grid.js?v=continuous-swipe"></script><script src="js/home-v3.js?v=8"></script>
+      </div></a></div></main><script src="js/project-grid.js?v=continuous-swipe"></script><script src="js/home-v3.js?v=14"></script>
 <script src="js/cursor.js"></script>
+<canvas id="home-dust" aria-hidden="true"></canvas>
+<script src="js/home-sparkles.js"></script>
 <footer class="portfolio-footer" aria-label="Contact">
   <span class="portfolio-footer__copyright">© Diana Chalakova 2026</span>
   <nav class="portfolio-footer__links" aria-label="Social and email links">

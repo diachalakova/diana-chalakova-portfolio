@@ -12,6 +12,7 @@
   const name=intro.querySelector('.v3-name');
   const home=intro.querySelector('.v3-home');
   const grid=document.querySelector('.work-grid');
+  const filters=document.querySelector('.v3-project-filters');
   const reduced=matchMedia('(prefers-reduced-motion: reduce)');
   let start=0,end=1,scale=1,target=0,value=0,velocity=0,last=0,frame=0;
   const clamp=n=>Math.max(0,Math.min(1,n));
@@ -25,6 +26,14 @@
     document.documentElement.style.setProperty('--v3-progress',clamp((p-.55)/.45));
     home.style.display=p>.98?'block':'none';
     home.tabIndex=p>.98?0:-1;
+    filters.style.opacity=1-clamp((p-.8)/.18);
+    filters.style.visibility=p>.98?'hidden':'visible';
+    filters.inert=p>.98;
+    const compact=p>.98?'true':'false';
+    if(document.documentElement.dataset.introCompact!==compact) {
+      document.documentElement.dataset.introCompact=compact;
+      document.dispatchEvent(new Event('portfolio:intro-state'));
+    }
   }
   function tick(time) {
     let dt=last?Math.min((time-last)/1000,.04):1/60;last=time;
@@ -40,11 +49,24 @@
   function measure() {
     const top=parseFloat(getComputedStyle(intro).top);
     scale=config.compactSize/parseFloat(getComputedStyle(title).fontSize);
+    // Place the filters at the viewport bottom, with project cards below the fold.
+    grid.closest('main').style.paddingTop=Math.max(0,innerHeight-filters.offsetHeight-24)+'px';
     const gridTop=grid.getBoundingClientRect().top+scrollY;
     start=Math.max(0,gridTop-(top+title.offsetHeight)-config.clearance);
     end=Math.max(start+120,gridTop-100);
     update();
   }
+  filters.addEventListener('click',event=>{
+    const button=event.target.closest('button[data-filter]');
+    if(!button)return;
+    const selected=button.dataset.filter;
+    filters.querySelectorAll('button').forEach(item=>item.setAttribute('aria-pressed',String(item===button)));
+    grid.querySelectorAll('.pcard').forEach(card=>{
+      card.hidden=selected!=='all'&&!card.dataset.categories.split(/\s+/).includes(selected);
+      if(card.hidden)card.querySelectorAll('video').forEach(video=>video.pause());
+    });
+    measure();
+  });
   home.addEventListener('click',event=>{ event.preventDefault();window.scrollTo({top:0,behavior:reduced.matches?'instant':'smooth'}); });
   addEventListener('scroll',update,{passive:true});
   addEventListener('resize',measure);
