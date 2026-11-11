@@ -1,0 +1,5 @@
+/* Shared page surface; project artwork keeps its own colors. */
+:root { --paper:#FAFAFA; --page-background:#FAFAFA; }
+html, body { background:var(--page-background); }
+.portfolio-footer, .portfolio-footer--project, .portfolio-footer--about,
+.cs-side, .v3-header::before, .v3-project-filters { background:var(--page-background); }

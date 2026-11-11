@@ -56,13 +56,13 @@
       Object.assign(outgoing.style, {
         position: 'fixed', top: rect.top + 'px', left: rect.left + 'px',
         width: rect.width + 'px', margin: '0', zIndex: '10',
-        background: '#fff', pointerEvents: 'none'
+        background: '#FAFAFA', pointerEvents: 'none'
       });
       outgoing.inert = true;
       outgoing.setAttribute('aria-hidden', 'true');
       document.body.append(outgoing);
       main = incoming;
-      main.style.background = '#fff';
+      main.style.background = '#FAFAFA';
       document.title = page.title;
       history.pushState({ category: next }, '', destination.href);
       current = next;
