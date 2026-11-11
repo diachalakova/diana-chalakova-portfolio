@@ -1,7 +1,7 @@
 (() => {
   const reduced = window.matchMedia('(prefers-reduced-motion: reduce)');
   let main = document.querySelector('main');
-  const pages = ['index.html', 'shop-all.html', 'ux.html', 'creative.html', 'ai.html', 'branding.html'];
+  const pages = ['index.html', 'shop-all.html', 'ux.html', 'ai.html', 'branding.html'];
   const categories = pages.filter(page => page !== 'index.html');
   // Category lists depart in navigation order; the incoming list settles on a spring.
   const swipe = { exitMs: 220, enterMs: 720, damping: 8, frequency: 9, exitFraction: .35 };
