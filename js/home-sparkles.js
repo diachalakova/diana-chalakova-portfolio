@@ -19,7 +19,7 @@
     window.addEventListener('resize', resize);
 
     // "Diana C" coral, with a couple of lighter sparkle tints for the dust
-    var TINTS = [ [240, 150, 168], [248, 196, 206], [240, 205, 150] ];
+    var TINTS = [ [250, 207, 216], [253, 228, 233], [250, 232, 203] ];
     function makeSprite(rgb) {
       var s = 64, c = document.createElement('canvas'); c.width = c.height = s;
       var g = c.getContext('2d');
@@ -31,10 +31,13 @@
       return c;
     }
     var sprites = TINTS.map(makeSprite);
-    var glowSprite = makeSprite(TINTS[0]);
+    var glowSprite = makeSprite([248, 192, 204]);
 
     var parts = [];
-    var MAX = 160;
+    var MAX = 40;
+    // Fast movement stretches the spring chain; slowing lets it curl and settle.
+    var LINE = {count:10, stiffness:260, damping:24, width:1.25, color:'#D8576C'};
+    var trail = [];
     var mx = -999, my = -999, hasMouse = false;
     var lastX = -999, lastY = -999;
     var gx = -999, gy = -999;   // smoothed glow position (trails the cursor)
@@ -61,14 +64,17 @@
       if(!enabled || e.pointerType==='touch')return;
       wake();
       mx = e.clientX; my = e.clientY; hasMouse = true;
+      if(!trail.length) {
+        for(var j=0;j<LINE.count;j++)trail.push({x:mx,y:my,vx:0,vy:0});
+      }
       if (gx < -900) { gx = mx; gy = my; }
       if (reduce) return;
       if (lastX < -900) { lastX = mx; lastY = my; }
       var dx = mx - lastX, dy = my - lastY;
       var dist = Math.sqrt(dx * dx + dy * dy);
-      var step = 7;
+      var step = 32;
       if (dist >= step) {
-        var n = Math.min(Math.floor(dist / step), 8);
+        var n = Math.min(Math.floor(dist / step), 2);
         for (var i = 1; i <= n; i++) {
           spawn(lastX + dx * (i / n), lastY + dy * (i / n), 1);
         }
@@ -76,7 +82,7 @@
       }
     }
     window.addEventListener('pointermove', onMove, { passive: true });
-    window.addEventListener('pointerout', function (e) { if (!e.relatedTarget) { hasMouse = false;wake(); } });
+    window.addEventListener('pointerout', function (e) { if (!e.relatedTarget) { hasMouse = false;trail=[];lastX=lastY=gx=gy=-999;wake(); } });
 
     var last = performance.now();
     function wake() {
@@ -95,6 +101,35 @@
         ctx.drawImage(glowSprite, gx - gr, gy - gr, gr * 2, gr * 2);
       }
 
+      // Integrate in small steps so the spring feels consistent at any frame rate.
+      var lineMoving=false, remaining=dt;
+      while(remaining>0 && trail.length) {
+        var h=Math.min(remaining,1/120);remaining-=h;
+        for(var t=0;t<trail.length;t++) {
+          var point=trail[t], leader=t?trail[t-1]:{x:mx,y:my};
+          point.vx+=(LINE.stiffness*(leader.x-point.x)-LINE.damping*point.vx)*h;
+          point.vy+=(LINE.stiffness*(leader.y-point.y)-LINE.damping*point.vy)*h;
+          point.x+=point.vx*h;point.y+=point.vy*h;
+        }
+      }
+      for(var t=0;t<trail.length;t++) {
+        var point=trail[t];
+        if(Math.hypot(point.x-mx,point.y-my)>.2 || Math.hypot(point.vx,point.vy)>1)lineMoving=true;
+      }
+      if(hasMouse && lineMoving) {
+        ctx.globalAlpha=1;
+        ctx.strokeStyle=LINE.color;
+        ctx.lineWidth=LINE.width;
+        ctx.lineCap='round';ctx.lineJoin='round';
+        ctx.beginPath();ctx.moveTo(mx,my);
+        for(var t=0;t<trail.length-1;t++) {
+          var point=trail[t], next=trail[t+1];
+          ctx.quadraticCurveTo(point.x,point.y,(point.x+next.x)/2,(point.y+next.y)/2);
+        }
+        var tail=trail[trail.length-1];
+        ctx.lineTo(tail.x,tail.y);ctx.stroke();
+      }
+
       // pixie dust
       for (var i = parts.length - 1; i >= 0; i--) {
         var p = parts[i];
@@ -103,7 +138,7 @@
         p.vx *= 0.96; p.vy = p.vy * 0.96 - 0.02 * dt; // gentle continued float
         p.x += p.vx; p.y += p.vy;
         var r = 1 - p.life / p.max;
-        var alpha = Math.sin(r * Math.PI) * 0.9;       // fade in fast, out slow
+        var alpha = Math.sin(r * Math.PI) * 0.65;       // fade in fast, out slow
         var tw = 0.75 + 0.25 * Math.sin(now * 0.012 + p.spin); // soft twinkle
         var sz = p.size * (0.35 + 0.65 * r);
         ctx.globalAlpha = Math.max(0, alpha * tw);
@@ -111,7 +146,7 @@
       }
       ctx.globalAlpha = 1;
       var glowMoving=hasMouse&&(Math.abs(mx-gx)>.1||Math.abs(my-gy)>.1);
-      animation=enabled&&(parts.length||glowMoving)?requestAnimationFrame(frame):0;
+      animation=enabled&&(parts.length||(hasMouse&&lineMoving)||glowMoving)?requestAnimationFrame(frame):0;
     }
     function sync() {
       reduce=preference.matches;
@@ -119,7 +154,7 @@
       if(next===enabled)return;
       enabled=next;
       if(enabled) { /* Wait for pointer movement before drawing. */ }
-      else { cancelAnimationFrame(animation);animation=0;parts=[];hasMouse=false;lastX=lastY=gx=gy=-999;ctx.clearRect(0,0,W,H); }
+      else { cancelAnimationFrame(animation);animation=0;parts=[];trail=[];hasMouse=false;lastX=lastY=gx=gy=-999;ctx.clearRect(0,0,W,H); }
     }
     document.addEventListener('portfolio:intro-state',sync);
     document.addEventListener('visibilitychange',sync);

@@ -10,7 +10,7 @@
       scheduled=false;
       if(loaded||!fine.matches||reduced.matches)return;
       loaded=true;
-      ['js/home-sparkles.js?v=idle','js/intro-ripple.js?v=idle'].forEach(src=>{
+      ['js/home-sparkles.js?v=spring-trail-light','js/intro-ripple.js?v=idle'].forEach(src=>{
         const script=document.createElement('script');
         script.src=src;script.async=true;script.fetchPriority='low';document.body.append(script);
       });

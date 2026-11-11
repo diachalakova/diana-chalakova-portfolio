@@ -4,7 +4,7 @@
    * A damped spring shrinks the remaining name into the top-left corner.
    * Scrolling back reverses the same movement. Native page scrolling stays intact.
    */
-  const config = { stiffness:180, damping:27, compactSize:22, clearance:80 };
+  const config = { stiffness:240, damping:31, compactSize:22, clearance:80 };
   const intro=document.querySelector('.v3-intro');
   const title=intro.querySelector('h1');
   const statement=intro.querySelector('.v3-statement');
@@ -52,7 +52,7 @@
   reduced.addEventListener('change',cancelFilterScroll);
   const clamp=n=>Math.max(0,Math.min(1,n));
   function paint() {
-    const p=clamp(value), fade=1-clamp(p/.65);
+    const p=clamp(value), fade=1-clamp(p/.55);
     intro.style.transform=`scale(${1+(scale-1)*p})`;
     statement.style.opacity=fade;
     surname.style.opacity=fade;
@@ -62,9 +62,11 @@
     home.style.display=p>.98?'block':'none';
     home.tabIndex=p>.98?0:-1;
     const pinFilters=keepFiltersVisible && matchMedia('(min-width:781px)').matches;
-    filters.style.opacity=pinFilters?1:1-clamp((p-.8)/.18);
-    filters.style.visibility=!pinFilters && p>.98?'hidden':'visible';
-    filters.inert=!pinFilters && p>.98;
+    // Filters remain readable alongside the cards; only fade at the header.
+    const filterFade=clamp((filters.getBoundingClientRect().top-64)/40);
+    filters.style.opacity=pinFilters?1:filterFade;
+    filters.style.visibility=!pinFilters && filterFade===0?'hidden':'visible';
+    filters.inert=!pinFilters && filterFade===0;
     const compact=p>.98?'true':'false';
     if(document.documentElement.dataset.introCompact!==compact) {
       document.documentElement.dataset.introCompact=compact;
@@ -79,6 +81,7 @@
   }
   function update() {
     target=clamp((scrollY-start)/(end-start));
+    paint();
     if(reduced.matches) { cancelAnimationFrame(frame);frame=0;last=0;value=target;velocity=0;paint(); }
     else if(!frame) frame=requestAnimationFrame(tick);
   }
@@ -92,9 +95,12 @@
     const cardsTop=mobile ? viewportHeight+filterGap : innerHeight;
     grid.closest('main').style.paddingTop=Math.max(0,cardsTop-filters.offsetHeight-filterGap)+'px';
     const gridTop=grid.getBoundingClientRect().top+scrollY;
-    start=Math.max(0,gridTop-(top+title.offsetHeight)-config.clearance);
-    const compactInset=keepFiltersVisible && !mobile ? 64+filters.offsetHeight+16 : 100;
-    end=Math.max(start+120,gridTop-compactInset);
+    // Begin as the filters approach the full introduction, then compact
+    // near the header rather than leaving a large empty area above the cards.
+    const filterTop=gridTop-filters.offsetHeight-filterGap;
+    const introBottom=top+title.offsetHeight;
+    start=Math.max(0,filterTop-introBottom-config.clearance);
+    end=Math.max(start+120,filterTop-120);
     update();
   }
   filters.addEventListener('click',event=>{
