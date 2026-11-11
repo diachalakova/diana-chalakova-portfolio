@@ -28,9 +28,10 @@
 .cs-main .sec-tag, .project-details dt { font-weight:400; letter-spacing:.06em; }
 
 /* Consistent secondary text hierarchy throughout the case studies. */
-.cs-main p, .cs-main li, .cs-main h2, .cs-main h3,
-.cs-main h4, .cs-main h5, .cs-main h6, .cs-main .subhead,
-.cs-main .sec-tag, .cs-main .project-details dd { color:#4a4a4a; }
+.cs-main p, .cs-main li, .cs-main .project-details dd { color:#4a4a4a; }
+.cs-main h1, .cs-main h2, .cs-main h3, .cs-main h4,
+.cs-main h5, .cs-main h6, .cs-main .subhead,
+.cs-main .sec-tag, .cs-main .cs-hero-title { color:#000; }
 .cs-main p .em, .cs-main p .mark, .cs-main p [class^="hl-"] { color:inherit; }
 
 /* Keep the section rail attached to the viewport while the case study scrolls. */
