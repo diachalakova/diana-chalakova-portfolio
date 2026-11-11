@@ -20,7 +20,7 @@ body { background:#FAFAFA; }
  :root { --v3-inset:20px; }
  .v3-intro { top:24px; width:calc(100vw - 70px); }
  .v3-intro h1 { font-size:clamp(28px,5.4vw,42px); }
- .v3-info { font-size:22px; right:20px; top:26px; }
+ .v3-info { font-size:20px; right:20px; top:26px; }
  .v3-work { padding-top:calc(100svh - 58px); }
  .v3-work .work-grid { grid-template-columns:1fr; gap:32px; }
 }
