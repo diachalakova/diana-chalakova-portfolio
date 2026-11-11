@@ -43,3 +43,5 @@ html, body { overflow-x: clip; }
   .cs-layout > .cs-side { position:fixed; top:0; left:calc(max(0px, (100vw - 1400px) / 2) + clamp(24px, 4vw, 64px)); width:186px; height:100dvh; z-index:20; }
   .cs-layout > .cs-main { grid-column:2; }
 }
+
+@media(max-width:780px) { .cs-side .back { display:none; } }

@@ -132,6 +132,12 @@
   }
   .about-intro { flex-wrap:wrap; }
   .side-links a, .links-row a, .mobile-links a { font-family:Inter,var(--sans); }
+  @media(max-width:780px) {
+    .back { display:none; }
+    .about-intro .side-links { justify-content:flex-start; }
+    .side-links-right { justify-content:flex-start; flex-wrap:wrap; }
+    .side-links a { padding-left:0; padding-right:16px; }
+  }
 </style>
 <link rel="stylesheet" href="styles/footer.css?v=v3-5" />
 </head>
