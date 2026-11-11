@@ -6,6 +6,7 @@
     var canvas = document.getElementById('home-dust');
     if (!canvas) return;
     var ctx = canvas.getContext('2d');
+    if(!ctx)return;
     var dpr = Math.min(window.devicePixelRatio || 1, 2);
     var W = 0, H = 0;
     function resize() {
@@ -33,7 +34,7 @@
     var glowSprite = makeSprite(TINTS[0]);
 
     var parts = [];
-    var MAX = 320;
+    var MAX = 160;
     var mx = -999, my = -999, hasMouse = false;
     var lastX = -999, lastY = -999;
     var gx = -999, gy = -999;   // smoothed glow position (trails the cursor)
@@ -58,6 +59,7 @@
 
     function onMove(e) {
       if(!enabled || e.pointerType==='touch')return;
+      wake();
       mx = e.clientX; my = e.clientY; hasMouse = true;
       if (gx < -900) { gx = mx; gy = my; }
       if (reduce) return;
@@ -74,9 +76,12 @@
       }
     }
     window.addEventListener('pointermove', onMove, { passive: true });
-    window.addEventListener('pointerout', function (e) { if (!e.relatedTarget) hasMouse = false; });
+    window.addEventListener('pointerout', function (e) { if (!e.relatedTarget) { hasMouse = false;wake(); } });
 
     var last = performance.now();
+    function wake() {
+      if(enabled&&!animation) { last=performance.now();animation=requestAnimationFrame(frame); }
+    }
     function frame(now) {
       var dt = Math.min((now - last) / 1000, 0.05); last = now;
       ctx.clearRect(0, 0, W, H);
@@ -105,15 +110,16 @@
         ctx.drawImage(sprites[p.tint], p.x - sz, p.y - sz, sz * 2, sz * 2);
       }
       ctx.globalAlpha = 1;
-      if(enabled)animation=requestAnimationFrame(frame);
+      var glowMoving=hasMouse&&(Math.abs(mx-gx)>.1||Math.abs(my-gy)>.1);
+      animation=enabled&&(parts.length||glowMoving)?requestAnimationFrame(frame):0;
     }
     function sync() {
       reduce=preference.matches;
       var next=!reduce && pointer.matches && !document.hidden && document.documentElement.dataset.introCompact!=='true';
       if(next===enabled)return;
       enabled=next;
-      if(enabled) { last=performance.now();animation=requestAnimationFrame(frame); }
-      else { cancelAnimationFrame(animation);parts=[];hasMouse=false;lastX=lastY=gx=gy=-999;ctx.clearRect(0,0,W,H); }
+      if(enabled) { /* Wait for pointer movement before drawing. */ }
+      else { cancelAnimationFrame(animation);animation=0;parts=[];hasMouse=false;lastX=lastY=gx=gy=-999;ctx.clearRect(0,0,W,H); }
     }
     document.addEventListener('portfolio:intro-state',sync);
     document.addEventListener('visibilitychange',sync);

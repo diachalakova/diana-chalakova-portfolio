@@ -52,3 +52,7 @@ body { background:#FAFAFA; }
 
 .v3-project-filters { justify-content:flex-start; text-align:left; margin-left:0; }
 .v3-project-filters button:first-child { padding-left:0; }
+
+.intro-ripple-word { display:inline-block; }
+
+.intro-ripple-letter { display:inline-block; transform-origin:50% 75%; }
