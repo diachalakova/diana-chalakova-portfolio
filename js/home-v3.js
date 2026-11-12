@@ -88,11 +88,11 @@
   function measure() {
     const top=parseFloat(getComputedStyle(intro).top);
     scale=config.compactSize/parseFloat(getComputedStyle(title).fontSize);
-    // Mobile filters end at the opening viewport edge; cards begin 10px below.
+    // Show a 40px preview of the first row, with filters directly above it.
     const mobile=matchMedia('(max-width:780px)').matches;
     const viewportHeight=mobile && window.visualViewport ? window.visualViewport.height : innerHeight;
     const filterGap=parseFloat(getComputedStyle(filters).marginBottom);
-    const cardsTop=mobile ? viewportHeight+filterGap : innerHeight;
+    const cardsTop=viewportHeight-40;
     grid.closest('main').style.paddingTop=Math.max(0,cardsTop-filters.offsetHeight-filterGap)+'px';
     const gridTop=grid.getBoundingClientRect().top+scrollY;
     // Begin as the filters approach the full introduction, then compact
