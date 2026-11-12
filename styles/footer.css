@@ -63,3 +63,6 @@
 /* Project footers share the section rail's grid and horizontal inset. */
 .cs-layout > .portfolio-footer--project { grid-column:1 / -1; max-width:none; padding-left:34px; padding-right:48px; }
 @media(max-width:900px) { .cs-layout > .portfolio-footer--project { padding-left:18px; padding-right:24px; } }
+
+/* Keep the footer visible above the fixed section rail’s full-height background. */
+.cs-layout > .portfolio-footer--project { position:relative; z-index:21; }
