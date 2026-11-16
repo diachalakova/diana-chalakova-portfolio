@@ -12,7 +12,6 @@ A personal portfolio site for designer Diana Chalakova: a work-first landing gri
 ├── 404.html                # Not-found page (served by GitHub Pages)
 ├── directions/             # Case studies
 │   ├── flux.html
-│   ├── seal.html
 │   ├── contextpath.html
 │   ├── arc-security.html
 │   ├── atlas.html
@@ -124,3 +123,14 @@ V3 replaces the slideshow homepage with an expansive introduction, a spring-driv
 The exact previous live portfolio is saved in the annotated Git tag `V1.5-before-V3-2026-11-10` (commit `2740d82`). To preview that saved version without changing the current release, create a separate worktree from that tag. To republish it later, restore the tag’s tracked files on a new branch, review the diff, then commit and merge the restoration to `main`.
 
 The earlier sticky-right-column V2 experiment remains separate on branch `v2`.
+
+## Archived Cairn and SEAL (November 15, 2026)
+
+Both projects were removed from public project lists and their public HTML routes.
+Their complete case studies and original card placements are preserved in the Git tag
+`archive-cairn-seal-2026-11-15` (commit `65b16aa`). Media assets remain available for restoration.
+
+Restore either page with `git restore --source archive-cairn-seal-2026-11-15 -- directions/cairn.html`
+or the same command using `directions/seal.html`. Recover the relevant card markup from
+that tag's `index.html`, `shop-all.html`, `ux.html` (SEAL), and `creative.html` (Cairn),
+without reverting unrelated subsequent edits.
